@@ -1,127 +1,152 @@
 ---
 title: "Blog 4"
-date: 2025-01-01
-weight: 1
+date: 2025-10-01
 chapter: false
 pre: " <b> 3.4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Hướng Dẫn Cốt Lõi Về Quản Trị Đám Mây tại AWS re:Invent 2025
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
-
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+**AWS Cloud Operations Blog**  
+*Tác giả: David Sokolik – Ngày 01/10/2025*  
+Danh mục: Announcements, AWS CloudTrail, AWS Config, Generative AI, Management & Governance  
 
 ---
 
-## Hướng dẫn kiến trúc
+## Giới thiệu
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Khi các tổ chức ngày càng nhận ra rằng **quản trị (governance)** là một **đòn bẩy chiến lược** thay vì chỉ là gánh nặng tuân thủ, chủ đề **Cloud Governance** trong nhóm **AWS Cloud Operations (Cloud Ops)** tại **AWS re:Invent 2025** mang đến các phiên thảo luận tiên tiến giúp **kết nối giữa hiệu suất vận hành và đổi mới kinh doanh**.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Bối cảnh quản trị đám mây đang thay đổi nhanh chóng. Năm nay, các phiên học được tổ chức xoay quanh **bốn chủ đề trọng tâm**, phản ánh những thách thức và cơ hội cấp bách nhất mà các chuyên gia quản trị đám mây đang đối mặt.
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## Lên Kế Hoạch Cho Trải Nghiệm Cloud Governance
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Chủ đề **Cloud Governance** trong nhóm **AWS Cloud Ops** bao gồm **bốn hướng nội dung chính**, kết hợp nhiều hình thức học tập như workshop thực hành, builders’ session và thảo luận chuyên sâu.  
+Để tận dụng tối đa trải nghiệm tại re:Invent, AWS khuyến nghị:
 
----
-
-## Lựa chọn công nghệ và phạm vi giao tiếp
-
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+- **Tập trung vào ưu tiên của bạn:** Chọn những phiên học phù hợp với thách thức vận hành hiện tại của tổ chức.  
+- **Kết hợp đa dạng:** Xen kẽ giữa bài giảng, buổi thực hành và phiên builders để có trải nghiệm toàn diện.  
+- **Phát triển kỹ năng:** Lựa chọn phiên phù hợp với trình độ hiện tại, đồng thời mở rộng năng lực chuyên môn.  
+- **Đăng ký sớm:** Các phiên học nổi bật thường nhanh chóng hết chỗ, nên hãy đăng ký ngay khi mở cổng.  
 
 ---
 
-## The pub/sub hub
+## Bốn Chủ Đề Chính của Cloud Governance tại re:Invent 2025
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+### 1. Trí tuệ nhân tạo sinh (Generative AI) và Quản trị Thông minh
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Việc tích hợp **AI sinh (Generative AI)** vào quy trình quản trị đang **cách mạng hóa cách các tổ chức quản lý tuân thủ, kiểm soát và giám sát vận hành**.  
+Từ việc sử dụng **Amazon Q** để phân tích log CloudTrail đến việc **tự động xác thực các kiểm soát (control validation)**, các công nghệ này đang biến quản trị từ phản ứng sang **chủ động**, với khả năng **dự đoán vấn đề, tự động phản hồi và cung cấp thông tin theo ngữ cảnh ở quy mô lớn**.
 
 ---
 
-## Core microservice
+### 2. Hiệu Quả Vận Hành và Tối Ưu Chi Phí
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Quản trị hiệu quả không chỉ xoay quanh bảo mật và tuân thủ, mà còn là **tăng tính linh hoạt trong kinh doanh** trong khi **tối ưu hóa tài nguyên**.  
+Các khung quản trị hiện đại cần cân bằng giữa **kiểm soát chặt chẽ** và **hiệu quả vận hành**, thông qua **chiến lược giám sát tiết kiệm chi phí**, **đơn giản hóa quản lý tài khoản**, và **tự động hóa các tác vụ lặp lại** để đội ngũ có thể tập trung vào chiến lược lớn hơn.
 
 ---
 
-## Front door microservice
+### 3. Bảo Mật và Tự Động Hóa
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Quản trị bảo mật đang chuyển đổi từ mô hình “kiểm tra danh sách tuân thủ” sang **bảo vệ tự động và liên tục**, hỗ trợ thay vì giới hạn hoạt động kinh doanh.  
+Với **policy-as-code**, **xác thực tuân thủ tự động**, và **kiểm soát bảo mật chủ động**, các tổ chức có thể xây dựng **khung quản trị mở rộng linh hoạt theo quy mô**, trong khi vẫn duy trì tư thế bảo mật mạnh mẽ.
 
 ---
 
-## Staging ER7 microservice
+### 4. Đa Đám Mây và Yêu Cầu Chủ Quyền Dữ Liệu
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+Khi các tổ chức mở rộng hoạt động toàn cầu và sử dụng nhiều môi trường đám mây, quản trị cần đáp ứng **các yêu cầu phức tạp về chủ quyền dữ liệu, tuân thủ vùng miền và vận hành xuyên biên giới**.  
+Các phiên học trong chủ đề này sẽ tập trung vào cách **duy trì nhất quán quản trị trong môi trường đa dạng**, đồng thời **đáp ứng quy định quốc gia và giữ được tính linh hoạt vận hành**.
 
 ---
 
-## Tính năng mới trong giải pháp
+## Chọn Lộ Trình Học Tập Phù Hợp
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+### Generative AI và Quản trị Thông minh
+
+**COP350 | Xây dựng và xác thực kiểm soát đám mây với Generative AI** – Breakout session  
+Địa điểm: Thứ Tư, 3/12 | 16:00 – 17:00 PST | Caesars Forum  
+Phiên kỹ thuật này trình bày cách sử dụng AI để tự động hóa và cải thiện quy trình giám sát tuân thủ, tạo quy tắc AWS Config và phân tích log CloudTrail.
+
+**COP411 | Tự động hóa thông minh cho quản trị và tuân thủ đám mây** – Builders session  
+Địa điểm: Thứ Năm, 4/12 | 11:30 – 12:30 PST | Mandalay Bay  
+Học cách xây dựng quy trình thông minh sử dụng dữ liệu từ AWS Config, AWS Security Hub và AWS Audit Manager để cung cấp phân tích theo ngữ cảnh, hỗ trợ quản lý rủi ro và kiểm soát chính sách.
+
+---
+
+### Hiệu Quả Vận Hành và Tối Ưu Chi Phí
+
+**COP355 | Hướng dẫn triển khai kiểm soát quản trị tiết kiệm chi phí** – Chalk talk  
+Địa điểm: Thứ Hai, 1/12 | 15:00 – 16:00 PST | Mandalay Bay  
+Tìm hiểu cách giảm chi phí vận hành mà vẫn duy trì giám sát bảo mật và tuân thủ mạnh mẽ bằng AWS Config và CloudTrail.
+
+**COP351 | Innovation Sandbox on AWS: Tự động hóa môi trường thử nghiệm tạm thời** – Lightning talk  
+Địa điểm: Thứ Hai, 1/12 | 16:30 – 16:50 PST | Venetian  
+Khám phá cách tự động triển khai và quản lý môi trường thử nghiệm ngắn hạn với **service control policies**, **kiểm soát chi tiêu** và **tái sử dụng tài khoản**, giúp tiết kiệm hàng tuần công quản trị.
+
+**COP324 | Di chuyển tài khoản AWS quy mô lớn một cách liền mạch** – Chalk talk  
+Địa điểm: Thứ Hai, 1/12 | 12:00 – 13:00 PST | MGM  
+Tìm hiểu thực hành tốt nhất khi di chuyển tài khoản AWS trong sáp nhập, chia tách hoặc tái cấu trúc doanh nghiệp, giúp chuyển đổi nhanh chóng, an toàn và không gián đoạn.
+
+---
+
+### Bảo Mật và Tự Động Hóa
+
+**COP347 | Kiểm soát hành động để cải thiện quản trị và tuân thủ** – Breakout session  
+Địa điểm: Thứ Hai, 1/12 | 8:30 – 9:30 PST | Wynn  
+Học cách biến khung tuân thủ thành kiểm soát có thể hành động bằng AWS Control Tower, AWS Config, AWS Security Hub và AWS Audit Manager.
+
+**COP352 | Từ phản ứng đến chủ động: Quản trị hạ tầng theo thiết kế** – Code talk  
+Địa điểm: Thứ Năm, 4/12 | 15:30 – 16:30 PST | MGM  
+Học cách ngăn chặn triển khai hạ tầng không tuân thủ bằng cách sử dụng **CloudFormation Hooks** và **CloudFormation Guard** để xác thực cấu hình trước khi triển khai.
+
+**COP406 | Xây dựng và tự động hóa chính sách dưới dạng mã (Policy-as-Code)** – Builders session  
+Địa điểm: Thứ Tư, 3/12 | 10:00 – 11:00 PST | MGM  
+Thực hành xây dựng pipeline policy-as-code hoàn chỉnh với pre-commit hooks, quy tắc tùy chỉnh, và tự động hóa quy trình kiểm tra bảo mật.
+
+**COP353 | Xây dựng chiến lược bảo vệ dữ liệu với kiểm soát quản trị** – Chalk talk  
+Địa điểm: Thứ Năm, 4/12 | 14:30 – 15:30 PST | Mandalay Bay  
+Khám phá chiến lược bảo vệ dữ liệu thông qua chính sách và kiểm soát quản trị, ngăn chặn truy cập trái phép và duy trì cấu hình tài nguyên nhất quán ở quy mô lớn.
+
+**COP348 | Mở rộng kiểm soát tuân thủ và đánh giá rủi ro** – Chalk talk  
+Địa điểm: Thứ Năm, 4/12 | 16:00 – 17:00 PST | Wynn  
+Tìm hiểu cách tích hợp AWS Audit Manager để tự động thu thập bằng chứng, đồng thời hỗ trợ quản lý quyền riêng tư và tài liệu kiểm toán.
+
+---
+
+### Đa Đám Mây và Chủ Quyền Dữ Liệu
+
+**COP409 | Xây dựng môi trường đám mây có chủ quyền (Sovereign Cloud)** – Code talk  
+Địa điểm: Thứ Tư, 3/12 | 10:30 – 11:30 PST | Mandalay Bay  
+Khám phá cách AWS Control Tower và Landing Zone Accelerator hỗ trợ các yêu cầu chủ quyền, tuân thủ quốc gia, và kiểm soát tự động di chuyển dữ liệu xuyên biên giới.
+
+**COP349 | Cân bằng linh hoạt và tuân thủ cùng Japan Digital Agency** – Breakout session  
+Địa điểm: Thứ Tư, 3/12 | 9:00 – 10:00 PST | Mandalay Bay  
+Tìm hiểu cách chính phủ Nhật Bản triển khai mô hình quản trị tập trung cho hơn 30 bộ ngành và 1.700 cơ quan địa phương, quản lý hơn 5.000 tài khoản bằng AWS Control Tower, AWS Config và AWS Security Hub.
+
+**COP346 | Quản trị thúc đẩy đổi mới quy mô lớn cùng Eli Lilly** – Breakout session  
+Địa điểm: Thứ Năm, 4/12 | 13:00 – 14:00 PST | Caesars Forum  
+Tìm hiểu cách Eli Lilly hiện đại hóa cấu trúc quản trị với AWS Control Tower và Account Factory for Terraform, tự động hóa triển khai, tăng cường linh hoạt và bảo mật, trong khi vẫn đảm bảo **zero downtime** cho các khối lượng công việc quan trọng.
+
+---
+
+## Hướng Tới Tương Lai Của Quản Trị Đám Mây
+
+Các phiên học này không chỉ là đào tạo kỹ thuật, mà còn cho thấy **quản trị đám mây đang chuyển đổi từ yêu cầu tuân thủ sang công cụ chiến lược giúp doanh nghiệp phát triển**.  
+Những tổ chức triển khai **AI-driven governance** và **tự động hóa bảo mật** sẽ đạt được lợi thế cạnh tranh rõ rệt về tốc độ, khả năng phục hồi và hiệu suất vận hành.
+
+Sự kết hợp giữa **AI sinh**, **chính sách dưới dạng mã**, và **kiểm soát chủ động** đánh dấu sự thay đổi căn bản trong cách chúng ta vận hành đám mây.
+
+Tại **AWS re:Invent 2025**, bạn sẽ được trang bị **kiến thức và kỹ năng thực tế** để dẫn dắt quá trình chuyển đổi này trong tổ chức của mình.
+
+---
+
+**Chưa đăng ký tham dự?**  
+Vẫn còn thời gian! Hãy đăng ký qua [cổng thông tin AWS re:Invent](https://reinvent.awsevents.com/).
+
+---
+
+Nguồn: [Your Essential Guide to Cloud Governance at AWS re:Invent 2025](https://aws.amazon.com/blogs/mt/your-essential-guide-to-cloud-governance-at-aws-reinvent-2025/)

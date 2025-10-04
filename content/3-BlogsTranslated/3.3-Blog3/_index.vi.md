@@ -1,127 +1,128 @@
 ---
 title: "Blog 3"
-date: 2025-01-01
-weight: 1
+date: 2025-09-26
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Mở rộng quy mô Trình quản lý Cụm và API Quản trị trong Amazon OpenSearch Service
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
-
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Amazon OpenSearch Service là dịch vụ được quản lý giúp dễ dàng triển khai, bảo mật và vận hành các cụm OpenSearch ở quy mô lớn trên đám mây AWS. Một cụm OpenSearch điển hình bao gồm các nút quản lý cụm (cluster manager), nút dữ liệu (data nodes) và nút điều phối (coordinator nodes). Khuyến nghị nên có ba nút quản lý cụm, trong đó một nút được bầu làm nút lãnh đạo (leader node).
 
 ---
 
-## Hướng dẫn kiến trúc
+## Giới thiệu
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Với phiên bản **OpenSearch Service 2.17**, Amazon OpenSearch Service hiện hỗ trợ các cụm lên đến **1.000 nút**, có thể xử lý **500.000 shard**.  
+Đối với các cụm lớn, nhiều điểm nghẽn trong việc tương tác API quản trị với nút leader đã được xác định và tối ưu hóa trong phiên bản này.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Những cải tiến này giúp OpenSearch Service duy trì tần suất giám sát ổn định cho các cụm lớn trong khi vẫn sử dụng tài nguyên tối ưu (dưới 10% CPU và dưới 75% JVM trên nút leader có CPU 16 nhân và heap JVM 64 GB).  
+Ngoài ra, các hoạt động quản lý siêu dữ liệu cũng có thể được thực hiện với độ trễ có thể dự đoán mà không làm mất ổn định nút leader.
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## Tổng quan về Trạng thái Cụm (Cluster State)
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Để hiểu rõ các điểm nghẽn liên quan đến trình quản lý cụm, trước tiên hãy xem xét **cluster state**, yếu tố cốt lõi trong hoạt động của nút leader. Trạng thái cụm chứa các siêu dữ liệu sau:
 
----
+- Cấu hình cụm  
+- Siêu dữ liệu của chỉ mục (index settings, mappings, aliases)  
+- Bảng định tuyến và siêu dữ liệu shard (phân bổ shard)  
+- Thông tin và thuộc tính của các nút  
+- Thông tin snapshot và siêu dữ liệu tùy chỉnh  
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
-
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Ví dụ, một cụm có 6 nút (3 nút quản lý và 3 nút dữ liệu), 1 chỉ mục và 3 shard sẽ có kích thước trạng thái cụm khoảng **15 KB**.  
+Tuy nhiên, một cụm có **1.000 nút**, **10.000 chỉ mục** và **50 shard mỗi chỉ mục** có thể có kích thước trạng thái cụm lên đến **250 MB**.
 
 ---
 
-## The pub/sub hub
+## Điểm nghẽn 1: Giao tiếp Trạng thái Cụm
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Các API quản trị như `_cat`, `_cluster` và `_nodes` dựa vào nút leader để lấy trạng thái cụm mới nhất.  
+Trong các cụm rất lớn, những yêu cầu thường xuyên này có thể làm quá tải nút leader, dẫn đến:
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+- Tăng mức sử dụng CPU do nhiều yêu cầu API đồng thời  
+- Áp lực bộ nhớ heap cao do tuần tự hóa lặp lại của trạng thái cụm lớn  
+- Độ trễ và timeout do luồng truyền tải (transport threads) bị chiếm dụng  
+- Bỏ lỡ các phản hồi heartbeat giữa các nút, kích hoạt quá trình khôi phục không cần thiết  
 
----
+### Giải pháp: Sử dụng Trạng thái Cục bộ (Local Cluster State)
 
-## Core microservice
+Mỗi nút hiện lưu trữ phiên bản gần nhất của cluster state.  
+Bằng cách giới thiệu **phiên bản hóa (term và version numbers)**, nút điều phối có thể kiểm tra xem trạng thái cục bộ của nó có trùng với nút leader không trước khi gửi yêu cầu.  
+Nếu trạng thái cục bộ đã cập nhật, nút đó sẽ phục vụ yêu cầu API ngay tại chỗ, **không cần truy vấn leader**.
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+→ Giải pháp này giảm tải cho nút leader và tăng độ ổn định cụm.
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
-
----
-
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+**Tác động:**  
+Các bài kiểm thử tải cho thấy mức sử dụng CPU trên nút leader giảm tới **50%** mà không tăng độ trễ API, đối với cụm có **từ 25.000 shard trở lên**.
 
 ---
 
-## Staging ER7 microservice
+## Điểm nghẽn 2: Bản chất Phân tán (Scatter-Gather) của API Thống kê
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+Các API thống kê như `_cat/indices`, `_cat/shards`, `_cluster/stats` và `_nodes/stats` yêu cầu thu thập dữ liệu từ nhiều nút dữ liệu và tổng hợp trên nút điều phối.  
+
+Trong cụm có **500.000 shard**, tổng kích thước phản hồi có thể đạt tới **2,5 GB**, gây ra:
+
+- Lưu lượng mạng cao  
+- Áp lực bộ nhớ trên các nút điều phối  
+- Kích hoạt circuit breaker và lỗi “429 Too Many Requests”  
+- Tăng sử dụng CPU do thu gom rác (GC) thường xuyên  
+
+### Giải pháp: Tổng hợp & Lọc Cục bộ (Local Aggregation and Filtering)
+
+Thay vì trả về toàn bộ thống kê ở cấp độ shard, mỗi nút dữ liệu nay **tổng hợp cục bộ** và chỉ gửi **các số liệu được yêu cầu** (ví dụ: số lượng tài liệu hoặc kích thước lưu trữ) cho nút điều phối.
+
+→ Giải pháp này giảm đáng kể chi phí tính toán và bộ nhớ trên các nút điều phối.
+
+**Tác động:**
+
+| API | Độ trễ trước khi tối ưu | Độ trễ sau tối ưu |
+|------|--------------------------|-------------------|
+| _cluster/stats | 15s | 0.65s |
+| _nodes/stats | 13.74s | 1.69s |
+| _cluster/health | 0.56s | 0.15s |
 
 ---
 
-## Tính năng mới trong giải pháp
+## Điểm nghẽn 3: Các Yêu cầu Thống kê Chạy Lâu
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Trước đây, ngay cả khi người dùng **hủy yêu cầu** hoặc **hết thời gian chờ**, nút điều phối vẫn tiếp tục xử lý và gửi yêu cầu nội bộ đến các nút dữ liệu. Điều này gây lãng phí tài nguyên tính toán và mạng.
+
+### Giải pháp: Hủy ở Tầng Truyền tải (Transport Layer)
+
+Nút điều phối hiện sẽ **hủy các yêu cầu con (downstream requests)** ngay khi hết thời gian chờ của client.  
+Điều này giúp tránh tải không cần thiết trên các nút dữ liệu và giúp cụm xử lý lỗi một cách ổn định, tránh lan truyền.
+
+---
+
+## Điểm nghẽn 4: Kích thước Phản hồi Lớn
+
+Trước đây, các API phổ biến như `_cat` **không hỗ trợ phân trang**, vì lượng dữ liệu nhỏ khi chúng được thiết kế.  
+Trong các cụm hiện đại, các phản hồi không giới hạn này có thể làm quá tải các nút điều phối.
+
+### Giải pháp: API Danh sách Có Phân trang (Paginated List APIs)
+
+Các API danh sách mới như `_list/indices` và `_list/shards` được giới thiệu như các lựa chọn thay thế **ổn định và có khả năng mở rộng**.  
+Chúng duy trì tính nhất quán khi phân trang bằng cách kết hợp **dấu thời gian tạo chỉ mục** và **tên chỉ mục**, ngay cả khi chỉ mục được thêm hoặc xóa.
+
+**Tác động:**  
+Các API có phân trang cung cấp phản hồi **ổn định, có giới hạn**, cho các cụm lên đến **500.000 shard**, đảm bảo thời gian phản hồi nhanh và giảm sử dụng tài nguyên.
+
+---
+
+## Kết luận
+
+Các API quản trị đóng vai trò quan trọng trong việc **giám sát và quản lý siêu dữ liệu** trong Amazon OpenSearch Service.  
+Nếu không được tối ưu, chúng có thể trở thành **điểm nghẽn hiệu năng** trong các cụm lớn.
+
+Các cải tiến trong **phiên bản 2.17** mang lại **hiệu suất đáng kể** cho các cụm ở mọi quy mô — nhỏ (20 nút), trung bình (200 nút) và lớn (1.000 nút).  
+Những tối ưu này giúp **nút leader luôn ổn định** ngay cả trong điều kiện tải metadata và API cao.
+
+Các tính năng như **phân trang, hủy yêu cầu và tổng hợp cục bộ** có thể mở rộng và sẽ được áp dụng trong các cải tiến API trong tương lai.
+
+---
+
+Để biết thêm chi tiết, xem bài viết gốc trên AWS Big Data Blog:  
+[Scaling cluster manager and admin APIs in Amazon OpenSearch Service](https://aws.amazon.com/blogs/big-data/scaling-cluster-manager-and-admin-apis-in-amazon-opensearch-service/)

@@ -16,7 +16,7 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 3:** [DynamoDB, ElastiCache, Networking, CloudFront, AD, and Migration Labs](1.3-week3/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 4:** [Serverless Automation, CloudWatch Advanced Monitoring, IAM Access Control, Systems Management, and Infrastructure as Code](1.4-week4/)
 
 **Week 5:** [Doing task D...](1.5-week5/)
 

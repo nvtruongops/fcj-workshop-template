@@ -17,7 +17,7 @@ Thông thường, theo tiêu chuẩn, **Worklog** được thực hiện trong k
 
 **Tuần 3:** [DynamoDB, ElastiCache, Mạng, CloudFront, AD và Thực hành Di chuyển (Migration)](1.3-week3/)
 
-**Tuần 4:** [Thực hiện nhiệm vụ C...](1.4-week4/)
+**Tuần 4:** [Tự động hóa Serverless, Giám sát nâng cao với CloudWatch, Kiểm soát truy cập IAM, Quản lý hệ thống và Hạ tầng dưới dạng mã](1.4-week4/)
 
 **Tuần 5:** [Thực hiện nhiệm vụ D...](1.5-week5/)
 
