@@ -1,59 +1,28 @@
 ---
-title: "Worklog Tuần 3"
-date: 2025-01-01
-weight: 1
+title: "Nhật ký Tuần 3"
+date: 2025-09-22
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+### Mục tiêu Tuần 3:
 
-### Mục tiêu tuần 3:
+* Học và thực hành **quản lý cơ sở dữ liệu NoSQL** với **Amazon DynamoDB**.  
+* Hiểu và sử dụng **bộ nhớ đệm trong bộ nhớ (In-Memory Caching)** với **Amazon ElastiCache (Redis)**.  
+* Khám phá **Mạng và Phân phối nội dung** với **VPC**, **CloudFront**, và **Lambda@Edge**.  
+* Học cách triển khai **Dịch vụ thư mục (Directory Services)** bằng **AWS Managed Microsoft AD**.  
+* Triển khai **Ứng dụng Web có tính sẵn sàng cao (Highly Available Web Applications)** với **Auto Scaling**, **ALB**, **RDS Multi-AZ**, và **CloudFront**.  
+* Thực hành **Di chuyển và Khôi phục thảm họa (Migration & Disaster Recovery)** sử dụng **VM Import/Export**, **AWS Database Migration Service (DMS)** và **Elastic Disaster Recovery (DRS)**.  
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+---
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Nhiệm vụ trong tuần:
 
-
-### Kết quả đạt được tuần 3:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+| Ngày | Nhiệm vụ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ------------------ |
+| 2 | - **Cơ bản về cơ sở dữ liệu NoSQL với Amazon DynamoDB** <br>&emsp; + Tìm hiểu các thành phần, khóa và chế độ dung lượng của DynamoDB. <br>&emsp; + Thực hành tạo bảng, bật tính năng khôi phục theo thời gian (PITR), và sao lưu/khôi phục dữ liệu. <br><br> - **Bộ nhớ đệm trong bộ nhớ với Amazon ElastiCache (Redis)** <br>&emsp; + Tìm hiểu cụm Redis (cluster), phân mảnh dữ liệu (shard), và cơ chế caching. <br>&emsp; + Thực hành tạo cụm Redis và thao tác thông qua SDK. | 22/09/2025 | 22/09/2025 | https://000060.awsstudygroup.com/ <br> https://000061.awsstudygroup.com/ |
+| 3 | - **Workshop về Mạng trong AWS (Networking on AWS)** <br>&emsp; + Tìm hiểu VPC, Subnet, Routing, Security Group, NACL. <br>&emsp; + Thực hành xây dựng VPC và kết nối lai (Hybrid Connectivity). <br><br> - **Phân phối nội dung với Amazon CloudFront** <br>&emsp; + Thực hành tạo CloudFront Distribution với S3 làm nguồn gốc (Origin). | 23/09/2025 | 23/09/2025 | https://000092.awsstudygroup.com/ <br> https://000094.awsstudygroup.com/ |
+| 4 | - **Điện toán biên với CloudFront & Lambda@Edge** <br>&emsp; + Tạo CloudFront Distribution và triển khai Lambda@Edge. <br>&emsp; + Cấu hình Lambda@Edge để xử lý tiêu đề hoặc chuyển hướng (Header/Redirect Logic). <br><br> - **Tác vụ Windows trên AWS (WorkSpaces)** <br>&emsp; + Triển khai và truy cập Amazon WorkSpaces. | 24/09/2025 | 24/09/2025 | https://000130.awsstudygroup.com/ <br> https://000093.awsstudygroup.com/ |
+| 5 | - **Dịch vụ thư mục với AWS Managed Microsoft AD** <br>&emsp; + Triển khai AWS Managed AD trên 2 Vùng sẵn sàng (AZ) và kết nối máy chủ Windows Server 2022 vào miền. <br>&emsp; + Quản lý Đơn vị tổ chức (OU), Người dùng (Users) và Chính sách nhóm (GPOs). <br><br> - **Xây dựng ứng dụng web có tính sẵn sàng cao (WordPress)** <br>&emsp; + Triển khai WordPress trên EC2 kết hợp RDS Multi-AZ, ALB và Auto Scaling. | 25/09/2025 | 25/09/2025 | https://000095.awsstudygroup.com/ <br> https://000101.awsstudygroup.com/ |
+| 6 | - **Di chuyển lên AWS – VM Import/Export** <br>&emsp; + Hiểu dịch vụ VM Import/Export để di chuyển máy ảo on-premises lên Amazon EC2. <br>&emsp; + Tìm hiểu tích hợp S3 và yêu cầu bảo mật. <br><br> **Thực hành:** <br>&emsp; + Triển khai máy chủ ứng dụng on-prem (VMware/Hyper-V). <br>&emsp; + Xuất ảnh máy ảo (OVA/OVF). <br>&emsp; + Tạo bucket S3 và tải ảnh lên. <br>&emsp; + Sử dụng AWS CLI để nhập VM vào EC2. <br>&emsp; + Kiểm tra khởi chạy instance và cấu hình mạng. <br>&emsp; + Xuất VM trở lại môi trường on-prem. <br>&emsp; + Dọn dẹp AMI và đối tượng trong S3. <br><br> - **Di chuyển cơ sở dữ liệu với AWS DMS & Schema Conversion Tool (SCT)** <br>&emsp; + Học cách SCT tự động chuyển đổi schema giữa các hệ quản trị CSDL khác nhau. <br>&emsp; + Hiểu AWS DMS cho quá trình sao chép dữ liệu liên tục với thời gian ngừng hoạt động tối thiểu. <br><br> **Thực hành:** <br>&emsp; + Cài đặt AWS Schema Conversion Tool trên máy cục bộ hoặ
