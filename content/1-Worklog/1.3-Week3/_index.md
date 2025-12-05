@@ -5,66 +5,41 @@ weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-
 ### Week 3 Objectives:
 
-* Learn and practice **NoSQL database management** with **Amazon DynamoDB**.  
-* Understand **In-Memory Caching** with **Amazon ElastiCache (Redis)**.  
-* Explore **Networking and Content Delivery** with **VPC**, **CloudFront**, and **Lambda@Edge**.  
-* Learn **Directory Services** using **AWS Managed Microsoft AD**.  
-* Deploy **Highly Available Web Applications** with **Auto Scaling**, **ALB**, **RDS Multi-AZ**, and **CloudFront**.  
-* Practice **Migration & Disaster Recovery** using **VM Import/Export**, **Database Migration Service**, and **Elastic Disaster Recovery**.  
-
----
+* Implement comprehensive monitoring and observability strategies using **Amazon CloudWatch** (Metrics, Logs, Alarms, Dashboards).
+* Establish **Hybrid DNS** architectures to integrate on-premises networks with AWS using **Route 53 Resolver** and Microsoft Active Directory.
+* Achieve proficiency in **AWS CLI** for advanced resource management (Infrastructure as Code basics) and automation across Storage, Networking, Identity, and Compute services.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Start Date | Completion Date | Reference Material |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ------------------ |
-| 2 | - **NoSQL Database Essentials with Amazon DynamoDB** <br>&emsp; + Learn DynamoDB components, keys, and capacity modes. <br>&emsp; + Practice table creation, PITR, backup/restore. <br><br> - **In-Memory Caching with Amazon ElastiCache (Redis)** <br>&emsp; + Learn Redis clusters, shards, and caching. <br>&emsp; + Practice Redis cluster creation and SDK operations. | 22/09/2025 | 22/09/2025 | https://000060.awsstudygroup.com/ <br> https://000061.awsstudygroup.com/ |
-| 3 | - **Networking on AWS Workshop** <br>&emsp; + Learn VPC, Subnets, Routing, Security Groups, NACLs. <br>&emsp; + Practice VPC build and hybrid connectivity. <br><br> - **Content Delivery with Amazon CloudFront** <br>&emsp; + Practice CloudFront distribution with S3 origin. | 23/09/2025 | 23/09/2025 | https://000092.awsstudygroup.com/ <br> https://000094.awsstudygroup.com/ |
-| 4 | - **Edge Computing with CloudFront & Lambda@Edge** <br>&emsp; + Create CloudFront distribution and Lambda@Edge. <br>&emsp; + Deploy Lambda@Edge for header/redirect logic. <br><br> - **Windows Workloads on AWS (WorkSpaces)** <br>&emsp; + Deploy and access Amazon WorkSpaces. | 24/09/2025 | 24/09/2025 | https://000130.awsstudygroup.com/ <br> https://000093.awsstudygroup.com/ |
-| 5 | - **Directory Services with AWS Managed Microsoft AD** <br>&emsp; + Deploy AWS Managed AD across 2 AZs and join Windows Server 2022 to domain. <br>&emsp; + Manage OU, Users, GPOs. <br><br> - **Building Highly Available Web Applications (WordPress)** <br>&emsp; + Deploy WordPress on EC2 + RDS Multi-AZ with ALB & Auto Scaling. | 25/09/2025 | 25/09/2025 | https://000095.awsstudygroup.com/ <br> https://000101.awsstudygroup.com/ |
-| 6 | - **Migrate to AWS – VM Import/Export** <br>&emsp; + Understand VM Import/Export service for migrating on-prem VMs to EC2. <br>&emsp; + Learn S3 integration and security requirements. <br><br> **Practice:** <br>&emsp; + Deploy application server on-prem (VMware/Hyper-V). <br>&emsp; + Export VM image to OVA/OVF. <br>&emsp; + Create S3 bucket and upload image. <br>&emsp; + Use AWS CLI to import VM into EC2. <br>&emsp; + Verify instance launch and network configuration. <br>&emsp; + Export VM back to on-premises environment. <br>&emsp; + Cleanup AMI and S3 objects. <br><br> - **Database Migration with AWS DMS & Schema Conversion Tool (SCT)** <br>&emsp; + Learn how SCT automates schema conversion between heterogeneous DB engines. <br>&emsp; + Understand AWS DMS for continuous replication and low-downtime migration. <br><br> **Practice:** <br>&emsp; + Install AWS Schema Conversion Tool on local or EC2. <br>&emsp; + Analyze source DB and convert schema to target RDS (MySQL/PostgreSQL). <br>&emsp; + Set up DMS Replication Instance and create source/target endpoints. <br>&emsp; + Migrate schema and data using DMS tasks with ongoing replication. <br>&emsp; + Monitor and troubleshoot migration progress. <br><br> - **Disaster Recovery with AWS Elastic Disaster Recovery (DRS)** <br>&emsp; + Learn how AWS DRS reduces downtime and data loss for critical apps. <br><br> **Practice:** <br>&emsp; + Connect to Bastion Host and configure DRS IAM User. <br>&emsp; + Install DRS Agent on source server and create Replication Settings. <br>&emsp; + Configure Launch Template for failover instances. <br>&emsp; + Perform test failover and validate recovery points. <br>&emsp; + Cleanup resources after simulation. | 26/09/2025 | 26/09/2025 | https://cloudjourney.awsstudygroup.com/2-migrate/ <br> https://000014.awsstudygroup.com/ <br> https://000043.awsstudygroup.com/ <br> https://000100.awsstudygroup.com/ |
-
----
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | **Monitoring & Observability (CloudWatch)** <br> - Configure **CloudWatch Metrics**: Viewing, Search expressions, Math expressions <br> - Analyze logs with **CloudWatch Logs Insights** & Metric Filters <br> - Set up **CloudWatch Alarms** for proactive monitoring <br> - Create unified **CloudWatch Dashboards** <br> - **Practice:** Visualize EC2 performance and set up alerts for high CPU usage. | 22/09/2025 | 22/09/2025 | https://000008.awsstudygroup.com/ |
+| 3 | **Hybrid Connectivity & DNS** <br> - Deploy **Microsoft Active Directory (AD)** <br> - Configure **Remote Desktop Gateway (RDGW)** for secure access <br> - Setup **Hybrid DNS** with Route 53 Resolver: <br>&emsp; + Create Outbound/Inbound Endpoints <br>&emsp; + Configure Resolver Rules <br> - Test DNS resolution between simulated on-prem and AWS environments. | 23/09/2025 | 23/09/2025 | https://000010.awsstudygroup.com/ |
+| 4 | **AWS CLI Mastery - Part 1 (Setup & Storage)** <br> - Install and Configure **AWS CLI v2** <br> - **S3 Automation:** Manage buckets, perform multipart uploads via CLI <br> - **Messaging:** Manage **Amazon SNS** topics and subscriptions via CLI <br> - Explore CLI output formats (json, table, text) and filtering. | 24/09/2025 | 24/09/2025 | https://000011.awsstudygroup.com/ <br><br> https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html |
+| 5 | **AWS CLI Mastery - Part 2 (Compute & Network)** <br> - **IAM Security:** Manage users, roles, and assume roles via CLI <br>&emsp; + Handle MFA tokens with CLI <br> - **Network Infrastructure:** Deploy VPC, Subnets, and Internet Gateways via CLI <br> - **Compute:** Launch and configure **EC2 instances** entirely through command line. | 25/09/2025 | 25/09/2025 | https://000011.awsstudygroup.com/ <br><br> [Deep Dive: AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) |
+| 6 | **AWS CLI Mastery - Part 3 (Troubleshoot & Cleanup)** <br> - **Troubleshooting:** Diagnose common CLI errors (credentials, permissions, formatting) <br> - **Advanced Auth:** Store SAML credentials <br> - Perform full resource cleanup using CLI commands to ensure no lingering costs. | 26/09/2025 | 26/09/2025 | https://000011.awsstudygroup.com/ <br><br> [AWS re:Invent 2019: Introduction to the AWS CLI v2](https://www.youtube.com/watch?v=k_l8k2A8F_k) |
 
 # Week 3 Achievements
 
-## Day 2 – NoSQL Database Essentials & In-Memory Caching
-- Built and managed DynamoDB tables with PITR and On-Demand Backup.  
-- Deployed Redis cluster and tested cache operations through SDK.  
+## Observability & Monitoring
+- Successfully deployed a monitoring stack using **Amazon CloudWatch**.
+- Created custom **Dashboards** to visualize critical metrics (CPU, Memory, Disk I/O) in real-time.
+- Configured **CloudWatch Alarms** to trigger automated notifications via SNS when thresholds were breached.
+- Mastered **Logs Insights** to query and analyze application log data effectively.
 
-## Day 3 – Networking on AWS & Content Delivery
-- Built custom VPC, subnets, and gateways for network segmentation.  
-- Configured CloudFront distribution for S3 origin and verified low-latency delivery.  
+## Hybrid Networking
+- Designed and implemented a **Hybrid DNS** solution bridging on-premises and cloud environments.
+- Deployed **Microsoft Active Directory** on AWS and integrated it with Route 53.
+- Configured **Route 53 Resolver Endpoints** (Inbound/Outbound) and **Forwarding Rules** to resolve domain names across the hybrid network.
+- Verified secure connectivity using **Remote Desktop Gateway (RDGW)**.
 
-## Day 4 – Edge Computing & Windows Workloads
-- Deployed Lambda@Edge functions for request manipulation at edge locations.  
-- Deployed Amazon WorkSpaces virtual desktops and tested access methods.  
-
-## Day 5 – Directory Services & Highly Available Web Applications
-- Deployed AWS Managed Microsoft AD across two AZs and joined Windows Server to domain.  
-- Managed Active Directory users, groups, and GPOs via Administrative Tools.  
-- Implemented WordPress on EC2 with ALB, Auto Scaling, RDS Multi-AZ, and CloudFront for high availability.  
-
-## Day 6 – Migration & Disaster Recovery on AWS
-
-### VM Migration with AWS VM Import/Export
-- Practiced importing on-prem VM images to Amazon EC2 and exporting back to VMware.  
-- Understood use cases for backup, DR, and application migration.  
-- Used S3 as temporary storage and AWS CLI for import/export commands.  
-
-### Database Migration with AWS DMS & SCT
-- Converted schemas using AWS Schema Conversion Tool (SCT).  
-- Set up AWS DMS replication instance for continuous data migration with minimal downtime.  
-- Migrated data from on-prem source DB to Amazon RDS target database.  
-- Verified migration consistency and monitored tasks in AWS Console.  
-
-### Disaster Recovery with AWS Elastic Disaster Recovery (DRS)
-- Learned AWS DRS architecture and configuration steps.  
-- Installed agents on source servers and configured replication to AWS.  
-- Simulated failover and tested system recovery in target Region.  
-- Verified point-in-time restoration and cleaned up replicated resources.  
-
----
+## Advanced Infrastructure Management (CLI)
+- Transitioned from Console-based management to **Command Line Interface (CLI)** operations.
+- Automating resource provisioning:
+    - **Storage:** Created S3 buckets and managed object lifecycles/uploads.
+    - **Security:** Managed IAM users, policies, and practiced **Assuming Roles** for cross-account access.
+    - **Networking:** Built a complete VPC stack (VPC, Subnets, IGW, Route Tables) using CLI commands.
+    - **Compute:** Launched EC2 instances with user-data scripts via CLI.
+- Gained troubleshooting skills for CLI configuration, credential management (MFA/SAML), and API error handling.

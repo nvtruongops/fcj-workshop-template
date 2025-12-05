@@ -5,64 +5,47 @@ weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-
-
 ### Week 2 Objectives:
 
-* Learn and practice using **AWS Cloud9** for cloud-based development.  
-* Understand **Amazon S3 static website hosting** and how to accelerate websites with **Amazon CloudFront**.  
-* Learn to scale applications with **EC2 Auto Scaling**.  
-* Gain hands-on experience with **Amazon CloudWatch** for monitoring and alerting.  
-* Explore **Hybrid Networking & Directory Service Integration**.  
-* Practice **Infrastructure deployment & automation with AWS CLI**.  
-
----
+* Master the usage of AWS Cloud9 IDE and AWS CLI for interacting with AWS services.
+* Deep dive into AWS Storage services (S3) including Static Website Hosting, Versioning, Replication, and Content Delivery Network (CloudFront).
+* Deploy and manage Relational Databases with Amazon RDS, including backup and restoration strategies.
+* Implement High Availability and Scalability architectures using Launch Templates, Elastic Load Balancing (ELB), and Auto Scaling Groups (ASG).
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                                                                                                                                                                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                                                                                                                                                                                                                                         |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | - **Cloud Development with AWS Cloud9** <br>&emsp; + Using Cloud9 Basic Features (command line, text files) <br>&emsp; + Using AWS CLI <br><br> - **Static Website Hosting with Amazon S3** <br>&emsp; + Understanding S3 Buckets vs Objects <br>&emsp; + Enable static website feature <br>&emsp; + Configure public access block <br>&emsp; + Configuring public objects <br>&emsp; + Accelerate with CloudFront <br>&emsp; + Multi-Region Replication <br><br> **Practice:** <br>&emsp; + Create Cloud9 instance <br>&emsp; + Create & configure S3 bucket <br>&emsp; + Test CloudFront distribution | 15/09/2025 | 15/09/2025      | https://000049.awsstudygroup.com/ <br> https://000057.awsstudygroup.com/ |
-| 3   | - **Scaling Applications with EC2 Auto Scaling** <br>&emsp; + Amazon EC2 Auto Scaling concepts <br>&emsp; + AMIs and Launch Templates <br>&emsp; + Setting Up Load Balancer <br>&emsp; + Business/technical need for Auto Scaling <br><br> **Practice:** <br>&emsp; + Create Launch Template <br>&emsp; + Create Target Group <br>&emsp; + Create Load Balancer <br>&emsp; + Create Auto Scaling Group | 16/09/2025 | 16/09/2025      | https://000006.awsstudygroup.com/ |
-| 4   | - **Monitoring with Amazon CloudWatch** <br>&emsp; + Preparatory steps <br>&emsp; + CloudWatch Metrics <br>&emsp; + CloudWatch Logs <br>&emsp; + CloudWatch Alarms <br>&emsp; + CloudWatch Dashboards <br><br> **Practice:** <br>&emsp; + Collect EC2 metrics <br>&emsp; + Enable & view logs <br>&emsp; + Create Alarms <br>&emsp; + Build Dashboard | 17/09/2025 | 17/09/2025      | https://000008.awsstudygroup.com/ |
-| 5   | - **Hybrid Networking & Directory Service Integration** <br>&emsp; + Prerequisites for hybrid connectivity <br>&emsp; + Connect via Direct Connect / VPN / Transit Gateway <br>&emsp; + Set up Active Directory (AD) integration <br>&emsp; + Configure Hybrid DNS <br><br> **Practice:** <br>&emsp; + Configure hybrid connectivity <br>&emsp; + Connect on-premise-like environment via Transit Gateway <br>&emsp; + Deploy Directory Service (AD) <br>&emsp; + Set up Hybrid DNS | 18/09/2025 | 18/09/2025      | https://000010.awsstudygroup.com/  |
-| 6   | - **Infrastructure Deployment & Automation with CLI** <br>&emsp; + Install & configure AWS CLI <br>&emsp; + Deploy infrastructure (VPC, Subnets, Gateways, Security Groups) <br>&emsp; + Manage S3 buckets & objects <br>&emsp; + Use SNS for notifications <br>&emsp; + Configure IAM <br>&emsp; + Launch EC2 instances <br>&emsp; + Troubleshoot issues <br><br> **Practice:** <br>&emsp; + Install CLI & verify setup <br>&emsp; + Deploy infra via CLI <br>&emsp; + Create S3 bucket <br>&emsp; + Configure SNS topic & subscription <br>&emsp; + Apply IAM policies <br>&emsp; + Launch EC2 & test connectivity <br>&emsp; + Troubleshoot network/instance errors | 19/09/2025 | 19/09/2025      | https://000011.awsstudygroup.com/  |
-
----
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | **Interaction with AWS Services (Cloud9 & CLI)** <br> - Create AWS Cloud9 environment <br> - Explore Basic Features: Command line usage, Working with text files <br> - Practice using **AWS CLI** to interact with services <br> - Resource cleanup | 15/09/2025 | 15/09/2025 | https://000049.awsstudygroup.com/ |
+| 3 | **Storage & Content Delivery (S3 & CloudFront)** <br> - Create S3 Bucket & Upload Data <br> - Configure **Static Website Hosting** on S3 <br> - Manage Public Access Block & Public Object policies <br> - Accelerate website with **Amazon CloudFront** integration <br> - Implement **S3 Bucket Versioning** for data protection <br> - Practice Move Objects & **Cross-Region Replication (CRR)** | 16/09/2025 | 16/09/2025 | https://000057.awsstudygroup.com/ |
+| 4 | **Database Management (Amazon RDS)** <br> - Prepare Network: VPC, Security Groups for EC2 & RDS, DB Subnet Group <br> - Launch EC2 instance for application <br> - Provision **Amazon RDS** database instance <br> - Deploy application and connect to RDS <br> - Perform **Backup and Restore** operations for RDS | 17/09/2025 | 17/09/2025 | https://000005.awsstudygroup.com/ |
+| 5 | **High Availability Architecture - Part 1** <br> - Prepare Infrastructure: Network, EC2, RDS, Web Server Deployment <br> - Create **Launch Template** for standardized instance launches <br> - Configure **Application Load Balancer (ALB)** <br>&emsp; + Create Target Group <br>&emsp; + Setup Load Balancer listeners <br> - Test Load Balancing traffic distribution | 18/09/2025 | 18/09/2025 | https://000006.awsstudygroup.com/ |
+| 6 | **High Availability Architecture - Part 2 (Auto Scaling)** <br> - Create **Auto Scaling Group (ASG)** attached to the Load Balancer <br> - Test Scaling Solutions: <br>&emsp; + **Manual Scaling**: Manually adjusting capacity <br>&emsp; + **Scheduled Scaling**: Scaling based on time <br>&emsp; + **Dynamic Scaling**: Scaling based on metrics (CPU, etc.) <br>&emsp; + **Predictive Scaling**: Review metrics <br> - Clean up all resources | 19/09/2025 | 19/09/2025 | https://000006.awsstudygroup.com/ |
 
 # Week 2 Achievements
 
-## Day 2 – Cloud9 & S3 Website Hosting
-- Worked with **Cloud9 IDE** (command line, text files).  
-- Installed & tested **AWS CLI**.  
-- Configured **S3 bucket** for static website hosting.  
-- Enabled **public access block** and object permissions.  
-- Integrated & tested **CloudFront**.  
-- Practiced **multi-region replication**.  
+## Development Tools & CLI
+- Successfully set up **AWS Cloud9** as a cloud-based IDE.
+- Gained proficiency in using **AWS CLI** for service management without the Console.
+- Understood the workflow of editing, debugging, and running scripts directly on Cloud9.
 
-## Day 3 – EC2 Auto Scaling
-- Learned **Auto Scaling concepts** for availability & cost efficiency.  
-- Understood **AMIs & Launch Templates**.  
-- Configured **Application Load Balancer** and Target Groups.  
-- Practice: created Launch Template, Target Group, Load Balancer, Auto Scaling Group.  
+## Storage & CDN Mastery
+- Deployed a **Static Website** using Amazon S3.
+- Secured and optimized content delivery globally using **Amazon CloudFront**.
+- Implemented data protection strategies using **S3 Versioning**.
+- Configured **Cross-Region Replication (CRR)** for disaster recovery and data locality.
 
-## Day 4 – CloudWatch Monitoring
-- Learned **CloudWatch Metrics, Logs, Alarms, Dashboards**.  
-- Collected EC2 metrics and enabled logs.  
-- Created **Alarms** to trigger alerts.  
-- Built a **CloudWatch Dashboard** for visualization.  
+## Database Management
+- Deployed a fully managed relational database using **Amazon RDS**.
+- Successfully connected a web application hosted on EC2 to the RDS instance.
+- Practiced database maintenance tasks including taking **Snapshots** and performing **Point-in-Time Recovery**.
+- Managed network security for databases using Security Groups and DB Subnet Groups.
 
-## Day 5 – Hybrid Networking
-- Learned **Direct Connect, VPN, Transit Gateway**.  
-- Set up **Active Directory (AD)** in AWS.  
-- Configured **Hybrid DNS** for cross-environment resolution.  
-- Practice: hybrid connectivity + AD integration + DNS setup.  
-
-## Day 6 – Infrastructure Automation
-- Installed and configured **AWS CLI**.  
-- Deployed infra resources (VPC, subnets, gateways, SGs) via CLI.  
-- Created & configured **S3 bucket**.  
-- Configured **SNS** for notifications.  
-- Applied **IAM policies & roles**.  
-- Launched **EC2 instance** and tested connectivity.  
-- Practiced troubleshooting common AWS infra issues.  
+## High Availability & Scalability
+- Designed a fault-tolerant architecture using **Elastic Load Balancing (ALB)** and **Auto Scaling Groups (ASG)**.
+- Created **Launch Templates** to define instance configurations for auto-scaling.
+- Implemented and tested various scaling policies:
+    - **Manual Scaling** for hands-on control.
+    - **Scheduled Scaling** for predictable traffic patterns.
+    - **Dynamic Scaling** for reacting to real-time load changes.
+- Verified traffic distribution and application availability during scaling events.
