@@ -1,11 +1,11 @@
-baseURL = "https://nvtruongops.github.io/fcj-workshop-template-main/"
-relativeURLs = false
+baseURL = "https://nvtruongops.github.io/fcj-workshop-template/"
+relativeURLs = true
 canonifyURLs = true
 
 theme = "hugo-theme-learn"
 
 languageCode = "en"
-defaultContentLanguageInSubdir = true
+defaultContentLanguageInSubdir = false
 defaultContentLanguage = "en"
 hasCJKLanguage = true
 
