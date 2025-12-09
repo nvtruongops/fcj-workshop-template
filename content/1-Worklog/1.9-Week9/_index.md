@@ -1,57 +1,50 @@
 ---
 title: "Week 9 Worklog"
-date: 2025-01-01
+date: 2025-11-03
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 9 Objectives
+* Strengthen backend fundamentals: API design, authentication, database schemas.
+* Learn core AWS backend services: **API Gateway, Lambda, DynamoDB, Cognito**.
+* Build the first version of project backend architecture.
+* Practice secure API development and proper request/response handling.
 
-### Week 9 Objectives:
+---
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks to be carried out this week
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+|-----|------|-------------|------------------|--------------------|
+| 2 | Study REST API design, HTTP methods, and backend workflow. <br>- Design initial API endpoints for the system. | 03/11/2025 | 03/11/2025 | AWS Study Group |
+| 3 | Learn **API Gateway** basics. <br>- Create routes, methods, request validation, and logging. | 04/11/2025 | 04/11/2025 | AWS Study Group |
+| 4 | Learn **AWS Lambda**. <br>- Build and deploy simple CRUD Lambda functions. <br>- Test using event triggers. | 05/11/2025 | 05/11/2025 | AWS Study Group |
+| 5 | Study **DynamoDB**. <br>- Design table schema. <br>- Perform CRUD operations. | 06/11/2025 | 06/11/2025 | AWS Study Group |
+| 6 | Learn **Cognito Authentication**. <br>- User Pool basics. <br>- Link Cognito authorization with API Gateway routes. | 07/11/2025 | 07/11/2025 | AWS Study Group |
 
+---
 
-### Week 9 Achievements:
+### Week 9 Achievements
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 1. Improved Understanding of Backend Architecture
+I gained a strong foundational understanding of how backend systems are structured, including layered architecture, modular design, and how APIs communicate with databases and authentication services. This gave me a clearer picture of how to build scalable and maintainable backend systems.
 
-* Successfully created and configured an AWS Free Tier account.
+#### 2. Designed and Documented Initial API Endpoints
+I successfully created the first version of the API specification, defining routes, request bodies, response formats, and error handling structures. This helped standardize communication between the backend and other system components.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### 3. Implemented API Gateway Routing and Configuration
+I configured API Gateway to handle HTTP requests, apply method-level settings, enable CORS, attach logging, and prepare integrations for Lambda. This taught me how to connect external requests to internal processing logic securely and efficiently.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+#### 4. Built Serverless Functions with AWS Lambda
+Using Lambda, I implemented initial backend logic using a serverless approach. I learned how to manage cold starts, structure handler functions, and troubleshoot event inputs and outputs. This provided practical experience in running code without managing servers.
 
-* Used AWS CLI to perform basic operations such as:
+#### 5. Designed and Queried DynamoDB Tables
+I learned how DynamoDB organizes data using partition keys and sort keys. I practiced writing queries, scans, and item updates, gaining confidence in managing NoSQL data models within cloud environments.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+#### 6. Integrated Authentication Using Cognito
+This week, I set up a Cognito User Pool and integrated token-based authentication into API Gateway. I developed an understanding of how identity management and secure access control operate in serverless backend systems.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+---
+

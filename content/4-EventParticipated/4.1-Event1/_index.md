@@ -1,126 +1,89 @@
 ---
 title: "Event 1"
-date: 2025-01-01
+date: 2025-09-06
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Event Report: “The First Cloud Journey (FCJ) Program Kick-off”
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+## Event Objectives
 
-### Event Objectives
+- **Officially introduce** the 12-week First Cloud Journey (FCJ) program.
+- **Foster connections** between participants, Mentors, and the Organizing Committee (OC).
+- **Provide a high-level overview** of the organization, learning outcomes, and project roadmap.
+- **Explain the team workflow** and begin the process of forming project teams.
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+## Speaker List
 
-### Speakers
+- **Organizing Committee Representative** – Presented the program’s mission and direction.
+- **Mentors** – Shared career paths and practical experiences in the Cloud industry.
+- **Alumni** – Offered insights and lessons learned from previous cohorts.
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+## Key Highlights
 
-### Key Highlights
+### Program Framework and 12-Week Roadmap
 
-#### Identifying the drawbacks of legacy application architecture
+- Introduced the complete **12-week learning plan**, covering foundational AWS knowledge (VPC, EC2) to building a full Serverless application.
+- Clarified **learning goals** and expectations for the Minimum Viable Product (MVP).
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+### Working Rules and Organizational Culture
 
-#### Transitioning to modern application architecture – Microservices
+- **Participation and discipline guidelines:** Emphasized responsibility and consistency throughout the program.
+- **Community-oriented culture:** Highlighted the supportive and collaborative environment.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+### Team Formation and Project Orientation
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+- Explained steps for **effective team formation**, including role delegation and communication channels.
+- Provided initial directions for **team projects** and research topics.
 
-#### Domain-Driven Design (DDD)
+### AWS Account Security
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+- Guided participants on enabling **Two-Factor Authentication (2FA)** and setting up **cost monitoring (Budget)** from the beginning.
 
-#### Event-Driven Architecture
+## Key Takeaways
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+### Mindset and Commitment
 
-#### Compute Evolution
+- **Discipline is crucial:** Understood the level of dedication required to keep up with the program.
+- **Community matters:** Recognized the value of mentor support and peer collaboration.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+### Organizational Understanding
 
-#### Amazon Q Developer
+- Gained clarity on the program’s **overall objectives** and expected outcomes.
+- Understood the full **12-week learning path** and major focus areas.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+### Initial Practical Skills
 
-### Key Takeaways
+- **Completed team formation** and coordinated with new members.
+- Learned essential **security practices** for AWS accounts, including 2FA and cost controls.
 
-#### Design Mindset
+## Application to Work
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- **Formed the project team** and assigned initial tasks.
+- Started researching **organizational information** and foundational AWS concepts.
+- Performed **essential operations** on the AWS account—2FA configuration and Budget setup (as recorded in Week 1 Worklog).
 
-#### Technical Architecture
+## Event Experience
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+Participating in the **Kick-off** provided both motivation and a clear starting direction for the journey ahead.
 
-#### Modernization Strategy
+### Connection and Atmosphere
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- **Warm welcome:** Engaged with fellow FCJ members, creating a supportive learning environment.
+- **Sense of seriousness:** The OC’s message made the expectations and commitment level very clear.
 
-### Applying to Work
+### Roadmap and Goals
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Clear visibility:** Saw the entire **12-week roadmap** outlined, helping me proactively plan my study schedule.
+- Understood that the final objective is not only to learn but also to **build a real Cloud product**.
 
-### Event Experience
+### Initial Practical Insights
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+- **Security and cost management:** Gained important early knowledge on 2FA and budget management when using AWS.
+- **Teamwork:** Quickly formed a team and initiated discussions on workflow and collaboration.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+### Conclusion
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
-
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+The Kick-off was not just an orientation—it served as a complete preparation session that equipped me with the mindset, information, and confidence needed to begin the **12-week Cloud learning journey**.

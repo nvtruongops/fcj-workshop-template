@@ -1,127 +1,92 @@
 ---
-title: "Blog 5"
+title: "Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
 date: 2025-01-01
-weight: 1
+weight: 5
 chapter: false
-pre: " <b> 3.6. </b> "
+pre: " <b> 3.5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Tổng quan: Từ Sản phẩm Đơn lẻ đến Giải pháp Toàn diện
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Tại re:Invent lần này, AWS Marketplace đã công bố một sự thay đổi chiến lược trong cách thức mua sắm phần mềm: chuyển dịch từ việc mua các công cụ rời rạc sang **"Solution-centric procurement"** (Mua sắm tập trung vào giải pháp).
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Nhu cầu của khách hàng doanh nghiệp ngày nay không chỉ dừng lại ở việc tìm kiếm một phần mềm cụ thể. Họ tìm kiếm những **kết quả kinh doanh** (business outcomes) trọn vẹn – ví dụ như một giải pháp bảo mật toàn diện cho dữ liệu y tế, hay một hệ thống phân tích dữ liệu sản xuất thông minh. Để đáp ứng điều này, AWS Marketplace giới thiệu khả năng hỗ trợ **Multi-product solutions** (Các giải pháp đa sản phẩm), cho phép các đối tác (Partners) đóng gói phần mềm, dịch vụ và dữ liệu thành một đơn hàng duy nhất.
 
 ---
 
-## Hướng dẫn kiến trúc
+## 1. Giới thiệu Multi-product Solutions (Giải pháp Đa sản phẩm)
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Đây là tính năng cốt lõi mới nhất. **Multi-product solutions** cho phép các Đối tác AWS (ISVs, Channel Partners, System Integrators) kết hợp nhiều sản phẩm và dịch vụ từ các nhà cung cấp khác nhau vào một gói giải pháp duy nhất.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Thay vì khách hàng phải tự mình tìm kiếm, đánh giá và mua lẻ tẻ từng thành phần (ví dụ: mua phần mềm SIEM từ hãng A, mua dịch vụ tư vấn triển khai từ hãng B, và mua data set từ hãng C), giờ đây họ có thể mua trọn gói một "Giải pháp Trung tâm điều hành an ninh (SOC)" bao gồm tất cả các thành phần trên.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+![The Accenture solution page in AWS Marketplace](/images/3-BlogsTranslated/3.5.1.png)
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+> [Figure 1] Giao diện hiển thị giải pháp của Accenture, bao gồm cả phần mềm và dịch vụ.
 
----
+Khách hàng có thể cuộn xuống trang chi tiết để xem từng thành phần trong gói giải pháp này:
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+![The Accenture solution page showcasing each solution component](/images/3-BlogsTranslated/3.5.2.png)
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+> [Figure 2] Chi tiết từng thành phần (Software, Services) trong một gói giải pháp đa sản phẩm.
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## 2. Quy trình mua sắm đơn giản hóa (Streamlined Procurement)
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Một trong những rào cản lớn nhất khi triển khai các giải pháp phức tạp là quy trình thủ tục. Tính năng mới giúp đơn giản hóa đáng kể việc này:
 
----
+* **Một điểm thương lượng:** Khách hàng đàm phán giá cả và điều khoản cho toàn bộ gói giải pháp với một đối tác duy nhất.
+* **Linh hoạt thành phần:** Mặc dù mua theo gói, khách hàng vẫn có thể tùy chỉnh thời hạn (terms) và gia hạn (renewals) cho từng thành phần bên trong gói đó một cách độc lập nếu cần.
+* **Quản trị tập trung:** Tất cả chi tiêu, hóa đơn và giấy phép sử dụng (licenses) đều được quản lý tập trung trên AWS, giúp dễ dàng theo dõi ngân sách và tuân thủ (compliance).
 
-## The pub/sub hub
+![The procurement page for the Accenture solution](/images/3-BlogsTranslated/3.5.3.png)
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+> [Figure 3] Trang mua sắm hiển thị thông tin chi tiết về gói giải pháp.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Khách hàng có thể quản lý hợp đồng cho từng thành phần riêng biệt trong khi vẫn hưởng lợi từ một quy trình phê duyệt duy nhất:
 
----
+![The offer set for the Accenture solution on the procurement page](/images/3-BlogsTranslated/3.5.4.png)
 
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+> [Figure 4] Bảng chào giá chi tiết cho từng thành phần trong gói giải pháp.
 
 ---
 
-## Front door microservice
+## 3. Lợi ích cho Hệ sinh thái Đối tác (Partners)
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Sự thay đổi này mở ra cơ hội lớn cho các đối tác AWS:
+* **ISV (Independent Software Vendors):** Có thể kết hợp phần mềm của họ với dịch vụ triển khai chuyên nghiệp trong một listing duy nhất (Ví dụ: Okta kết hợp phần mềm và dịch vụ triển khai).
+* **Channel Partners:** Có thể kết hợp dịch vụ riêng của họ với các sản phẩm ISV mà họ được ủy quyền bán lại (Ví dụ: SCC kết hợp dịch vụ với sản phẩm CrowdStrike).
+* **System Integrators (SI):** Có thể kết hợp phần mềm và dịch vụ từ nhiều đối tác khác nhau để tạo ra giải pháp trọn gói (Ví dụ: Accenture kết hợp dịch vụ của họ với Elastic).
 
 ---
 
-## Staging ER7 microservice
+## 4. Trải nghiệm khám phá (Discovery)
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+Để hỗ trợ tư duy "mua giải pháp", AWS Marketplace cũng đã cải tiến công cụ tìm kiếm với **Generative AI**. Khách hàng có thể tìm kiếm dựa trên Use Case (Trường hợp sử dụng) hoặc Industry (Ngành nghề) thay vì chỉ tên sản phẩm, giúp việc tìm kiếm giải pháp phù hợp trở nên nhanh chóng hơn.
 
 ---
 
-## Tính năng mới trong giải pháp
+## Kết luận
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Việc chuyển hướng sang **Solution-centric procurement** là bước đi chiến lược của AWS nhằm giảm thiểu sự phức tạp trong mua sắm CNTT. Nó giúp doanh nghiệp đi nhanh hơn từ khâu "có vấn đề" đến khâu "có giải pháp", loại bỏ gánh nặng phải tự lắp ghép các mảnh ghép công nghệ rời rạc.
+
+---
+
+## Tác giả
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/TuanVo.png" alt="Tuan Vo" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Tuan Vo</h3>
+    <p>Tuan Vo is a Marketplace Specialist Solutions Architect who focuses on supporting sellers to list their products on AWS Marketplace. He supports large enterprises and public sector customers. Outside of work, Tuan enjoys traveling, trying out new food, and going on walks.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/AlexHodges.png" alt="Alex Hodges" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Alex Hodges</h3>
+    <p>Alex Hodges is a Seattle-based product marketer for AWS Marketplace. Alex is passionate about launching new products and enjoys developing crisp messaging that customers can easily understand. In his free time, he enjoys backpacking, cycling, watching documentaries, and spending time with friends and family.</p>
+  </div>
+</div>

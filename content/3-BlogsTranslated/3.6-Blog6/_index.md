@@ -1,126 +1,151 @@
----
-title: "Blog 6"
+﻿---
+title: "Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+linktitle: "Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
 date: 2025-01-01
 weight: 6
 chapter: false
 pre: " <b> 3.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Overview: Reshaping Cloud Operations with AI
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+At re:Invent 2025, AWS announced a series of significant improvements for Cloud Operations. This year's focus revolves around applying **Generative AI** for observability and troubleshooting, while simplifying the management of large-scale operational data through centralization features.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Below are detailed notes on the top 10 announcements that help optimize operational processes on AWS.
 
 ---
 
-## Architecture Guidance
+## 1. Generative AI Observability on CloudWatch and AgentCore
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+AWS launched comprehensive observability capabilities for Generative AI applications. This feature provides detailed insights into latency, token usage, and errors occurring in the AI stack. Notably, it integrates seamlessly with **Amazon Bedrock AgentCore** and open-source frameworks like LangChain or CrewAI without requiring manual instrumentation code.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+![Amazon CloudWatch Generative AI dashboard](/images/3-BlogsTranslated/6.1.png)
 
-**The solution architecture is now as follows:**
+> [Figure 1] Amazon CloudWatch Generative AI dashboard
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+The Agent Management View also helps track the agent's workflow from end-to-end:
 
----
+![Agent Management View](/images/3-BlogsTranslated/6.2.png)
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
-
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+> [Figure 2] Agent Management View
 
 ---
 
-## Technology Choices and Communication Scope
+## 2. CloudWatch Application Map with Automatic Service Discovery
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Previously, creating an Application Map often required complex instrumentation setup. Now, **CloudWatch Application Signals** can automatically detect and visualize application topology, displaying service dependencies instantly. This feature helps operations teams gain a system overview more quickly.
 
----
+![CloudWatch Application Map](/images/3-BlogsTranslated/6.3.png)
 
-## The Pub/Sub Hub
-
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+> [Figure 3] CloudWatch Application Map
 
 ---
 
-## Core Microservice
+## 3. Root Cause Analysis (5 "Whys") and Incident Report Generation
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+This is a major advancement in **AIOps**. CloudWatch Investigations leverages Generative AI to automate the root cause analysis process. Instead of manually aggregating data, the system generates an interactive incident report.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+![Amazon CloudWatch Investigations Incident Report](/images/3-BlogsTranslated/6.4.png)
 
----
+> [Figure 4] Amazon CloudWatch Investigations Incident Report
 
-## Front Door Microservice
+Most notably, the **"5 Whys"** analysis process is built-in, simulating Amazon's internal Correction of Errors (COE) methodology, helping to systematically identify the underlying causes of issues.
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+![5 Whys Analysis in the CloudWatch investigations Incident Report](/images/3-BlogsTranslated/6.5.png)
+
+> [Figure 5] 5 Whys Analysis in the CloudWatch investigations Incident Report
 
 ---
 
-## Staging ER7 Microservice
+## 4. Model Context Protocol (MCP) Servers Support
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+CloudWatch and Application Signals now support **Model Context Protocol (MCP)** servers. This acts as a bridge, allowing AI assistants to naturally interact with observability data (metrics, logs, traces). This enables us to build autonomous operational workflows and integrate CloudWatch data into AI-powered development tools.
 
 ---
 
-## New Features in the Solution
+## 5. GitHub Action Integration and MCP Improvements for Application Signals
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+To better support developers, CloudWatch Application Signals has been integrated directly into **GitHub Actions**. This feature provides observability insights right within Pull Requests and CI/CD pipelines.
+
+It helps identify performance issues or system errors without leaving the GitHub development environment:
+
+![Automated Root Cause Analysis in the GitHub issues](/images/3-BlogsTranslated/6.6.png)
+
+> [Figure 6] Automated Root Cause Analysis in the GitHub issues
+
+The system can even suggest automated bug fixes through Pull Requests:
+
+![Automated GitHub Pull Request to Fix the Issue](/images/3-BlogsTranslated/6.7.png)
+
+> [Figure 7] Automated GitHub Pull Request to Fix the Issue
+
+---
+
+## 6. Enhanced Log Analytics Experience on OpenSearch Service
+
+Amazon OpenSearch Service introduces significant improvements for **Piped Processing Language (PPL)**. Log analysis becomes faster and more intuitive. Enhanced query capabilities help process complex analytical queries efficiently, while seamlessly integrating with CloudWatch Logs for unified log analysis.
+
+---
+
+## 7. Real User Monitoring (RUM) Support for Mobile (iOS/Android)
+
+Amazon CloudWatch RUM extends real user experience monitoring to mobile platforms. We can now track performance, user journeys, and client-side errors on **iOS and Android** applications, ensuring consistent experiences across all devices and geographic locations.
+
+---
+
+## 8. CloudTrail: Data Event Aggregation
+
+To address the massive volume of logs from API activity, AWS CloudTrail adds the **Event Aggregation** feature. Instead of logging each individual entry, the system summarizes high-frequency activities into aggregated reports every 5 minutes.
+
+This helps:
+* Reduce log storage costs.
+* Easily detect anomalous patterns (such as unusual S3 access or DynamoDB throttling) without manually analyzing too much raw data.
+
+---
+
+## 9. Multi-Account & Multi-Region Log Centralization
+
+This is a highly anticipated feature for large organizations. **CloudWatch Logs Centralization** allows collecting logs from multiple Accounts and Regions into a single destination account.
+* Integrates with AWS Organizations.
+* Automatically adds `@aws.account` and `@aws.region` context to logs for easy source tracking.
+* Cost savings (no ingestion fees for the first copy).
+
+---
+
+## 10. Multi-Account & Multi-Region Centralized Database Monitoring
+
+Similar to logs, **CloudWatch Database Insights** also supports centralized monitoring. We can track the performance of Amazon RDS, Amazon Aurora, and Amazon DynamoDB across the entire AWS organization from a single monitoring account. This makes it easier to correlate database performance with application health.
+
+---
+
+## Conclusion
+
+The 2025 announcements show that AWS is focused on solving the "operational data overload" problem by using AI to filter noise and automate analysis. From monitoring GenAI, to using GenAI to fix errors, and centralization capabilities, these tools help operators shift from a reactive state to proactively controlling systems.
+
+---
+
+## Authors
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/NereidaWoo.png" alt="Nereida Woo" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Nereida Woo</h3>
+    <p>Nereida is a WW Specialist Solutions Architect in Cloud Operations focusing on Centralized Operations Management and Application operations on AWS. When she isn't working, she enjoys traveling to attend music concerts.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/CalvinWeng.png" alt="Calvin Weng" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Calvin Weng</h3>
+    <p>Calvin Weng is a Product Marketing Manager for AWS Cloud Operations, focusing on observability and monitoring services. Outside of work, Calvin travels, practices pottery, plays ping pong competitively, and explores the Pacific Northwest with his dog Kai.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/RavitejaSunkavalli.png" alt="Raviteja Sunkavalli" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Raviteja Sunkavalli</h3>
+    <p>Raviteja Sunkavalli is a Senior Worldwide Specialist Solutions Architect at Amazon Web Services, specializing in AIOps and GenAI observability. He helps global customers implement observability and incident management solutions across complex and distributed cloud environments. Outside of work, he enjoys playing cricket and exploring new cooking recipes.</p>
+  </div>
+</div>

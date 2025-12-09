@@ -1,57 +1,52 @@
 ---
-title: "Week 10 Worklog"
-date: 2025-01-01
+title: "Week 10 Worklog "
+date: 2025-11-10
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 10 Objectives
+* Deepen backend security practices and understand identity flows in cloud environments.
+* Strengthen AWS Cognito integration and apply token-based authentication.
+* Implement secure data handling with DynamoDB (validation, access patterns, indexes).
+* Practice API Gateway authorizers, throttling, and rate limiting.
+* Start connecting backend functions into a complete end-to-end workflow.
 
-### Week 10 Objectives:
+---
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks to be carried out this week
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+|-----|------|-------------|------------------|--------------------|
+| 2 | Study authentication/authorization flows (JWT, Access Token, ID Token). <br>- Review OWASP API security. | 10/11/2025 | 10/11/2025 | AWS Study Group |
+| 3 | Deep dive into **Cognito User Pool** and **Identity Pool**. <br>- Implement login, signup, refresh token flow. | 11/11/2025 | 11/11/2025 | AWS Study Group |
+| 4 | Implement **Lambda Authorizer** and attach it to API Gateway routes. <br>- Add permission policies. | 12/11/2025 | 12/11/2025 | AWS Study Group |
+| 5 | Strengthen DynamoDB integration: <br>- Add secondary indexes. <br>- Improve validation & error handling. | 13/11/2025 | 13/11/2025 | AWS Study Group |
+| 6 | Build end-to-end testing: <br>- Client → API Gateway → Lambda → DynamoDB → Response. | 14/11/2025 | 14/11/2025 | AWS Study Group |
 
+---
 
-### Week 10 Achievements:
+### Week 10 Achievements
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 1. Gained Deeper Understanding of Authentication & Token Security
+I learned in detail how JWT tokens work, how access/ID/refresh tokens differ, and how secure authentication is implemented in serverless applications. I also studied common attack vectors in API security and how to mitigate them using best practices.
 
-* Successfully created and configured an AWS Free Tier account.
+#### 2. Successfully Implemented Cognito Authentication Flows
+This week, I configured Cognito to support signup, login, multi-factor authentication (optional), and token refreshing. I tested these flows using CLI and Postman, ensuring the backend can securely identify and authorize users.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### 3. Integrated Lambda Authorizer with API Gateway
+I created a custom Lambda Authorizer to validate tokens sent from the client. This allowed me to enforce fine-grained access control and protect backend routes from unauthorized access. This step also increased my confidence with IAM policies and API Gateway security layers.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+#### 4. Enhanced DynamoDB Architecture Using Secondary Indexes
+I implemented Global Secondary Indexes (GSI) to optimize queries and reduce latency for more complex data access patterns. I also improved error handling and input validation to ensure stable and predictable database behavior.
 
-* Used AWS CLI to perform basic operations such as:
+#### 5. Completed End-to-End Backend Workflow Testing
+By the end of the week, I completed full request lifecycle testing:  
+Client request → API Gateway → Lambda → DynamoDB → API response.  
+I verified that authentication, database operations, and serverless execution flow work together smoothly.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+#### 6. Improved Overall Backend Code Structure and Maintainability
+I refactored Lambda functions to follow cleaner architecture principles, separating business logic, validation, and database operations. This makes future development easier and reduces potential bugs.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+---

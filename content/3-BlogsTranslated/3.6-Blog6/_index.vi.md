@@ -1,127 +1,151 @@
 ---
-title: "Blog 6"
+title: "Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+linktitle: "Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
 date: 2025-01-01
-weight: 1
+weight: 6
 chapter: false
 pre: " <b> 3.6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Tổng quan: Định hình lại Vận hành Cloud với AI
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Tại re:Invent 2025, AWS đã công bố hàng loạt cải tiến quan trọng cho Cloud Operations. Trọng tâm của năm nay xoay quanh việc ứng dụng **Generative AI** để quan sát và xử lý sự cố, đồng thời đơn giản hóa việc quản lý dữ liệu vận hành quy mô lớn thông qua các tính năng tập trung hóa (centralization).
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Dưới đây là ghi chú chi tiết về 10 công bố hàng đầu giúp tối ưu hóa quy trình vận hành trên AWS.
 
 ---
 
-## Hướng dẫn kiến trúc
+## 1. Quan sát Generative AI trên CloudWatch và AgentCore
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+AWS ra mắt khả năng quan sát toàn diện cho các ứng dụng Generative AI. Tính năng này cung cấp thông tin chi tiết về độ trễ (latency), lượng token sử dụng và các lỗi phát sinh trong AI stack. Đặc biệt, nó tích hợp mượt mà với **Amazon Bedrock AgentCore** và các framework mã nguồn mở như LangChain hay CrewAI mà không cần viết code instrumentation thủ công.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+![Amazon CloudWatch Generative AI dashboard](/images/3-BlogsTranslated/6.1.png)
 
-**Kiến trúc giải pháp bây giờ như sau:**
+> [Figure 1] Amazon CloudWatch Generative AI dashboard
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Giao diện quản lý Agent cũng giúp theo dõi luồng hoạt động của agent từ đầu đến cuối (end-to-end):
 
----
+![Agent Management View](/images/3-BlogsTranslated/6.2.png)
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
-
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+> [Figure 2] Agent Management View
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## 2. CloudWatch Application Map tự động phát hiện dịch vụ
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Trước đây để vẽ bản đồ ứng dụng (Application Map), chúng ta thường phải cài đặt instrumentation phức tạp. Giờ đây, **CloudWatch Application Signals** có khả năng tự động phát hiện và trực quan hóa cấu trúc ứng dụng (topology), hiển thị các mối quan hệ phụ thuộc giữa các dịch vụ ngay lập tức. Tính năng này giúp nhóm vận hành có cái nhìn tổng quan về hệ thống nhanh chóng hơn.
 
----
+![CloudWatch Application Map](/images/3-BlogsTranslated/6.3.png)
 
-## The pub/sub hub
-
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
-
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+> [Figure 3] CloudWatch Application Map
 
 ---
 
-## Core microservice
+## 3. Phân tích nguyên nhân gốc rễ (5 "Whys") và tạo báo cáo sự cố
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+Đây là bước tiến lớn trong **AIOps**. CloudWatch Investigations tận dụng Generative AI để tự động hóa quy trình phân tích nguyên nhân gốc rễ. Thay vì phải tự tổng hợp dữ liệu, hệ thống sẽ tạo ra một báo cáo sự cố tương tác.
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+![Amazon CloudWatch Investigations Incident Report](/images/3-BlogsTranslated/6.4.png)
 
----
+> [Figure 4] Amazon CloudWatch Investigations Incident Report
 
-## Front door microservice
+Đáng chú ý nhất là quy trình phân tích **"5 Whys"** (5 câu hỏi Tại sao) được tích hợp sẵn, mô phỏng phương pháp xử lý lỗi nội bộ của Amazon (Correction of Errors - COE), giúp tìm ra nguyên nhân sâu xa của vấn đề một cách hệ thống.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+![5 Whys Analysis in the CloudWatch investigations Incident Report](/images/3-BlogsTranslated/6.5.png)
+
+> [Figure 5] 5 Whys Analysis in the CloudWatch investigations Incident Report
 
 ---
 
-## Staging ER7 microservice
+## 4. Hỗ trợ Model Context Protocol (MCP) Servers
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+CloudWatch và Application Signals hiện đã hỗ trợ **Model Context Protocol (MCP)** servers. Điều này đóng vai trò cầu nối, cho phép các trợ lý AI (AI assistants) tương tác tự nhiên với dữ liệu quan sát (metrics, logs, traces). Nhờ đó, chúng ta có thể xây dựng các quy trình vận hành tự trị và tích hợp dữ liệu CloudWatch vào các công cụ phát triển hỗ trợ bởi AI.
 
 ---
 
-## Tính năng mới trong giải pháp
+## 5. Tích hợp GitHub Action và cải tiến MCP cho Application Signals
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Để hỗ trợ tốt hơn cho developer, CloudWatch Application Signals đã được tích hợp trực tiếp vào **GitHub Actions**. Tính năng này cung cấp thông tin quan sát ngay trong các Pull Request và CI/CD pipelines.
+
+Nó giúp phát hiện các vấn đề về hiệu năng hoặc lỗi hệ thống mà không cần rời khỏi môi trường phát triển GitHub:
+
+![Automated Root Cause Analysis in the GitHub issues](/images/3-BlogsTranslated/6.6.png)
+
+> [Figure 6] Automated Root Cause Analysis in the GitHub issues
+
+Thậm chí, hệ thống còn có khả năng đề xuất các bản vá lỗi tự động thông qua Pull Request:
+
+![Automated GitHub Pull Request to Fix the Issue](/images/3-BlogsTranslated/6.7.png)
+
+> [Figure 7] Automated GitHub Pull Request to Fix the Issue
+
+---
+
+## 6. Nâng cấp trải nghiệm Log Analytics trên OpenSearch Service
+
+Amazon OpenSearch Service giới thiệu các cải tiến đáng kể cho ngôn ngữ **Piped Processing Language (PPL)**. Việc phân tích log trở nên nhanh hơn và trực quan hơn. Khả năng truy vấn nâng cao giúp xử lý các truy vấn phân tích phức tạp hiệu quả, đồng thời tích hợp liền mạch với CloudWatch Logs để phân tích log thống nhất.
+
+---
+
+## 7. Real User Monitoring (RUM) hỗ trợ Mobile (iOS/Android)
+
+Amazon CloudWatch RUM mở rộng khả năng giám sát trải nghiệm người dùng thực sang nền tảng di động. Giờ đây, chúng ta có thể theo dõi hiệu năng, hành trình người dùng và lỗi phía client (client-side errors) trên các ứng dụng **iOS và Android**, giúp đảm bảo trải nghiệm đồng nhất trên mọi thiết bị và vị trí địa lý.
+
+---
+
+## 8. CloudTrail: Tổng hợp sự kiện dữ liệu (Data Event Aggregation)
+
+Để giải quyết vấn đề khối lượng log khổng lồ từ các API activity, AWS CloudTrail thêm tính năng **Event Aggregation**. Thay vì ghi lại từng dòng log riêng lẻ, hệ thống sẽ tóm tắt các hoạt động tần suất cao thành các bản tổng hợp mỗi 5 phút.
+
+Việc này giúp:
+* Giảm chi phí lưu trữ log.
+* Dễ dàng phát hiện các mẫu bất thường (như truy cập S3 lạ hoặc DynamoDB throttling) mà không cần phân tích thủ công quá nhiều dữ liệu thô.
+
+---
+
+## 9. Tập trung Log Đa tài khoản & Đa vùng (Log Centralization)
+
+Đây là tính năng được mong chờ cho các tổ chức lớn. **CloudWatch Logs Centralization** cho phép gom log từ nhiều tài khoản (Accounts) và nhiều vùng (Regions) khác nhau về một tài khoản đích duy nhất.
+* Tích hợp với AWS Organizations.
+* Tự động thêm context `@aws.account` và `@aws.region` vào log để dễ truy xuất nguồn gốc.
+* Tiết kiệm chi phí (không tốn phí ingestion cho bản copy đầu tiên).
+
+---
+
+## 10. Giám sát Database tập trung Đa tài khoản & Đa vùng
+
+Tương tự như log, **CloudWatch Database Insights** cũng hỗ trợ giám sát tập trung. Chúng ta có thể theo dõi hiệu năng của Amazon RDS, Amazon Aurora, và Amazon DynamoDB trên toàn bộ tổ chức AWS từ một tài khoản giám sát duy nhất. Điều này giúp liên kết hiệu năng database với sức khỏe ứng dụng dễ dàng hơn.
+
+---
+
+## Kết luận
+
+Các công bố năm 2025 cho thấy AWS đang tập trung giải quyết bài toán "quá tải dữ liệu vận hành" bằng cách sử dụng AI để lọc nhiễu và tự động hóa phân tích. Từ việc giám sát GenAI, đến việc dùng GenAI để sửa lỗi, và khả năng quản lý tập trung (Centralization), các công cụ này giúp người vận hành chuyển từ trạng thái bị động sang chủ động kiểm soát hệ thống.
+
+---
+
+## Tác giả
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/NereidaWoo.png" alt="Nereida Woo" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Nereida Woo</h3>
+    <p>Nereida is a WW Specialist Solutions Architect in Cloud Operations focusing on Centralized Operations Management and Application operations on AWS. When she isn't working, she enjoys traveling to attend music concerts.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/CalvinWeng.png" alt="Calvin Weng" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Calvin Weng</h3>
+    <p>Calvin Weng is a Product Marketing Manager for AWS Cloud Operations, focusing on observability and monitoring services. Outside of work, Calvin travels, practices pottery, plays ping pong competitively, and explores the Pacific Northwest with his dog Kai.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/RavitejaSunkavalli.png" alt="Raviteja Sunkavalli" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Raviteja Sunkavalli</h3>
+    <p>Raviteja Sunkavalli is a Senior Worldwide Specialist Solutions Architect at Amazon Web Services, specializing in AIOps and GenAI observability. He helps global customers implement observability and incident management solutions across complex and distributed cloud environments. Outside of work, he enjoys playing cricket and exploring new cooking recipes.</p>
+  </div>
+</div>

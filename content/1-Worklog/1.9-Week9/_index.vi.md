@@ -1,59 +1,50 @@
 ---
 title: "Worklog Tuần 9"
-date: 2025-01-01
-weight: 1
+date: 2025-11-03
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+### Mục tiêu tuần 9
+* Củng cố kiến thức nền tảng backend: thiết kế API, xác thực, cấu trúc dữ liệu.
+* Làm quen với các dịch vụ backend quan trọng trên AWS: **API Gateway, Lambda, DynamoDB, Cognito**.
+* Xây dựng phiên bản đầu tiên của kiến trúc backend dự án.
+* Thực hành phát triển API an toàn và xử lý request/response đúng chuẩn.
 
-### Mục tiêu tuần 9:
+---
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+|-----|-----------|--------------|------------------|--------------------|
+| 2 | Học thiết kế REST API, phương thức HTTP và quy trình backend. <br>- Thiết kế các API endpoints ban đầu. | 03/11/2025 | 03/11/2025 | AWS Study Group |
+| 3 | Học **API Gateway**. <br>- Tạo routes, methods, validate request và enable logging. | 04/11/2025 | 04/11/2025 | AWS Study Group |
+| 4 | Tìm hiểu **AWS Lambda**. <br>- Viết và deploy các hàm CRUD cơ bản. <br>- Test bằng event triggers. | 05/11/2025 | 05/11/2025 | AWS Study Group |
+| 5 | Học **DynamoDB**. <br>- Thiết kế schema. <br>- Thực hiện CRUD operations. | 06/11/2025 | 06/11/2025 | AWS Study Group |
+| 6 | Học **Cognito Authentication**. <br>- Tạo User Pool. <br>- Kết nối Cognito với API Gateway. | 07/11/2025 | 07/11/2025 | AWS Study Group |
 
+---
 
-### Kết quả đạt được tuần 9:
+### Kết quả đạt được trong tuần 9
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 1. Nắm vững kiến trúc backend hiện đại
+Tôi hiểu rõ hơn về cách tổ chức backend theo kiến trúc nhiều lớp, cách tách biệt logic xử lý và cách API giao tiếp với dịch vụ xác thực và cơ sở dữ liệu. Điều này giúp tôi tự tin hơn khi xây dựng hệ thống quy mô lớn.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+#### 2. Thiết kế tài liệu API rõ ràng và đầy đủ
+Tôi đã hoàn thiện bản API specification đầu tiên, bao gồm routes, body, response, error codes và mô tả logic. Đây là bước cực kỳ quan trọng giúp đồng bộ giữa backend và frontend.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+#### 3. Cấu hình thành công API Gateway
+Tôi đã tạo các API routes, cấu hình CORS, logging và kết nối đến Lambda. Việc này giúp tôi hiểu rõ cách request từ client được chuyển đến backend trong mô hình serverless.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+#### 4. Xây dựng Lambda Functions xử lý logic
+Tôi đã viết các hàm Lambda đầu tiên, học cách quản lý input/output và triển khai logic backend mà không cần server. Điều này giúp tôi làm quen với mô hình serverless hiệu quả và tiết kiệm chi phí.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+#### 5. Thiết kế và vận hành DynamoDB
+Tôi đã tạo bảng, chọn partition/sort key hợp lý và thực hành các thao tác CRUD. Tôi hiểu rõ hơn về mô hình dữ liệu NoSQL và cách tối ưu truy vấn.
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+#### 6. Tích hợp xác thực bằng Cognito
+Tôi đã tạo User Pool, đăng ký người dùng và tích hợp xác thực vào API Gateway. Điều này giúp backend trở nên an toàn hơn và tuân thủ quy trình bảo mật tiêu chuẩn.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+---
 

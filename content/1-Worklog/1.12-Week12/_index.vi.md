@@ -1,58 +1,51 @@
 ---
-title: "Worklog Tuần 12"
-date: 2025-01-01
-weight: 2
+title: "Worklog Tuần 12 "
+date: 2025-11-24
+weight: 12
 chapter: false
-pre: " <b> 1.12 </b> "
+pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-### Mục tiêu tuần 12:
+### Mục tiêu tuần 12
+* Cải thiện UI/UX tổng thể và triển khai quản lý state nâng cao.
+* Kết nối các component frontend với dữ liệu backend theo thời gian thực.
+* Tăng cường validation cho API và đảm bảo sự ổn định của API contract.
+* Xây dựng các UI component tái sử dụng như form, modal, thông báo lỗi.
+* Tối ưu mạng, caching và giảm số lượng API call không cần thiết.
+* Chuẩn bị cho các tính năng full-stack phức tạp liên quan đến thao tác người dùng.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+---
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Nhiệm vụ thực hiện trong tuần
 
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+|-----|-----------|---------------|------------------|---------------------|
+| 2 | Triển khai global state management (Redux/Zustand/Context). <br>- Đồng bộ trạng thái session. | 24/11/2025 | 24/11/2025 | AWS Study Group |
+| 3 | Xây dựng thư viện UI component tái sử dụng: input, modal, loader, thông báo. | 25/11/2025 | 25/11/2025 | AWS Study Group |
+| 4 | Tích hợp dữ liệu backend vào UI. <br>- Thêm cơ chế fetch + auto refresh. | 26/11/2025 | 26/11/2025 | AWS Study Group |
+| 5 | Tăng cường validation API & form frontend. <br>- Đảm bảo ổn định API contract. | 27/11/2025 | 27/11/2025 | AWS Study Group |
+| 6 | Tối ưu performance và caching frontend. <br>- Giảm API call trùng lặp bằng memoization. | 28/11/2025 | 28/11/2025 | AWS Study Group |
 
-### Kết quả đạt được tuần 12:
+---
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+### Kết quả đạt được tuần 12
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+#### **1. Triển khai Global State Management có thể mở rộng**
+Tuần này, tôi triển khai quản lý state tập trung để đồng bộ session, UI state và dữ liệu động. Điều này giúp code sạch hơn và giảm việc truyền props không cần thiết.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+#### **2. Xây dựng thư viện UI Component tái sử dụng**
+Tôi đã tạo nhiều component dùng lại được: button, input, modal, loader, skeleton và toast thông báo. Điều này giúp giao diện đồng nhất và tăng tốc phát triển UI.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+#### **3. Tích hợp dữ liệu backend vào giao diện**
+Tôi kết nối UI với dữ liệu backend theo thời gian thực, cập nhật trạng thái mỗi khi người dùng thao tác. Tôi cũng thêm cả auto-refresh và manual refresh.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+#### **4. Tăng cường validation & API contract**
+Backend đã được cải thiện validation và API Gateway mapping rõ ràng hơn. Frontend cũng được bổ sung form validation mạnh mẽ, giảm lỗi nhập liệu và giúp API phản hồi nhất quán.
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+#### **5. Tối ưu hiệu suất & giảm API Call**
+Tôi triển khai caching, memoization và loại bỏ request trùng. Nhờ đó UI mượt hơn, giảm tải mạng và tăng tốc độ xử lý.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+#### **6. Chuẩn bị nền tảng cho các tính năng full-stack phức tạp**
+Cuối tuần, tôi đã hoàn thành nền tảng cần thiết để phát triển các chức năng full-stack liên quan đến cập nhật dữ liệu và hành vi UI động theo thao tác người dùng.
 
-
+---

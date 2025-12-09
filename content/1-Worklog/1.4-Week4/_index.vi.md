@@ -5,85 +5,40 @@ weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-
 ### Mục tiêu Tuần 4:
 
-* Tìm hiểu và thực hành **Serverless Automation** với **AWS Lambda** để tối ưu chi phí vận hành EC2.  
-* Triển khai **giám sát nâng cao (Advanced Monitoring)** với **Amazon CloudWatch** và **Grafana** nhằm tăng khả năng quan sát hệ thống.  
-* Khám phá các tính năng **Metrics, Logs, Alarms và Dashboards** trong CloudWatch.  
-* Quản lý và kiểm soát truy cập thông qua **IAM Policies** và **Resource Tags**.  
-* Tìm hiểu cách sử dụng **AWS Systems Manager** để quản lý bản vá (patch), chạy lệnh từ xa và quản trị tập trung.  
-* Triển khai **Hạ tầng dưới dạng mã (Infrastructure as Code – IaC)** với **AWS CloudFormation** và **AWS CDK**.  
-* Xây dựng kiến trúc nâng cao, đa dịch vụ và triển khai **nested stacks** bằng **AWS CDK Advanced**.  
+* Triển khai kiến trúc **WordPress** cấp độ sản xuất đảm bảo Tính khả dụng Cao (HA) và Khả năng Mở rộng bằng cách sử dụng Nhóm Tự động Mở rộng và CloudFront.
+* Làm chủ quy trình **Di chuyển Máy chủ** bằng cách nhập/xuất Máy ảo (VM) giữa môi trường tại chỗ và AWS.
+* Thực hiện **Di chuyển Cơ sở dữ liệu** toàn diện cho các nguồn không đồng nhất bằng cách sử dụng Công cụ Chuyển đổi Lược đồ AWS (SCT) và Dịch vụ Di chuyển Cơ sở dữ liệu (DMS).
+* Nghiên cứu các chiến lược và công cụ di chuyển đám mây nâng cao (DataSync, MGN, Outposts).
 
----
+### Nhiệm vụ cần thực hiện trong tuần này:
 
-### Nhiệm vụ thực hiện trong tuần:
+| Ngày | Nhiệm vụ | Ngày Bắt đầu | Ngày Hoàn thành | Tài liệu Tham khảo |
+| --- | --- | --- | --- | --- |
+| 2 | **WordPress trên AWS - Phần 1 (Triển khai)** <br> - Chuẩn bị Hạ tầng: VPC, Subnet, Nhóm Bảo mật cho Web & DB <br> - Khởi chạy **RDS Đa-AZ** để đảm bảo tính khả dụng cao của cơ sở dữ liệu <br> - Triển khai EC2 và cài đặt ứng dụng **WordPress** <br> - Kết nối WordPress với phiên bản RDS | 29/09/2025 | 29/09/2025 | https://000021.awsstudygroup.com/ |
+| 3 | **WordPress trên AWS - Phần 2 (Mở rộng & CDN)** <br> - Tạo **AMI** từ phiên bản WordPress đã cấu hình <br> - Thiết lập **Nhóm Tự động Mở rộng (ASG)** với Bộ Cân bằng Tải Ứng dụng <br> - Tăng tốc phân phối nội dung bằng **Amazon CloudFront** <br> - Thực hiện các thao tác Sao lưu (Snapshot) & Khôi phục Cơ sở dữ liệu <br> - Dọn dẹp tài nguyên | 30/09/2025 | 30/09/2025 | https://000021.awsstudygroup.com/ |
+| 4 | **Di chuyển Máy chủ (Nhập/Xuất VM)** <br> - Triển khai Máy chủ Ứng dụng cục bộ (Mô phỏng Tại chỗ) <br> - **Nhập VM vào AWS:** Xuất VM cục bộ, tải lên S3 và chuyển đổi thành AMI/EC2 <br> - **Xuất VM từ AWS:** Xuất phiên bản EC2 trở lại S3 để sử dụng tại chỗ <br> - Quản lý ACL S3 và vai trò CLI cho các tác vụ di chuyển | 01/10/2025 | 01/10/2025 | https://000014.awsstudygroup.com/ |
+| 5 | **Di chuyển Cơ sở dữ liệu (DMS & SCT)** <br> - Thiết lập Môi trường Di chuyển: Nguồn (Oracle/SQL Server) & Đích (Aurora/RDS) <br> - Sử dụng **Công cụ Chuyển đổi Lược đồ (SCT)** để chuyển đổi lược đồ cơ sở dữ liệu <br> - Cấu hình **AWS DMS**: <br>&emsp; + Tạo Phiên bản Sao chép & Điểm cuối <br>&emsp; + Chạy Tác vụ Di chuyển (Tải đầy đủ + CDC) <br> - Khám phá **DMS Serverless** để tự động mở rộng sao chép | 02/10/2025 | 02/10/2025 | https://000043.awsstudygroup.com/ |
+| 6 | **Giám sát & Chiến lược Di chuyển Nâng cao** <br> - **Giám sát DMS:** Phân tích chỉ số CloudWatch, Thống kê Bảng và Nhật ký Tác vụ <br> - **Khắc phục sự cố:** Chẩn đoán áp lực bộ nhớ và lỗi bảng trong quá trình di chuyển <br> - **Nghiên cứu:** Khám phá các mẫu di chuyển sắp tới: <br>&emsp; + Dịch vụ Di chuyển Ứng dụng AWS (MGN) <br>&emsp; + AWS DataSync & Migration Hub <br>&emsp; + Di chuyển Container sang EKS | 03/10/2025 | 03/10/2025 | https://000043.awsstudygroup.com/ <br><br> _Tự học về AWS Migration Hub_ |
 
-| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
-| --- | ---- | ----------- | ---------------- | ------------------ |
-| 2 | - **Tự động hóa Serverless với AWS Lambda** <br>&emsp; + Tự động khởi động/dừng EC2 theo lịch bằng Lambda. <br>&emsp; + Cấu hình IAM Role và tag cho Lambda. <br>&emsp; + Kiểm thử tự động hóa và xác minh kết quả. <br><br> - **Giám sát nâng cao với CloudWatch và Grafana** <br>&emsp; + Cài đặt Grafana trên EC2. <br>&emsp; + Kết nối Grafana với CloudWatch. <br>&emsp; + Tạo dashboard và thiết lập cảnh báo. | 30/09/2025 | 30/09/2025 |  <br> https://000022.awsstudygroup.com/ <br> https://000029.awsstudygroup.com/ |
-| 3 | - **CloudWatch Advanced Workshop** <br>&emsp; + Khám phá các tính năng Metrics, Logs, Alarms và Dashboards. <br>&emsp; + Sử dụng Container Insights cho ECS, EKS, Fargate. <br><br> - **Tổ chức tài nguyên với Tags và Resource Groups** <br>&emsp; + Tạo và quản lý thẻ (tag) cho EC2, S3, IAM. <br>&emsp; + Xây dựng nhóm tài nguyên dựa trên tag để quản lý tập trung. | 01/10/2025 | 01/10/2025 | https://000036.awsstudygroup.com/ <br> https://000027.awsstudygroup.com/ |
-| 4 | - **Kiểm soát truy cập với IAM và Resource Tags** <br>&emsp; + Định nghĩa chính sách IAM có điều kiện theo tag để giới hạn quyền. <br>&emsp; + Tạo IAM Role cho quản trị viên EC2 với quyền truy cập có điều kiện. <br>&emsp; + Kiểm thử và xác minh kết quả. <br><br> - **Quản lý hệ thống với AWS Systems Manager** <br>&emsp; + Cấu hình Patch Manager để tự động cập nhật hệ điều hành. <br>&emsp; + Sử dụng Run Command để chạy lệnh trên nhiều EC2 cùng lúc. <br>&emsp; + Xem báo cáo tuân thủ và dọn dẹp tài nguyên. | 02/10/2025 | 02/10/2025 | https://000028.awsstudygroup.com/ <br> https://000031.awsstudygroup.com/ |
-| 5 | - **Triển khai Hạ tầng dưới dạng mã với AWS CloudFormation** <br>&emsp; + Tạo template CloudFormation để triển khai hạ tầng AWS. <br>&emsp; + Quản lý tài nguyên qua CloudFormation Stack. <br><br> - **AWS Cloud Development Kit (CDK) Cơ bản** <br>&emsp; + Viết mã CDK bằng ngôn ngữ lập trình (Python/TypeScript). <br>&emsp; + Triển khai và cập nhật tài nguyên qua CDK. | 03/10/2025 | 03/10/2025 | https://000037.awsstudygroup.com/ <br> https://000038.awsstudygroup.com/ |
-| 6 | - **AWS CDK Nâng Cao (Advanced)** <br>&emsp; + Xây dựng kiến trúc đa dịch vụ với API Gateway, ECS, ALB, Lambda và S3. <br>&emsp; + Tạo nested stacks để triển khai mô-đun hóa. <br><br> - **Chuỗi Workshop về Hạ tầng dưới dạng mã (Infrastructure as Code Series)** <br>&emsp; + Hiểu khái niệm và lợi ích của IaC. <br>&emsp; + Thực hành triển khai kiến trúc nhiều tầng với CloudFormation và CDK. | 04/10/2025 | 04/10/2025 | https://000076.awsstudygroup.com/ <br> https://000102.awsstudygroup.com/ |
+# Thành tựu Tuần 4
 
----
+## Kiến trúc Web Có thể Mở rộng
+- Triển khai thành công trang web **WordPress** có tính khả dụng cao bằng cách sử dụng **RDS Đa-AZ** và **Nhóm Tự động Mở rộng**.
+- Cấu hình **Bộ Cân bằng Tải Ứng dụng (ALB)** để phân phối lưu lượng một cách động trên các phiên bản khỏe mạnh.
+- Tối ưu hóa tốc độ phân phối nội dung toàn cầu bằng cách tích hợp **Amazon CloudFront** như một CDN.
+- Triển khai các quy trình khôi phục thảm họa bằng cách sử dụng Ảnh chụp nhanh RDS và kỹ thuật khôi phục.
 
-# Kết quả đạt được trong Tuần 4
+## Chuyên môn Di chuyển Máy chủ
+- Có được kinh nghiệm thực hành với các phương pháp **Nhập/Xuất VM**.
+- Di chuyển thành công máy ảo từ môi trường mô phỏng tại chỗ (VMware) sang AWS EC2.
+- Thành thạo quy trình ngược lại để xuất phiên bản AWS EC2 đang hoạt động trở lại thành ảnh VM di động được lưu trữ trong S3.
+- Cấu hình các vai trò IAM và quyền S3 cần thiết để tạo điều kiện truyền ảnh an toàn.
 
-## Ngày 2 – Tự động hóa Serverless & Giám sát nâng cao
-- Xây dựng **AWS Lambda** để tự động bật/tắt EC2 theo lịch định sẵn, giúp tiết kiệm chi phí vận hành.  
-- Cấu hình **IAM Role** và tag cho Lambda, kiểm thử hoạt động tự động hóa.  
-- Tìm hiểu **Savings Plans** cho bài toán tối ưu chi phí vận hành liên tục.  
-- Cài đặt **Grafana** trên EC2 và tích hợp với **CloudWatch** để giám sát thời gian thực.  
-- Tạo **dashboard động** hiển thị các chỉ số CPU, Memory, Network.  
-- Thiết lập cảnh báo và tự động thông báo khi vượt ngưỡng.  
-- Nâng cao khả năng quan sát hệ thống và quản lý hạ tầng chủ động.
-
-## Ngày 3 – CloudWatch Nâng cao & Tổ chức tài nguyên
-- Hiểu sâu về **Amazon CloudWatch** trong việc giám sát hạ tầng và ứng dụng.  
-- Cấu hình **Metrics, Logs, Alarms và Dashboards** để phát hiện sự cố sớm.  
-- Sử dụng **Container Insights** để theo dõi ECS, EKS và Fargate.  
-- Xây dựng **CloudWatch Dashboard** tổng hợp các chỉ số hệ thống.  
-- Áp dụng **Tagging** để phân loại tài nguyên theo nhóm (chủ sở hữu, môi trường, dự án).  
-- Tạo **Resource Groups** dựa trên tag để quản lý hàng loạt tài nguyên.  
-- Cải thiện khả năng quản trị và hiệu suất giám sát hệ thống.
-
-## Ngày 4 – Kiểm soát truy cập & Quản lý hệ thống
-- Áp dụng **chính sách IAM theo tag** để thực thi nguyên tắc quyền tối thiểu (Least Privilege).  
-- Tạo **IAM Role và Policy** có điều kiện (`aws:ResourceTag`, `StringEquals`) để kiểm soát truy cập EC2.  
-- Kiểm thử hành vi truy cập để đảm bảo chính sách hoạt động đúng.  
-- Sử dụng **AWS Systems Manager (SSM)** để quản lý và tự động hóa nhiệm vụ vận hành.  
-- Cấu hình **Patch Manager** để cập nhật hệ điều hành và bản vá bảo mật tự động.  
-- Thực hiện **Run Command** trên nhiều máy chủ EC2 cùng lúc.  
-- Củng cố bảo mật và hiệu quả vận hành thông qua tự động hóa.
-
-## Ngày 5 – Hạ tầng dưới dạng mã với CloudFormation & CDK
-- Thực hành triển khai tài nguyên AWS tự động bằng **CloudFormation Templates** (YAML).  
-- Quản lý **Stack** để triển khai VPC, Subnet và EC2 một cách thống nhất.  
-- Tìm hiểu cơ chế **rollback và update stack** an toàn khi triển khai.  
-- Triển khai **AWS CDK** để định nghĩa hạ tầng bằng mã Python/TypeScript.  
-- Thực hiện **deploy, update và remove** hạ tầng qua CDK.  
-- Làm quen với quy trình **DevOps – IaC** trong quản lý hạ tầng.
-
-## Ngày 6 – AWS CDK Nâng cao & Hạ tầng dưới dạng mã
-- Thiết kế và triển khai **kiến trúc đa dịch vụ** với **AWS CDK v2.151.0**, bao gồm **API Gateway, ALB, ECS, Lambda, S3**.  
-- Áp dụng **nested stacks** để tái sử dụng và quản lý hạ tầng mô-đun.  
-- Thực hành triển khai ứng dụng nhiều tầng (multi-tier) bằng IaC.  
-- Hiểu rõ lợi ích và so sánh các framework IaC: **CloudFormation, SAM, CDK, Terraform, Pulumi**.  
-- Tích hợp IaC vào **CI/CD pipeline** để tự động triển khai và theo dõi thay đổi hạ tầng.  
-- Củng cố kỹ năng thiết kế, tự động hóa và quản lý hạ tầng AWS ở quy mô lớn.
-
----
-
-### Tổng kết
-- Tự động hóa quản lý EC2 bằng **AWS Lambda**, giúp giảm chi phí.  
-- Nâng cao khả năng giám sát bằng **CloudWatch**, **Grafana** và **Container Insights**.  
-- Thực thi **kiểm soát truy cập theo tag** với IAM để tăng bảo mật.  
-- Quản lý và tự động hóa bản vá bằng **AWS Systems Manager**.  
-- Triển khai **Infrastructure as Code** qua **CloudFormation** và **CDK**.  
-- Xây dựng **kiến trúc CDK nâng cao** với nhiều dịch vụ tích hợp.  
-- Nâng cao kỹ năng **DevOps**, **tự động hóa hạ tầng**, và **quản trị hiệu quả đám mây** trên AWS.
-
----
+## Di chuyển & Hiện đại hóa Cơ sở dữ liệu
+- Thực hiện di chuyển cơ sở dữ liệu không đồng nhất (ví dụ: SQL Server/Oracle sang Aurora) bằng **AWS DMS**.
+- Sử dụng **Công cụ Chuyển đổi Lược đồ AWS (SCT)** để tự động hóa việc chuyển đổi lược đồ giữa các công cụ cơ sở dữ liệu khác nhau.
+- Cấu hình **Sao chép Dữ liệu Liên tục (CDC)** để giữ cho cơ sở dữ liệu nguồn và đích đồng bộ với thời gian ngừng hoạt động tối thiểu.
+- Thử nghiệm với **DMS Serverless** để xử lý khối lượng công việc di chuyển thay đổi tự động.
+- Học cách giám sát tình trạng di chuyển bằng CloudWatch và khắc phục các sự cố phổ biến như áp lực bộ nhớ hoặc không khớp kiểu dữ liệu.

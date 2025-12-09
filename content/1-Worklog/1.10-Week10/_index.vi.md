@@ -1,59 +1,52 @@
 ---
 title: "Worklog Tuần 10"
-date: 2025-01-01
-weight: 2
+date: 2025-11-10
+weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+### Mục tiêu tuần 10
+* Nâng cao kiến thức bảo mật backend và quy trình xác thực trong môi trường cloud.
+* Hoàn thiện tích hợp Cognito và áp dụng mô hình authentication dựa trên token.
+* Áp dụng validation, access pattern và secondary index cho DynamoDB.
+* Tìm hiểu về authorizer, throttling và rate-limit trên API Gateway.
+* Bắt đầu kết nối các thành phần backend thành quy trình hoàn chỉnh.
 
-### Mục tiêu tuần 10:
+---
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+|-----|-----------|--------------|------------------|--------------------|
+| 2 | Học về authentication/authorization (JWT, Access Token, ID Token). <br>- Ôn OWASP API Security. | 10/11/2025 | 10/11/2025 | AWS Study Group |
+| 3 | Tìm hiểu sâu **Cognito User Pool** và **Identity Pool**. <br>- Triển khai signup, login, refresh token flow. | 11/11/2025 | 11/11/2025 | AWS Study Group |
+| 4 | Tạo **Lambda Authorizer** và gắn vào API Gateway. <br>- Thêm IAM permission. | 12/11/2025 | 12/11/2025 | AWS Study Group |
+| 5 | Nâng cấp DynamoDB: <br>- Thêm secondary index. <br>- Tăng cường validation & error handling. | 13/11/2025 | 13/11/2025 | AWS Study Group |
+| 6 | Kiểm thử end-to-end: <br>- Client → API Gateway → Lambda → DynamoDB. | 14/11/2025 | 14/11/2025 | AWS Study Group |
 
+---
 
-### Kết quả đạt được tuần 10:
+### Kết quả đạt được trong tuần 10
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### **1. Hiểu rõ hơn về bảo mật và quy trình xác thực**
+Tôi đã tìm hiểu sâu về cơ chế hoạt động của JWT, sự khác nhau giữa Access/ID/Refresh Token và các phương pháp phòng chống tấn công trong API security. Điều này giúp backend an toàn hơn và tuân thủ chuẩn OWASP.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+#### **2. Hoàn thiện quy trình xác thực bằng Cognito**
+Tôi đã cấu hình signup, login, xác thực đa yếu tố (nếu cần), và refresh token trong Cognito. Các flow này được test bằng Postman và CLI để đảm bảo backend xử lý chính xác danh tính người dùng.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+#### **3. Tích hợp Lambda Authorizer để bảo vệ API**
+Tôi đã tạo Authorizer tùy chỉnh để xác minh token trước khi API được gọi. Nhờ đó, hệ thống có thể phân quyền chính xác và bảo vệ các endpoint quan trọng khỏi truy cập trái phép.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+#### **4. Tối ưu DynamoDB bằng Secondary Index**
+Tôi thêm GSI vào bảng dữ liệu, cải thiện đáng kể tốc độ truy vấn và hỗ trợ các kiểu truy vấn phức tạp hơn. Đồng thời, tôi bổ sung logic validation để dữ liệu luôn chính xác và nhất quán.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+#### **5. Hoàn thiện quy trình backend đầu–cuối**
+Tôi đã kiểm thử toàn bộ luồng:  
+Client gửi request → API Gateway xử lý → Lambda thực thi → DynamoDB lưu/truy xuất → trả về kết quả.  
+Luồng hoạt động mượt mà và chính xác.
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+#### **6. Cải thiện cấu trúc code và khả năng bảo trì**
+Tôi đã refactor lại code của Lambda theo mô hình rõ ràng hơn, tách riêng logic, validation và truy cập database. Điều này giúp backend phát triển dễ dàng và hạn chế lỗi trong tương lai.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+---

@@ -1,125 +1,89 @@
 ---
 title: "Event 1"
-date: 2025-01-01
+date: 2025-09-06
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Báo Cáo Sau Sự Kiện: The First Cloud Journey (FCJ) Program Kick-off
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+## Mục Tiêu Sự Kiện
 
-### Mục Đích Của Sự Kiện
+- **Khởi động chính thức** chương trình The First Cloud Journey (FCJ) kéo dài 12 tuần.
+- **Kết nối thành viên**, Mentor và Ban Tổ Chức (BTC).
+- **Giới thiệu tổng quan** về tổ chức, mục tiêu học tập và lộ trình triển khai dự án.
+- **Hướng dẫn cách làm việc nhóm** và tiến hành **thành lập các đội dự án**.
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+## Danh Sách Diễn Giả
 
-### Danh Sách Diễn Giả
+- **Đại diện BTC** – Trình bày về tầm nhìn và định hướng của chương trình.
+- **Các Mentor** – Chia sẻ kinh nghiệm thực tế và hành trình sự nghiệp trong lĩnh vực Cloud.
+- **Cựu thành viên (Alumni)** – Truyền đạt những bài học quan trọng từ các khóa trước.
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+## Nội Dung Chính
 
-### Nội Dung Nổi Bật
+### Cấu Trúc Chương Trình và Lộ Trình 12 Tuần
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+- Giới thiệu chi tiết **lộ trình 12 tuần**, từ kiến thức nền tảng AWS (VPC, EC2) đến xây dựng hoàn chỉnh một ứng dụng Serverless.
+- Làm rõ **mục tiêu học tập** và yêu cầu về sản phẩm tối thiểu (MVP).
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+### Quy Tắc Làm Việc và Văn Hóa Tổ Chức
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+- **Quy định về kỷ luật và tham gia:** Nhấn mạnh sự cam kết và tinh thần trách nhiệm của từng thành viên.
+- **Văn hóa chia sẻ – hỗ trợ:** Tạo môi trường học tập tích cực giữa các thành viên.
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+### Thành Lập Đội Dự Án và Định Hướng Ban Đầu
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+- Hướng dẫn quy trình **xây dựng đội nhóm hiệu quả**, phân chia vai trò và sử dụng công cụ giao tiếp.
+- Định hướng ban đầu cho **các dự án Cloud**, hỗ trợ nhóm bắt đầu nghiên cứu.
 
-#### Domain-Driven Design (DDD)
+### Bảo Mật Tài Khoản AWS
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+- Hướng dẫn thiết lập **xác thực hai lớp (2FA)** và tạo **ngân sách giám sát chi phí (Budget)** ngay từ đầu.
 
-#### Event-Driven Architecture
+## Những Điều Rút Ra
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+### Tư Duy và Mức Độ Cam Kết
 
-#### Compute Evolution
+- **Tính kỷ luật rất quan trọng:** Nhận thức rõ sự nghiêm túc cần thiết để hoàn thành chương trình.
+- **Giá trị của cộng đồng:** Thấy được tầm quan trọng của sự hỗ trợ từ Mentor và các thành viên khác.
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+### Hiểu Biết Về Tổ Chức
 
-#### Amazon Q Developer
+- Nắm rõ **mục tiêu của chương trình** và những kỹ năng Cloud sẽ được trang bị.
+- Hiểu được **lộ trình học tập 12 tuần** với các mốc kiến thức quan trọng.
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+### Kỹ Năng Thực Hành Ban Đầu
 
-### Những Gì Học Được
+- **Hoàn thành việc thành lập đội nhóm**, bắt đầu phân công vai trò.
+- Học được các bước **thiết lập bảo mật và quản lý chi phí** cơ bản cho tài khoản AWS.
 
-#### Tư Duy Thiết Kế
+## Ứng Dụng Vào Công Việc
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+- **Thành lập đội dự án** và giao nhiệm vụ ban đầu.
+- Bắt đầu tìm hiểu **kiến thức nền tảng về Cloud** và thông tin của tổ chức.
+- Thực hiện các thao tác cơ bản trên AWS như kích hoạt **2FA** và thiết lập **Budget** (theo Worklog Tuần 1).
 
-#### Kiến Trúc Kỹ Thuật
+## Trải Nghiệm Sự Kiện
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+Sự kiện **Kick-off** mang lại nguồn năng lượng tích cực và giúp tôi định hình rõ ràng hướng đi cho hành trình sắp tới.
 
-#### Chiến Lược Hiện Đại Hóa
+### Kết Nối Và Không Khí Chung
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+- **Được chào đón nồng nhiệt:** Làm quen các thành viên FCJ, tạo nên môi trường học tập thân thiện.
+- **Tính nghiêm túc:** Những chia sẻ từ BTC giúp tôi hiểu rõ kỳ vọng và mức độ cam kết cần thiết.
 
-### Ứng Dụng Vào Công Việc
+### Lộ Trình Và Mục Tiêu
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- **Tầm nhìn rõ ràng:** Lần đầu thấy trực quan **lộ trình 12 tuần**, giúp tôi chủ động lên kế hoạch học tập.
+- Hiểu rằng mục tiêu cuối cùng không chỉ là học mà còn **xây dựng một sản phẩm Cloud thực tế**.
 
-### Trải nghiệm trong event
+### Bài Học Thực Tế Ban Đầu
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+- **Quản lý chi phí và bảo mật:** Hiểu được tầm quan trọng của 2FA và Budget ngay từ ngày đầu sử dụng AWS.
+- **Tinh thần làm việc nhóm:** Nhanh chóng phối hợp với đội để xác định cách làm việc chung.
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+### Kết Luận
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+Buổi Kick-off không đơn thuần là buổi giới thiệu chương trình; đây là một phiên định hướng toàn diện giúp tôi có đủ thông tin, động lực và sự tự tin để bước vào **hành trình 12 tuần chinh phục Cloud**.

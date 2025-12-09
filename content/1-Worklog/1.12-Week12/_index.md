@@ -1,57 +1,51 @@
 ---
 title: "Week 12 Worklog"
-date: 2025-01-01
+date: 2025-11-24
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 12 Objectives
+* Improve overall UI/UX and implement advanced state management.
+* Connect frontend components to backend dynamic data in real time.
+* Strengthen API input/output validation and ensure stable backend contracts.
+* Create reusable UI components for forms, modals, and error states.
+* Optimize network usage, caching logic, and reduce unnecessary API calls.
+* Begin preparing full-stack feature for user actions and data updates.
 
-### Week 12 Objectives:
+---
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks to be carried out this week
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+|-----|------|-------------|------------------|--------------------|
+| 2 | Implement global state management (Redux / Zustand / Context). <br>- Add persistent user session. | 24/11/2025 | 24/11/2025 | AWS Study Group |
+| 3 | Build reusable UI components: inputs, modals, loaders, notifications. | 25/11/2025 | 25/11/2025 | AWS Study Group |
+| 4 | Integrate dynamic backend data into UI components. <br>- Add data fetch + refresh logic. | 26/11/2025 | 26/11/2025 | AWS Study Group |
+| 5 | Improve API validation & frontend form validation. <br>- Ensure stable API contract & error messages. | 27/11/2025 | 27/11/2025 | AWS Study Group |
+| 6 | Optimize frontend performance & caching. <br>- Reduce duplicate API calls using memoization. | 28/11/2025 | 28/11/2025 | AWS Study Group |
 
+---
 
-### Week 12 Achievements:
+### Week 12 Achievements
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### **1. Implemented Scalable Global State Management**
+This week, I integrated a global state manager to coordinate authentication, UI state, and dynamic data. This helped unify session handling and reduce prop drilling.
 
-* Successfully created and configured an AWS Free Tier account.
+#### **2. Built a Library of Reusable UI Components**
+I created reusable components such as buttons, inputs, modals, loaders, skeletons, and notification toasts. This significantly improves consistency and speeds up future UI development.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### **3. Successfully Integrated Backend Data Into UI**
+I connected frontend elements to live backend data, ensuring views update correctly when users make changes. I also added auto-refresh and manual refresh options.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+#### **4. Strengthened Validation & API Data Contracts**
+I upgraded backend API validation (Lambda + API Gateway mapping) and added stronger frontend form validation, reducing user errors and ensuring cleaner, more predictable API responses.
 
-* Used AWS CLI to perform basic operations such as:
+#### **5. Optimized Performance & Reduced API Calls**
+I implemented caching, memoization, and request deduplication. This reduces network load, speeds up UI interactions, and creates a smoother experience.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+#### **6. Prepared Full-Stack Feature Enhancements**
+By the end of the week, I completed the foundation needed to build complex full-stack features involving user actions, database updates, and responsive UI behavior.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+---

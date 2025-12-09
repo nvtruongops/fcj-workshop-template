@@ -112,9 +112,9 @@ $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }} {{with
   data-nav-id="{{.RelPermalink}}"
   title="{{.Title}}"
   class="dd-item 
-        {{if .IsAncestor $currentNode }}parent{{end}}
-        {{if eq .File.UniqueID $currentFileUniqueID}}active{{end}}
-        {{if .Params.alwaysopen}}parent{{end}}
+     {{if .IsAncestor $currentNode }}parent{{end}}
+     {{if and .File (eq .File.UniqueID $currentFileUniqueID)}}active{{end}}
+     {{if .Params.alwaysopen}}parent{{end}}
         "
 >
   <a href="{{.RelPermalink}}">

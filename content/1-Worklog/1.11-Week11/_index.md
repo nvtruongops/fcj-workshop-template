@@ -1,57 +1,53 @@
 ---
 title: "Week 11 Worklog"
-date: 2025-01-01
+date: 2025-11-17
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 11 Objectives
+* Start integrating frontend with backend authenticated APIs.
+* Strengthen API Gateway and Lambda error handling strategy.
+* Implement frontend token storage and refresh token logic.
+* Build reusable API client wrapper (Axios/Fetch) with interceptors.
+* Improve logging, debugging and CloudWatch insights usage.
+* Complete full-stack functionality from UI → Gateway → Lambda → Database.
 
-### Week 11 Objectives:
+---
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks to be carried out this week
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+|-----|------|-------------|------------------|--------------------|
+| 2 | Connect frontend to Cognito auth endpoints. <br>- Implement login, signup UI flows. | 17/11/2025 | 17/11/2025 | AWS Study Group |
+| 3 | Implement secure token storage & token refresh mechanism. <br>- Add interceptors in API client. | 18/11/2025 | 18/11/2025 | AWS Study Group |
+| 4 | Integrate frontend with API Gateway authenticated routes. <br>- Validate Lambda Authorizer flow. | 19/11/2025 | 19/11/2025 | AWS Study Group |
+| 5 | Build a global error handling layer (frontend + backend). <br>- Improve API response consistency. | 20/11/2025 | 20/11/2025 | AWS Study Group |
+| 6 | Strengthen monitoring using CloudWatch Logs & Metrics. <br>- Debug end-to-end flow. | 21/11/2025 | 21/11/2025 | AWS Study Group |
 
+---
 
-### Week 11 Achievements:
+### Week 11 Achievements
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### **1. Completed Frontend Authentication Integration**
+This week, I successfully connected the frontend application to Cognito, enabling user signup, login, and logout directly from the UI. I ensured token retrieval and user session management work properly.
 
-* Successfully created and configured an AWS Free Tier account.
+#### **2. Implemented Secure Token Storage & Auto Refresh**
+I set up secure token storage using browser memory and added an automatic token refresh flow. I also implemented Axios/Fetch interceptors to attach access tokens on every request.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### **3. Integrated Frontend with Protected Backend APIs**
+The frontend can now communicate with protected API Gateway routes using JWT tokens. This validates the entire authentication pipeline from UI → Client → Gateway → Lambda → DynamoDB.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+#### **4. Built a Consistent Global Error-Handling System**
+I standardized error responses in Lambda, updated API Gateway mappings, and built a global error handler on the frontend to show meaningful messages. This reduces debugging time and improves UX.
 
-* Used AWS CLI to perform basic operations such as:
+#### **5. Improved Logging & Monitoring with CloudWatch**
+I analyzed Lambda logs, identified slow operations, and created CloudWatch Metrics filters to monitor request failures and latency. This improved my debugging workflow significantly.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+#### **6. Achieved Full-Stack Authentication + Data Flow**
+By the end of the week, I successfully executed end-to-end user actions:
+UI → Authenticate → Call API → Lambda Logic → DynamoDB → Return response.  
+Everything worked seamlessly with proper security & error-handling in place.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+---

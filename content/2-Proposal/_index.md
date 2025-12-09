@@ -1,115 +1,907 @@
----
+﻿---
 title: "Proposal"
-date: 2025-01-01
+date: 2025-09-09
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+# AWS First Cloud AI Journey – Project Plan
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+**Hello World – FPT University – EveryoneCook**
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+**Date:** 30/11/2025
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+📥 **[Download Full Proposal (DOCX)](Proposal.docx)**
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+---
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+# TABLE OF CONTENTS
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+**1. [BACKGROUND AND MOTIVATION](#background-and-motivation)**
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+&nbsp;&nbsp;&nbsp;&nbsp;1.1 [executive summary](#executive-summary)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+&nbsp;&nbsp;&nbsp;&nbsp;1.2 [PROJECT SUCCESS CRITERIA](#project-success-criteria)
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+&nbsp;&nbsp;&nbsp;&nbsp;1.3 [Assumptions](#assumptions)
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+**2. [SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM](#solution-architecture-architectural-diagram)**
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+&nbsp;&nbsp;&nbsp;&nbsp;2.1 [Technical Architecture Diagram](#technical-architecture-diagram)
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+&nbsp;&nbsp;&nbsp;&nbsp;2.2 [Technical Plan](#technical-plan)
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+&nbsp;&nbsp;&nbsp;&nbsp;2.3 [Project Plan](#project-plan)
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+&nbsp;&nbsp;&nbsp;&nbsp;2.4 [Security Considerations](#security-considerations)
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+**3. [ACTIVITIES AND DELIVERABLES](#activities-and-deliverables)**
 
-Total: $0.7/month, $8.40/12 months
+&nbsp;&nbsp;&nbsp;&nbsp;3.1 [Activities and deliverables](#activities-and-deliverables-1)
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+&nbsp;&nbsp;&nbsp;&nbsp;3.2 [OUT OF SCOPE](#out-of-scope)
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+&nbsp;&nbsp;&nbsp;&nbsp;3.3 [PATH TO PRODUCTION](#path-to-production)
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+**4. [EXPECTED AWS COST BREAKDOWN BY SERVICES](#expected-aws-cost-breakdown-by-services)**
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+**5. [TEAM](#team)**
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+**6. [RESOURCES & COST ESTIMATES](#resources-cost-estimates)**
+
+**7. [ACCEPTANCE](#acceptance)**
+
+# 1.BACKGROUND and motivation
+
+## 1.1 Executive summary
+
+**Customer background**
+
+The customer is a startup focused on building a modern social network platform where users can share cooking recipes, upload food photos, exchange culinary experiences, and explore meals recommended by AI. The organization aims to deliver a highly interactive platform capable of serving a large and growing user base.
+
+**Business and technical objectives -- drivers for moving to the AWS cloud**
+
+- Enable rapid development and deployment using AWS managed services
+- Ensure high scalability as the user base and media storage grow
+- Provide a reliable, low-latency environment for AI computation and content delivery
+- Reduce upfront infrastructure cost and move toward a pay-as-you-go model
+- Improve data security, backup, and compliance through AWS-native capabilities
+
+**Use cases**
+
+- Users upload recipes, photos, and cooking videos to the platform
+- System recommends dishes using AI based on available ingredients provided by the user
+- Users interact socially through liking, commenting, sharing, and following
+- AI processes text and images to generate recipe suggestions
+- Admins manage content, monitor platform activity, and track performance analytics
+
+To meet the customer's objectives of building a scalable social cooking platform with AI-powered recipe recommendations, the partner will deliver a full end-to-end cloud implementation on AWS. The services provided include:
+
+- **Cloud Architecture Design:** Define a secure, highly scalable, serverless architecture using AWS best practices (Route 53, API Gateway, Lambda, DynamoDB, S3, CloudFront, Cognito)
+- **AI Integration:** Implement AWS Bedrock (Claude 3.5 Sonnet) for intelligent recipe suggestions, image analysis, and natural language processing features
+- **Infrastructure Deployment:** Build and deploy all backend, frontend, authentication, and data layers using Infrastructure as Code (IaC) with fully automated CI/CD pipelines
+- **Security & Compliance:** Configure IAM roles, encryption (KMS), WAF, logging, monitoring, and compliance guardrails to ensure platform security
+- **Observability Setup:** Enable CloudWatch dashboards, alarms, X-Ray tracing, and log centralization for real-time monitoring and performance insights
+- **DevOps & Automation:** Implement automated build/deploy workflows via GitLab + Amplify, operational pipelines, and auto-scaling configurations
+- **Performance Optimization:** Configure CDN caching, DynamoDB capacity scaling, search indexing, and asynchronous SQS-based background processing
+- **Knowledge Transfer & Documentation:** Provide technical documentation, best practices, architectural guides, and handover training to the customer's engineering team
+
+## 1.2 Project Success Criteria
+
+**Project Success Criteria**
+
+- System availability ≥ 99.9% uptime across all production services (API
+  Gateway, Lambda, DynamoDB, CloudFront).
+
+- Page load time \< 2.5 seconds for the main user interface delivered
+  through CloudFront and Amplify.
+
+- API response time \< 300 ms for 90% of all user-facing API requests
+  under normal traffic conditions.
+
+- AI processing latency \< 5 seconds for recipe suggestions generated by
+  AWS Bedrock.
+
+- User authentication success rate ≥ 98% with Cognito handling
+  registration, login, and email verification.
+
+- Zero critical security vulnerabilities after security review and WAF
+  rules deployment.
+
+- Data durability of 99.999999999% (11 nines) ensured through S3 object
+  storage and DynamoDB.
+
+- Scalability to support 10,000+ concurrent users without degradation in
+  performance due to serverless infrastructure.
+
+- Operational cost control within target budget: monthly AWS usage not
+  exceeding \$200 for production.
+
+- Image upload & processing success rate ≥ 99%, supported by S3, Lambda
+  Workers, and SQS.
+
+- Search performance under 1 second (if OpenSearch is enabled) for
+  recipe/content search queries.
+
+- Monitoring coverage of 100% critical services using CloudWatch
+  dashboards, alarms, and X-Ray tracing.
+
+- CI/CD deployment time \< 5 minutes via GitHub → Amplify and IaC
+  automation.
+
+- Zero data loss events, ensured by DynamoDB PITR and S3 versioning.
+
+## 1.3 Assumptions
+
+- The customer will provide full access to their domain registrar
+  (Hostinger) to configure DNS delegation to Route 53.
+
+- The customer will provide valid AWS account access with Administrator
+  privileges for deployment and configuration.
+
+- All required AWS services (Amplify, API Gateway, Lambda, DynamoDB,
+  CloudFront, Cognito, Bedrock, SES) are available and supported in the
+  chosen region.
+
+- SES will be successfully moved out of the sandbox and approved for
+  production email sending.
+
+- Third-party integrations (GitHub for CI/CD, external email clients,
+  image upload sources) will remain available and stable.
+
+- The development team will maintain source code quality and follow the
+  architectural guidelines provided by the partner.
+
+- The customer will provide timely feedback and approvals during design,
+  testing, and deployment phases.
+
+**Dependencies**
+
+- Reliable internet connectivity is required for all users accessing the
+  web application and APIs.
+
+- The system depends on AWS Bedrock (Claude 3.5 Sonnet) for AI recipe
+  generation and may experience performance fluctuations if the model
+  becomes rate-limited.
+
+- Image upload and processing workflows depend on S3, Lambda, and SQS
+  processing reliability.
+
+- If OpenSearch is enabled, search features rely on the availability of
+  the OpenSearch domain.
+
+- GitHub Actions and Amplify depend on GitHub service availability.
+
+**Constraints**
+
+- The project will be fully deployed in a single AWS region, which may
+  impact latency for users outside the region.
+
+- The solution is designed using serverless patterns; custom EC2-based
+  workloads are outside the project scope.
+
+- SES domain reputation may affect email deliverability during initial
+  weeks.
+
+- OpenSearch is deployed as a single-node cluster for cost efficiency,
+  which means no high availability for search indexing.
+
+- The system must stay within the customer's cost target (\<
+  \$200/month), limiting the use of large compute resources.
+
+**Risks**
+
+- SES production approval may be delayed, impacting user onboarding
+  emails and notifications.
+
+- If traffic grows unexpectedly, DynamoDB provisioned capacity may
+  throttle without timely scaling adjustments.
+
+- AI model cost or latency changes by AWS may impact application
+  performance or cost control.
+
+- Misconfigured CloudFront caching could lead to higher latency or
+  increased data transfer cost.
+
+- Any incorrect IAM configuration could lead to security risks or
+  service disruption.
+
+- Customer team turnover or lack of DevOps skills may slow down future
+  maintenance or deployments.
+
+# 2. SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM {#solution-architecture-architectural-diagram}
+
+## 2.1 Technical Architecture Diagram
+
+- The proposed solution architecture for the AI-powered cooking social network platform is designed using a fully serverless and scalable AWS cloud-native stack. The architecture ensures high availability,security, and seamless integration between the web frontend, backend APIs, authentication, data storage, and AI recommendation services.
+- Below is a description of the key components and how data flows across the system:
+
+**1. Network & Edge Layer**
+
+**Amazon Route 53 (6--7)**  
+- Provides DNS routing for the custom domain used by the platform.
+- Incoming HTTPS requests from users are resolved and forwarded to
+CloudFront.
+
+**Amazon CloudFront (9)**  
+- Acts as a global CDN distributing frontend content with low latency while caching static files.
+
+**AWS WAF (8)**  
+- Protects the application from common web exploits such as SQL
+injection, XSS, and bot attacks.
+
+**2. Frontend Hosting & Deployment**
+
+**AWS Amplify Hosting (4)**  
+- Hosts and deploys the Next.js frontend application.  
+- Integrated with **GitLab CI/CD (3)** for automated deployments from the development workflow.
+
+**3. Application Layer**
+
+**Amazon Cognito (10)**  
+- Handles user authentication and authorization, supporting
+email/password and social logins.
+
+**Amazon API Gateway (11)**  
+- Serves as the main entry point for backend APIs, exposing REST
+endpoints used by the frontend.
+
+**AWS Lambda (12, 15)**  
+- Contains the backend business logic, including:
+
+- user management
+
+- post and recipe operations
+
+- ingredient analysis
+
+- connecting to Bedrock for AI recommendations  
+  This serverless architecture ensures automatic scaling and pay-per-use
+  cost efficiency.
+
+**4. AI Recommendation Layer**
+
+**Amazon Bedrock (16--17)**  
+- Provides generative AI capabilities to suggest recipes based on
+user-provided ingredients.  
+- Lambda invokes Bedrock models (e.g., Claude, Titan) to:
+
+- analyze ingredient lists
+
+- generate recipe suggestions
+
+- classify food categories
+
+- optimize cooking steps.
+
+**5. Data Storage Layer**
+
+**Amazon DynamoDB (13)**  
+Stores structured application data such as:
+
+- user profiles
+
+- posts/recipes
+
+- likes & comments
+
+- ingredient metadata.
+
+**Amazon S3 (14)**  
+Stores unstructured data:
+
+- recipe images
+
+- user-uploaded food photos
+
+- static content.  
+  An S3 bucket is integrated with CloudFront via OAI for secure access.
+
+**6. Observability & Security Layer**
+
+**Amazon CloudWatch (Logs & Metrics)**  
+Monitors Lambda performance, API Gateway access logs, and system
+metrics.
+
+**AWS X-Ray**  
+Performs distributed tracing for API calls and debugging.
+
+**IAM**  
+Defines permission boundaries between API, Lambda functions, Bedrock,
+DynamoDB, and S3.
+
+**Amazon SES**  
+Sends verification emails, notifications, and password recovery
+messages.
+
+**Amazon SNS**  
+Handles system-level alerts and asynchronous messaging.
+
+**7. Deployment & Infrastructure Management**
+
+**AWS CDK (1--2)**  
+Used by developers to define and provision the entire infrastructure
+via CloudFormation templates.  
+Ensures consistent, reproducible, version-controlled deployments.
+![Architecture Diagram](/images/2-Proposal/architecture-diagram.png)
+
+
+## 2.2 Technical Plan
+
+Partner will develop Infrastructure-as-Code (IaC) automation using AWS
+CDK (Cloud Development Kit) with TypeScript/Python to provision the
+entire cloud environment. This approach ensures quick, consistent, and
+repeatable deployments across multiple AWS accounts and environments
+(dev, staging, production). All resources such as API Gateway, Lambda
+functions, DynamoDB tables, S3 buckets, Cognito user pools, Bedrock
+integration policies, and CloudFront distributions will be fully
+automated via IaC.
+
+Application build and deployment processes for the frontend (Next.js)
+will be automated using AWS Amplify Hosting, integrated with GitLab
+pipelines. Backend components will be deployed through CDK pipelines to
+ensure controlled, versioned, and repeatable releases.
+
+Some additional configuration such as custom domain setup, Route 53 DNS
+changes, SSL/TLS certificate issuance, and IAM permission approvals may
+require customer review and approval. These changes will follow the
+customer\'s existing change management process, including scheduled
+maintenance windows and documented approvals from the
+security/compliance teams.
+
+All critical paths, including authentication flows, AI recipe suggestion
+APIs, data persistence logic, and image upload workflows, will undergo
+extensive test coverage. Automated tests (unit, integration, and
+API-level) will be executed in CI/CD pipelines, and manual validation
+will be performed in the staging environment before production
+deployment.
+
+## 2.3 Project Plan
+
+\[Partner\] will adopt the Agile Scrum framework across eight 2-week
+sprints. Stakeholders from the team are required to participate in
+Sprint Reviews and Sprint Retrospectives to ensure alignment and
+continuous improvement.
+
+The proposed team responsibilities are as follows:
+
+- Product Owner: Define user stories, prioritize backlog, and ensure the
+  product meets user needs.
+
+- Scrum Master**:** Facilitate Scrum ceremonies, remove blockers, and
+  maintain team productivity.
+
+- Development Team: Implement features, conduct unit testing, and
+  collaborate on integration.
+
+- AI/ML Specialist: Develop and fine-tune the AI recommendation engine
+  that suggests recipes based on user-provided ingredients.
+
+- UI/UX Designer: Design intuitive interfaces and ensure a smooth user
+  experience on both web and mobile platforms.
+
+- QA/Testers**:** Validate feature functionality, conduct regression
+  testing, and ensure system reliability.
+
+Communication cadences will be established as follows:
+
+- Daily Stand-ups**:** 15-minute meetings for progress updates and
+  immediate blockers.
+
+- Sprint Planning**:** At the start of each sprint to prioritize tasks.
+
+- Sprint Review: At the end of each sprint to showcase completed
+  features to stakeholders.
+
+- Sprint Retrospective**:** Following each sprint review to identify
+  improvements for the next sprint.
+
+Knowledge transfer sessions will be conducted by the senior developers
+and AI specialists to ensure team members understand system
+architecture, AI integration, and deployment procedures.
+
+## 2.4 Security Considerations
+
+Partner will implement security best practices across the following five
+categories to ensure the confidentiality, integrity, and availability of
+the platform:
+
+1.  **Access**
+
+- Enable Multi-Factor Authentication (MFA) for all user and
+  administrative accounts.
+
+- Implement role-based access control (RBAC) to limit permissions based
+  on user roles (e.g., admin, moderator, contributor).
+
+- Enforce strong password policies and periodic password rotation.
+
+2.  **Infrastructure**
+
+- Deploy the application on secure, managed cloud services (e.g., AWS)
+  following AWS security best practices.
+
+- Use Virtual Private Cloud (VPC), network segmentation, and security
+  groups to isolate resources.
+
+- Regularly patch operating systems and containerized services to
+  mitigate vulnerabilities.
+
+3.  **Data**
+
+- Encrypt all data at rest using AWS KMS-managed keys and data in
+  transit using TLS/HTTPS.
+
+- Implement data classification to protect sensitive user information
+  (e.g., email, profile data, dietary preferences).
+
+- Apply secure data storage and backup procedures to ensure availability
+  and integrity.
+
+4.  **Detection**
+
+- Enable AWS CloudTrail and AWS Config to monitor API activity and
+  resource configurations.
+
+- Deploy logging and alerting mechanisms to detect unusual or suspicious
+  activities in real time.
+
+- Conduct periodic vulnerability scanning and penetration testing on the
+  platform.
+
+5.  **Incident Management**
+
+- Establish a formal incident response plan including detection,
+  containment, remediation, and communication.
+
+- Maintain audit trails and logs to support forensic investigation if a
+  security event occurs.
+
+- Ensure \[Customer\] shares regulatory control validations to help
+  \[Partner\] meet all compliance requirements (e.g., GDPR, local
+  privacy regulations).
+
+By adhering to these measures, Partner ensures that the social cooking
+platform remains secure, compliant, and resilient against potential
+threats.
+
+# 3. Activities AND Deliverables  
+
+## 3.1 Activities and deliverables 
+
+*\[Provide project milestones with timeline and respective deliverables,
+corresponding to the items and activities described in the Scope of Work
+/ Technical Project Plan section. Indicate plans on how to govern the
+project/ change management; communication plans; transition plans\]*
+
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 12%" />
+<col style="width: 25%" />
+<col style="width: 32%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Project Phase</strong></th>
+<th><strong>Timeline</strong></th>
+<th><strong>Activities</strong></th>
+<th><strong>Deliverables/Milestones</strong></th>
+<th><strong>Total man-day</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Infrastructure Setup</td>
+<td>Week 1-2</td>
+<td><p>- Learn all aws service</p>
+<p>- Practice Lab     </p></td>
+<td>-     Worklog </td>
+<td>2 week</td>
+</tr>
+<tr class="even">
+<td>Project Foundation &amp; Infrastructure Setup</td>
+<td>Week 3</td>
+<td><p>-  Initialize monorepo structure</p>
+<p>-   setup development environment       </p>
+<p>- Initialize Git repository and CI/CD</p>
+<p>- Initialize CDK project structure</p>
+<p>-Create environment configuration system</p>
+<p>-Setup CDK deployment scripts</p></td>
+<td><p>-  Setup Git repository with CI/CD pipelines and branch
+protection</p>
+<p>-  Configure local testing scripts and Git hooks for code quality</p>
+<p>- Set up AWS CDK project structure with proper organization for
+infrastructure as code</p>
+<p>-  Implement centralized configuration management for dev, staging,
+and prod environments</p></td>
+<td>1 week</td>
+</tr>
+<tr class="odd">
+<td><p>-DNS Infrastructure (Route 53 Hosted Zone) - DNS Stack</p>
+<p>- Side Quest: CloudFront yêu cầu ACM certificate ở us-east-1, nhưng
+stack chính deploy ở ap-southeast-1</p></td>
+<td>Week 4 ,5</td>
+<td><p>- Create a Public Hosted Zone</p>
+<p>- Configure name server delegation</p>
+<p>- Architecture Design</p>
+<p>- Create DNS Stack in CDK project</p>
+<p>- Connect DNS , User Route 53 Alias targeting for AWS - managed </p>
+<p>- Request ACM certificates, Configure DNS validation in Route 53</p>
+<p>- Configure MX records for email , add SPF,DKIM,DMARC for email
+authentication</p>
+<p>- Create DNS structure , Validate DNS</p>
+<p>-npm run cdk deploy EveryoneCook-dev-Certificate </p></td>
+<td><p>-  Domain &amp; Hosted Zone Setup</p>
+<p>- Deploy DNS Stack</p>
+<p>- Route 53 Hosted Zone Status</p>
+<p>- Create Public Hosted Zone &amp; NS Delegation Plan</p>
+<p>- ACM Certificates Automation</p>
+<p>- Test DNS</p>
+<p>- Link DNS to AWS Resources</p>
+<p>- Monitoring</p>
+<p>- Deploy Certificate Stack </p></td>
+<td>2 weeks</td>
+</tr>
+<tr class="even">
+<td>Structure Core Stack </td>
+<td>Week 6,7</td>
+<td><p>-  Initialize Core Stack for DynamoDB, S3, CloudFront, and
+OpenSearch infrastructure</p>
+<p>-  Create DynamoDB table with Provisioned Mode and Auto-Scaling for
+cost optimization</p>
+<p>- Implement Global Secondary Indexes for diverse access patterns</p>
+<p>- Configure KMS encryption and security settings for DynamoDB</p>
+<p>- Create all 4 S3 buckets (content, logs, incoming emails, CDN logs)
+with Intelligent-Tiering for cost optimization</p>
+<p>-  Configure CloudFront CDN with compression and caching
+optimization</p>
+<p>- Setup signed URLs for private content (avatars, backgrounds)</p>
+<p>- Create OpenSearch domain for advanced search with cost
+optimization</p></td>
+<td><p>- Create CoreStack class</p>
+<p>- Implement DynamoDB Single Table with cost optimization</p>
+<p>- Create 5 GSI indexes</p>
+<p>- Setup encryption and security for DynamoDB </p>
+<p>- S3 Storage, CloudFront CDN,OpenSeach Domain</p>
+<p>- Deploy Core Stack</p>
+<p> </p></td>
+<td>2 week</td>
+</tr>
+<tr class="odd">
+<td>Authentication Stack</td>
+<td>Week 8</td>
+<td><p>-  Initialize Authentication Stack for Cognito User Pool</p>
+<p>-  Create Cognito User Pool with production-grade security
+settings</p>
+<p>- Setup SES for production email sending with Route 53 DNS
+automation</p>
+<p>- Implement Lambda triggers for Cognito lifecycle events</p></td>
+<td><p><strong>-</strong> Cognito User Pool Setup</p>
+<p> - Implement Cognito User Pool with production settings</p>
+<p>- Configure SES email integration (Production mode)</p>
+<p>- Setup Cognito Lambda triggers</p></td>
+<td>1 week</td>
+</tr>
+<tr class="even">
+<td>Backend Stack (API Gateway + Lambda )</td>
+<td>Week 9,10</td>
+<td><p>-  Create API Gateway REST API with production settings and
+Cognito authorizer</p>
+<p>- Configure Cognito User Pool authorizer for API Gateway</p>
+<p>- Enable API Gateway caching for production to improve performance
+and reduce Lambda invocations</p>
+<p>-  Enable request validation at API Gateway level to reject invalid
+requests early</p>
+<p>- Enable compression for API responses to reduce data transfer
+costs</p>
+<p>-  Configure API Gateway custom domain for Everyone Cook project</p>
+<p>- Setup API Router Lambda directory structure</p>
+<p>- Implement routing logic for API Gateway requests</p>
+<p>-  Deploy API Router Lambda to AWS and implement JWT validation for
+Cognito tokens</p>
+<p>- Setup Auth &amp; User module directory structure</p></td>
+<td><p>- Create BackendStack class</p>
+<p>- Create API Gateway REST API</p>
+<p>- Setup Cognito Authorizer</p>
+<p>- Configure API Gateway caching</p>
+<p>-  Configure API Gateway request validation</p>
+<p>-  Enable API Gateway compression</p>
+<p>-  Configure API Gateway custom domain</p>
+<p>-  Create API Router Lambda structure</p>
+<p>-  Implement API Router handler</p>
+<p>-  Deploy API Router Lambda + Implement JWT Validation</p>
+<p>- Create Auth &amp; User module structure</p>
+<p>- Implement authentication handlers</p>
+<p>- Implement user profile handlers,…</p>
+<p>- Social Module Lambda</p></td>
+<td>2 weeks</td>
+</tr>
+</tbody>
+</table>
+
+## 3.2 OUT OF SCOPE
+
+**Real-time Messaging / Chat System**
+
+- Private or group chat
+
+- Real-time messaging infrastructure (WebSocket, SignalR, Firebase
+  Realtime DB, etc.)
+
+- Message history storage & encryption
+
+**Friends / Social Graph Management**
+
+- Friend requests, following/followers
+
+- User-to-user connection graph
+
+- Activity feed, notifications tied to friend actions
+
+**Real-time Voice & Video Calling**
+
+- 1-to-1 or group voice call
+
+- Video call, screen sharing
+
+- WebRTC signaling servers & TURN/STUN infrastructure
+
+**Advanced Social Interaction**
+
+- In-app messaging reactions
+
+- Typing indicators, online/offline status
+
+- Read receipts, presence tracking
+
+## 3.3 PATH TO PRODUCTION
+
+**1. Project Foundation & Infrastructure**
+
+\- Initialize project structure
+
+\- Set up core infrastructure baseline
+
+\- Configure Route 53 Hosted Zone (DNS Stack)
+
+**2. Cross-Region Certificate (Side Quest)**
+
+\- Handle CloudFront requirement for ACM certificate in **us-east-1**
+
+\- Sync certificate usage with main stack in **ap-southeast-1**
+
+**3. Core Application Stacks**
+
+**- Core Stack:** Shared resources / environment setup
+
+**- Authentication Stack:** User auth, Cognito, permissions
+
+**- Backend Stack:** API Gateway + Lambda functions
+
+**4. Frontend Deployment**
+
+\- Deploy frontend (S3 + CloudFront)
+
+\- Bug fixes & QA testing
+
+# 4. EXPECTED AWS COST BREAKDOWN BY SERVICES
+
+Target workload: 100-500 Monthly Active Users (MAU)
+
+Average Lambda duration: 200ms per invocation
+
+DynamoDB peak activity: \~8 hours per month
+
+S3 to CloudFront data transfer is FREE (same region)
+
+All services leverage AWS Free Tier where applicable (Lambda 1M
+requests, SQS 1M requests, Cognito 50K MAU, Amplify 1000 build minutes)
+
+API Gateway caching enabled at 0.5GB (\$14.60/month) - can be disabled
+to reduce costs
+
+CloudFront WAF removed to optimize costs (\~\$9/month savings), Shield
+Standard provides DDoS protection
+
+Bedrock uses on-demand pricing with Claude 3 Haiku (lowest cost
+Anthropic model)
+
+<https://calculator.aws/#/estimate?id=7a8833402a63e273357ddc71071bfc2cdce4be2c>
+
+# 5. TEAM
+
+**Partner Executive Sponsor**
+
+| Name            | Title                                    | Description                                                                                                                                                                                     | Email / Contact Info |
+|-----------------|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| Nguyen Gia Hung | Director of FCJ Vietnam Training Program | As the Executive Sponsor, you are responsible for the overall oversight of the FCJ internship program. Ensure the project delivers learning value and adheres to AWS technical and career goals | hunggia@amazon.com   |
+
+**Project Stakeholders**
+
+| Name          | Title         | Stakeholder for                                                                            | Email / Contact Info |
+|---------------|---------------|--------------------------------------------------------------------------------------------|----------------------|
+| Van Hoang Kha | Support Teams | is the Executive Assistant responsible for overall oversight of the FCJ internship program | Khab9thd@gmail.com   |
+
+**Partner Project Team**
+
+| Name                 | Title  | Role            | Email / Contact Info        |
+|----------------------|--------|-----------------|-----------------------------|
+| Pham Minh Hoang Viet | Leader | Project Manager | vietpmhse181851@gmail.com   |
+| Nguyen Van Truong    | Member | DevOps          | truongnvse182034@fpt.edu.vn |
+| Huynh Duc Anh        | Member | Cloud Engineer  | anhhdse183114@fpt.edu.vn    |
+| Nguyen Thanh Hong    | Member | Tester          | hongntse183239@fpt.edu.vn   |
+| Nguyen Quy Duc       | Member | Frontend        | ducnqse182087@fpt.edu.vn    |
+
+**Project Escalation Contacts**
+
+| Name                 | Title  | Role            | Email / Contact Info      |
+|----------------------|--------|-----------------|---------------------------|
+| Pham Minh Hoang Viet | Leader | Project Manager | vietpmhse181851@gmail.com |
+
+# 6. Resources & cost estimates 
+
+| **Resource**                       | **Responsibility**                                                             | **Rate (USD) / Hour** |
+|------------------------------------|--------------------------------------------------------------------------------|-----------------------|
+| Solution Architects [\[1\]]{.mark} | Architecture design, AWS service selection, security review, cost optimization | \$150                 |
+| Engineers [\[2\]]{.mark}           | Frontend (Next.js), Backend (Lambda/Node.js), Infrastructure (CDK), Testing    | \$100                 |
+| Other . DevOps \[1\]               | CI/CD setup, monitoring, deployment automation                                 | \$80                  |
+
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 20%" />
+<col style="width: 19%" />
+<col style="width: 11%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Project Phase</strong></th>
+<th><strong>Solution Architects</strong></th>
+<th><strong>Engineers</strong></th>
+<th><p><strong>Other</strong></p>
+<p><strong>(DevOps)</strong></p></th>
+<th><strong>Total Hours</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Discovery &amp; Requirements</td>
+<td>16</td>
+<td>24</td>
+<td>8</td>
+<td>48</td>
+</tr>
+<tr class="even">
+<td>Architecture Design</td>
+<td>40</td>
+<td>16</td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td>Development</td>
+<td>16</td>
+<td>200</td>
+<td>40</td>
+<td>256</td>
+</tr>
+<tr class="even">
+<td>Testing &amp; QA</td>
+<td>8</td>
+<td>40</td>
+<td>16</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td>Deployment &amp; Go-Live</td>
+<td>8</td>
+<td>24</td>
+<td>24</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td>Documentation &amp; Training</td>
+<td>8</td>
+<td>16</td>
+<td>8</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>Total Hours</td>
+<td>96</td>
+<td>320</td>
+<td>104</td>
+<td>520</td>
+</tr>
+<tr class="even">
+<td>Total Cost</td>
+<td>$14,400 | $32,000</td>
+<td>$8,320 | $54,720</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+**Monthly AWS Infrastructure Cost**
+
+**Based on AWS Pricing Calculator estimate for 100-500 MAU:**
+
+| Service            | Monthly Cost (USD) | Description                                       |
+|--------------------|--------------------|---------------------------------------------------|
+| Amazon DynamoDB    | \$13.06            | Single-table design, 5 GSIs, provisioned capacity |
+| Amazon S3          | \$0.84             | 2 buckets, Intelligent-Tiering                    |
+| Amazon CloudFront  | \$1.44             | CDN, Price Class 200                              |
+| Amazon Cognito     | \$5.00             | User authentication                               |
+| AWS Lambda         | \$0.00             | 13 functions (Free Tier)                          |
+| Amazon API Gateway | \$20.65            | REST API with 0.5GB cache                         |
+| Amazon SQS         | \$0.00             | 8 queues (Free Tier)                              |
+| Amazon SES         | \$0.02             | Transactional emails                              |
+| AWS KMS            | \$2.00             | 2 customer managed keys                           |
+| AWS WAF            | \$10.00            | Web ACL, 5 rules                                  |
+| Amazon CloudWatch  | \$21.25            | Metrics, dashboards, alarms, logs                 |
+| Amazon Route 53    | \$0.93             | DNS hosted zone                                   |
+| AWS Amplify        | \$4.58             | Frontend hosting (Next.js)                        |
+| Amazon Bedrock     | \$64.80            | Claude 3 Haiku AI                                 |
+| Total              | \~\$144.54         | Per month                                         |
+
+**Cost Summary**
+
+| Cost Type                  | Amount (USD) | Notes                       |
+|----------------------------|--------------|-----------------------------|
+| One-time Development Cost  | \$54,720     | Resource hours × rates      |
+| Monthly AWS Infrastructure | \~\$145      | Based on 100-500 MAU        |
+| Annual AWS Infrastructure  | \~\$1,740    | Monthly × 12                |
+| Year 1 Total Cost          | \~\$56,460   | Development + 12 months AWS |
+
+Cost Contribution Distribution
+
+| **Party**                 | **Contribution (USD)** | **% Contribution of Total** |
+|---------------------------|------------------------|-----------------------------|
+| Customer                  | \$54,720               | 100%                        |
+| Partner                   | \$0                    | \$0                         |
+| AWS                       | \$0                    | \$0                         |
+|                           |                        |                             |
+
+# 7. Acceptance
+
+Since this project is currently at the presentation stage and has not
+yet been formally evaluated by a customer, the following acceptance
+process is proposed for future delivery phases:
+
+## 7.1 Acceptance Criteria (Proposed)
+
+A deliverable will be considered acceptable when it meets the following criteria:
+
+- Functional features work as specified (authentication, recipe
+  management, social features, AI functions).
+
+- All APIs respond correctly and integrate with AWS services (Lambda,
+  API Gateway, DynamoDB, S3).
+
+- Security requirements are met (JWT verification, HTTPS, access
+  control, data encryption).
+
+- UI works as expected on supported devices.
+
+- No critical errors appear during test execution.
+
+##  7.2 Acceptance Process {#acceptance-process .unnumbered}
+
+- Review period: **8 business days** for evaluation and testing.
+
+- If accepted → Deliverable is signed off.
+
+- If issues are found → A rejection notice will be issued with feedback.
+
+- Fixes will be applied and a revised version will be resubmitted for
+  review.
+
+- If no response is received by the end of the review period →
+  Deliverable is **deemed accepted**.
+
+- After completing each milestone, the team submits the deliverables and documentation.

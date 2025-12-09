@@ -5,63 +5,47 @@ weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-
 ### Mục tiêu Tuần 2:
 
-* Học và thực hành sử dụng **AWS Cloud9** cho phát triển ứng dụng trên nền tảng đám mây.  
-* Tìm hiểu **lưu trữ website tĩnh với Amazon S3** và cách tăng tốc website bằng **Amazon CloudFront**.  
-* Học cách mở rộng ứng dụng với **EC2 Auto Scaling**.  
-* Trải nghiệm thực hành với **Amazon CloudWatch** để giám sát và cảnh báo.  
-* Khám phá **Mạng lai (Hybrid Networking)** và **tích hợp Dịch vụ Thư mục (Directory Service)**.  
-* Thực hành **triển khai & tự động hóa hạ tầng bằng AWS CLI**.  
+* Làm chủ việc sử dụng AWS Cloud9 IDE và AWS CLI để tương tác với các dịch vụ AWS.
+* Tìm hiểu sâu về các dịch vụ Lưu trữ AWS (S3) bao gồm Lưu trữ Trang web Tĩnh, Phiên bản, Sao chép và Mạng Phân phối Nội dung (CloudFront).
+* Triển khai và quản lý Cơ sở dữ liệu Quan hệ với Amazon RDS, bao gồm các chiến lược sao lưu và phục hồi.
+* Triển khai kiến trúc Tính khả dụng cao và Khả năng mở rộng bằng cách sử dụng Mẫu Khởi chạy, Cân bằng Tải Đàn hồi (ELB) và Nhóm Tự động Mở rộng (ASG).
 
----
+### Nhiệm vụ cần thực hiện trong tuần này:
 
-### Nhiệm vụ trong tuần:
-
-| Ngày | Nhiệm vụ                                                                                                                                                                                                                                                                                                                                                               | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo                                                                                                                                                                                                                                         |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | - **Phát triển trên nền tảng đám mây với AWS Cloud9** <br>&emsp; + Sử dụng các tính năng cơ bản của Cloud9 (dòng lệnh, tệp văn bản). <br>&emsp; + Sử dụng AWS CLI. <br><br> - **Lưu trữ website tĩnh bằng Amazon S3** <br>&emsp; + Hiểu sự khác nhau giữa Bucket và Object. <br>&emsp; + Kích hoạt tính năng lưu trữ website tĩnh. <br>&emsp; + Cấu hình chặn quyền truy cập công khai. <br>&emsp; + Cấu hình quyền truy cập đối tượng công khai. <br>&emsp; + Tăng tốc bằng CloudFront. <br>&emsp; + Thiết lập sao chép đa vùng (Multi-Region Replication). <br><br> **Thực hành:** <br>&emsp; + Tạo phiên bản Cloud9. <br>&emsp; + Tạo và cấu hình bucket S3. <br>&emsp; + Kiểm tra phân phối CloudFront. | 15/09/2025 | 15/09/2025 | https://000049.awsstudygroup.com/ <br> https://000057.awsstudygroup.com/ |
-| 3   | - **Mở rộng ứng dụng với EC2 Auto Scaling** <br>&emsp; + Tìm hiểu khái niệm Auto Scaling. <br>&emsp; + AMI và Launch Template. <br>&emsp; + Thiết lập Load Balancer. <br>&emsp; + Hiểu nhu cầu kỹ thuật và kinh doanh của Auto Scaling. <br><br> **Thực hành:** <br>&emsp; + Tạo Launch Template. <br>&emsp; + Tạo Target Group. <br>&emsp; + Tạo Load Balancer. <br>&emsp; + Tạo Auto Scaling Group. | 16/09/2025 | 16/09/2025 | https://000006.awsstudygroup.com/ |
-| 4   | - **Giám sát với Amazon CloudWatch** <br>&emsp; + Các bước chuẩn bị. <br>&emsp; + CloudWatch Metrics. <br>&emsp; + CloudWatch Logs. <br>&emsp; + CloudWatch Alarms. <br>&emsp; + CloudWatch Dashboards. <br><br> **Thực hành:** <br>&emsp; + Thu thập số liệu EC2. <br>&emsp; + Kích hoạt và xem nhật ký. <br>&emsp; + Tạo cảnh báo. <br>&emsp; + Xây dựng bảng điều khiển (Dashboard). | 17/09/2025 | 17/09/2025 | https://000008.awsstudygroup.com/ |
-| 5   | - **Mạng lai & Tích hợp Dịch vụ Thư mục (Directory Service)** <br>&emsp; + Các yêu cầu tiên quyết cho kết nối lai. <br>&emsp; + Kết nối qua Direct Connect / VPN / Transit Gateway. <br>&emsp; + Thiết lập tích hợp Active Directory (AD). <br>&emsp; + Cấu hình DNS lai. <br><br> **Thực hành:** <br>&emsp; + Cấu hình kết nối mạng lai. <br>&emsp; + Kết nối môi trường giả lập on-premise qua Transit Gateway. <br>&emsp; + Triển khai Dịch vụ Thư mục (AD). <br>&emsp; + Thiết lập DNS lai. | 18/09/2025 | 18/09/2025 | https://000010.awsstudygroup.com/ |
-| 6   | - **Triển khai & Tự động hóa hạ tầng với CLI** <br>&emsp; + Cài đặt & cấu hình AWS CLI. <br>&emsp; + Triển khai hạ tầng (VPC, Subnet, Gateway, Security Group). <br>&emsp; + Quản lý Bucket và Object trong S3. <br>&emsp; + Sử dụng SNS để gửi thông báo. <br>&emsp; + Cấu hình IAM. <br>&emsp; + Khởi tạo EC2 instance. <br>&emsp; + Xử lý sự cố. <br><br> **Thực hành:** <br>&emsp; + Cài đặt CLI & kiểm tra cấu hình. <br>&emsp; + Triển khai hạ tầng bằng CLI. <br>&emsp; + Tạo bucket S3. <br>&emsp; + Cấu hình chủ đề & đăng ký SNS. <br>&emsp; + Áp dụng chính sách IAM. <br>&emsp; + Khởi tạo EC2 & kiểm tra kết nối. <br>&emsp; + Khắc phục lỗi mạng hoặc instance. | 19/09/2025 | 19/09/2025 | https://000011.awsstudygroup.com/ |
-
----
+| Ngày | Nhiệm vụ | Ngày Bắt đầu | Ngày Hoàn thành | Tài liệu Tham khảo |
+| --- | --- | --- | --- | --- |
+| 2 | **Tương tác với Dịch vụ AWS (Cloud9 & CLI)** <br> - Tạo môi trường AWS Cloud9 <br> - Khám phá Tính năng Cơ bản: Sử dụng dòng lệnh, Làm việc với tệp văn bản <br> - Thực hành sử dụng **AWS CLI** để tương tác với các dịch vụ <br> - Dọn dẹp tài nguyên | 15/09/2025 | 15/09/2025 | https://000049.awsstudygroup.com/ |
+| 3 | **Lưu trữ & Phân phối Nội dung (S3 & CloudFront)** <br> - Tạo S3 Bucket & Tải lên Dữ liệu <br> - Cấu hình **Lưu trữ Trang web Tĩnh** trên S3 <br> - Quản lý Chặn Truy cập Công khai & chính sách Đối tượng Công khai <br> - Tăng tốc trang web với tích hợp **Amazon CloudFront** <br> - Triển khai **Phiên bản S3 Bucket** để bảo vệ dữ liệu <br> - Thực hành Di chuyển Đối tượng & **Sao chép Liên Vùng (CRR)** | 16/09/2025 | 16/09/2025 | https://000057.awsstudygroup.com/ |
+| 4 | **Quản lý Cơ sở dữ liệu (Amazon RDS)** <br> - Chuẩn bị Mạng: VPC, Nhóm Bảo mật cho EC2 & RDS, Nhóm Subnet DB <br> - Khởi chạy phiên bản EC2 cho ứng dụng <br> - Cung cấp phiên bản cơ sở dữ liệu **Amazon RDS** <br> - Triển khai ứng dụng và kết nối với RDS <br> - Thực hiện các thao tác **Sao lưu và Phục hồi** cho RDS | 17/09/2025 | 17/09/2025 | https://000005.awsstudygroup.com/ |
+| 5 | **Kiến trúc Tính khả dụng Cao - Phần 1** <br> - Chuẩn bị Hạ tầng: Mạng, EC2, RDS, Triển khai Máy chủ Web <br> - Tạo **Mẫu Khởi chạy** cho việc khởi chạy phiên bản tiêu chuẩn <br> - Cấu hình **Bộ Cân bằng Tải Ứng dụng (ALB)** <br>&emsp; + Tạo Nhóm Mục tiêu <br>&emsp; + Thiết lập trình lắng nghe Bộ Cân bằng Tải <br> - Kiểm tra phân phối lưu lượng Cân bằng Tải | 18/09/2025 | 18/09/2025 | https://000006.awsstudygroup.com/ |
+| 6 | **Kiến trúc Tính khả dụng Cao - Phần 2 (Tự động Mở rộng)** <br> - Tạo **Nhóm Tự động Mở rộng (ASG)** gắn với Bộ Cân bằng Tải <br> - Kiểm tra Giải pháp Mở rộng: <br>&emsp; + **Mở rộng Thủ công**: Điều chỉnh dung lượng thủ công <br>&emsp; + **Mở rộng Theo lịch**: Mở rộng dựa trên thời gian <br>&emsp; + **Mở rộng Động**: Mở rộng dựa trên các chỉ số (CPU, v.v.) <br>&emsp; + **Mở rộng Dự đoán**: Xem xét các chỉ số <br> - Dọn dẹp tất cả tài nguyên | 19/09/2025 | 19/09/2025 | https://000006.awsstudygroup.com/ |
 
 # Thành tựu Tuần 2
 
-## Ngày 2 – Cloud9 & Lưu trữ Website bằng S3
-- Làm việc với **Cloud9 IDE** (dòng lệnh, tệp văn bản).  
-- Cài đặt & kiểm tra **AWS CLI**.  
-- Cấu hình **bucket S3** để lưu trữ website tĩnh.  
-- Kích hoạt **chặn truy cập công khai** và cấu hình quyền đối tượng.  
-- Tích hợp và kiểm tra **CloudFront**.  
-- Thực hành **sao chép đa vùng (Multi-Region Replication)**.  
+## Công cụ Phát triển & CLI
+- Thiết lập thành công **AWS Cloud9** như một IDE dựa trên đám mây.
+- Thành thạo trong việc sử dụng **AWS CLI** để quản lý dịch vụ mà không cần Console.
+- Hiểu được quy trình chỉnh sửa, gỡ lỗi và chạy tập lệnh trực tiếp trên Cloud9.
 
-## Ngày 3 – EC2 Auto Scaling
-- Học **khái niệm Auto Scaling** để tăng tính sẵn sàng & tối ưu chi phí.  
-- Hiểu **AMI** và **Launch Template**.  
-- Cấu hình **Application Load Balancer** và **Target Group**.  
-- Thực hành: Tạo Launch Template, Target Group, Load Balancer, Auto Scaling Group.  
+## Làm chủ Lưu trữ & CDN
+- Triển khai **Trang web Tĩnh** sử dụng Amazon S3.
+- Bảo mật và tối ưu hóa phân phối nội dung toàn cầu bằng **Amazon CloudFront**.
+- Triển khai các chiến lược bảo vệ dữ liệu bằng **Phiên bản S3**.
+- Cấu hình **Sao chép Liên Vùng (CRR)** để khôi phục thảm họa và định vị dữ liệu.
 
-## Ngày 4 – Giám sát với CloudWatch
-- Học **CloudWatch Metrics, Logs, Alarms, Dashboards**.  
-- Thu thập số liệu EC2 và bật tính năng ghi log.  
-- Tạo **Cảnh báo (Alarm)** để gửi thông báo.  
-- Xây dựng **bảng điều khiển giám sát (Dashboard)** trực quan.  
+## Quản lý Cơ sở dữ liệu
+- Triển khai cơ sở dữ liệu quan hệ được quản lý hoàn toàn bằng **Amazon RDS**.
+- Kết nối thành công ứng dụng web được lưu trữ trên EC2 với phiên bản RDS.
+- Thực hành các nhiệm vụ bảo trì cơ sở dữ liệu bao gồm tạo **Ảnh chụp nhanh** và thực hiện **Khôi phục Tại thời điểm**.
+- Quản lý bảo mật mạng cho cơ sở dữ liệu bằng Nhóm Bảo mật và Nhóm Subnet DB.
 
-## Ngày 5 – Mạng lai (Hybrid Networking)
-- Tìm hiểu **Direct Connect, VPN, Transit Gateway**.  
-- Triển khai **Active Directory (AD)** trên AWS.  
-- Cấu hình **DNS lai** cho việc phân giải tên giữa các môi trường.  
-- Thực hành: kết nối mạng lai, tích hợp AD và cấu hình DNS.  
-
-## Ngày 6 – Tự động hóa hạ tầng
-- Cài đặt và cấu hình **AWS CLI**.  
-- Triển khai tài nguyên hạ tầng (VPC, Subnet, Gateway, Security Group) bằng CLI.  
-- Tạo và cấu hình **bucket S3**.  
-- Cấu hình **SNS** để gửi thông báo.  
-- Áp dụng **chính sách và vai trò IAM**.  
-- Khởi tạo **EC2 instance** và kiểm tra khả năng kết nối.  
-- Thực hành xử lý lỗi thường gặp khi triển khai hạ tầng AWS.  
+## Tính khả dụng Cao & Khả năng Mở rộng
+- Thiết kế kiến trúc chịu lỗi bằng cách sử dụng **Cân bằng Tải Đàn hồi (ALB)** và **Nhóm Tự động Mở rộng (ASG)**.
+- Tạo **Mẫu Khởi chạy** để xác định cấu hình phiên bản cho tự động mở rộng.
+- Triển khai và kiểm tra các chính sách mở rộng khác nhau:
+    - **Mở rộng Thủ công** để kiểm soát trực tiếp.
+    - **Mở rộng Theo lịch** cho các mẫu lưu lượng có thể dự đoán.
+    - **Mở rộng Động** để phản ứng với các thay đổi tải thời gian thực.
+- Xác minh phân phối lưu lượng và tính khả dụng của ứng dụng trong các sự kiện mở rộng.  

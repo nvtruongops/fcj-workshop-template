@@ -1,0 +1,18 @@
+# Placeholder for Observability Stack screenshots
+# Upload the following images:
+# - synth-output.png
+# - cloudformation-template.png
+# - deployment-success.png
+# - sns-email-confirmation.png
+# - sns-subscription-confirmed.png
+# - cloudformation-stack.png
+# - cloudformation-outputs.png
+# - cloudwatch-alarms-list.png
+# - composite-alarm.png
+# - core-dashboard.png
+# - auth-dashboard.png
+# - backend-dashboard.png
+# - overview-dashboard.png
+# - sns-topic-details.png
+# - alarm-notification-email.png
+# - stack-outputs.png

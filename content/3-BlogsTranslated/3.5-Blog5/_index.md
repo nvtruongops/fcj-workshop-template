@@ -1,126 +1,92 @@
----
-title: "Blog 5"
+﻿---
+title: "Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
 date: 2025-01-01
 weight: 5
 chapter: false
 pre: " <b> 3.5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Overview: From Individual Products to Comprehensive Solutions
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+At this re:Invent, AWS Marketplace announced a strategic shift in software purchasing: moving from buying discrete tools to **"Solution-centric procurement"**.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Today's enterprise customer needs go beyond searching for a specific piece of software. They seek complete **business outcomes**  for example, a comprehensive security solution for healthcare data, or an intelligent manufacturing data analytics system. To meet this demand, AWS Marketplace introduces support for **Multi-product solutions**, allowing Partners to bundle software, services, and data into a single order.
 
 ---
 
-## Architecture Guidance
+## 1. Introducing Multi-product Solutions
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+This is the latest core feature. **Multi-product solutions** allow AWS Partners (ISVs, Channel Partners, System Integrators) to combine multiple products and services from different vendors into a single solution package.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+Instead of customers having to search, evaluate, and purchase each component separately (for example: buying SIEM software from vendor A, purchasing deployment consulting services from vendor B, and buying datasets from vendor C), they can now purchase a complete "Security Operations Center (SOC) Solution" that includes all these components.
 
-**The solution architecture is now as follows:**
+![The Accenture solution page in AWS Marketplace](/images/3-BlogsTranslated/3.5.1.png)
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+> [Figure 1] Accenture solution interface, including both software and services.
 
----
+Customers can scroll down the details page to view each component in this solution package:
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+![The Accenture solution page showcasing each solution component](/images/3-BlogsTranslated/3.5.2.png)
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+> [Figure 2] Details of each component (Software, Services) in a multi-product solution package.
 
 ---
 
-## Technology Choices and Communication Scope
+## 2. Streamlined Procurement
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+One of the biggest barriers when implementing complex solutions is the administrative process. The new feature significantly simplifies this:
 
----
+* **Single negotiation point:** Customers negotiate pricing and terms for the entire solution package with a single partner.
+* **Flexible components:** Despite purchasing as a package, customers can still customize terms and renewals for individual components within the package independently if needed.
+* **Centralized governance:** All spending, invoices, and licenses are centrally managed on AWS, making it easy to track budgets and ensure compliance.
 
-## The Pub/Sub Hub
+![The procurement page for the Accenture solution](/images/3-BlogsTranslated/3.5.3.png)
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+> [Figure 3] Procurement page displaying detailed information about the solution package.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+Customers can manage contracts for individual components separately while still benefiting from a single approval process:
 
----
+![The offer set for the Accenture solution on the procurement page](/images/3-BlogsTranslated/3.5.4.png)
 
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+> [Figure 4] Detailed pricing table for each component in the solution package.
 
 ---
 
-## Front Door Microservice
+## 3. Benefits for the Partner Ecosystem
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+This change opens up significant opportunities for AWS partners:
+* **ISV (Independent Software Vendors):** Can combine their software with professional deployment services in a single listing (Example: Okta combining software and deployment services).
+* **Channel Partners:** Can combine their own services with ISV products they are authorized to resell (Example: SCC combining services with CrowdStrike products).
+* **System Integrators (SI):** Can combine software and services from multiple partners to create complete solutions (Example: Accenture combining their services with Elastic).
 
 ---
 
-## Staging ER7 Microservice
+## 4. Discovery Experience
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+To support the "buy solutions" mindset, AWS Marketplace has also improved search capabilities with **Generative AI**. Customers can search based on Use Case or Industry instead of just product names, making it faster to find suitable solutions.
 
 ---
 
-## New Features in the Solution
+## Conclusion
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+The shift to **Solution-centric procurement** is AWS's strategic move to reduce IT purchasing complexity. It helps enterprises move faster from "having a problem" to "having a solution," eliminating the burden of having to assemble disparate technology pieces themselves.
+
+---
+
+## Authors
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/TuanVo.png" alt="Tuan Vo" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Tuan Vo</h3>
+    <p>Tuan Vo is a Marketplace Specialist Solutions Architect who focuses on supporting sellers to list their products on AWS Marketplace. He supports large enterprises and public sector customers. Outside of work, Tuan enjoys traveling, trying out new food, and going on walks.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="/images/3-BlogsTranslated/AlexHodges.png" alt="Alex Hodges" style="width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 5px;">
+  <div>
+    <h3 style="margin-top: 0;">Alex Hodges</h3>
+    <p>Alex Hodges is a Seattle-based product marketer for AWS Marketplace. Alex is passionate about launching new products and enjoys developing crisp messaging that customers can easily understand. In his free time, he enjoys backpacking, cycling, watching documentaries, and spending time with friends and family.</p>
+  </div>
+</div>

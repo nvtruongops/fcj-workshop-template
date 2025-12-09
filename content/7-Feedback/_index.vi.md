@@ -1,44 +1,53 @@
 ---
-title: "Chia sẻ, đóng góp ý kiến"
+title: "Chia Sẻ và Phản Hồi"
 date: 2025-01-01
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
->Tại đây bạn có thể tự do đóng góp ý kiến cá nhân về những trải nghiệm khi tham gia chương trình First Cloud Journey, giúp team FCJ cải thiện những vấn đề còn thiếu sót dựa trên các hạng mục sau:
-
-### Đánh giá chung
+### Đánh Giá Chung
 
 **1. Môi trường làm việc**  
-Môi trường làm việc rất thân thiện và cởi mở. Các thành viên trong FCJ luôn sẵn sàng hỗ trợ khi mình gặp khó khăn, kể cả ngoài giờ làm việc. Không gian làm việc gọn gàng, thoải mái, giúp mình tập trung tốt hơn. Tuy nhiên, mình nghĩ có thể bổ sung thêm một số buổi giao lưu hoặc team bonding để mọi người hiểu nhau hơn.
+Môi trường làm việc chuyên nghiệp, thân thiện và rất thuận lợi cho việc học hỏi. Các thành viên trong nhóm luôn giữ thái độ hòa nhã, hỗ trợ khi cần thiết và tạo điều kiện để tôi dễ dàng hòa nhập. Không gian làm việc được bố trí ngăn nắp, thoải mái, góp phần nâng cao hiệu suất. Công ty có thể bổ sung thêm các hoạt động gắn kết nội bộ để tăng sự tương tác giữa các thành viên.
 
-**2. Sự hỗ trợ của mentor / team admin**  
-Mentor hướng dẫn rất chi tiết, giải thích rõ ràng khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Team admin hỗ trợ các thủ tục, tài liệu và tạo điều kiện để mình làm việc thuận lợi. Mình đánh giá cao việc mentor cho phép mình thử và tự xử lý vấn đề thay vì chỉ đưa đáp án.
+**2. Sự hỗ trợ từ Mentor / Team Admin**  
+Mentor của tôi luôn đưa ra định hướng rõ ràng, có cấu trúc và khuyến khích tôi tự tìm hướng giải quyết trước khi đưa ra hướng dẫn chi tiết. Bộ phận admin cũng hỗ trợ nhanh chóng, đặc biệt trong các thủ tục và tài liệu liên quan, giúp quy trình làm việc diễn ra thuận lợi. Sự kết hợp giữa mentor và admin đã đóng vai trò quan trọng trong quá trình phát triển của tôi.
 
-**3. Sự phù hợp giữa công việc và chuyên ngành học**  
-Công việc mình được giao phù hợp với kiến thức mình đã học ở trường, đồng thời mở rộng thêm những mảng mới mà mình chưa từng được tiếp cận. Nhờ vậy, mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
+**3. Mức độ phù hợp của công việc với chuyên ngành**  
+Các nhiệm vụ được giao phù hợp với kiến thức tôi đã học tại trường đại học, đồng thời mở rộng thêm nhiều kiến thức thực tế và công cụ mới. Điều này giúp tôi củng cố nền tảng lý thuyết và phát triển thêm các kỹ năng cần thiết trong ngành.
 
-**4. Cơ hội học hỏi & phát triển kỹ năng**  
-Trong quá trình thực tập, mình học được nhiều kỹ năng mới như sử dụng công cụ quản lý dự án, kỹ năng làm việc nhóm, và cả cách giao tiếp chuyên nghiệp trong môi trường công ty. Mentor cũng chia sẻ nhiều kinh nghiệm thực tế giúp mình định hướng tốt hơn cho sự nghiệp.
+**4. Cơ hội học hỏi và phát triển kỹ năng**  
+Kỳ thực tập giúp tôi làm quen với các công cụ quản lý dự án, quy trình làm việc nhóm và kỹ năng giao tiếp chuyên nghiệp. Mentor còn chia sẻ nhiều kinh nghiệm thực tế trong ngành, giúp tôi hình dung rõ hơn về định hướng nghề nghiệp và mục tiêu phát triển lâu dài.
 
-**5. Văn hóa & tinh thần đồng đội**  
-Văn hóa công ty rất tích cực: mọi người tôn trọng lẫn nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có dự án gấp, mọi người cùng nhau cố gắng, hỗ trợ không phân biệt vị trí. Điều này giúp mình cảm thấy mình là một phần của tập thể, dù chỉ là thực tập sinh.
+**5. Văn hóa công ty và tinh thần làm việc**  
+Công ty xây dựng một môi trường tôn trọng và tích cực. Các thành viên luôn hỗ trợ lẫn nhau và hợp tác hiệu quả. Trong những giai đoạn công việc gấp rút, mọi người đều chủ động phối hợp, không phân biệt vị trí hay thâm niên. Điều này tạo cho tôi cảm giác được chào đón và là một phần của tập thể.
 
-**6. Chính sách / phúc lợi cho thực tập sinh**  
-Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về thời gian linh hoạt khi cần thiết. Ngoài ra, việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
+**6. Chính sách / Phúc lợi thực tập**  
+Chính sách thực tập thân thiện và hỗ trợ, bao gồm phụ cấp và sự linh hoạt khi cần thiết. Ngoài ra, cơ hội tham gia các buổi đào tạo nội bộ cũng mang lại nhiều giá trị, góp phần nâng cao trải nghiệm thực tập của tôi.
 
+---
 
-### Một số câu hỏi khác
-- Điều bạn **hài lòng nhất** trong thời gian thực tập?  
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
+### Các Câu Hỏi Bổ Sung
 
+**1. Điều bạn hài lòng nhất trong kỳ thực tập?**  
+Điều khiến tôi hài lòng nhất là được làm việc trong một môi trường chuyên nghiệp nhưng vẫn rất cởi mở và hỗ trợ. Tôi đánh giá cao sự hướng dẫn tận tình của mentor — rõ ràng, khoa học và luôn tạo điều kiện để tôi rèn luyện khả năng tự giải quyết vấn đề. Nhờ đó, tôi tiến bộ cả về kỹ thuật lẫn tác phong nghề nghiệp.
 
-### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
-- Bạn có muốn tiếp tục chương trình này trong tương lai?
-- Góp ý khác (tự do chia sẻ):
+**2. Công ty nên cải thiện điểm nào cho các khóa thực tập sau?**  
+Không có thêm ý kiến nào ngoài những điểm đã đề cập ở trên.
+
+**3. Bạn có giới thiệu chương trình thực tập này cho bạn bè không? Vì sao?**  
+Có. Tôi hoàn toàn sẵn lòng giới thiệu chương trình. Kỳ thực tập kết hợp tốt giữa đào tạo kỹ thuật, trải nghiệm thực tiễn và môi trường làm việc tích cực. Mentor hỗ trợ tận tình, còn công việc mang lại cơ hội phát triển thật sự cho các bạn sinh viên.
+
+---
+
+### Góp Ý & Kỳ Vọng
+
+**Bạn có đề xuất gì để nâng cao trải nghiệm thực tập không?**  
+Không có thêm ý kiến.
+
+**Bạn có muốn tiếp tục tham gia chương trình trong tương lai không?**  
+Không có thêm ý kiến.
+
+**Ý kiến bổ sung:**  
+Không có thêm ý kiến.
