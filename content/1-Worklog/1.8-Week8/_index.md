@@ -1,57 +1,45 @@
 ---
 title: "Week 8 Worklog"
-date: 2025-01-01
+date: 2025-10-27
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 8 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* **Cost Optimization:** Master cost-saving pricing models such as **Savings Plans** and **Reserved Instances (RI)** for EC2 and RDS.
+* **Resource Optimization:** Use **AWS Compute Optimizer** and CloudWatch to identify and right-size resources.
+* **Cost Management & Visualization:** Analyze detailed cost reports using **AWS Cost Explorer** and understand data transfer costs.
+* **Knowledge Assessment:** Complete a midterm exam simulating the **AWS Certified Solutions Architect** certification.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | **Cost Saving Models** <br> - Learn and differentiate between **Savings Plans** (Compute/EC2) and **Reserved Instances**. <br> - Analyze Savings Plan Recommendations. <br> - Practice purchasing Savings Plans and Reserved DB Instances. | 10/27/2025 | 10/27/2025 | https://000042.awsstudygroup.com/ |
+| 3 | **Resource Optimization (Right Sizing)** <br> - Install **CloudWatch Agent** to collect memory (RAM) metrics. <br> - Configure IAM Role for CloudWatch and Compute Optimizer. <br> - Use **AWS Compute Optimizer** to receive recommendations for optimal instance types. <br> - Apply EC2 Resource Optimization Best Practices. | 10/28/2025 | 10/28/2025 | https://000032.awsstudygroup.com/ |
+| 4 | **Basic Cost Visualization & Analysis** <br> - Use **Cost Explorer** to view costs by Service and Account. <br> - Monitor Coverage and Utilization of Savings Plan/RI. <br> - Analyze infrastructure Elasticity. | 10/29/2025 | 10/29/2025 | https://000034.awsstudygroup.com/ |
+| 5 | **Advanced Cost Analysis & Review** <br> - Create **Custom Reports** for EC2. <br> - Analyze **Data Transfer** costs. <br> - *Additional Research:* Set up AWS Cost & Usage Report (CUR) and query with **Amazon Athena** (Theory). <br> - Systematize knowledge from the past 8 weeks to prepare for the exam. | 10/30/2025 | 10/30/2025 | https://000034.awsstudygroup.com/ <br><br> _SAA Knowledge Review_ |
+| 6 | **Midterm Exam** <br> - Complete the **AWS Certified Solutions Architect - Associate (SAA-C03)** practice exam. <br> - Format: 65 multiple-choice questions / 130 minutes. <br> - Content covered: IAM, VPC, EC2, S3, RDS, HA/Scaling, Cost Optimization. <br> - Evaluate results and review knowledge gaps. | 10/31/2025 | 10/31/2025 | _AWS SAA Practice Exam_ |
 
-### Week 8 Achievements:
+# Week 8 Achievements
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+## Cost Optimization Strategy
+- Mastered the differences between **Savings Plans** (more flexible) and **Reserved Instances** (traditional), enabling informed purchasing decisions for each workload type.
+- Learned to use the **Recommendations** tool to identify optimal cost commitment levels based on usage history.
+- Successfully applied Reserved Instances to RDS databases to reduce long-term operational costs.
 
-* Successfully created and configured an AWS Free Tier account.
+## System Resource Optimization
+- Successfully deployed **CloudWatch Agent** to collect custom metrics (such as Memory usage) that CloudWatch doesn't provide by default, enabling accurate instance performance assessment.
+- Used **AWS Compute Optimizer** to identify over-provisioned or under-provisioned resources and performed appropriate Right Sizing adjustments.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+## Cloud Financial Management (FinOps)
+- Mastered **AWS Cost Explorer** to visualize cash flow and usage costs by day, month, or specific services.
+- Created Custom Reports to track Data Transfer costs - a hidden cost that is often overlooked.
+- Understood how to monitor Savings Plan/RI effectiveness through Coverage and Utilization charts.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+## Competency Assessment (Midterm)
+- Completed the **AWS Certified Solutions Architect** simulation exam.
+- Reviewed all foundational knowledge across the 4 main pillars: Compute, Storage, Networking, and Database.
+- Identified weak points that need improvement in the following weeks (e.g., Hybrid Cloud scenarios or Advanced Networking).
