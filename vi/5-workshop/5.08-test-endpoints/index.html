@@ -1,0 +1,3039 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Kiểm Tra Endpoints Toàn Diện :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/5-workshop/5.08-test-endpoints/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.08-test-endpoints/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.08-test-endpoints/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Kiểm Tra Endpoints Toàn Diện
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#bước-1-lấy-api-endpoint">Bước 1: Lấy API Endpoint</a></li>
+        <li><a href="#bước-2-test-health-check-public">Bước 2: Test Health Check (Public)</a></li>
+        <li><a href="#bước-3-test-user-registration">Bước 3: Test User Registration</a></li>
+        <li><a href="#bước-4-verify-email--confirm-user">Bước 4: Verify Email &amp; Confirm User</a></li>
+        <li><a href="#bước-5-test-user-login--get-jwt-token">Bước 5: Test User Login &amp; Get JWT Token</a></li>
+        <li><a href="#bước-6-test-profile-management">Bước 6: Test Profile Management</a></li>
+        <li><a href="#bước-7-test-social-features---posts">Bước 7: Test Social Features - Posts</a></li>
+        <li><a href="#bước-8-test-social-features---friends">Bước 8: Test Social Features - Friends</a></li>
+        <li><a href="#bước-9-test-recipe-management">Bước 9: Test Recipe Management</a></li>
+        <li><a href="#bước-10-test-ai-features-bedrock">Bước 10: Test AI Features (Bedrock)</a></li>
+        <li><a href="#bước-11-test-file-upload-s3--cloudfront">Bước 11: Test File Upload (S3 + CloudFront)</a></li>
+        <li><a href="#bước-12-test-admin-features-requires-admin-role">Bước 12: Test Admin Features (Requires Admin Role)</a></li>
+        <li><a href="#bước-13-verify-async-processing-sqs-queues">Bước 13: Verify Async Processing (SQS Queues)</a></li>
+        <li><a href="#testing-checklist">Testing Checklist</a></li>
+        <li><a href="#performance-benchmarks">Performance Benchmarks</a></li>
+        <li><a href="#xử-lý-sự-cố-thường-gặp">Xử Lý Sự Cố Thường Gặp</a></li>
+        <li><a href="#các-bước-tiếp-theo">Các Bước Tiếp Theo</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Kiểm Tra Endpoints Toàn Diện
+            </h1>
+          
+
+        
+
+
+
+	<h4 id="tổng-quan">Tổng quan</h4>
+<p>Sau khi deploy backend thành công, bạn cần test tất cả API endpoints để đảm bảo hệ thống hoạt động đúng từ đầu đến cuối. Workshop này hướng dẫn chi tiết cách test từng module của hệ thống EveryoneCook.</p>
+<h4 id="kiến-trúc-api">Kiến trúc API</h4>
+<p>Dự án EveryoneCook sử dụng <strong>API Router Pattern</strong> với các thành phần:</p>
+<ul>
+<li><strong>API Gateway</strong>: REST API với custom domain <code>api-dev.everyonecook.cloud</code></li>
+<li><strong>API Router Lambda</strong>: Routing requests tới các module Lambda</li>
+<li><strong>5 Module Lambda</strong>:
+<ul>
+<li><code>auth-user-lambda</code>: Authentication &amp; User Management</li>
+<li><code>social-lambda</code>: Posts, Comments, Reactions, Friends, Notifications</li>
+<li><code>recipe-ai-lambda</code>: Recipes &amp; AI Features</li>
+<li><code>admin-lambda</code>: Admin Dashboard &amp; Content Moderation</li>
+<li><code>upload-lambda</code>: File Upload với S3 Presigned URLs</li>
+</ul>
+</li>
+<li><strong>4 SQS Queues</strong>: Async processing (AI, Image, Analytics, Notifications)</li>
+<li><strong>WAF</strong>: Web Application Firewall bảo vệ API</li>
+</ul>
+<h4 id="luồng-test">Luồng Test</h4>
+<pre tabindex="0"><code>1. Lấy API Endpoint
+2. Test Health Check (Public)
+3. Test User Registration &amp; Verification
+4. Test User Login &amp; Get JWT Token
+5. Test Profile Management
+6. Test Social Features (Posts, Friends, Notifications)
+7. Test Recipe Management
+8. Test AI Features (Recipe Generation, Translation)
+9. Test File Upload (S3 + CloudFront)
+10. Test Admin Features (nếu có quyền admin)
+</code></pre><hr>
+<h3 id="bước-1-lấy-api-endpoint">Bước 1: Lấy API Endpoint</h3>
+<p><strong>1. Lấy API URL từ CloudFormation Outputs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Get API endpoint từ Backend Stack</span>
+</span></span><span style="display:flex;"><span>$API_ENDPOINT = aws cloudformation describe-stacks `
+</span></span><span style="display:flex;"><span>  --stack-name EveryoneCook-dev-Backend `
+</span></span><span style="display:flex;"><span>  --query <span style="color:#e6db74">&#39;Stacks[0].Outputs[?OutputKey==`ApiCustomDomain`].OutputValue&#39;</span> `
+</span></span><span style="display:flex;"><span>  --output text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;API Endpoint: </span>$API_ENDPOINT<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: https://api-dev.everyonecook.cloud</span>
+</span></span></code></pre></div><p><strong>2. Hoặc lấy từ file outputs.json</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Đọc từ infrastructure/outputs.json</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span><span style="display:flex;"><span>$outputs = Get-Content outputs.json | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>$API_ENDPOINT = $outputs.<span style="color:#e6db74">&#39;EveryoneCook-dev-Backend&#39;</span>.ApiCustomDomain
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;API Endpoint: </span>$API_ENDPOINT<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>3. Setup biến môi trường</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Set API endpoint cho PowerShell session</span>
+</span></span><span style="display:flex;"><span>$API_ENDPOINT = <span style="color:#e6db74">&#34;https://api-dev.everyonecook.cloud&#34;</span>
+</span></span><span style="display:flex;"><span>$HEADERS_JSON = @{<span style="color:#e6db74">&#34;Content-Type&#34;</span>=<span style="color:#e6db74">&#34;application/json&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Environment configured:&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;  API Endpoint: </span>$API_ENDPOINT<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><hr>
+<h3 id="bước-2-test-health-check-public">Bước 2: Test Health Check (Public)</h3>
+<p>Health check endpoint không cần authentication.</p>
+<p><strong>1. Test với PowerShell</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Test health endpoint</span>
+</span></span><span style="display:flex;"><span>$response = Invoke-RestMethod -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/health&#34;</span> -Method Get
+</span></span><span style="display:flex;"><span>$response | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;status&#34;: &#34;healthy&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;timestamp&#34;: &#34;2025-12-09T10:30:00.000Z&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;service&#34;: &#34;EveryoneCook API&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;environment&#34;: &#34;dev&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><p><strong>2. Test với curl (nếu có WSL hoặc Git Bash)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X GET <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/health&#34;</span> | jq
+</span></span></code></pre></div><p><strong>3. Verify API Router hoạt động</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check API Router Lambda logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/everyonecook-dev-api-router --follow
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Status 200, response JSON có <code>&quot;status&quot;: &quot;healthy&quot;</code></p>
+<hr>
+<h3 id="bước-3-test-user-registration">Bước 3: Test User Registration</h3>
+<p><strong>1. Lấy User Pool Client ID</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Get Cognito User Pool Client ID</span>
+</span></span><span style="display:flex;"><span>$CLIENT_ID = aws cloudformation describe-stacks `
+</span></span><span style="display:flex;"><span>  --stack-name EveryoneCook-dev-Auth `
+</span></span><span style="display:flex;"><span>  --query <span style="color:#e6db74">&#39;Stacks[0].Outputs[?OutputKey==`UserPoolClientId`].OutputValue&#39;</span> `
+</span></span><span style="display:flex;"><span>  --output text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;User Pool Client ID: </span>$CLIENT_ID<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Register User mới</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Đăng ký user với Cognito (không qua API - trực tiếp với Cognito)</span>
+</span></span><span style="display:flex;"><span>$username = <span style="color:#e6db74">&#34;testuser_</span>$(Get-Random -Maximum <span style="color:#ae81ff">9999</span>)<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>$email = <span style="color:#e6db74">&#34;test_</span>$username<span style="color:#e6db74">@example.com&#34;</span>
+</span></span><span style="display:flex;"><span>$password = <span style="color:#e6db74">&#34;TestPassword123!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws cognito-idp sign-up `
+</span></span><span style="display:flex;"><span>  --client-id $CLIENT_ID `
+</span></span><span style="display:flex;"><span>  --username $username `
+</span></span><span style="display:flex;"><span>  --password $password `
+</span></span><span style="display:flex;"><span>  --user-attributes `
+</span></span><span style="display:flex;"><span>    Name=email,Value=$email `
+</span></span><span style="display:flex;"><span>    Name=given_name,Value=<span style="color:#e6db74">&#34;Test User&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;User registered: </span>$username<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Email: </span>$email<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Password: </span>$password<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>3. Verify Pre-Signup Trigger (Lambda Cognito Trigger)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check logs của Pre-Signup trigger</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PreSignup --since <span style="color:#ae81ff">5m</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>:</p>
+<ul>
+<li>Cognito trả về success message</li>
+<li>Pre-Signup trigger logs không có error</li>
+</ul>
+<hr>
+<h3 id="bước-4-verify-email--confirm-user">Bước 4: Verify Email &amp; Confirm User</h3>
+<p><strong>1. Lấy Confirmation Code</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Trong môi trường dev, có thể lấy code từ email hoặc dùng admin command</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cách 1: Check email (nếu dùng real email)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cách 2: Admin confirm (cho testing)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws cognito-idp admin-confirm-sign-up `
+</span></span><span style="display:flex;"><span>  --user-pool-id ap-southeast-1_PKoL34PF0 `
+</span></span><span style="display:flex;"><span>  --username $username
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;User confirmed: </span>$username<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Verify Post-Confirmation Trigger</strong></p>
+<p>Post-Confirmation trigger sẽ tự động tạo user profile trong DynamoDB.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check DynamoDB - User profile được tạo tự động</span>
+</span></span><span style="display:flex;"><span>aws dynamodb get-item `
+</span></span><span style="display:flex;"><span>  --table-name EveryoneCook-dev `
+</span></span><span style="display:flex;"><span>  --key <span style="color:#e6db74">&#34;{\&#34;</span>PK\<span style="color:#e6db74">&#34;:{\&#34;</span>S\<span style="color:#e6db74">&#34;:\&#34;</span>USER<span style="color:#75715e">#$username\&#34;},\&#34;SK\&#34;:{\&#34;S\&#34;:\&#34;PROFILE\&#34;}}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: User profile với các fields:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - userId (Cognito sub ID)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - email</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - fullName</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - createdAt</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - updatedAt</span>
+</span></span></code></pre></div><p><strong>3. Check Post-Confirmation Lambda logs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PostConfirmation --since <span style="color:#ae81ff">5m</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: User profile được tạo trong DynamoDB table</p>
+<hr>
+<h3 id="bước-5-test-user-login--get-jwt-token">Bước 5: Test User Login &amp; Get JWT Token</h3>
+<p><strong>1. Login để lấy JWT tokens</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Sign in với Cognito</span>
+</span></span><span style="display:flex;"><span>$authResult = aws cognito-idp initiate-auth `
+</span></span><span style="display:flex;"><span>  --client-id $CLIENT_ID `
+</span></span><span style="display:flex;"><span>  --auth-flow USER_PASSWORD_AUTH `
+</span></span><span style="display:flex;"><span>  --auth-parameters USERNAME=$username,PASSWORD=$password `
+</span></span><span style="display:flex;"><span>  | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract tokens</span>
+</span></span><span style="display:flex;"><span>$ID_TOKEN = $authResult.AuthenticationResult.IdToken
+</span></span><span style="display:flex;"><span>$ACCESS_TOKEN = $authResult.AuthenticationResult.AccessToken
+</span></span><span style="display:flex;"><span>$REFRESH_TOKEN = $authResult.AuthenticationResult.RefreshToken
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Login successful!&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;ID Token length: </span>$($ID_TOKEN.Length)<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Verify Post-Authentication Trigger</strong></p>
+<p>Post-Authentication trigger update <code>lastLoginAt</code> trong DynamoDB.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check lastLoginAt updated</span>
+</span></span><span style="display:flex;"><span>aws dynamodb get-item `
+</span></span><span style="display:flex;"><span>  --table-name EveryoneCook-dev `
+</span></span><span style="display:flex;"><span>  --key <span style="color:#e6db74">&#34;{\&#34;</span>PK\<span style="color:#e6db74">&#34;:{\&#34;</span>S\<span style="color:#e6db74">&#34;:\&#34;</span>USER<span style="color:#75715e">#$username\&#34;},\&#34;SK\&#34;:{\&#34;S\&#34;:\&#34;PROFILE\&#34;}}&#34; `</span>
+</span></span><span style="display:flex;"><span>  --projection-expression <span style="color:#e6db74">&#34;lastLoginAt&#34;</span>
+</span></span></code></pre></div><p><strong>3. Setup Authorization Header</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Create headers with JWT token</span>
+</span></span><span style="display:flex;"><span>$HEADERS_AUTH = @{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Content-Type&#34;</span> = <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Authorization&#34;</span> = <span style="color:#e6db74">&#34;Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Login thành công, nhận được JWT tokens</p>
+<hr>
+<h3 id="bước-6-test-profile-management">Bước 6: Test Profile Management</h3>
+<p><strong>Endpoint</strong>: <code>/users/me</code>, <code>/users/profile</code></p>
+<p><strong>1. Get Current User Profile</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /users/me</span>
+</span></span><span style="display:flex;"><span>$response = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/me&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$response | ConvertTo-Json -Depth <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected Response:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;userId&#34;: &#34;...&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;username&#34;: &#34;testuser_1234&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;email&#34;: &#34;test_testuser_1234@example.com&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;fullName&#34;: &#34;Test User&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;birthday&#34;: null,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;gender&#34;: null,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;country&#34;: null,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;createdAt&#34;: &#34;2025-12-09T10:30:00.000Z&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;lastLoginAt&#34;: &#34;2025-12-09T11:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><p><strong>2. Update Profile (Onboarding)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># PUT /users/profile - Complete onboarding</span>
+</span></span><span style="display:flex;"><span>$profileUpdate = @{
+</span></span><span style="display:flex;"><span>  birthday = <span style="color:#e6db74">&#34;1990-01-01&#34;</span>
+</span></span><span style="display:flex;"><span>  gender = <span style="color:#e6db74">&#34;male&#34;</span>
+</span></span><span style="display:flex;"><span>  country = <span style="color:#e6db74">&#34;Vietnam&#34;</span>
+</span></span><span style="display:flex;"><span>  bio = <span style="color:#e6db74">&#34;Test user for EveryoneCook platform&#34;</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$response = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/profile&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Put `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $profileUpdate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$response | ConvertTo-Json
+</span></span></code></pre></div><p><strong>3. Get Privacy Settings</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /users/profile/privacy</span>
+</span></span><span style="display:flex;"><span>$privacy = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/profile/privacy&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$privacy | ConvertTo-Json
+</span></span></code></pre></div><p><strong>4. Update Privacy Settings</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># PUT /users/profile/privacy</span>
+</span></span><span style="display:flex;"><span>$privacyUpdate = @{
+</span></span><span style="display:flex;"><span>  profileVisibility = <span style="color:#e6db74">&#34;public&#34;</span>
+</span></span><span style="display:flex;"><span>  showEmail = $false
+</span></span><span style="display:flex;"><span>  showBirthday = $false
+</span></span><span style="display:flex;"><span>  allowFriendRequests = $true
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/profile/privacy&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Put `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $privacyUpdate
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Profile được update thành công trong DynamoDB</p>
+<hr>
+<h3 id="bước-7-test-social-features---posts">Bước 7: Test Social Features - Posts</h3>
+<p><strong>Endpoints</strong>: <code>/posts</code>, <code>/posts/{postId}</code></p>
+<p><strong>1. Create Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /posts</span>
+</span></span><span style="display:flex;"><span>$newPost = @{
+</span></span><span style="display:flex;"><span>  content = <span style="color:#e6db74">&#34;My first post on EveryoneCook! Testing the platform 🍳&#34;</span>
+</span></span><span style="display:flex;"><span>  visibility = <span style="color:#e6db74">&#34;public&#34;</span>
+</span></span><span style="display:flex;"><span>  type = <span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$postResponse = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $newPost
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$POST_ID = $postResponse.postId
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Created Post ID: </span>$POST_ID<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>$postResponse | ConvertTo-Json
+</span></span></code></pre></div><p><strong>2. Get All Posts (Feed)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /posts - Get all posts</span>
+</span></span><span style="display:flex;"><span>$posts = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts?limit=10&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Found </span>$($posts.items.Count)<span style="color:#e6db74"> posts&#34;</span>
+</span></span><span style="display:flex;"><span>$posts.items | ConvertTo-Json -Depth <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p><strong>3. Get Specific Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /posts/{postId}</span>
+</span></span><span style="display:flex;"><span>$post = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts/</span>$POST_ID<span style="color:#e6db74">&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$post | ConvertTo-Json
+</span></span></code></pre></div><p><strong>4. Like Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /posts/{postId}/like</span>
+</span></span><span style="display:flex;"><span>Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts/</span>$POST_ID<span style="color:#e6db74">/like&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Post liked successfully&#34;</span>
+</span></span></code></pre></div><p><strong>5. Add Comment</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /posts/{postId}/comments</span>
+</span></span><span style="display:flex;"><span>$comment = @{
+</span></span><span style="display:flex;"><span>  content = <span style="color:#e6db74">&#34;Great post! 👍&#34;</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$commentResponse = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts/</span>$POST_ID<span style="color:#e6db74">/comments&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $comment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$COMMENT_ID = $commentResponse.commentId
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Comment ID: </span>$COMMENT_ID<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>6. Get Post Comments</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /posts/{postId}/comments</span>
+</span></span><span style="display:flex;"><span>$comments = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/posts/</span>$POST_ID<span style="color:#e6db74">/comments&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$comments | ConvertTo-Json -Depth <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Posts, likes, comments được lưu trong DynamoDB</p>
+<hr>
+<h3 id="bước-8-test-social-features---friends">Bước 8: Test Social Features - Friends</h3>
+<p><strong>Endpoints</strong>: <code>/friends/*</code></p>
+<p><strong>1. Search Users</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /users/search?q=test</span>
+</span></span><span style="display:flex;"><span>$users = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/search?q=test&amp;limit=10&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$users | ConvertTo-Json
+</span></span></code></pre></div><p><strong>2. Send Friend Request</strong> (cần 2 users)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /friends/{userId}/request</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Giả sử có USER_ID của user khác</span>
+</span></span><span style="display:flex;"><span>$TARGET_USER_ID = <span style="color:#e6db74">&#34;another-user-id&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/friends/</span>$TARGET_USER_ID<span style="color:#e6db74">/request&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Friend request sent&#34;</span>
+</span></span></code></pre></div><p><strong>3. Get Friend Requests</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /friends/requests</span>
+</span></span><span style="display:flex;"><span>$requests = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/friends/requests&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$requests | ConvertTo-Json
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Friend requests được tạo với status &ldquo;pending&rdquo;</p>
+<hr>
+<h3 id="bước-9-test-recipe-management">Bước 9: Test Recipe Management</h3>
+<p><strong>Endpoints</strong>: <code>/recipes</code>, <code>/recipes/{recipeId}</code></p>
+<p><strong>1. Create Recipe</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /recipes</span>
+</span></span><span style="display:flex;"><span>$newRecipe = @{
+</span></span><span style="display:flex;"><span>  title = <span style="color:#e6db74">&#34;Phở Bò Hà Nội&#34;</span>
+</span></span><span style="display:flex;"><span>  description = <span style="color:#e6db74">&#34;Traditional Vietnamese beef noodle soup&#34;</span>
+</span></span><span style="display:flex;"><span>  ingredients = @(
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;beef bones&#34;</span>; amount = <span style="color:#e6db74">&#34;2&#34;</span>; unit = <span style="color:#e6db74">&#34;kg&#34;</span> }
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;rice noodles&#34;</span>; amount = <span style="color:#e6db74">&#34;500&#34;</span>; unit = <span style="color:#e6db74">&#34;g&#34;</span> }
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;ginger&#34;</span>; amount = <span style="color:#e6db74">&#34;1&#34;</span>; unit = <span style="color:#e6db74">&#34;piece&#34;</span> }
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;star anise&#34;</span>; amount = <span style="color:#e6db74">&#34;3&#34;</span>; unit = <span style="color:#e6db74">&#34;pieces&#34;</span> }
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  instructions = @(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Boil beef bones for 2-3 hours to make broth&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Add spices (ginger, star anise, cinnamon) and simmer&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Prepare rice noodles separately&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Serve noodles with broth and garnish with herbs&#34;</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  cuisine = <span style="color:#e6db74">&#34;Vietnamese&#34;</span>
+</span></span><span style="display:flex;"><span>  difficulty = <span style="color:#e6db74">&#34;medium&#34;</span>
+</span></span><span style="display:flex;"><span>  prepTime = <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>  cookTime = <span style="color:#ae81ff">180</span>
+</span></span><span style="display:flex;"><span>  servings = <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json -Depth <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$recipeResponse = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/recipes&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $newRecipe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$RECIPE_ID = $recipeResponse.recipeId
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Created Recipe ID: </span>$RECIPE_ID<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>$recipeResponse | ConvertTo-Json -Depth <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><p><strong>2. Get User&rsquo;s Recipes</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /users/{userId}/recipes</span>
+</span></span><span style="display:flex;"><span>$userId = $authResult.AuthenticationResult.AccessToken | 
+</span></span><span style="display:flex;"><span>  ForEach-Object { [<span style="color:#66d9ef">System.Text.Encoding</span>]::UTF8.GetString([<span style="color:#66d9ef">System.Convert</span>]::FromBase64String(($_.Split(<span style="color:#e6db74">&#39;.&#39;</span>)[<span style="color:#ae81ff">1</span>]))) } | 
+</span></span><span style="display:flex;"><span>  ConvertFrom-Json | 
+</span></span><span style="display:flex;"><span>  Select-Object -ExpandProperty sub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$recipes = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/users/</span>$userId<span style="color:#e6db74">/recipes&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$recipes | ConvertTo-Json -Depth <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p><strong>3. Search Recipes</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /recipes/search</span>
+</span></span><span style="display:flex;"><span>$searchQuery = @{
+</span></span><span style="display:flex;"><span>  query = <span style="color:#e6db74">&#34;phở&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">filter</span>s = @{
+</span></span><span style="display:flex;"><span>    cuisine = <span style="color:#e6db74">&#34;Vietnamese&#34;</span>
+</span></span><span style="display:flex;"><span>    difficulty = <span style="color:#e6db74">&#34;medium&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  limit = <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$searchResults = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/recipes/search&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $searchQuery
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$searchResults | ConvertTo-Json -Depth <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Recipes được lưu trong DynamoDB với proper structure</p>
+<hr>
+<h3 id="bước-10-test-ai-features-bedrock">Bước 10: Test AI Features (Bedrock)</h3>
+<p><strong>Endpoints</strong>: <code>/recipes/generate-ai</code>, <code>/ai/nutrition</code>, <code>/dictionary/{ingredient}</code></p>
+<p><strong>1. Generate Recipe with AI</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /recipes/generate-ai</span>
+</span></span><span style="display:flex;"><span>$aiRequest = @{
+</span></span><span style="display:flex;"><span>  ingredients = @(<span style="color:#e6db74">&#34;chicken&#34;</span>, <span style="color:#e6db74">&#34;rice&#34;</span>, <span style="color:#e6db74">&#34;vegetables&#34;</span>, <span style="color:#e6db74">&#34;fish sauce&#34;</span>)
+</span></span><span style="display:flex;"><span>  cuisine = <span style="color:#e6db74">&#34;Vietnamese&#34;</span>
+</span></span><span style="display:flex;"><span>  dietaryRestrictions = @(<span style="color:#e6db74">&#34;gluten-free&#34;</span>)
+</span></span><span style="display:flex;"><span>  servings = <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>  difficulty = <span style="color:#e6db74">&#34;medium&#34;</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Generating recipe with AI... (this takes 5-10 seconds)&#34;</span>
+</span></span><span style="display:flex;"><span>$aiRecipe = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/recipes/generate-ai&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $aiRequest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$aiRecipe | ConvertTo-Json -Depth <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: AI-generated recipe with Vietnamese ingredient names</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Uses Amazon Bedrock Claude model</span>
+</span></span></code></pre></div><p><strong>2. Get Nutrition Analysis</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /ai/nutrition</span>
+</span></span><span style="display:flex;"><span>$nutritionRequest = @{
+</span></span><span style="display:flex;"><span>  ingredients = @(
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;chicken breast&#34;</span>; amount = <span style="color:#e6db74">&#34;200&#34;</span>; unit = <span style="color:#e6db74">&#34;g&#34;</span> }
+</span></span><span style="display:flex;"><span>    @{ name = <span style="color:#e6db74">&#34;rice&#34;</span>; amount = <span style="color:#e6db74">&#34;100&#34;</span>; unit = <span style="color:#e6db74">&#34;g&#34;</span> }
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$nutrition = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/ai/nutrition&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $nutritionRequest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$nutrition | ConvertTo-Json
+</span></span></code></pre></div><p><strong>3. Translate Ingredient (Vietnamese Dictionary)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /dictionary/{ingredient}</span>
+</span></span><span style="display:flex;"><span>$translation = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/dictionary/tomato&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Translation: </span>$($translation.vietnamese)<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: { &#34;ingredient&#34;: &#34;tomato&#34;, &#34;vietnamese&#34;: &#34;cà chua&#34; }</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>:</p>
+<ul>
+<li>AI recipe generation mất 5-10 giây</li>
+<li>Response có Vietnamese ingredient names</li>
+<li>Bedrock Lambda được invoke</li>
+</ul>
+<hr>
+<h3 id="bước-11-test-file-upload-s3--cloudfront">Bước 11: Test File Upload (S3 + CloudFront)</h3>
+<p><strong>Endpoint</strong>: <code>/upload/presigned-url</code></p>
+<p><strong>1. Request Presigned URL</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># POST /upload/presigned-url</span>
+</span></span><span style="display:flex;"><span>$uploadRequest = @{
+</span></span><span style="display:flex;"><span>  fileType = <span style="color:#e6db74">&#34;avatar&#34;</span>
+</span></span><span style="display:flex;"><span>  fileName = <span style="color:#e6db74">&#34;test-avatar.jpg&#34;</span>
+</span></span><span style="display:flex;"><span>  contentType = <span style="color:#e6db74">&#34;image/jpeg&#34;</span>
+</span></span><span style="display:flex;"><span>  fileSize = <span style="color:#ae81ff">1024000</span>  <span style="color:#75715e"># 1MB</span>
+</span></span><span style="display:flex;"><span>} | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$uploadResponse = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/upload/presigned-url&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Post `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH `
+</span></span><span style="display:flex;"><span>  -Body $uploadRequest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$PRESIGNED_URL = $uploadResponse.url
+</span></span><span style="display:flex;"><span>$UPLOAD_KEY = $uploadResponse.key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Presigned URL: </span>$PRESIGNED_URL<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Upload Key: </span>$UPLOAD_KEY<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Upload File to S3</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Create test image file</span>
+</span></span><span style="display:flex;"><span>$testImage = <span style="color:#e6db74">&#34;D:\test-avatar.jpg&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (Tạo file test image hoặc dùng file có sẵn)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload file using presigned URL</span>
+</span></span><span style="display:flex;"><span>Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri $PRESIGNED_URL `
+</span></span><span style="display:flex;"><span>  -Method Put `
+</span></span><span style="display:flex;"><span>  -InFile $testImage `
+</span></span><span style="display:flex;"><span>  -ContentType <span style="color:#e6db74">&#34;image/jpeg&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;File uploaded to S3 successfully&#34;</span>
+</span></span></code></pre></div><p><strong>3. Access via CloudFront CDN</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Get CloudFront distribution domain</span>
+</span></span><span style="display:flex;"><span>$CDN_DOMAIN = <span style="color:#e6db74">&#34;d2shrpzup69rju.cloudfront.net&#34;</span>  <span style="color:#75715e"># Từ outputs.json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Access file via CloudFront</span>
+</span></span><span style="display:flex;"><span>$fileUrl = <span style="color:#e6db74">&#34;https://</span>$CDN_DOMAIN<span style="color:#e6db74">/</span>$UPLOAD_KEY<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>Invoke-WebRequest -Uri $fileUrl -Method Head
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check caching headers</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># First request: X-Cache: Miss from cloudfront</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Second request: X-Cache: Hit from cloudfront</span>
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: File được upload lên S3 và serve qua CloudFront</p>
+<hr>
+<h3 id="bước-12-test-admin-features-requires-admin-role">Bước 12: Test Admin Features (Requires Admin Role)</h3>
+<p><strong>Endpoints</strong>: <code>/admin/*</code></p>
+<p><strong>1. Get System Stats</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /admin/stats</span>
+</span></span><span style="display:flex;"><span>$stats = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/admin/stats&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$stats | ConvertTo-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected (nếu có admin role):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;totalUsers&#34;: 123,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;totalPosts&#34;: 456,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;totalRecipes&#34;: 789,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;activeUsers&#34;: 45</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><p><strong>2. Get All Users</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /admin/users</span>
+</span></span><span style="display:flex;"><span>$allUsers = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/admin/users?limit=20&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$allUsers | ConvertTo-Json
+</span></span></code></pre></div><p><strong>3. Get Reported Posts</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># GET /admin/posts/reported</span>
+</span></span><span style="display:flex;"><span>$reportedPosts = Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>  -Uri <span style="color:#e6db74">&#34;</span>$API_ENDPOINT<span style="color:#e6db74">/admin/posts/reported&#34;</span> `
+</span></span><span style="display:flex;"><span>  -Method Get `
+</span></span><span style="display:flex;"><span>  -Headers $HEADERS_AUTH
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$reportedPosts | ConvertTo-Json
+</span></span></code></pre></div><p>⚠️ <strong>Lưu ý</strong>: Admin endpoints require user có group &ldquo;Admins&rdquo; trong Cognito User Pool</p>
+<hr>
+<h3 id="bước-13-verify-async-processing-sqs-queues">Bước 13: Verify Async Processing (SQS Queues)</h3>
+<p><strong>1. Check SQS Queues</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># List all queues</span>
+</span></span><span style="display:flex;"><span>aws sqs list-queues --queue-name-prefix everyonecook-dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get AI Queue attributes</span>
+</span></span><span style="display:flex;"><span>$AI_QUEUE_URL = <span style="color:#e6db74">&#34;https://sqs.ap-southeast-1.amazonaws.com/616580903213/everyonecook-dev-ai-queue&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws sqs get-queue-attributes `
+</span></span><span style="display:flex;"><span>  --queue-url $AI_QUEUE_URL `
+</span></span><span style="display:flex;"><span>  --attribute-names ApproximateNumberOfMessages,ApproximateNumberOfMessagesNotVisible
+</span></span></code></pre></div><p><strong>2. Monitor Worker Lambdas</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check Image Processing Worker logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/everyonecook-dev-image-worker --follow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check AI Worker logs (for recipe generation)</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/everyonecook-dev-ai-worker --follow
+</span></span></code></pre></div><p>✅ <strong>Kết quả mong đợi</strong>: Messages được process bởi worker Lambdas</p>
+<hr>
+<h3 id="testing-checklist">Testing Checklist</h3>
+<p>Sử dụng checklist này để track progress:</p>
+<h4 id="public-endpoints">Public Endpoints</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>GET /health</code> - Health check responds</li>
+<li><input disabled="" type="checkbox"> <code>GET /status</code> - Status check responds</li>
+</ul>
+<h4 id="authentication--user-management">Authentication &amp; User Management</h4>
+<ul>
+<li><input disabled="" type="checkbox"> User registration với Cognito works</li>
+<li><input disabled="" type="checkbox"> Email verification/confirmation works</li>
+<li><input disabled="" type="checkbox"> User login successful, nhận JWT tokens</li>
+<li><input disabled="" type="checkbox"> <code>GET /users/me</code> - Get current user profile</li>
+<li><input disabled="" type="checkbox"> <code>PUT /users/profile</code> - Update profile</li>
+<li><input disabled="" type="checkbox"> <code>GET /users/profile/privacy</code> - Get privacy settings</li>
+<li><input disabled="" type="checkbox"> <code>PUT /users/profile/privacy</code> - Update privacy settings</li>
+</ul>
+<h4 id="social-features">Social Features</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /posts</code> - Create post</li>
+<li><input disabled="" type="checkbox"> <code>GET /posts</code> - Get posts feed</li>
+<li><input disabled="" type="checkbox"> <code>GET /posts/{postId}</code> - Get specific post</li>
+<li><input disabled="" type="checkbox"> <code>POST /posts/{postId}/like</code> - Like post</li>
+<li><input disabled="" type="checkbox"> <code>POST /posts/{postId}/comments</code> - Add comment</li>
+<li><input disabled="" type="checkbox"> <code>GET /posts/{postId}/comments</code> - Get comments</li>
+<li><input disabled="" type="checkbox"> <code>POST /friends/{userId}/request</code> - Send friend request</li>
+<li><input disabled="" type="checkbox"> <code>GET /friends/requests</code> - Get friend requests</li>
+<li><input disabled="" type="checkbox"> <code>GET /notifications</code> - Get notifications</li>
+</ul>
+<h4 id="recipe-management">Recipe Management</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /recipes</code> - Create recipe</li>
+<li><input disabled="" type="checkbox"> <code>GET /recipes</code> - Get all recipes</li>
+<li><input disabled="" type="checkbox"> <code>GET /recipes/{recipeId}</code> - Get specific recipe</li>
+<li><input disabled="" type="checkbox"> <code>POST /recipes/search</code> - Search recipes</li>
+</ul>
+<h4 id="ai-features">AI Features</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /recipes/generate-ai</code> - AI recipe generation (Bedrock)</li>
+<li><input disabled="" type="checkbox"> <code>POST /ai/nutrition</code> - Nutrition analysis</li>
+<li><input disabled="" type="checkbox"> <code>GET /dictionary/{ingredient}</code> - Ingredient translation</li>
+</ul>
+<h4 id="file-upload">File Upload</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /upload/presigned-url</code> - Get presigned URL</li>
+<li><input disabled="" type="checkbox"> Upload file to S3 using presigned URL</li>
+<li><input disabled="" type="checkbox"> Access file via CloudFront CDN</li>
+<li><input disabled="" type="checkbox"> Verify CloudFront caching (Miss → Hit)</li>
+</ul>
+<h4 id="admin-features-if-admin">Admin Features (if admin)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>GET /admin/stats</code> - Get system stats</li>
+<li><input disabled="" type="checkbox"> <code>GET /admin/users</code> - List all users</li>
+<li><input disabled="" type="checkbox"> <code>GET /admin/posts/reported</code> - Get reported content</li>
+</ul>
+<h4 id="infrastructure">Infrastructure</h4>
+<ul>
+<li><input disabled="" type="checkbox"> All Lambda functions execute without errors</li>
+<li><input disabled="" type="checkbox"> SQS queues process messages correctly</li>
+<li><input disabled="" type="checkbox"> CloudWatch logs show proper execution</li>
+<li><input disabled="" type="checkbox"> DynamoDB items created correctly</li>
+<li><input disabled="" type="checkbox"> WAF rules protecting API Gateway</li>
+</ul>
+<hr>
+<h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<p><strong>Thời gian phản hồi mong đợi:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Endpoint</th>
+          <th>Thời gian mong đợi</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>GET /health</code></td>
+          <td>&lt; 50ms</td>
+          <td>Direct response</td>
+      </tr>
+      <tr>
+          <td><code>POST /auth/login</code></td>
+          <td>&lt; 200ms</td>
+          <td>Cognito validation</td>
+      </tr>
+      <tr>
+          <td><code>GET /users/me</code></td>
+          <td>&lt; 100ms</td>
+          <td>DynamoDB single query</td>
+      </tr>
+      <tr>
+          <td><code>POST /posts</code></td>
+          <td>&lt; 300ms</td>
+          <td>DynamoDB write + notifications</td>
+      </tr>
+      <tr>
+          <td><code>GET /posts</code></td>
+          <td>&lt; 500ms</td>
+          <td>DynamoDB query with pagination</td>
+      </tr>
+      <tr>
+          <td><code>POST /recipes/generate-ai</code></td>
+          <td>5-10 seconds</td>
+          <td>Bedrock AI generation</td>
+      </tr>
+      <tr>
+          <td><code>POST /upload/presigned-url</code></td>
+          <td>&lt; 100ms</td>
+          <td>S3 presigned URL generation</td>
+      </tr>
+      <tr>
+          <td><code>POST /recipes/search</code></td>
+          <td>&lt; 200ms</td>
+          <td>DynamoDB GSI query</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="xử-lý-sự-cố-thường-gặp">Xử Lý Sự Cố Thường Gặp</h3>
+<h4 id="1-401-unauthorized">1. 401 Unauthorized</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Verify JWT token not expired</span>
+</span></span><span style="display:flex;"><span>$ID_TOKEN = <span style="color:#e6db74">&#34;your-token-here&#34;</span>
+</span></span><span style="display:flex;"><span>$parts = $ID_TOKEN.Split(<span style="color:#e6db74">&#39;.&#39;</span>)
+</span></span><span style="display:flex;"><span>$payload = [<span style="color:#66d9ef">System.Text.Encoding</span>]::UTF8.GetString(
+</span></span><span style="display:flex;"><span>  [<span style="color:#66d9ef">System.Convert</span>]::FromBase64String($parts[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>) | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$exp = [<span style="color:#66d9ef">DateTimeOffset</span>]::FromUnixTimeSeconds($payload.exp).DateTime
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Token expires at: </span>$exp<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If expired, login again</span>
+</span></span></code></pre></div><h4 id="2-403-forbidden-waf-block">2. 403 Forbidden (WAF Block)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check WAF logs</span>
+</span></span><span style="display:flex;"><span>aws wafv2 get-web-acl `
+</span></span><span style="display:flex;"><span>  --name EveryoneCook-API-WAF-dev `
+</span></span><span style="display:flex;"><span>  --scope REGIONAL `
+</span></span><span style="display:flex;"><span>  --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if IP blocked</span>
+</span></span></code></pre></div><h4 id="3-500-internal-server-error">3. 500 Internal Server Error</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check Lambda function logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/everyonecook-dev-api-router --follow
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/everyonecook-dev-social --follow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check DynamoDB table</span>
+</span></span><span style="display:flex;"><span>aws dynamodb describe-table --table-name EveryoneCook-dev
+</span></span></code></pre></div><h4 id="4-slow-ai-recipe-generation">4. Slow AI Recipe Generation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check Bedrock model availability</span>
+</span></span><span style="display:flex;"><span>aws bedrock list-foundation-models --region us-east-<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check AI Queue</span>
+</span></span><span style="display:flex;"><span>aws sqs get-queue-attributes `
+</span></span><span style="display:flex;"><span>  --queue-url $AI_QUEUE_URL `
+</span></span><span style="display:flex;"><span>  --attribute-names All
+</span></span></code></pre></div><hr>
+<h3 id="các-bước-tiếp-theo">Các Bước Tiếp Theo</h3>
+<p>Sau khi test thành công tất cả endpoints:</p>
+<ol>
+<li>✅ <strong>Verify Infrastructure</strong>: Tất cả AWS resources hoạt động đúng</li>
+<li>📊 <strong>Monitor CloudWatch</strong>: Check metrics và logs</li>
+<li>🔒 <strong>Security Review</strong>: Verify WAF rules và Cognito auth</li>
+<li>📝 <strong>Document API</strong>: Update API documentation nếu cần</li>
+<li>🚀 <strong>Deploy Frontend</strong>: Proceed to frontend deployment</li>
+<li>📦 <strong>Version Control</strong>: Commit code và push to GitLab (next step)</li>
+</ol>
+<p>Tiếp tục: <a href="../../../vi/5-workshop/5.09-push-gitlab/">5.09 - Push to GitLab</a></p>
+<p><strong>2. Xác nhận User</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Confirm user with code</span>
+</span></span><span style="display:flex;"><span>aws cognito-idp confirm-sign-up <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --client-id $CLIENT_ID <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --username testuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --confirmation-code <span style="color:#ae81ff">123456</span>
+</span></span></code></pre></div><p><strong>3. Verify Post-Confirmation Trigger</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check if user profile was created in DynamoDB</span>
+</span></span><span style="display:flex;"><span>aws dynamodb get-item <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --table-name EveryoneCook-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;USER#testuser&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;PROFILE&#34;}}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Should return user profile with:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - PK: USER#testuser</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - SK: PROFILE</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - userId: cognito-sub-id</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - email: test@example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - fullName: Test User</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - birthday: null</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - gender: null</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - country: null</span>
+</span></span></code></pre></div><h4 id="bước-5-test-user-login">Bước 5: Test User Login</h4>
+<p><strong>1. Đăng nhập</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Sign in to get tokens</span>
+</span></span><span style="display:flex;"><span>TOKENS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cognito-idp initiate-auth <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --client-id $CLIENT_ID <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --auth-flow USER_PASSWORD_AUTH <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --auth-parameters USERNAME<span style="color:#f92672">=</span>testuser,PASSWORD<span style="color:#f92672">=</span>TestPassword123!<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract tokens</span>
+</span></span><span style="display:flex;"><span>ACCESS_TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $TOKENS | jq -r <span style="color:#e6db74">&#39;.AuthenticationResult.AccessToken&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>ID_TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $TOKENS | jq -r <span style="color:#e6db74">&#39;.AuthenticationResult.IdToken&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>REFRESH_TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $TOKENS | jq -r <span style="color:#e6db74">&#39;.AuthenticationResult.RefreshToken&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;ID Token: </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Verify Post-Authentication Trigger</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check if lastLoginAt was updated</span>
+</span></span><span style="display:flex;"><span>aws dynamodb get-item <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --table-name EveryoneCook-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;USER#testuser&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;PROFILE&#34;}}&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --projection-expression <span style="color:#e6db74">&#34;lastLoginAt&#34;</span>
+</span></span></code></pre></div><h4 id="bước-6-test-profile-management-1">Bước 6: Test Profile Management</h4>
+<p><strong>1. Lấy Profile</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get user profile</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/auth/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: User profile data</span>
+</span></span></code></pre></div><p><strong>2. Cập nhật Profile</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Update profile (onboarding)</span>
+</span></span><span style="display:flex;"><span>curl -X PUT <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;birthday&#34;: &#34;1990-01-01&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;gender&#34;: &#34;male&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;country&#34;: &#34;US&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/auth/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Updated profile</span>
+</span></span></code></pre></div><p><strong>3. Xác minh Update trong DynamoDB</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check updated profile</span>
+</span></span><span style="display:flex;"><span>aws dynamodb get-item <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --table-name EveryoneCook-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;PK&#34;:{&#34;S&#34;:&#34;USER#testuser&#34;},&#34;SK&#34;:{&#34;S&#34;:&#34;PROFILE&#34;}}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Should show birthday, gender, country updated</span>
+</span></span></code></pre></div><h4 id="bước-7-test-social-features">Bước 7: Test Social Features</h4>
+<p><strong>1. Tạo Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a post</span>
+</span></span><span style="display:flex;"><span>POST_RESPONSE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;content&#34;: &#34;My first post on EveryoneCook!&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;visibility&#34;: &#34;public&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/social/posts<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>POST_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $POST_RESPONSE | jq -r <span style="color:#e6db74">&#39;.postId&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Created post: </span>$POST_ID<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Lấy Posts Feed</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get posts</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/social/posts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Array of posts including the one just created</span>
+</span></span></code></pre></div><p><strong>3. Like Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Like the post</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/social/posts/$POST_ID/like
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Success message</span>
+</span></span></code></pre></div><p><strong>4. Comment trên Post</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add comment</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{&#34;content&#34;:&#34;Great post!&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/social/posts/$POST_ID/comment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Comment created</span>
+</span></span></code></pre></div><h4 id="bước-8-test-recipe-features">Bước 8: Test Recipe Features</h4>
+<p><strong>1. Tạo Recipe</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a recipe</span>
+</span></span><span style="display:flex;"><span>RECIPE_RESPONSE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;title&#34;: &#34;Pho Bo (Vietnamese Beef Noodle Soup)&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;description&#34;: &#34;Traditional Vietnamese beef noodle soup&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;ingredients&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;name&#34;: &#34;beef bones&#34;, &#34;amount&#34;: &#34;2&#34;, &#34;unit&#34;: &#34;kg&#34;},
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;name&#34;: &#34;rice noodles&#34;, &#34;amount&#34;: &#34;500&#34;, &#34;unit&#34;: &#34;g&#34;},
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;name&#34;: &#34;ginger&#34;, &#34;amount&#34;: &#34;1&#34;, &#34;unit&#34;: &#34;piece&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;instructions&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;Boil beef bones for 2 hours&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;Add spices and simmer&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;Prepare noodles and serve&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;cuisine&#34;: &#34;Vietnamese&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;difficulty&#34;: &#34;medium&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;prepTime&#34;: 30,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;cookTime&#34;: 120
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/recipes<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RECIPE_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $RECIPE_RESPONSE | jq -r <span style="color:#e6db74">&#39;.recipeId&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Created recipe: </span>$RECIPE_ID<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Lấy Recipes</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get all recipes</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/recipes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Array of recipes</span>
+</span></span></code></pre></div><p><strong>3. Lấy Recipe theo ID</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get specific recipe</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/recipes/$RECIPE_ID
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Recipe details</span>
+</span></span></code></pre></div><h4 id="bước-9-test-ai-features">Bước 9: Test AI Features</h4>
+<p><strong>1. Tạo Recipe với AI</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate recipe using Bedrock</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;ingredients&#34;: [&#34;chicken&#34;, &#34;rice&#34;, &#34;vegetables&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;cuisine&#34;: &#34;Vietnamese&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;dietaryRestrictions&#34;: [&#34;gluten-free&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;servings&#34;: 4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/ai/generate-recipe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: AI-generated recipe (takes 5-10 seconds)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response includes Vietnamese ingredient names</span>
+</span></span></code></pre></div><p><strong>2. Dịch Ingredient</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Translate ingredient to Vietnamese</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;ingredient&#34;: &#34;tomato&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;targetLanguage&#34;: &#34;vi&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/ai/translate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: {&#34;translation&#34;: &#34;cà chua&#34;, &#34;confidence&#34;: 0.99}</span>
+</span></span></code></pre></div><h4 id="bước-10-test-file-upload">Bước 10: Test File Upload</h4>
+<p><strong>1. Yêu cầu Pre-signed URL</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get pre-signed URL for avatar upload</span>
+</span></span><span style="display:flex;"><span>UPLOAD_RESPONSE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;fileType&#34;: &#34;avatar&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;fileName&#34;: &#34;avatar.jpg&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;contentType&#34;: &#34;image/jpeg&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;fileSize&#34;: 1024000
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/upload/presigned-url<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PRESIGNED_URL<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $UPLOAD_RESPONSE | jq -r <span style="color:#e6db74">&#39;.url&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>UPLOAD_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $UPLOAD_RESPONSE | jq -r <span style="color:#e6db74">&#39;.key&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Pre-signed URL: </span>$PRESIGNED_URL<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Upload Key: </span>$UPLOAD_KEY<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><strong>2. Upload File lên S3</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create test image</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Test image content&#34;</span> &gt; test-avatar.jpg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload using pre-signed URL</span>
+</span></span><span style="display:flex;"><span>curl -X PUT <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: image/jpeg&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --upload-file test-avatar.jpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;</span>$PRESIGNED_URL<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: 200 OK</span>
+</span></span></code></pre></div><p><strong>3. Đánh dấu Upload Complete</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Notify backend that upload is complete</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;{\&#34;key\&#34;:\&#34;</span>$UPLOAD_KEY<span style="color:#e6db74">\&#34;}&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/upload/complete
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Success message</span>
+</span></span></code></pre></div><p><strong>4. Truy cập qua CloudFront</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Access file via CloudFront CDN</span>
+</span></span><span style="display:flex;"><span>curl -I https://cdn.everyonecook.cloud/$UPLOAD_KEY
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># First request: X-Cache: Miss from cloudfront</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Second request: X-Cache: Hit from cloudfront</span>
+</span></span></code></pre></div><h4 id="bước-11-test-search-opensearch">Bước 11: Test Search (OpenSearch)</h4>
+<p><strong>Nếu OpenSearch được bật:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Search recipes with Vietnamese query</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;query&#34;: &#34;phở bò&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;filters&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;cuisine&#34;: &#34;Vietnamese&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;difficulty&#34;: &#34;medium&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;limit&#34;: 10
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/ai/search
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Array of matching recipes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Vietnamese analyzer handles: &#34;phở bò&#34; = &#34;pho bo&#34; = &#34;beef noodle soup&#34;</span>
+</span></span></code></pre></div><h4 id="bước-12-test-admin-features">Bước 12: Test Admin Features</h4>
+<p><strong>1. Liệt kê Users (Admin Only)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get all users (requires admin role)</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$ID_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  $API_ENDPOINT/admin/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: Array of users or 403 Forbidden if not admin</span>
+</span></span></code></pre></div><h4 id="bước-13-xác-minh-async-processing">Bước 13: Xác minh Async Processing</h4>
+<p><strong>1. Kiểm tra SQS Queue Processing</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Send message to SearchIndex queue</span>
+</span></span><span style="display:flex;"><span>QUEUE_URL<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws sqs list-queues <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --queue-name-prefix EveryoneCook-dev-SearchIndexQueue <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  | jq -r <span style="color:#e6db74">&#39;.QueueUrls[0]&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws sqs send-message <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --queue-url $QUEUE_URL <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --message-body <span style="color:#e6db74">&#34;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    \&#34;eventName\&#34;: \&#34;INSERT\&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    \&#34;tableName\&#34;: \&#34;recipes\&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    \&#34;keys\&#34;: {\&#34;PK\&#34;: \&#34;USER#testuser\&#34;, \&#34;SK\&#34;: \&#34;RECIPE#</span>$RECIPE_ID<span style="color:#e6db74">\&#34;},
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    \&#34;newImage\&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      \&#34;title\&#34;: \&#34;Pho Bo\&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      \&#34;ingredients\&#34;: [\&#34;beef\&#34;, \&#34;noodles\&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      \&#34;cuisine\&#34;: \&#34;Vietnamese\&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check worker logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-SearchSyncWorker --follow
+</span></span></code></pre></div><h4 id="testing-checklist-1">Testing Checklist</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Health check phản hồi</li>
+<li><input disabled="" type="checkbox"> User registration hoạt động</li>
+<li><input disabled="" type="checkbox"> Email verification hoạt động</li>
+<li><input disabled="" type="checkbox"> User login thành công</li>
+<li><input disabled="" type="checkbox"> Profile CRUD operations hoạt động</li>
+<li><input disabled="" type="checkbox"> Posts có thể được tạo</li>
+<li><input disabled="" type="checkbox"> Posts có thể được liked</li>
+<li><input disabled="" type="checkbox"> Comments có thể được thêm</li>
+<li><input disabled="" type="checkbox"> Recipes có thể được tạo</li>
+<li><input disabled="" type="checkbox"> AI recipe generation hoạt động</li>
+<li><input disabled="" type="checkbox"> Ingredient translation hoạt động</li>
+<li><input disabled="" type="checkbox"> File upload lên S3 hoạt động</li>
+<li><input disabled="" type="checkbox"> CloudFront phục vụ files</li>
+<li><input disabled="" type="checkbox"> Search hoạt động (nếu OpenSearch enabled)</li>
+<li><input disabled="" type="checkbox"> SQS queues xử lý messages</li>
+<li><input disabled="" type="checkbox"> Tất cả Lambda functions thực thi không lỗi</li>
+</ul>
+<h4 id="performance-benchmarks-1">Performance Benchmarks</h4>
+<p><strong>Thời gian phản hồi mong đợi:</strong></p>
+<ul>
+<li>Health check: &lt; 50ms</li>
+<li>User login: &lt; 200ms</li>
+<li>Get profile: &lt; 100ms</li>
+<li>Create post: &lt; 300ms</li>
+<li>Get posts feed: &lt; 500ms</li>
+<li>AI recipe generation: 5-10 seconds</li>
+<li>File upload (pre-signed URL): &lt; 100ms</li>
+<li>Search query: &lt; 200ms</li>
+</ul>
+<h4 id="các-bước-tiếp-theo-1">Các Bước Tiếp Theo</h4>
+<p>Sau khi tất cả tests pass, tiến hành <a href="../5.9-push-gitlab/">Push to GitLab</a> để version control code của bạn và thiết lập CI/CD.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.07-deploy-backend/" title="Triển khai Backend Services"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/5-workshop/5.09-push-gitlab/" title="Push lên GitLab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

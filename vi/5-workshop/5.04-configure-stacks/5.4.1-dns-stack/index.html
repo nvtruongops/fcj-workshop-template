@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../../images/favicon.png" type="image/png">
+
+    <title>5.4.1 DNS Stack :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../../vi/'>Báo cáo thực tập</a> > <a href='../../../../vi/5-workshop/'>Workshop</a> > <a href='../../../../vi/5-workshop/5.04-configure-stacks/'>Cấu hình các Infrastructure Stack</a> > 5.4.1 DNS Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tổng-quan">Tổng quan</a>
+      <ul>
+        <li><a href="#trách-nhiệm-chính">Trách nhiệm Chính</a></li>
+        <li><a href="#stack-này-không-bao-gồm">Stack này KHÔNG bao gồm</a></li>
+      </ul>
+    </li>
+    <li><a href="#kiến-trúc">Kiến trúc</a></li>
+    <li><a href="#cấu-hình-stack">Cấu hình Stack</a>
+      <ul>
+        <li><a href="#cấu-trúc-file">Cấu trúc File</a></li>
+        <li><a href="#code-implementation">Code Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-cấu-hình-chính">Chi tiết Cấu hình Chính</a>
+      <ul>
+        <li><a href="#1-logic-trích-xuất-domain">1. Logic Trích xuất Domain</a></li>
+        <li><a href="#2-quy-ước-đặt-tên-resource">2. Quy ước Đặt tên Resource</a></li>
+        <li><a href="#3-resource-tags">3. Resource Tags</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#các-bước-triển-khai">Các Bước Triển khai</a>
+      <ul>
+        <li><a href="#bước-1-review-cấu-hình">Bước 1: Review Cấu hình</a></li>
+        <li><a href="#bước-2-deploy-dns-stack">Bước 2: Deploy DNS Stack</a></li>
+        <li><a href="#bước-3-xác-minh-trong-aws-console">Bước 3: Xác minh trong AWS Console</a></li>
+        <li><a href="#bước-4-copy-nameservers">Bước 4: Copy Nameservers</a></li>
+      </ul>
+    </li>
+    <li><a href="#cấu-hình-hostinger">Cấu hình Hostinger</a>
+      <ul>
+        <li><a href="#bước-quan-trọng-sau-deployment">Bước Quan trọng Sau Deployment</a></li>
+        <li><a href="#cập-nhật-nameservers-tại-hostinger">Cập nhật Nameservers tại Hostinger</a></li>
+        <li><a href="#thời-gian-propagation">Thời gian Propagation</a></li>
+        <li><a href="#xác-minh-dns-delegation">Xác minh DNS Delegation</a></li>
+      </ul>
+    </li>
+    <li><a href="#phân-tích-chi-phí">Phân tích Chi phí</a>
+      <ul>
+        <li><a href="#chi-phí-hàng-tháng">Chi phí Hàng tháng</a></li>
+        <li><a href="#ghi-chú-tối-ưu-chi-phí">Ghi chú Tối ưu Chi phí</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#exports-được-sử-dụng-bởi-các-stacks-khác">Exports Được sử dụng bởi Các Stacks Khác</a></li>
+        <li><a href="#luồng-dependencies">Luồng Dependencies</a></li>
+      </ul>
+    </li>
+    <li><a href="#checklist-validation">Checklist Validation</a></li>
+    <li><a href="#bước-tiếp-theo">Bước tiếp theo</a></li>
+    <li><a href="#tài-liệu-tham-khảo">Tài liệu Tham khảo</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.1 DNS Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="dns-stack---route-53-hosted-zone">DNS Stack - Route 53 Hosted Zone</h1>
+<h2 id="tổng-quan">Tổng quan</h2>
+<p>DNS Stack là <strong>lớp nền tảng</strong> (Phase 1) của hạ tầng EveryoneCook. Nó quản lý Route 53 Hosted Zone cho domain <code>everyonecook.cloud</code>, cung cấp hạ tầng DNS mà tất cả các stacks khác phụ thuộc vào.</p>
+<p><strong>Thứ tự Triển khai</strong>: Stack này <strong>BẮT BUỘC</strong> phải được deploy đầu tiên trước bất kỳ stack nào khác.</p>
+<h3 id="trách-nhiệm-chính">Trách nhiệm Chính</h3>
+<ul>
+<li>Tạo và quản lý Route 53 Public Hosted Zone</li>
+<li>Export Hosted Zone ID và name cho cross-stack references</li>
+<li>Cung cấp nameservers cho domain delegation từ Hostinger</li>
+</ul>
+<h3 id="stack-này-không-bao-gồm">Stack này KHÔNG bao gồm</h3>
+<ul>
+<li>SES Email Identity (được quản lý bởi Auth Stack - Phase 3)</li>
+<li>DKIM/SPF/DMARC records (được quản lý bởi Auth Stack - Phase 3)</li>
+<li>ACM Certificates (được quản lý bởi Certificate Stack - Phase 1.5)</li>
+<li>Application DNS records (được quản lý bởi các stacks tương ứng)</li>
+</ul>
+<hr>
+<h2 id="kiến-trúc">Kiến trúc</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────┐
+│                    Hostinger Domain                      │
+│                  everyonecook.cloud                      │
+│                                                          │
+│  ┌────────────────────────────────────────────────┐    │
+│  │  Domain Registrar Settings                      │    │
+│  │  • Cập nhật Nameservers thành Route 53 NS      │    │
+│  └────────────────┬───────────────────────────────┘    │
+└───────────────────┼──────────────────────────────────────┘
+                    │ DNS Delegation
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│           AWS Route 53 Hosted Zone                       │
+│           everyonecook.cloud                             │
+│                                                          │
+│  Tài nguyên Được tạo:                                   │
+│  • Public Hosted Zone                                   │
+│  • 4 Nameserver (NS) Records                            │
+│  • SOA Record (tự động)                                 │
+│                                                          │
+│  Exports:                                                │
+│  • Hosted Zone ID → Sử dụng bởi Certificate Stack      │
+│  • Hosted Zone Name → Sử dụng bởi các stacks khác      │
+│  • Nameservers → Cấu hình tại Hostinger                │
+└─────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="cấu-hình-stack">Cấu hình Stack</h2>
+<h3 id="cấu-trúc-file">Cấu trúc File</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── dns-stack.ts          # DNS Stack implementation
+</code></pre><h3 id="code-implementation">Code Implementation</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/dns-stack.ts</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Construct</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;constructs&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BaseStack</span>, <span style="color:#a6e22e">BaseStackProps</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../base-stack&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DnsStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseStack</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">hostedZone</span>: <span style="color:#66d9ef">cdk.aws_route53.IHostedZone</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">BaseStackProps</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thêm stack-specific tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;StackType&#39;</span>, <span style="color:#e6db74">&#39;DNS&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Layer&#39;</span>, <span style="color:#e6db74">&#39;Foundation&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;CostCenter&#39;</span>, <span style="color:#e6db74">`DNS-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Tạo Route 53 Hosted Zone
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createHostedZone</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export stack outputs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exportOutputs</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createHostedZone</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53</span>.<span style="color:#a6e22e">IHostedZone</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Trích xuất root domain từ environment config
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rootDomain</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">frontend</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/^(dev\.|staging\.)/</span>, <span style="color:#e6db74">&#39;&#39;</span>); <span style="color:#75715e">// everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53</span>.<span style="color:#a6e22e">PublicHostedZone</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>, 
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;HostedZone&#39;</span>, 
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">zoneName</span>: <span style="color:#66d9ef">rootDomain</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">comment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`Hosted Zone cho Everyone Cook </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> environment`</span>,
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">hostedZone</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;DNS&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">hostedZone</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;ManagedBy&#39;</span>, <span style="color:#e6db74">&#39;CDK&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">hostedZone</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">exportOutputs</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export Hosted Zone ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZoneId&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.hostedZone.hostedZoneId</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;HostedZoneId&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Route 53 Hosted Zone ID&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export Hosted Zone Name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZoneName&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.hostedZone.zoneName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;HostedZoneName&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Domain name được quản lý bởi Route 53&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export Nameservers (cho cấu hình Hostinger)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;NameServers&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">cdk.Fn.join</span>(<span style="color:#e6db74">&#39;, &#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostedZone</span>.<span style="color:#a6e22e">hostedZoneNameServers</span> <span style="color:#f92672">||</span> []),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;⚠️ Cập nhật các nameservers này tại Hostinger&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="chi-tiết-cấu-hình-chính">Chi tiết Cấu hình Chính</h2>
+<h3 id="1-logic-trích-xuất-domain">1. Logic Trích xuất Domain</h3>
+<p>Stack tự động trích xuất root domain từ environment configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Environment config: dev.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Domain được trích xuất: everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rootDomain</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">frontend</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/^(dev\.|staging\.)/</span>, <span style="color:#e6db74">&#39;&#39;</span>);
+</span></span></code></pre></div><p><strong>Các Environments</strong>:</p>
+<ul>
+<li><strong>Dev</strong>: <code>dev.everyonecook.cloud</code> → Hosted Zone: <code>everyonecook.cloud</code></li>
+<li><strong>Staging</strong>: <code>staging.everyonecook.cloud</code> → Hosted Zone: <code>everyonecook.cloud</code></li>
+<li><strong>Prod</strong>: <code>everyonecook.cloud</code> → Hosted Zone: <code>everyonecook.cloud</code></li>
+</ul>
+<h3 id="2-quy-ước-đặt-tên-resource">2. Quy ước Đặt tên Resource</h3>
+<p>Tất cả resources tuân theo một mẫu đặt tên nhất quán:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Định dạng tên resource: everyonecook-{env}-{resource}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">resourceName</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Định dạng tên export: EveryoneCook-{Env}-{Export}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">exportName</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Tên stack: <code>EveryoneCook-dev-DNS</code></li>
+<li>Export: <code>EveryoneCook-dev-HostedZoneId</code></li>
+</ul>
+<h3 id="3-resource-tags">3. Resource Tags</h3>
+<p>Mỗi resource được tag để theo dõi chi phí và quản lý:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Stack</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EveryoneCook-dev-DNS&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">StackType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DNS&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Layer</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Foundation&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">CostCenter</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DNS-dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Component</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DNS&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ManagedBy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;CDK&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Project</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EveryoneCook&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>Sau khi deployment, stack export các giá trị sau:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tên Output</th>
+          <th>Giá trị</th>
+          <th>Sử dụng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>HostedZoneId</code></td>
+          <td><code>Z0123456789ABCDEFGHIJ</code></td>
+          <td>Sử dụng bởi Certificate Stack cho DNS validation</td>
+      </tr>
+      <tr>
+          <td><code>HostedZoneName</code></td>
+          <td><code>everyonecook.cloud</code></td>
+          <td>Sử dụng bởi các stacks khác để tạo DNS records</td>
+      </tr>
+      <tr>
+          <td><code>NameServers</code></td>
+          <td><code>ns-1.awsdns-01.com, ns-2.awsdns-02.org, ...</code></td>
+          <td>Cấu hình tại Hostinger cho DNS delegation</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="các-bước-triển-khai">Các Bước Triển khai</h2>
+<h3 id="bước-1-review-cấu-hình">Bước 1: Review Cấu hình</h3>
+<p>Di chuyển đến thư mục infrastructure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Xác minh environment configuration trong <code>config/environment.ts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;YOUR_AWS_ACCOUNT_ID&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ap-southeast-1&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domains</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">frontend</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">api</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;api-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... các configs khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="bước-2-deploy-dns-stack">Bước 2: Deploy DNS Stack</h3>
+<p>Deploy DNS stack lên AWS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Deploy chỉ DNS Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-DNS --context environment=dev
+</span></span></code></pre></div><p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 5.23s
+
+EveryoneCook-dev-DNS: deploying...
+EveryoneCook-dev-DNS: creating CloudFormation changeset...
+
+ ✅  EveryoneCook-dev-DNS
+
+✨  Deployment time: 45.67s
+
+Outputs:
+EveryoneCook-dev-DNS.HostedZoneId = Z0123456789ABCDEFGHIJ
+EveryoneCook-dev-DNS.HostedZoneName = everyonecook.cloud
+EveryoneCook-dev-DNS.NameServers = ns-123.awsdns-45.com, ns-678.awsdns-90.net, 
+                                    ns-1234.awsdns-56.org, ns-5678.awsdns-01.co.uk
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:123456789012:stack/EveryoneCook-dev-DNS/...
+</code></pre><h3 id="bước-3-xác-minh-trong-aws-console">Bước 3: Xác minh trong AWS Console</h3>
+<ol>
+<li>Di chuyển đến <strong>Route 53</strong> trong AWS Console</li>
+<li>Vào <strong>Hosted zones</strong></li>
+<li>Xác minh hosted zone <code>everyonecook.cloud</code> đã được tạo</li>
+</ol>
+<p><strong>Giao diện mong đợi</strong>:</p>
+<ul>
+<li><strong>Domain name</strong>: <code>everyonecook.cloud</code></li>
+<li><strong>Type</strong>: Public hosted zone</li>
+<li><strong>Records</strong>: 2 (NS và SOA records - tự động được tạo)</li>
+</ul>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/host_router53.jpg" alt="Route 53 Hosted Zone">
+<em>Route 53 Hosted Zone hiển thị chi tiết domain, NS records (4 nameservers), và SOA record</em></p>
+<h3 id="bước-4-copy-nameservers">Bước 4: Copy Nameservers</h3>
+<p>Từ CloudFormation Outputs hoặc Route 53 console, copy tất cả 4 nameserver records:</p>
+<pre tabindex="0"><code>ns-123.awsdns-45.com
+ns-678.awsdns-90.net
+ns-1234.awsdns-56.org
+ns-5678.awsdns-01.co.uk
+</code></pre><p><img src="../../../../images/5-Workshop/5.2-setup-environment/DNS_record.png" alt="Route 53 Nameservers">
+<em>Vị trí nameserver records trong Route 53 console</em></p>
+<hr>
+<h2 id="cấu-hình-hostinger">Cấu hình Hostinger</h2>
+<h3 id="bước-quan-trọng-sau-deployment">Bước Quan trọng Sau Deployment</h3>
+<p>⚠️ <strong>QUAN TRỌNG</strong>: Sau khi deploy DNS Stack, bạn <strong>BẮT BUỘC</strong> phải cập nhật nameservers tại Hostinger để ủy quyền quản lý DNS cho Route 53.</p>
+<h3 id="cập-nhật-nameservers-tại-hostinger">Cập nhật Nameservers tại Hostinger</h3>
+<ol>
+<li>
+<p><strong>Đăng nhập vào Hostinger hPanel</strong></p>
+<ul>
+<li>Truy cập <a href="https://hpanel.hostinger.com">https://hpanel.hostinger.com</a></li>
+<li>Đăng nhập với thông tin đăng nhập Hostinger của bạn</li>
+</ul>
+</li>
+<li>
+<p><strong>Truy cập Quản lý Domain</strong></p>
+<ul>
+<li>Vào mục <strong>Domains</strong></li>
+<li>Chọn domain <code>everyonecook.cloud</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Thay đổi Nameservers</strong></p>
+<ul>
+<li>Click vào <strong>DNS/Nameservers</strong></li>
+<li>Chọn <strong>Change nameservers</strong></li>
+<li>Chọn <strong>Custom nameservers</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Nhập Route 53 Nameservers</strong></p>
+<ul>
+<li>Nameserver 1: <code>ns-123.awsdns-45.com</code></li>
+<li>Nameserver 2: <code>ns-678.awsdns-90.net</code></li>
+<li>Nameserver 3: <code>ns-1234.awsdns-56.org</code></li>
+<li>Nameserver 4: <code>ns-5678.awsdns-01.co.uk</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Lưu Cấu hình</strong></p>
+<ul>
+<li>Click nút <strong>Change nameservers</strong></li>
+<li>Đợi xác nhận</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.2-setup-environment/hostinger.png" alt="Hostinger Nameserver Configuration">
+<em>Hostinger hPanel hiển thị cấu hình custom nameservers với Route 53 NS records</em></p>
+<h3 id="thời-gian-propagation">Thời gian Propagation</h3>
+<ul>
+<li><strong>Propagation ban đầu</strong>: 15-30 phút</li>
+<li><strong>Full global propagation</strong>: Lên đến 48 giờ (thường trong vòng 2-4 giờ)</li>
+</ul>
+<h3 id="xác-minh-dns-delegation">Xác minh DNS Delegation</h3>
+<p>Sau khi cập nhật nameservers, xác minh delegation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra nameservers cho domain</span>
+</span></span><span style="display:flex;"><span>nslookup -type=NS everyonecook.cloud
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc sử dụng dig (nếu có)</span>
+</span></span><span style="display:flex;"><span>dig NS everyonecook.cloud
+</span></span></code></pre></div><p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>everyonecook.cloud      nameserver = ns-123.awsdns-45.com
+everyonecook.cloud      nameserver = ns-678.awsdns-90.net
+everyonecook.cloud      nameserver = ns-1234.awsdns-56.org
+everyonecook.cloud      nameserver = ns-5678.awsdns-01.co.uk
+</code></pre><hr>
+<h2 id="phân-tích-chi-phí">Phân tích Chi phí</h2>
+<h3 id="chi-phí-hàng-tháng">Chi phí Hàng tháng</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Resource</th>
+          <th>Chi phí</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Route 53 Hosted Zone</strong></td>
+          <td>$0.50/tháng</td>
+          <td>Chi phí cố định cho mỗi hosted zone</td>
+      </tr>
+      <tr>
+          <td><strong>DNS Queries</strong></td>
+          <td>$0.40 per triệu queries</td>
+          <td>1 tỷ queries đầu tiên/tháng</td>
+      </tr>
+      <tr>
+          <td><strong>Tổng (Ước tính)</strong></td>
+          <td><strong>~$0.50-1.00/tháng</strong></td>
+          <td>Traffic rất thấp trong dev environment</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ghi-chú-tối-ưu-chi-phí">Ghi chú Tối ưu Chi phí</h3>
+<ul>
+<li>✅ Một hosted zone duy nhất cho tất cả environments (dev, staging, prod)</li>
+<li>✅ Sử dụng subdomain prefixes để phân biệt environments</li>
+<li>✅ Không có chi phí bổ sung cho NS, SOA, hoặc các DNS records khác</li>
+<li>✅ Giá pay-per-query rất hiệu quả về chi phí cho low-medium traffic</li>
+</ul>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="exports-được-sử-dụng-bởi-các-stacks-khác">Exports Được sử dụng bởi Các Stacks Khác</h3>
+<p>DNS Stack export các giá trị được import bởi:</p>
+<ol>
+<li>
+<p><strong>Certificate Stack</strong> (Phase 1.5)</p>
+<ul>
+<li>Imports: <code>HostedZoneId</code></li>
+<li>Mục đích: Tạo DNS validation records cho ACM certificates</li>
+</ul>
+</li>
+<li>
+<p><strong>Core Stack</strong> (Phase 2)</p>
+<ul>
+<li>Imports: <code>HostedZoneId</code>, <code>HostedZoneName</code></li>
+<li>Mục đích: Tạo CloudFront A/AAAA alias records</li>
+</ul>
+</li>
+<li>
+<p><strong>Backend Stack</strong> (Phase 4)</p>
+<ul>
+<li>Imports: <code>HostedZoneId</code></li>
+<li>Mục đích: Tạo API Gateway custom domain DNS records</li>
+</ul>
+</li>
+</ol>
+<h3 id="luồng-dependencies">Luồng Dependencies</h3>
+<pre tabindex="0"><code>DNS Stack (Route 53)
+    │
+    ├─► Certificate Stack (ACM certificates)
+    │
+    ├─► Core Stack (CloudFront DNS records)
+    │
+    └─► Backend Stack (API Gateway DNS records)
+</code></pre><hr>
+<h2 id="checklist-validation">Checklist Validation</h2>
+<p>Trước khi tiếp tục deploy Certificate Stack:</p>
+<ul>
+<li><input disabled="" type="checkbox"> DNS Stack đã deploy thành công lên AWS</li>
+<li><input disabled="" type="checkbox"> Route 53 Hosted Zone hiển thị trong AWS Console</li>
+<li><input disabled="" type="checkbox"> 4 nameserver records đã lấy từ stack outputs</li>
+<li><input disabled="" type="checkbox"> Nameservers đã cập nhật tại Hostinger hPanel</li>
+<li><input disabled="" type="checkbox"> DNS delegation đã xác minh với <code>nslookup</code> hoặc <code>dig</code></li>
+<li><input disabled="" type="checkbox"> Stack exports hiển thị trong CloudFormation console</li>
+<li><input disabled="" type="checkbox"> Tags đã được áp dụng đúng cho tất cả resources</li>
+</ul>
+<hr>
+<h2 id="bước-tiếp-theo">Bước tiếp theo</h2>
+<p>Sau khi deploy và cấu hình DNS Stack thành công:</p>
+<p>➡️ <strong><a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">5.4.2 Certificate Stack</a></strong> - Tạo ACM certificates với DNS validation</p>
+<p>Certificate Stack sẽ:</p>
+<ul>
+<li>Tạo ACM certificate cho CloudFront (<code>cdn.everyonecook.cloud</code>)</li>
+<li>Tạo wildcard ACM certificate cho API Gateway (<code>*.everyonecook.cloud</code>)</li>
+<li>Tự động tạo DNS validation records trong Route 53</li>
+<li>Phải được deploy tới region <strong>us-east-1</strong> (yêu cầu CloudFront)</li>
+</ul>
+<hr>
+<h2 id="tài-liệu-tham-khảo">Tài liệu Tham khảo</h2>
+<ul>
+<li><strong>Source Code</strong>: <code>infrastructure/lib/stacks/dns-stack.ts</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>Environment Config</strong>: <code>infrastructure/config/environment.ts</code></li>
+<li><strong>AWS Documentation</strong>: <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html">Route 53 Hosted Zones</a></li>
+<li><strong>Hostinger Guide</strong>: <a href="https://support.hostinger.com/en/articles/1583227-how-to-change-nameservers-at-hostinger">How to Change Nameservers</a></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../../vi/5-workshop/5.04-configure-stacks/" title="Cấu hình các Infrastructure Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/" title="5.4.2 Certificate Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../../js/learn.js?1765346855"></script>
+    <script src="../../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

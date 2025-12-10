@@ -1,0 +1,3413 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../../images/favicon.png" type="image/png">
+
+    <title>5.4.5 Backend Stack :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../../vi/'>Báo cáo thực tập</a> > <a href='../../../../vi/5-workshop/'>Workshop</a> > <a href='../../../../vi/5-workshop/5.04-configure-stacks/'>Cấu hình các Infrastructure Stack</a> > 5.4.5 Backend Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tổng-quan">Tổng Quan</a>
+      <ul>
+        <li><a href="#trách-nhiệm-chính">Trách Nhiệm Chính</a></li>
+        <li><a href="#những-gì-stack-này-bao-gồm">Những Gì Stack Này Bao Gồm</a></li>
+      </ul>
+    </li>
+    <li><a href="#kiến-trúc">Kiến Trúc</a></li>
+    <li><a href="#cấu-hình-stack">Cấu Hình Stack</a>
+      <ul>
+        <li><a href="#cấu-trúc-file">Cấu Trúc File</a></li>
+        <li><a href="#triển-khai-code">Triển Khai Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</a>
+      <ul>
+        <li><a href="#1-shared-dependencies-layer">1. Shared Dependencies Layer</a></li>
+        <li><a href="#2-api-gateway-custom-domain">2. API Gateway Custom Domain</a></li>
+        <li><a href="#3-request-validation">3. Request Validation</a></li>
+        <li><a href="#4-quy-ước-đặt-tên-resource">4. Quy Ước Đặt Tên Resource</a></li>
+        <li><a href="#5-resource-tags">5. Resource Tags</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#các-bước-triển-khai">Các Bước Triển Khai</a>
+      <ul>
+        <li><a href="#bước-1-xem-lại-cấu-hình">Bước 1: Xem Lại Cấu Hình</a></li>
+        <li><a href="#bước-2-chuẩn-bị-lambda-deployment-packages">Bước 2: Chuẩn Bị Lambda Deployment Packages</a></li>
+        <li><a href="#bước-3-synthesize-cloudformation-template">Bước 3: Synthesize CloudFormation Template</a></li>
+        <li><a href="#bước-4-triển-khai-backend-stack">Bước 4: Triển Khai Backend Stack</a></li>
+        <li><a href="#bước-5-xác-minh-triển-khai-trên-aws-console">Bước 5: Xác Minh Triển Khai trên AWS Console</a></li>
+        <li><a href="#bước-6-kiểm-tra-api-endpoint">Bước 6: Kiểm Tra API Endpoint</a></li>
+      </ul>
+    </li>
+    <li><a href="#sự-khác-biệt-giữa-các-environment">Sự Khác Biệt Giữa Các Environment</a>
+      <ul>
+        <li><a href="#domain-names">Domain Names</a></li>
+        <li><a href="#resource-naming">Resource Naming</a></li>
+        <li><a href="#sự-khác-biệt-cấu-hình">Sự Khác Biệt Cấu Hình</a></li>
+        <li><a href="#lệnh-triển-khai">Lệnh Triển Khai</a></li>
+        <li><a href="#cân-nhắc-đặc-thù-cho-từng-environment">Cân Nhắc Đặc Thù Cho Từng Environment</a></li>
+      </ul>
+    </li>
+    <li><a href="#phân-tích-chi-phí">Phân Tích Chi Phí</a>
+      <ul>
+        <li><a href="#phân-tích-chi-phí-hàng-tháng-dev-environment">Phân Tích Chi Phí Hàng Tháng (Dev Environment)</a></li>
+        <li><a href="#ước-tính-chi-phí-production">Ước Tính Chi Phí Production</a></li>
+      </ul>
+    </li>
+    <li><a href="#các-bước-tiếp-theo">Các Bước Tiếp Theo</a></li>
+    <li><a href="#tài-liệu-tham-khảo">Tài Liệu Tham Khảo</a>
+      <ul>
+        <li><a href="#infrastructure-code">Infrastructure Code</a></li>
+        <li><a href="#lambda-function-source-code-6-business-functions">Lambda Function Source Code (6 Business Functions)</a></li>
+        <li><a href="#worker-lambda-source-code-2-active-workers">Worker Lambda Source Code (2 Active Workers)</a></li>
+        <li><a href="#shared-dependencies">Shared Dependencies</a></li>
+        <li><a href="#other-services-không-trong-backend-stack">Other Services (Không trong Backend Stack)</a></li>
+      </ul>
+    </li>
+    <li><a href="#tóm-tắt">Tóm Tắt</a>
+      <ul>
+        <li><a href="#development-environment-checklist">Development Environment Checklist</a></li>
+        <li><a href="#cho-stagingproduction-deployment">Cho Staging/Production Deployment</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.5 Backend Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="backend-stack---application-layer">Backend Stack - Application Layer</h1>
+<h2 id="tổng-quan">Tổng Quan</h2>
+<p>Backend Stack là <strong>tầng ứng dụng Phase 4</strong> của hạ tầng EveryoneCook. Nó tổng hợp API Gateway, Lambda functions, SQS queues và bảo mật WAF thành một kiến trúc backend thống nhất.</p>
+<p><strong>Thứ Tự Triển Khai</strong>: Stack này <strong>BẮT BUỘC</strong> phải được triển khai sau Core Stack và Auth Stack.</p>
+<p>⚠️ <strong>Lưu Ý Environment</strong>: Hướng dẫn này tập trung vào triển khai môi trường <strong>Development (dev)</strong>. Để triển khai staging/production, xem phần <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/#s%e1%bb%b1-kh%c3%a1c-bi%e1%bb%87t-gi%e1%bb%afa-c%c3%a1c-environment">Sự Khác Biệt Giữa Các Environment</a>.</p>
+<h3 id="trách-nhiệm-chính">Trách Nhiệm Chính</h3>
+<ul>
+<li>Tạo API Gateway REST API với custom domain</li>
+<li>Triển khai <strong>6 Lambda functions</strong> (API Router + 5 business modules)</li>
+<li>Cấu hình <strong>2 SQS queues hoạt động</strong> cho async processing (AI, Image queues với DLQs)</li>
+<li>Triển khai <strong>2 worker Lambda functions</strong> cho event processing (AI Worker, Image Worker)</li>
+<li>Thiết lập WAF Web ACL để bảo vệ API Gateway</li>
+<li>Cấu hình CloudWatch monitoring và alarms</li>
+</ul>
+<p><strong>Những Gì Thực Sự Đang Chạy</strong>:</p>
+<ul>
+<li>8 Lambda Functions (6 business + 2 workers)</li>
+<li>4 SQS Queues được triển khai (AI + Image queues với DLQs của chúng)</li>
+<li>1 WAF Web ACL với 5 quy tắc bảo mật</li>
+<li>CloudWatch Logs và Alarms</li>
+</ul>
+<h3 id="những-gì-stack-này-bao-gồm">Những Gì Stack Này Bao Gồm</h3>
+<p><strong>API Gateway</strong> (Dev Environment):</p>
+<ul>
+<li>Custom domain: <code>api-dev.everyonecook.cloud</code></li>
+<li>ACM certificate cho HTTPS (Regional - ap-southeast-1)</li>
+<li>Cognito authorizer cho JWT validation</li>
+<li>Caching: <strong>Tắt</strong> (chỉ bật trong production)</li>
+<li>Compression: <strong>Bật</strong> (gzip/deflate cho responses &gt;1KB)</li>
+<li>Rate limiting: 10K req/sec, burst 5K</li>
+<li>Request validation: Body, parameters, headers</li>
+<li>Data trace logging: <strong>Bật</strong> (tắt trong production)</li>
+</ul>
+<p><strong>Lambda Functions (6 functions - Dev Environment)</strong>:</p>
+<ol>
+<li><strong>API Router</strong> (<code>everyonecook-dev-api-router</code>): Định tuyến requests đến target Lambda functions</li>
+<li><strong>Auth &amp; User</strong> (<code>everyonecook-dev-auth-user</code>): Xác thực, user profiles, privacy settings</li>
+<li><strong>Social</strong> (<code>everyonecook-dev-social</code>): Posts, comments, reactions, friends, notifications</li>
+<li><strong>Recipe &amp; AI</strong> (<code>everyonecook-dev-recipe-ai</code>): Recipe CRUD, AI generation, search, trending</li>
+<li><strong>Admin</strong> (<code>everyonecook-dev-admin</code>): Content moderation, user management, appeals</li>
+<li><strong>Upload</strong> (<code>everyonecook-dev-upload</code>): S3 presigned URLs, file uploads</li>
+</ol>
+<p><strong>Source Code</strong>: Tất cả functions nằm trong thư mục <code>services/</code></p>
+<p><strong>SQS Queues (2 queues hoạt động + 2 DLQs)</strong>:</p>
+<ol>
+<li><strong>AI Queue</strong> (<code>everyonecook-dev-ai-queue</code>): Bedrock AI recipe generation (2-minute timeout) → AI Worker</li>
+<li><strong>Image Queue</strong> (<code>everyonecook-dev-image-queue</code>): S3 image optimization (60-second timeout) → Image Worker</li>
+</ol>
+<p><strong>Lưu ý</strong>: Analytics và Notification queues được định nghĩa trong code nhưng KHÔNG được triển khai. Notifications được xử lý trực tiếp trong Social Module.</p>
+<p><strong>Worker Lambda Functions (2 workers được triển khai hoạt động)</strong>:</p>
+<ol>
+<li><strong>AI Worker</strong> (<code>ai-module/workers/</code>): Xử lý các công việc AI generation từ AI Queue sử dụng Bedrock Claude 3 Haiku</li>
+<li><strong>Image Worker</strong> (<code>image-worker/</code>): Xử lý tối ưu hóa hình ảnh từ Image Queue (resize, compress, watermark)</li>
+</ol>
+<p><strong>WAF Web ACL</strong>:</p>
+<ul>
+<li>Rate limiting: 2000 req/5min mỗi IP</li>
+<li>SQL injection protection (AWS Managed)</li>
+<li>XSS protection (AWS Managed)</li>
+<li>Known bad inputs (AWS Managed)</li>
+<li>Request size limit: 10MB tối đa</li>
+</ul>
+<hr>
+<h2 id="kiến-trúc">Kiến Trúc</h2>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────────────────────────┐
+│              Backend Stack (Phase 4 - Dev Environment)                │
+│                                                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  WAF Web ACL (REGIONAL) - Bảo vệ API Gateway                    │ │
+│  │  ├─ Rate Limiting: 2000 req/5min mỗi IP                        │ │
+│  │  ├─ SQL Injection Protection (AWS Managed)                     │ │
+│  │  ├─ XSS Protection (AWS Managed)                               │ │
+│  │  ├─ Known Bad Inputs (AWS Managed)                             │ │
+│  │  └─ Request Size Limit: 10MB tối đa                            │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                          │                                            │
+│                          ▼                                            │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  API Gateway REST API                                            │ │
+│  │  ├─ Custom Domain: api.everyonecook.cloud                      │ │
+│  │  ├─ ACM Certificate (Regional - ap-southeast-1)                │ │
+│  │  ├─ Cognito Authorizer (JWT validation)                        │ │
+│  │  ├─ Caching: 0.5GB, 5-min TTL (chỉ prod)                      │ │
+│  │  ├─ Compression: gzip/deflate (&gt;1KB)                           │ │
+│  │  ├─ Rate Limiting: 10K req/sec, burst 5K                       │ │
+│  │  └─ Request Validation: Body, params, headers                  │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                          │                                            │
+│                          ▼                                            │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  Lambda Function: API Router (512MB, 30s timeout)               │ │
+│  │  ├─ JWT Validation &amp; User Context Extraction                   │ │
+│  │  ├─ Request Routing đến Target Lambda Functions                │ │
+│  │  └─ Error Handling &amp; Response Formatting                       │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                          │                                            │
+│         ┌────────────────┼────────────────┬──────────────────┐       │
+│         ▼                ▼                ▼                  ▼       │
+│  ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐    │
+│  │ Auth &amp;  │      │ Social  │      │ Recipe  │      │ Admin   │    │
+│  │ User    │      │ Module  │      │ &amp; AI    │      │ Module  │    │
+│  │ Lambda  │      │ Lambda  │      │ Lambda  │      │ Lambda  │    │
+│  │ (512MB) │      │ (512MB) │      │ (512MB) │      │ (512MB) │    │
+│  └─────────┘      └─────────┘      └─────────┘      └─────────┘    │
+│                          │                │                          │
+│                          ▼                ▼                          │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  SQS Queues + Worker Lambdas                                    │ │
+│  │                                                                  │ │
+│  │  1️⃣ AI Queue → AI Worker (1024MB, 60s)                          │ │
+│  │     ├─ Bedrock Claude 3 Haiku (us-east-1)                      │ │
+│  │     ├─ Tạo recipe từ ingredients                               │ │
+│  │     └─ Visibility timeout: 2 phút                              │ │
+│  │                                                                  │ │
+│  │  2️⃣ Image Queue → Image Worker (512MB, 60s)                     │ │
+│  │     ├─ Tối ưu hóa hình ảnh S3                                  │ │
+│  │     ├─ Resize, compress, watermark                             │ │
+│  │     └─ Visibility timeout: 60 giây                             │ │
+│  │                                                                  │ │
+│  │  📌 Chỉ 2 queues được sử dụng tích cực (AI &amp; Image)           │ │
+│  │  📌 Analytics &amp; Notification queues tồn tại nhưng không có workers │ │
+│  │  📌 Tất cả queues có DLQ (14-day retention)                    │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  Dependencies từ Các Stack Khác:                                     │
+│  ├─ DynamoDB Table (Core Stack)                                     │
+│  ├─ S3 Content Bucket (Core Stack)                                  │
+│  ├─ CloudFront Distribution (Core Stack)                            │
+│  ├─ Cognito User Pool (Auth Stack)                                  │
+│  └─ Cognito User Pool Client (Auth Stack)                           │
+└──────────────────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="cấu-hình-stack">Cấu Hình Stack</h2>
+<h3 id="cấu-trúc-file">Cấu Trúc File</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── backend-stack.ts          # Backend Stack implementation (2965 dòng)
+    ├─ API Gateway configuration
+    ├─ Lambda function definitions (6 functions)
+    ├─ SQS queue configuration (4 queues + 4 DLQs)
+    ├─ Worker Lambda definitions (2 workers hoạt động)
+    └─ WAF Web ACL configuration
+
+services/                     # Lambda function source code
+├── api-router/               # API Router Lambda
+├── auth-module/              # Auth &amp; User Lambda
+├── social-module/            # Social Lambda
+├── recipe-module/            # Recipe &amp; AI Lambda
+├── admin-module/             # Admin Lambda
+├── upload-module/            # Upload Lambda
+├── ai-module/                # AI Worker Lambda
+│   └── workers/
+├── image-worker/             # Image Worker Lambda
+├── websocket-module/         # WebSocket (stack riêng, không trong Backend)
+└── shared/                   # Shared utilities
+</code></pre><h3 id="triển-khai-code">Triển Khai Code</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/backend-stack.ts</code></p>
+<h4 id="1-stack-interface--constructor">1. Stack Interface &amp; Constructor</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">BackendStackProps</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseStackProps</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dynamoTable</span>: <span style="color:#66d9ef">cdk.aws_dynamodb.ITable</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">contentBucket</span>: <span style="color:#66d9ef">cdk.aws_s3.IBucket</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">distribution</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.IDistribution</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">userPool</span>: <span style="color:#66d9ef">cdk.aws_cognito.IUserPool</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">userPoolClient</span>: <span style="color:#66d9ef">cdk.aws_cognito.IUserPoolClient</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BackendStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseStack</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Lambda Layer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">sharedLayer</span>: <span style="color:#66d9ef">SharedDependenciesLayer</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">api</span>: <span style="color:#66d9ef">cdk.aws_apigateway.RestApi</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">cognitoAuthorizer</span>: <span style="color:#66d9ef">cdk.aws_apigateway.CognitoUserPoolsAuthorizer</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">apiDomainName</span>: <span style="color:#66d9ef">cdk.aws_apigateway.DomainName</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Request Validators
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">bodyValidator</span>: <span style="color:#66d9ef">cdk.aws_apigateway.RequestValidator</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">paramsValidator</span>: <span style="color:#66d9ef">cdk.aws_apigateway.RequestValidator</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">fullValidator</span>: <span style="color:#66d9ef">cdk.aws_apigateway.RequestValidator</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Lambda Functions (6 business functions)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">apiRouterFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;    <span style="color:#75715e">// services/api-router
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">authUserFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;     <span style="color:#75715e">// services/auth-module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">socialFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;       <span style="color:#75715e">// services/social-module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">recipeAIFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;     <span style="color:#75715e">// services/recipe-module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">adminFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;        <span style="color:#75715e">// services/admin-module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">uploadFunction</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;       <span style="color:#75715e">// services/upload-module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// SQS Queues (4 queues + 4 DLQs)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">aiQueue</span>: <span style="color:#66d9ef">cdk.aws_sqs.Queue</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">imageProcessingQueue</span>: <span style="color:#66d9ef">cdk.aws_sqs.Queue</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">analyticsQueue</span>: <span style="color:#66d9ef">cdk.aws_sqs.Queue</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">notificationQueue</span>: <span style="color:#66d9ef">cdk.aws_sqs.Queue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Worker Lambdas (2 workers hoạt động)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">aiWorker</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;             <span style="color:#75715e">// services/ai-module/workers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">imageWorker?</span>: <span style="color:#66d9ef">cdk.aws_lambda.Function</span>;         <span style="color:#75715e">// services/image-worker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Lưu ý: analyticsWorker &amp; notificationWorker tồn tại trong code nhưng KHÔNG triển khai
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// public readonly analyticsWorker?: cdk.aws_lambda.Function;  // Đã comment out
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// public readonly notificationWorker?: cdk.aws_lambda.Function; // Không được tạo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// WAF WebACL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">apiGatewayWebAcl?</span>: <span style="color:#66d9ef">cdk.aws_wafv2.CfnWebACL</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">BackendStackProps</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thêm các tag đặc thù cho stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;StackType&#39;</span>, <span style="color:#e6db74">&#39;Backend&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Layer&#39;</span>, <span style="color:#e6db74">&#39;Application&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;CostCenter&#39;</span>, <span style="color:#e6db74">`Backend-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Tạo resources (xem implementation bên dưới)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 1. Shared Dependencies Layer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 2. SQS Queues và DLQs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 3. API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 4. Lambda Functions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 5. Worker Lambdas
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 6. WAF Web ACL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 7. Export outputs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="2-cấu-hình-api-gateway">2. Cấu Hình API Gateway</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createAPIGateway</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">RestApi</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cachingEnabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">apiGateway</span>.<span style="color:#a6e22e">caching</span>.<span style="color:#a6e22e">enabled</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">compressionEnabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">apiGateway</span>.<span style="color:#a6e22e">compression</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">api</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">RestApi</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;EveryoneCookAPI&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">restApiName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`Everyone Cook REST API - </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Compression cho responses &gt;1KB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">minCompressionSize</span>: <span style="color:#66d9ef">compressionEnabled</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Size</span>.<span style="color:#a6e22e">kibibytes</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> <span style="color:#66d9ef">undefined</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deployOptions</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stageName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;api&#39;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Cấu hình caching (chỉ production)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">cachingEnabled</span>: <span style="color:#66d9ef">cachingEnabled</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cacheClusterEnabled</span>: <span style="color:#66d9ef">cachingEnabled</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cacheClusterSize</span>: <span style="color:#66d9ef">cachingEnabled</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config.apiGateway.caching.cacheSize</span> : <span style="color:#66d9ef">undefined</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cacheTtl</span>: <span style="color:#66d9ef">cachingEnabled</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Duration</span>.<span style="color:#a6e22e">seconds</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">apiGateway</span>.<span style="color:#a6e22e">caching</span>.<span style="color:#a6e22e">ttl</span>) <span style="color:#f92672">:</span> <span style="color:#66d9ef">undefined</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cacheDataEncrypted</span>: <span style="color:#66d9ef">cachingEnabled</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Throttling settings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">throttlingRateLimit</span>: <span style="color:#66d9ef">this.config.apiGateway.throttling.rateLimit</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">throttlingBurstLimit</span>: <span style="color:#66d9ef">this.config.apiGateway.throttling.burstLimit</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// X-Ray Tracing - Tắt (CloudWatch Logs đủ dùng)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">tracingEnabled</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Cấu hình logging
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">loggingLevel</span>: <span style="color:#66d9ef">cdk.aws_apigateway.MethodLoggingLevel.INFO</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">dataTraceEnabled</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;prod&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">metricsEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Access logging
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">accessLogDestination</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">LogGroupLogDestination</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_logs</span>.<span style="color:#a6e22e">LogGroup</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;APIGatewayAccessLogs&#39;</span>, {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">logGroupName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`/aws/apigateway/everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">retention</span>: <span style="color:#66d9ef">this.config.cloudwatch.logRetentionDays</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>      ),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cấu hình CORS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">defaultCorsPreflightOptions</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowOrigins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`https://</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">frontend</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`https://www.</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">frontend</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>        ...(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;prod&#39;</span> <span style="color:#f92672">?</span> [<span style="color:#e6db74">&#39;http://localhost:3000&#39;</span>] <span style="color:#f92672">:</span> []),
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowMethods</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;PUT&#39;</span>, <span style="color:#e6db74">&#39;DELETE&#39;</span>, <span style="color:#e6db74">&#39;PATCH&#39;</span>, <span style="color:#e6db74">&#39;OPTIONS&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowHeaders</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Content-Type&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Authorization&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;X-Amz-Date&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;X-Api-Key&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;X-Amz-Security-Token&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;X-Correlation-Id&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Cache-Control&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Encoding&#39;</span>,
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowCredentials</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">maxAge</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cấu hình endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">endpointConfiguration</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">types</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">EndpointType</span>.<span style="color:#a6e22e">REGIONAL</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Binary media types
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">binaryMediaTypes</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;image/*&#39;</span>, <span style="color:#e6db74">&#39;application/octet-stream&#39;</span>],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Thêm Gateway Responses với CORS headers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">corsHeaders</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;gatewayresponse.header.Access-Control-Allow-Origin&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#39;*&#39;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;gatewayresponse.header.Access-Control-Allow-Headers&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#39;Content-Type,Authorization,...&#39;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;gatewayresponse.header.Access-Control-Allow-Methods&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#39;GET,POST,PUT,DELETE,PATCH,OPTIONS&#39;&#34;</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">addGatewayResponse</span>(<span style="color:#e6db74">&#39;Unauthorized&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">ResponseType</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statusCode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;401&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">responseHeaders</span>: <span style="color:#66d9ef">corsHeaders</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">api</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="3-cấu-hình-sqs-queue">3. Cấu Hình SQS Queue</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createAIQueue</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_sqs</span>.<span style="color:#a6e22e">Queue</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">queue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_sqs</span>.<span style="color:#a6e22e">Queue</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;AIQueue&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">queueName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-ai-queue`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">visibilityTimeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">120</span>), <span style="color:#75715e">// 2 phút cho AI processing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">retentionPeriod</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">4</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deadLetterQueue</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">queue</span>: <span style="color:#66d9ef">this.aiDLQ</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">maxReceiveCount</span>: <span style="color:#66d9ef">3</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">encryption</span>: <span style="color:#66d9ef">cdk.aws_sqs.QueueEncryption.KMS_MANAGED</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// CloudWatch alarm cho queue depth
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">alarms</span>.<span style="color:#a6e22e">enabled</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;AIQueueDepthAlarm&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-AI-Queue-Depth`</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">queue.metricApproximateNumberOfMessagesVisible</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">100</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">queue</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="4-cấu-hình-lambda-function">4. Cấu Hình Lambda Function</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createAuthUserLambda</span>(<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">BackendStackProps</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logGroup</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_logs</span>.<span style="color:#a6e22e">LogGroup</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;AuthUserLogGroup&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logGroupName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`/aws/lambda/everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-auth-user`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">retention</span>: <span style="color:#66d9ef">this.config.cloudwatch.logRetentionDays</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authUserFunction</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;AuthUserFunction&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-auth-user`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>: <span style="color:#66d9ef">cdk.aws_lambda.Runtime.NODEJS_20_X</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;services/auth-module/index.handler&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">code</span>: <span style="color:#66d9ef">this.createLambdaCode</span>(<span style="color:#e6db74">&#39;services/auth-module/deployment&#39;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">layers</span><span style="color:#f92672">:</span> [<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sharedLayer</span>.<span style="color:#a6e22e">layer</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memorySize</span>: <span style="color:#66d9ef">512</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tracing</span>: <span style="color:#66d9ef">cdk.aws_lambda.Tracing.DISABLED</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">DYNAMODB_TABLE</span>: <span style="color:#66d9ef">props.dynamoTable.tableName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">USER_POOL_ID</span>: <span style="color:#66d9ef">props.userPool.userPoolId</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">USER_POOL_CLIENT_ID</span>: <span style="color:#66d9ef">props.userPoolClient.userPoolClientId</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">CONTENT_BUCKET</span>: <span style="color:#66d9ef">props.contentBucket.bucketName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">LOG_LEVEL</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;INFO&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DEBUG&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logGroup</span>: <span style="color:#66d9ef">logGroup</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Cấp permissions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">dynamoTable</span>.<span style="color:#a6e22e">grantReadWriteData</span>(<span style="color:#a6e22e">authUserFunction</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">contentBucket</span>.<span style="color:#a6e22e">grantReadWrite</span>(<span style="color:#a6e22e">authUserFunction</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">userPool</span>.<span style="color:#a6e22e">grant</span>(<span style="color:#a6e22e">authUserFunction</span>, <span style="color:#e6db74">&#39;cognito-idp:AdminGetUser&#39;</span>, <span style="color:#e6db74">&#39;cognito-idp:ListUsers&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">authUserFunction</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="5-cấu-hình-waf-web-acl">5. Cấu Hình WAF Web ACL</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createApiGatewayWebAcl</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_wafv2</span>.<span style="color:#a6e22e">CfnWebACL</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">webAcl</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_wafv2</span>.<span style="color:#a6e22e">CfnWebACL</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayWebACL&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-WAF-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;REGIONAL&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">defaultAction</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">allow</span><span style="color:#f92672">:</span> {} },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">visibilityConfig</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">sampledRequestsEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cloudWatchMetricsEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-WAF-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Rule 1: Rate Limiting
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;RateLimitRule&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">priority</span>: <span style="color:#66d9ef">0</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statement</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">rateBasedStatement</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">limit</span>: <span style="color:#66d9ef">2000</span>, <span style="color:#75715e">// 2000 requests mỗi 5 phút
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">aggregateKeyType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;IP&#39;</span>,
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">block</span><span style="color:#f92672">:</span> {} },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">visibilityConfig</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">sampledRequestsEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cloudWatchMetricsEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;RateLimitRule&#39;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Rule 2-5: AWS Managed Rules (SQL injection, XSS, v.v.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// ... xem full implementation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">webAcl</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</h2>
+<h3 id="1-shared-dependencies-layer">1. Shared Dependencies Layer</h3>
+<p>Backend Stack sử dụng Lambda Layer để chia sẻ common dependencies giữa tất cả Lambda functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Tạo Shared Dependencies Layer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sharedLayer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SharedDependenciesLayer</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;SharedDependenciesLayer&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lợi ích:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Giảm 90% kích thước deployment (8MB → 200KB mỗi Lambda)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Triển khai nhanh hơn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Phiên bản dependency nhất quán
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Chi phí lưu trữ thấp hơn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dependencies bao gồm:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - AWS SDK v3 clients (DynamoDB, Lambda, Cognito, S3, SQS, Bedrock)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - uuid, jsonwebtoken, jwks-rsa
+</span></span></span></code></pre></div><h3 id="2-api-gateway-custom-domain">2. API Gateway Custom Domain</h3>
+<p>Stack tạo custom domain cho API Gateway với ACM certificate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Cấu hình custom domain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">domainName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">api</span>; <span style="color:#75715e">// api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tạo ACM certificate trong ap-southeast-1 (Regional endpoint)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificate&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>),
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tạo API Gateway DomainName
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">apiDomainName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">DomainName</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiDomain&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domainName</span>: <span style="color:#66d9ef">this.config.domains.api</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">certificate</span>: <span style="color:#66d9ef">certificate</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">endpointType</span>: <span style="color:#66d9ef">cdk.aws_apigateway.EndpointType.REGIONAL</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">securityPolicy</span>: <span style="color:#66d9ef">cdk.aws_apigateway.SecurityPolicy.TLS_1_2</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tạo Route 53 A record (Alias)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53</span>.<span style="color:#a6e22e">ARecord</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiAliasRecord&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zone</span>: <span style="color:#66d9ef">hostedZone</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">recordName</span>: <span style="color:#66d9ef">this.config.domains.api</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">target</span>: <span style="color:#66d9ef">cdk.aws_route53.RecordTarget.fromAlias</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53_targets</span>.<span style="color:#a6e22e">ApiGatewayDomain</span>(<span style="color:#a6e22e">apiDomainName</span>)
+</span></span><span style="display:flex;"><span>  ),
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Environments</strong>:</p>
+<ul>
+<li><strong>Dev</strong>: <code>api-dev.everyonecook.cloud</code></li>
+<li><strong>Staging</strong>: <code>api-staging.everyonecook.cloud</code></li>
+<li><strong>Prod</strong>: <code>api.everyonecook.cloud</code></li>
+</ul>
+<h3 id="3-request-validation">3. Request Validation</h3>
+<p>Stack triển khai ba cấp độ request validation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Body Validator - Chỉ validate request body
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">bodyValidator</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">RequestValidator</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;BodyValidator&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">restApi</span>: <span style="color:#66d9ef">api</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestBody</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestParameters</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Params Validator - Chỉ validate query strings và headers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">paramsValidator</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">RequestValidator</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ParamsValidator&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">restApi</span>: <span style="color:#66d9ef">api</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestBody</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestParameters</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Full Validator - Validate cả body và parameters
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">fullValidator</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_apigateway</span>.<span style="color:#a6e22e">RequestValidator</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;FullValidator&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">restApi</span>: <span style="color:#66d9ef">api</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestBody</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateRequestParameters</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lợi ích:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Từ chối sớm các request không hợp lệ (trước khi invoke Lambda)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Tối ưu chi phí: Không tính phí Lambda cho invalid requests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Bảo mật: Ngăn chặn malformed requests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Hiệu năng: Phản hồi lỗi nhanh hơn
+</span></span></span></code></pre></div><h3 id="4-quy-ước-đặt-tên-resource">4. Quy Ước Đặt Tên Resource</h3>
+<p>Tất cả resources tuân theo pattern đặt tên nhất quán:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Lambda function format: everyonecook-{env}-{function}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-auth-user`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// SQS queue format: everyonecook-{env}-{queue}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">queueName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`everyonecook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-ai-queue`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// API Gateway format: EveryoneCook-API-{env}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">restApiName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// WAF format: EveryoneCook-API-WAF-{env}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-WAF-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span></code></pre></div><p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Stack name: <code>EveryoneCook-dev-Backend</code></li>
+<li>API: <code>EveryoneCook-API-dev</code></li>
+<li>Lambda: <code>everyonecook-dev-auth-user</code></li>
+<li>Queue: <code>everyonecook-dev-ai-queue</code></li>
+</ul>
+<h3 id="5-resource-tags">5. Resource Tags</h3>
+<p>Mỗi resource được tag để theo dõi chi phí và quản lý:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Stack</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EveryoneCook-dev-Backend&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">StackType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Backend&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Layer</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Application&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">CostCenter</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Backend-dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Component</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;API&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;EventProcessing&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;Security&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Module</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AuthUser&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;Social&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;RecipeAI&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;Admin&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;Upload&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Purpose</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;REST-API&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;RequestRouting&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;AI-Processing&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Project</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EveryoneCook&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>Sau khi triển khai, stack export các giá trị sau:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Sử dụng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ApiUrl</code></td>
+          <td><code>https://api.everyonecook.cloud</code></td>
+          <td>Frontend API endpoint</td>
+      </tr>
+      <tr>
+          <td><code>ApiId</code></td>
+          <td><code>abc123xyz</code></td>
+          <td>API Gateway REST API ID</td>
+      </tr>
+      <tr>
+          <td><code>ApiStage</code></td>
+          <td><code>api</code></td>
+          <td>API Gateway stage name</td>
+      </tr>
+      <tr>
+          <td><code>ApiDomainName</code></td>
+          <td><code>api.everyonecook.cloud</code></td>
+          <td>Custom domain name</td>
+      </tr>
+      <tr>
+          <td><code>AIQueueUrl</code></td>
+          <td><code>https://sqs.ap-southeast-1...</code></td>
+          <td>AI Queue URL để gửi messages</td>
+      </tr>
+      <tr>
+          <td><code>ImageQueueUrl</code></td>
+          <td><code>https://sqs.ap-southeast-1...</code></td>
+          <td>Image Queue URL</td>
+      </tr>
+      <tr>
+          <td><code>WafWebAclArn</code></td>
+          <td><code>arn:aws:wafv2:...</code></td>
+          <td>WAF Web ACL ARN</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="các-bước-triển-khai">Các Bước Triển Khai</h2>
+<h3 id="bước-1-xem-lại-cấu-hình">Bước 1: Xem Lại Cấu Hình</h3>
+<p>Di chuyển đến thư mục infrastructure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Xác minh cấu hình môi trường <strong>Development</strong> trong <code>config/environment.ts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;YOUR_AWS_ACCOUNT_ID&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ap-southeast-1&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domains</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">frontend</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">api</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;api-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiGateway</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">caching</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">enabled</span>: <span style="color:#66d9ef">false</span>, <span style="color:#75715e">//  Tắt trong dev (bật trong prod)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">cacheSize</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;0.5&#39;</span>, <span style="color:#75715e">// 0.5GB cache (chỉ prod)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">ttl</span>: <span style="color:#66d9ef">300</span>, <span style="color:#75715e">// 5 phút (chỉ prod)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">compression</span>: <span style="color:#66d9ef">true</span>, <span style="color:#75715e">//  Bật trong tất cả environments
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">throttling</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rateLimit</span>: <span style="color:#66d9ef">10000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">burstLimit</span>: <span style="color:#66d9ef">5000</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cloudwatch</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logRetentionDays</span>: <span style="color:#66d9ef">7</span>, <span style="color:#75715e">// Dev: 7 ngày, Staging: 30 ngày, Prod: 90 ngày
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">alarms</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">enabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... các configs khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p><strong>Cho Staging/Production</strong>: Cập nhật tham số <code>--context environment=</code> trong các lệnh triển khai.</p>
+<h3 id="bước-2-chuẩn-bị-lambda-deployment-packages">Bước 2: Chuẩn Bị Lambda Deployment Packages</h3>
+<p>Trước khi triển khai, chuẩn bị Lambda deployment packages cho <strong>8 Lambda functions + 1 Layer</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># 1. Chuẩn bị Shared Layer TRƯỚC TIÊN (bắt buộc cho tất cả Lambdas)</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\layers\shared-dependencies
+</span></span><span style="display:flex;"><span>.\prepare-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Chuẩn bị Business Lambda Functions (6 functions)</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\api-router
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1  <span style="color:#75715e"># hoặc prepare-deployment.ps1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\auth-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\social-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\recipe-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\admin-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\upload-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Chuẩn bị Worker Lambda Functions (2 workers)</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\ai-module
+</span></span><span style="display:flex;"><span>.\prepare-deployment.ps1  <span style="color:#75715e"># AI Worker sử dụng prepare-deployment.ps1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\image-worker
+</span></span><span style="display:flex;"><span>.\prepare-deployment-layer.ps1
+</span></span></code></pre></div><p><strong>Lưu Ý Quan Trọng</strong>:</p>
+<ul>
+<li>Mỗi service phải có thư mục <code>deployment/</code> sau khi chạy prepare script</li>
+<li>Shared Layer phải được build TRƯỚC TIÊN vì tất cả Lambdas phụ thuộc vào nó</li>
+<li>Kiểm tra <code>prepare-deployment.ps1</code> hoặc <code>prepare-deployment-layer.ps1</code> trong mỗi service folder</li>
+<li>Tổng kích thước deployment: ~8MB → ~200KB mỗi Lambda (nhờ Shared Layer)</li>
+</ul>
+<h3 id="bước-3-synthesize-cloudformation-template">Bước 3: Synthesize CloudFormation Template</h3>
+<p>Tạo CloudFormation template để xem lại các thay đổi:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Quay về thư mục infrastructure</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Synthesize template</span>
+</span></span><span style="display:flex;"><span>npx cdk synth EveryoneCook-dev-Backend --context environment=dev
+</span></span></code></pre></div><p>Kết quả mong đợi hiển thị CloudFormation template với tất cả resources.</p>
+<h3 id="bước-4-triển-khai-backend-stack">Bước 4: Triển Khai Backend Stack</h3>
+<p>Triển khai Backend stack lên AWS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Chỉ triển khai Backend Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Backend --context environment=dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc triển khai với approval</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Backend --context environment=dev --require-approval never
+</span></span></code></pre></div><p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 5.23s
+
+EveryoneCook-dev-Backend: deploying...
+[0%] start: Publishing abc123:current_account-current_region
+[33%] success: Published abc123:current_account-current_region
+[33%] start: Publishing def456:current_account-current_region
+[66%] success: Published def456:current_account-current_region
+[66%] start: Publishing EveryoneCook-dev-Backend
+[100%] success: Published EveryoneCook-dev-Backend
+
+EveryoneCook-dev-Backend: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Backend
+
+✨  Deployment time: 420.15s
+
+Outputs:
+EveryoneCook-dev-Backend.ApiUrl = https://api-dev.everyonecook.cloud
+EveryoneCook-dev-Backend.ApiId = abc123xyz
+EveryoneCook-dev-Backend.ApiStage = api
+EveryoneCook-dev-Backend.ApiDomainName = api-dev.everyonecook.cloud
+EveryoneCook-dev-Backend.AIQueueUrl = https://sqs.ap-southeast-1.amazonaws.com/123456789/everyonecook-dev-ai-queue
+EveryoneCook-dev-Backend.ImageQueueUrl = https://sqs.ap-southeast-1.amazonaws.com/123456789/everyonecook-dev-image-queue
+EveryoneCook-dev-Backend.WafWebAclArn = arn:aws:wafv2:ap-southeast-1:123456789:regional/webacl/EveryoneCook-API-WAF-dev/...
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:123456789:stack/EveryoneCook-dev-Backend/...
+
+✨  Total time: 425.38s
+</code></pre><p><strong>Thời gian triển khai</strong>: ~7 phút (bao gồm certificate validation)</p>
+<h3 id="bước-5-xác-minh-triển-khai-trên-aws-console">Bước 5: Xác Minh Triển Khai trên AWS Console</h3>
+<h4 id="51-xác-minh-api-gateway">5.1: Xác Minh API Gateway</h4>
+<ol>
+<li>Điều hướng đến <strong>API Gateway Console</strong></li>
+<li>Chọn region: <strong>ap-southeast-1</strong></li>
+<li>Click vào <strong>EveryoneCook-API-dev</strong></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-01-api-gateway-dashboard.png" alt="API Gateway Dashboard">
+<em>Dashboard API Gateway hiển thị tên API, stage, custom domain, trạng thái caching và throttling settings</em></p>
+<ol start="4">
+<li>Click vào <strong>Stages</strong> → <strong>api</strong></li>
+<li>Xác minh stage settings:
+<ul>
+<li>Cache Settings: Enabled (prod) / Disabled (dev)</li>
+<li>Cache capacity: 0.5 GB (chỉ prod)</li>
+<li>Default TTL: 300 seconds (chỉ prod)</li>
+<li>Throttling: 10000 requests/sec</li>
+<li>Burst: 5000 requests/sec</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-02-api-gateway-stage-settings.png" alt="API Gateway Stage Settings">
+<em>Stage settings hiển thị cấu hình caching và throttling</em></p>
+<ol start="6">
+<li>Click vào <strong>Custom domain names</strong></li>
+<li>Xác minh custom domain:
+<ul>
+<li>Domain name: <code>api-dev.everyonecook.cloud</code></li>
+<li>Certificate: ACM certificate (Regional)</li>
+<li>Base path mapping: <code>/</code> → <code>api</code> stage</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-03-api-gateway-custom-domain.png" alt="API Gateway Custom Domain">
+<em>Cấu hình custom domain với ACM certificate</em></p>
+<h4 id="52-xác-minh-lambda-functions">5.2: Xác Minh Lambda Functions</h4>
+<ol>
+<li>Điều hướng đến <strong>Lambda Console</strong></li>
+<li>Chọn region: <strong>ap-southeast-1</strong></li>
+<li>Xác minh tất cả 8 Lambda functions tồn tại:</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Tên Function</th>
+          <th>Runtime</th>
+          <th>Memory</th>
+          <th>Timeout</th>
+          <th>Layer</th>
+          <th>Source Code</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>everyonecook-dev-api-router</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/api-router</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-auth-user</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/auth-module</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-social</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/social-module</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-recipe-ai</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/recipe-module</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-admin</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/admin-module</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-upload</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>30s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/upload-module</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-ai-worker</code></td>
+          <td>Node 20.x</td>
+          <td>1024MB</td>
+          <td>60s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/ai-module/workers</code></td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-image-worker</code></td>
+          <td>Node 20.x</td>
+          <td>512MB</td>
+          <td>60s</td>
+          <td>SharedDependenciesLayer</td>
+          <td><code>services/image-worker</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-triggers.png" alt="Lambda Functions List">
+<em>Danh sách Lambda functions hiển thị tất cả 8 functions với runtime và configuration</em></p>
+<ol start="4">
+<li>Click vào <strong>everyonecook-dev-api-router</strong></li>
+<li>Xác minh configuration:
+<ul>
+<li>Environment variables: <code>DYNAMODB_TABLE</code>, <code>USER_POOL_ID</code>, v.v.</li>
+<li>Layers: <code>SharedDependenciesLayer</code></li>
+<li>Triggers: API Gateway (Proxy integration)</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-05-lambda-api-router-config.png" alt="Lambda API Router Configuration">
+<em>API Router function hiển thị environment variables, layers, và API Gateway trigger</em></p>
+<ol start="6">
+<li>Click vào tab <strong>Monitoring</strong></li>
+<li>Xác minh CloudWatch Logs integration:
+<ul>
+<li>Log group: <code>/aws/lambda/everyonecook-dev-api-router</code></li>
+<li>Retention: Dựa trên environment config</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-06-lambda-monitoring.png" alt="Lambda Monitoring Dashboard">
+<em>Dashboard monitoring Lambda hiển thị CloudWatch Logs và metrics</em></p>
+<h4 id="53-xác-minh-sqs-queues">5.3: Xác Minh SQS Queues</h4>
+<ol>
+<li>Điều hướng đến <strong>SQS Console</strong></li>
+<li>Chọn region: <strong>ap-southeast-1</strong></li>
+<li>Xác minh 4 queues hoạt động tồn tại (2 main + 2 DLQs):</li>
+</ol>
+<p><strong>Lưu ý</strong>: Chỉ AI và Image queues được sử dụng tích cực. Analytics và Notification queues tồn tại trong code nhưng không được triển khai.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tên Queue</th>
+          <th>Type</th>
+          <th>Visibility Timeout</th>
+          <th>Retention</th>
+          <th>DLQ</th>
+          <th>Trạng thái Worker</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>everyonecook-dev-ai-queue</code></td>
+          <td>Main</td>
+          <td>2 phút</td>
+          <td>4 ngày</td>
+          <td>everyonecook-dev-ai-dlq</td>
+          <td>Hoạt động</td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-ai-dlq</code></td>
+          <td>DLQ</td>
+          <td>5 phút</td>
+          <td>14 ngày</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-image-queue</code></td>
+          <td>Main</td>
+          <td>60 giây</td>
+          <td>4 ngày</td>
+          <td>everyonecook-dev-image-dlq</td>
+          <td>Hoạt động</td>
+      </tr>
+      <tr>
+          <td><code>everyonecook-dev-image-dlq</code></td>
+          <td>DLQ</td>
+          <td>5 phút</td>
+          <td>14 ngày</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+  </tbody>
+</table>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-07-sqs-queues-list.png" alt="SQS Queues List">
+<em>Danh sách SQS queues hiển thị 4 queues hoạt động: ai-queue, ai-dlq, image-queue, image-dlq</em></p>
+<ol start="4">
+<li>Click vào <strong>everyonecook-dev-ai-queue</strong></li>
+<li>Xác minh queue configuration:
+<ul>
+<li>Visibility timeout: 2 phút</li>
+<li>Message retention: 4 ngày</li>
+<li>Dead-letter queue: <code>everyonecook-dev-ai-dlq</code></li>
+<li>Maximum receives: 3</li>
+<li>Encryption: KMS managed</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-08-sqs-ai-queue-config.png" alt="SQS AI Queue Configuration">
+<em>Cấu hình AI Queue hiển thị visibility timeout, retention, DLQ, và encryption settings</em></p>
+<ol start="6">
+<li>Click vào tab <strong>Lambda triggers</strong></li>
+<li>Xác minh Lambda trigger:
+<ul>
+<li>Function: <code>everyonecook-dev-ai-worker</code></li>
+<li>Batch size: 1</li>
+<li>Batch window: 0 seconds</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-09-sqs-ai-queue-lambda-trigger.png" alt="SQS AI Queue Lambda Trigger">
+<em>AI Queue Lambda trigger hiển thị ai-worker function với batch configuration</em></p>
+<h4 id="54-xác-minh-waf-web-acl">5.4: Xác Minh WAF Web ACL</h4>
+<ol>
+<li>Điều hướng đến <strong>WAF &amp; Shield Console</strong></li>
+<li>Chọn region: <strong>ap-southeast-1</strong> (Regional)</li>
+<li>Click vào <strong>Web ACLs</strong></li>
+<li>Click vào <strong>EveryoneCook-API-WAF-dev</strong></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-10-waf-web-acl-dashboard.png" alt="WAF Web ACL Dashboard">
+<em>Dashboard WAF Web ACL để bảo vệ EveryoneCook API</em></p>
+<ol start="5">
+<li>Click vào tab <strong>Rules</strong></li>
+<li>Xác minh tất cả 5 rules tồn tại:</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Priority</th>
+          <th>Tên Rule</th>
+          <th>Type</th>
+          <th>Action</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>RateLimitRule</td>
+          <td>Rate-based</td>
+          <td>Block</td>
+          <td>Enabled</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>AWSManagedRulesSQLi</td>
+          <td>Managed</td>
+          <td>Block</td>
+          <td>Enabled</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>AWSManagedRulesKnownBadInputs</td>
+          <td>Managed</td>
+          <td>Block</td>
+          <td>Enabled</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>AWSManagedRulesCoreRuleSet</td>
+          <td>Managed</td>
+          <td>Block</td>
+          <td>Enabled</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>RequestSizeLimit</td>
+          <td>Size constraint</td>
+          <td>Block</td>
+          <td>Enabled</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="55-xác-minh-cloudwatch-alarms">5.5: Xác Minh CloudWatch Alarms</h4>
+<ol>
+<li>Điều hướng đến <strong>CloudWatch Console</strong></li>
+<li>Chọn region: <strong>ap-southeast-1</strong></li>
+<li>Filter theo: <code>EveryoneCook-dev-Backend</code></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-13-cloudwatch-alarms.png" alt="CloudWatch Alarms List">
+<em>CloudWatch alarms cho Backend Stack: Queue depth, Lambda errors/duration, WAF blocks</em></p>
+<h4 id="56-xác-minh-route-53-dns-record">5.6: Xác Minh Route 53 DNS Record</h4>
+<ol>
+<li>Điều hướng đến <strong>Route 53 Console</strong></li>
+<li>Click vào <strong>Hosted zones</strong></li>
+<li>Click vào <strong>everyonecook.cloud</strong></li>
+<li>Xác minh A record tồn tại:
+<ul>
+<li>Name: <code>api-dev.everyonecook.cloud</code></li>
+<li>Type: A (Alias)</li>
+<li>Target: API Gateway domain name</li>
+<li>Routing policy: Simple</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/5.4.5-14-route53-api-record.png" alt="Route 53 API Record">
+<em>Route 53 A record (Alias) trỏ đến API Gateway custom domain</em></p>
+<h3 id="bước-6-kiểm-tra-api-endpoint">Bước 6: Kiểm Tra API Endpoint</h3>
+<p>Kiểm tra custom domain endpoint:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra API Gateway health endpoint (nếu tồn tại)</span>
+</span></span><span style="display:flex;"><span>curl https<span style="color:#960050;background-color:#1e0010">:</span>//api-dev.everyonecook.cloud/health
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc kiểm tra với browser</span>
+</span></span><span style="display:flex;"><span>start https<span style="color:#960050;background-color:#1e0010">:</span>//api-dev.everyonecook.cloud
+</span></span></code></pre></div><p>Phản hồi mong đợi (nếu health endpoint tồn tại):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;healthy&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;environment&#34;</span>: <span style="color:#e6db74">&#34;dev&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#e6db74">&#34;2024-01-15T10:30:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="sự-khác-biệt-giữa-các-environment">Sự Khác Biệt Giữa Các Environment</h2>
+<p>Hướng dẫn này sử dụng môi trường <strong>Development (dev)</strong> làm ví dụ. Dưới đây là các khác biệt chính giữa các môi trường:</p>
+<h3 id="domain-names">Domain Names</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Environment</th>
+          <th>API Domain</th>
+          <th>Frontend Domain</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Dev</strong></td>
+          <td><code>api-dev.everyonecook.cloud</code></td>
+          <td><code>dev.everyonecook.cloud</code></td>
+      </tr>
+      <tr>
+          <td><strong>Staging</strong></td>
+          <td><code>api-staging.everyonecook.cloud</code></td>
+          <td><code>staging.everyonecook.cloud</code></td>
+      </tr>
+      <tr>
+          <td><strong>Prod</strong></td>
+          <td><code>api.everyonecook.cloud</code></td>
+          <td><code>everyonecook.cloud</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="resource-naming">Resource Naming</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Loại Resource</th>
+          <th>Dev</th>
+          <th>Staging</th>
+          <th>Prod</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stack Name</td>
+          <td><code>EveryoneCook-dev-Backend</code></td>
+          <td><code>EveryoneCook-staging-Backend</code></td>
+          <td><code>EveryoneCook-prod-Backend</code></td>
+      </tr>
+      <tr>
+          <td>API Gateway</td>
+          <td><code>EveryoneCook-API-dev</code></td>
+          <td><code>EveryoneCook-API-staging</code></td>
+          <td><code>EveryoneCook-API-prod</code></td>
+      </tr>
+      <tr>
+          <td>Lambda</td>
+          <td><code>everyonecook-dev-auth-user</code></td>
+          <td><code>everyonecook-staging-auth-user</code></td>
+          <td><code>everyonecook-prod-auth-user</code></td>
+      </tr>
+      <tr>
+          <td>SQS Queue</td>
+          <td><code>everyonecook-dev-ai-queue</code></td>
+          <td><code>everyonecook-staging-ai-queue</code></td>
+          <td><code>everyonecook-prod-ai-queue</code></td>
+      </tr>
+      <tr>
+          <td>WAF</td>
+          <td><code>EveryoneCook-API-WAF-dev</code></td>
+          <td><code>EveryoneCook-API-WAF-staging</code></td>
+          <td><code>EveryoneCook-API-WAF-prod</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="sự-khác-biệt-cấu-hình">Sự Khác Biệt Cấu Hình</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Setting</th>
+          <th>Dev</th>
+          <th>Staging</th>
+          <th>Production</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>API Caching</strong></td>
+          <td>Tắt</td>
+          <td>Tắt</td>
+          <td>Bật (0.5GB)</td>
+      </tr>
+      <tr>
+          <td><strong>Data Trace Logging</strong></td>
+          <td>Bật</td>
+          <td>Bật</td>
+          <td>Tắt</td>
+      </tr>
+      <tr>
+          <td><strong>Log Retention</strong></td>
+          <td>7 ngày</td>
+          <td>30 ngày</td>
+          <td>90 ngày</td>
+      </tr>
+      <tr>
+          <td><strong>CloudWatch Removal</strong></td>
+          <td>DESTROY</td>
+          <td>DESTROY</td>
+          <td>RETAIN</td>
+      </tr>
+      <tr>
+          <td><strong>WAF Rate Limit</strong></td>
+          <td>2000 req/5min</td>
+          <td>2000 req/5min</td>
+          <td>5000 req/5min</td>
+      </tr>
+      <tr>
+          <td><strong>Lambda Log Level</strong></td>
+          <td>DEBUG</td>
+          <td>INFO</td>
+          <td>INFO</td>
+      </tr>
+      <tr>
+          <td><strong>CORS Localhost</strong></td>
+          <td>Cho phép</td>
+          <td>Không cho phép</td>
+          <td>Không cho phép</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="lệnh-triển-khai">Lệnh Triển Khai</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Development</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Backend --context environment=dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Staging</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-staging-Backend --context environment=staging
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Production (yêu cầu approval)</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-prod-Backend --context environment=prod --require-approval broadening
+</span></span></code></pre></div><h3 id="cân-nhắc-đặc-thù-cho-từng-environment">Cân Nhắc Đặc Thù Cho Từng Environment</h3>
+<h4 id="development">Development</h4>
+<ul>
+<li>CORS cho phép <code>http://localhost:3000</code> để kiểm tra frontend local</li>
+<li>Data trace logging bật để debug</li>
+<li>Log retention thấp hơn (7 ngày) để giảm chi phí</li>
+<li>Resources bị xóa khi xóa stack (RemovalPolicy.DESTROY)</li>
+</ul>
+<h4 id="staging">Staging</h4>
+<ul>
+<li>Cấu hình giống production để kiểm tra pre-release</li>
+<li>Domain riêng để tránh ảnh hưởng production</li>
+<li>Các quy tắc bảo mật giống production</li>
+<li>Resources bị xóa khi xóa stack</li>
+</ul>
+<h4 id="production">Production</h4>
+<ul>
+<li>API Gateway caching bật (0.5GB, 5-min TTL)</li>
+<li>Data trace logging tắt (tối ưu chi phí)</li>
+<li>Log retention 90 ngày để tuân thủ</li>
+<li>Resources được giữ lại khi xóa stack (RemovalPolicy.RETAIN)</li>
+<li>WAF rate limits nghiêm ngặt hơn</li>
+<li>Không có localhost CORS</li>
+</ul>
+<hr>
+<h2 id="phân-tích-chi-phí">Phân Tích Chi Phí</h2>
+<h3 id="phân-tích-chi-phí-hàng-tháng-dev-environment">Phân Tích Chi Phí Hàng Tháng (Dev Environment)</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Dịch vụ</th>
+          <th>Cấu hình</th>
+          <th>Chi phí hàng tháng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>API Gateway</td>
+          <td>1M requests, caching tắt</td>
+          <td>~$3.50</td>
+      </tr>
+      <tr>
+          <td>Lambda (6 functions)</td>
+          <td>512MB, 1M invocations, 200ms avg</td>
+          <td>~$8.40</td>
+      </tr>
+      <tr>
+          <td>Lambda (2 workers)</td>
+          <td>512-1024MB, 10K invocations</td>
+          <td>~$0.42</td>
+      </tr>
+      <tr>
+          <td>SQS (2 queues)</td>
+          <td>10K messages/tháng</td>
+          <td>~$0.03</td>
+      </tr>
+      <tr>
+          <td>WAF Web ACL</td>
+          <td>1 ACL + 5 rules + 1M requests</td>
+          <td>~$10.60</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Logs</td>
+          <td>5GB ingestion, 30-day retention</td>
+          <td>~$2.50</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>10 alarms</td>
+          <td>~$1.00</td>
+      </tr>
+      <tr>
+          <td><strong>Tổng</strong></td>
+          <td><strong>Backend Stack</strong></td>
+          <td><strong>~$26.45/tháng</strong></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ước-tính-chi-phí-production">Ước Tính Chi Phí Production</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Dịch vụ</th>
+          <th>Cấu hình</th>
+          <th>Chi phí hàng tháng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>API Gateway</td>
+          <td>10M requests, caching bật (0.5GB)</td>
+          <td>~$50.00</td>
+      </tr>
+      <tr>
+          <td>Lambda (6 functions)</td>
+          <td>512MB, 10M invocations, 200ms avg</td>
+          <td>~$84.00</td>
+      </tr>
+      <tr>
+          <td>Lambda (2 workers)</td>
+          <td>512-1024MB, 100K invocations</td>
+          <td>~$4.20</td>
+      </tr>
+      <tr>
+          <td>SQS (2 queues)</td>
+          <td>100K messages/tháng</td>
+          <td>~$0.25</td>
+      </tr>
+      <tr>
+          <td>WAF Web ACL</td>
+          <td>1 ACL + 5 rules + 10M requests</td>
+          <td>~$16.00</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Logs</td>
+          <td>20GB ingestion, 90-day retention</td>
+          <td>~$10.00</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>15 alarms</td>
+          <td>~$1.50</td>
+      </tr>
+      <tr>
+          <td><strong>Tổng</strong></td>
+          <td><strong>Backend Stack</strong></td>
+          <td><strong>~$165.95/tháng</strong></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="các-bước-tiếp-theo">Các Bước Tiếp Theo</h2>
+<p>Sau khi triển khai Backend Stack:</p>
+<ol>
+<li><strong>Triển khai Frontend Stack</strong> (Phase 5) - Ứng dụng Next.js trên CloudFront</li>
+<li><strong>Triển khai Observability Stack</strong> (Phase 6) - CloudWatch dashboards và alarms</li>
+<li><strong>Kiểm tra API Integration</strong> - Xác minh tất cả endpoints hoạt động chính xác</li>
+<li><strong>Load Testing</strong> - Kiểm tra hiệu năng và khả năng mở rộng</li>
+<li><strong>Security Audit</strong> - Xem lại WAF rules và access controls</li>
+</ol>
+<hr>
+<h2 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h2>
+<h3 id="infrastructure-code">Infrastructure Code</h3>
+<ul>
+<li><strong>Backend Stack</strong>: <code>infrastructure/lib/stacks/backend-stack.ts</code> (2965 dòng)</li>
+<li><strong>Shared Layer Construct</strong>: <code>infrastructure/lib/constructs/shared-layer.ts</code></li>
+</ul>
+<h3 id="lambda-function-source-code-6-business-functions">Lambda Function Source Code (6 Business Functions)</h3>
+<ul>
+<li><strong>API Router</strong>: <code>services/api-router/</code> - Request routing &amp; JWT validation</li>
+<li><strong>Auth User Module</strong>: <code>services/auth-module/</code> - Authentication &amp; user profiles</li>
+<li><strong>Social Module</strong>: <code>services/social-module/</code> - Posts, comments, friends, notifications</li>
+<li><strong>Recipe AI Module</strong>: <code>services/recipe-module/</code> - Recipe CRUD, AI generation, search</li>
+<li><strong>Admin Module</strong>: <code>services/admin-module/</code> - Content moderation, user management</li>
+<li><strong>Upload Module</strong>: <code>services/upload-module/</code> - S3 presigned URLs, file uploads</li>
+</ul>
+<h3 id="worker-lambda-source-code-2-active-workers">Worker Lambda Source Code (2 Active Workers)</h3>
+<ul>
+<li><strong>AI Worker</strong>: <code>services/ai-module/workers/</code> - Bedrock Claude 3 Haiku integration</li>
+<li><strong>Image Worker</strong>: <code>services/image-worker/</code> - Image optimization (resize, compress)</li>
+</ul>
+<h3 id="shared-dependencies">Shared Dependencies</h3>
+<ul>
+<li><strong>Shared Layer</strong>: <code>layers/shared-dependencies/</code> - AWS SDK v3, uuid, jsonwebtoken, jwks-rsa</li>
+</ul>
+<h3 id="other-services-không-trong-backend-stack">Other Services (Không trong Backend Stack)</h3>
+<ul>
+<li><strong>WebSocket Module</strong>: <code>services/websocket-module/</code> - Real-time communication (stack riêng)</li>
+<li><strong>Shared Utilities</strong>: <code>services/shared/</code> - Common utilities across services</li>
+</ul>
+<hr>
+<h2 id="tóm-tắt">Tóm Tắt</h2>
+<p>Backend Stack là <strong>stack lớn nhất và phức tạp nhất</strong> trong hạ tầng EveryoneCook. Nó tổng hợp:</p>
+<ul>
+<li>API Gateway với custom domain (caching chỉ trong prod)</li>
+<li>6 Lambda functions cho business logic</li>
+<li>2 SQS queues hoạt động cho async processing (tổng 4 với DLQs)</li>
+<li>2 worker Lambda functions (AI Worker, Image Worker)</li>
+<li>WAF Web ACL cho bảo mật (5 quy tắc bảo vệ)</li>
+<li>CloudWatch monitoring và alarms</li>
+</ul>
+<p><strong>Thực Sự Được Triển Khai</strong>: 8 Lambda functions, 4 SQS queues (2 hoạt động với workers), 1 WAF Web ACL, CloudWatch alarms</p>
+<h3 id="development-environment-checklist">Development Environment Checklist</h3>
+<ul>
+<li>Chuẩn bị tất cả Lambda deployment packages (8 functions + 1 layer)</li>
+<li>Xem lại cấu hình môi trường <strong>dev</strong></li>
+<li>Xác minh caching <strong>tắt</strong> (chỉ prod)</li>
+<li>Kiểm tra từng Lambda function độc lập</li>
+<li>Theo dõi CloudWatch alarms</li>
+<li>Xác minh WAF rules không chặn legitimate traffic</li>
+<li>Kiểm tra localhost CORS (chỉ dev)</li>
+</ul>
+<h3 id="cho-stagingproduction-deployment">Cho Staging/Production Deployment</h3>
+<ul>
+<li>Xem lại <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/#s%e1%bb%b1-kh%c3%a1c-bi%e1%bb%87t-gi%e1%bb%afa-c%c3%a1c-environment">Sự Khác Biệt Giữa Các Environment</a></li>
+<li>Bật API Gateway caching (chỉ prod)</li>
+<li>Tắt data trace logging (chỉ prod)</li>
+<li>Thiết lập log retention phù hợp (90 ngày cho prod)</li>
+<li>Cập nhật WAF rate limits (cao hơn cho prod)</li>
+<li>Loại bỏ localhost khỏi CORS</li>
+<li>Sử dụng <code>--require-approval broadening</code> cho production</li>
+</ul>
+<p><strong>Thứ Tự Triển Khai</strong>: DNS → Certificate → Core → Auth → <strong>Backend</strong> → Frontend → Observability</p>
+<p><strong>Environments</strong>: Hướng dẫn này minh họa triển khai <strong>dev</strong>. Lặp lại cho <strong>staging</strong> và <strong>prod</strong> với cấu hình phù hợp.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/" title="5.4.4 Auth Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/" title="5.4.6 Frontend Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../../js/learn.js?1765346855"></script>
+    <script src="../../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

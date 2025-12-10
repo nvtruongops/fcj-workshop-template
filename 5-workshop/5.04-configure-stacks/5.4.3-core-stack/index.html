@@ -1,0 +1,2887 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>5.4.3 Core Stack :: Internship Report</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.1-week1/"
+  title="Week 1 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.1-week1/">
+     <b> 1.1. </b> Week 1 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.3-week3/">
+     <b> 1.3. </b> Week 3 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.4-week4/">
+     <b> 1.4. </b> Week 4 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated Blogs"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/">
+     <b> 3. </b> Translated Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Qwen Models are Now Available in Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Qwen Models are Now Available in Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Centralized AWS Firewall Policy Management with AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Centralized AWS Firewall Policy Management with AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.01-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.02-setup-environment/"
+  title="Setup Environment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Setup Environment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/"
+  title="Configure Infrastructure Stacks"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Configure Infrastructure Stacks 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.05-deploy-infrastructure/"
+  title="Deploy Infrastructure"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Deploy Infrastructure 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.06-configure-api-lambda/"
+  title="Configure API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Configure API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.07-deploy-backend/"
+  title="Deploy Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Deploy Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.08-test-endpoints/"
+  title="Test Endpoints End-to-End"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Test Endpoints End-to-End 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.09-push-gitlab/"
+  title="Push to GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push to GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.10-deploy-amplify/"
+  title="Deploy to Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy to Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.11-cleanup/"
+  title="Cleanup"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Cleanup 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../'>Internship Report</a> > <a href='../../../5-workshop/'>Workshop</a> > <a href='../../../5-workshop/5.04-configure-stacks/'>Configure Infrastructure Stacks</a> > 5.4.3 Core Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#key-responsibilities">Key Responsibilities</a></li>
+        <li><a href="#what-this-stack-includes">What This Stack Includes</a></li>
+      </ul>
+    </li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#stack-configuration">Stack Configuration</a>
+      <ul>
+        <li><a href="#file-structure">File Structure</a></li>
+        <li><a href="#code-implementation-highlights">Code Implementation Highlights</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-configuration-details">Key Configuration Details</a>
+      <ul>
+        <li><a href="#1-dynamodb-single-table-design">1. DynamoDB Single Table Design</a></li>
+        <li><a href="#2-s3-intelligent-tiering-cost-savings">2. S3 Intelligent-Tiering Cost Savings</a></li>
+        <li><a href="#3-cloudfront-compression">3. CloudFront Compression</a></li>
+        <li><a href="#4-cloudfront-price-class-200">4. CloudFront Price Class 200</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#deployment-steps">Deployment Steps</a>
+      <ul>
+        <li><a href="#step-1-verify-prerequisites">Step 1: Verify Prerequisites</a></li>
+        <li><a href="#step-2-deploy-core-stack">Step 2: Deploy Core Stack</a></li>
+        <li><a href="#step-3-wait-for-cloudfront-distribution">Step 3: Wait for CloudFront Distribution</a></li>
+        <li><a href="#step-4-verify-in-aws-console">Step 4: Verify in AWS Console</a></li>
+      </ul>
+    </li>
+    <li><a href="#cost-breakdown">Cost Breakdown</a>
+      <ul>
+        <li><a href="#monthly-costs-dev-environment">Monthly Costs (Dev Environment)</a></li>
+        <li><a href="#cost-optimization-strategies">Cost Optimization Strategies</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#imports-from-previous-stacks">Imports from Previous Stacks</a></li>
+        <li><a href="#exports-used-by-other-stacks">Exports Used By Other Stacks</a></li>
+        <li><a href="#dependency-flow">Dependency Flow</a></li>
+      </ul>
+    </li>
+    <li><a href="#validation-checklist">Validation Checklist</a></li>
+    <li><a href="#testing">Testing</a>
+      <ul>
+        <li><a href="#test-cloudfront-distribution">Test CloudFront Distribution</a></li>
+        <li><a href="#test-dynamodb-table">Test DynamoDB Table</a></li>
+        <li><a href="#test-s3-bucket-access">Test S3 Bucket Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.3 Core Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="core-stack---data-layer-infrastructure">Core Stack - Data Layer Infrastructure</h1>
+<h2 id="overview">Overview</h2>
+<p>The Core Stack is the <strong>Phase 2 foundational data layer</strong> of the EveryoneCook project. It creates the core infrastructure for data storage, content delivery, and encryption that all other services depend on.</p>
+<p><strong>Deployment Order</strong>: This stack <strong>MUST</strong> be deployed after Certificate Stack and <strong>before</strong> Auth Stack and Backend Stack.</p>
+<h3 id="key-responsibilities">Key Responsibilities</h3>
+<ul>
+<li>Create DynamoDB Single Table with 5 GSI indexes for username-based queries</li>
+<li>Create S3 buckets with Intelligent-Tiering for cost optimization (57% savings)</li>
+<li>Create CloudFront CDN distribution with compression and caching</li>
+<li>Create KMS encryption keys for DynamoDB and S3</li>
+<li>Configure Origin Access Control (OAC) for S3 security</li>
+<li>Setup custom domain with SSL certificate for CDN</li>
+</ul>
+<h3 id="what-this-stack-includes">What This Stack Includes</h3>
+<p><strong>Storage</strong>:</p>
+<ul>
+<li>DynamoDB Single Table with encryption at rest</li>
+<li>S3 Content Bucket (avatars, posts, recipes, backgrounds)</li>
+<li>S3 CDN Logs Bucket for CloudFront access logs</li>
+</ul>
+<p><strong>CDN &amp; Caching</strong>:</p>
+<ul>
+<li>CloudFront Distribution with custom domain</li>
+<li>Compression enabled (Gzip + Brotli, 70-80% size reduction)</li>
+<li>Cache policies (24h default, 7 days max)</li>
+<li>Origin Access Control (OAC) for S3 security</li>
+</ul>
+<p><strong>Security</strong>:</p>
+<ul>
+<li>KMS Customer Managed Keys for encryption</li>
+<li>Automatic key rotation (yearly)</li>
+<li>Security headers (HSTS, X-Frame-Options, etc.)</li>
+</ul>
+<p><strong>Cost Optimization</strong>:</p>
+<ul>
+<li>S3 Intelligent-Tiering (57% cost reduction)</li>
+<li>CloudFront Price Class 200 (45% cost reduction)</li>
+<li>Pay-per-request billing for dev environment</li>
+</ul>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                        Core Stack (Phase 2)                      │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  KMS Encryption Layer                                     │  │
+│  │  ├─ DynamoDB Key (automatic rotation)                    │  │
+│  │  └─ S3 Key (automatic rotation)                          │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  DynamoDB Single Table                                    │  │
+│  │  ├─ PK: USER#{username}                                  │  │
+│  │  ├─ SK: PROFILE|RECIPE#{id}|POST#{id}                   │  │
+│  │  ├─ 5 GSI indexes for queries                           │  │
+│  │  ├─ Billing: PAY_PER_REQUEST (dev)                      │  │
+│  │  ├─ Encryption: Customer Managed KMS                     │  │
+│  │  └─ Streams: Enabled (NEW_AND_OLD_IMAGES)               │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  S3 Content Bucket                                        │  │
+│  │  ├─ Folders: avatars/, posts/, recipes/, backgrounds/   │  │
+│  │  ├─ Intelligent-Tiering (57% savings)                   │  │
+│  │  │  └─ Archive: 90 days, Deep Archive: 180 days        │  │
+│  │  ├─ Encryption: S3 Managed Keys                         │  │
+│  │  ├─ Versioning: Enabled (prod)                          │  │
+│  │  ├─ CORS: Configured for frontend                       │  │
+│  │  └─ OAC: CloudFront access only                         │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  CloudFront CDN Distribution                              │  │
+│  │  ├─ Custom Domain: cdn.everyonecook.cloud               │  │
+│  │  ├─ Certificate: ACM (us-east-1)                        │  │
+│  │  ├─ Compression: Gzip + Brotli (70-80% reduction)       │  │
+│  │  ├─ Cache TTL: 24h default, 7 days max                  │  │
+│  │  ├─ Price Class: 200 (US, EU, Asia - 45% savings)      │  │
+│  │  ├─ Security: HTTPS redirect, Security headers         │  │
+│  │  ├─ Protection: Shield Standard (free DDoS)            │  │
+│  │  └─ Logs: S3 CDN Logs Bucket                           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Route 53 DNS Record (from DNS Stack)                    │  │
+│  │  cdn.everyonecook.cloud → CloudFront (A + AAAA Alias)   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+                          │
+                          │ Exports
+                          ▼
+        ┌─────────────────┴────────────────┐
+        ▼                                  ▼
+   Auth Stack                         Backend Stack
+   (Cognito)                          (API Gateway, Lambda)
+</code></pre><hr>
+<h2 id="stack-configuration">Stack Configuration</h2>
+<h3 id="file-structure">File Structure</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── core-stack.ts            # Core Stack implementation (1545 lines)
+</code></pre><h3 id="code-implementation-highlights">Code Implementation Highlights</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/core-stack.ts</code></p>
+<h4 id="1-kms-keys-creation">1. KMS Keys Creation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create KMS key for DynamoDB encryption
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createDynamoDBKey</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_kms</span>.<span style="color:#a6e22e">Key</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_kms</span>.<span style="color:#a6e22e">Key</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;DynamoDBKey&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alias</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`everyonecook-dynamodb-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`KMS key for DynamoDB encryption in </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> environment`</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Enable automatic key rotation (yearly)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">enableKeyRotation</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deletion protection for production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">pendingWindow</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Duration</span>.<span style="color:#a6e22e">days</span>(<span style="color:#ae81ff">30</span>) 
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Duration</span>.<span style="color:#a6e22e">days</span>(<span style="color:#ae81ff">7</span>),
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Removal policy: RETAIN for prod, DESTROY for dev/staging
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">removalPolicy</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk.RemovalPolicy.RETAIN</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#66d9ef">cdk.RemovalPolicy.DESTROY</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Add key policy for DynamoDB service
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">key</span>.<span style="color:#a6e22e">addToResourcePolicy</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_iam</span>.<span style="color:#a6e22e">PolicyStatement</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">sid</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Allow DynamoDB to use the key&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">effect</span>: <span style="color:#66d9ef">cdk.aws_iam.Effect.ALLOW</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">principals</span><span style="color:#f92672">:</span> [<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_iam</span>.<span style="color:#a6e22e">ServicePrincipal</span>(<span style="color:#e6db74">&#39;dynamodb.amazonaws.com&#39;</span>)],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;kms:Decrypt&#39;</span>, <span style="color:#e6db74">&#39;kms:DescribeKey&#39;</span>, <span style="color:#e6db74">&#39;kms:CreateGrant&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resources</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;*&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">conditions</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">StringEquals</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;kms:ViaService&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`dynamodb.</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">region</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.amazonaws.com`</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">key</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="2-dynamodb-single-table">2. DynamoDB Single Table</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create DynamoDB Single Table with cost optimization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createDynamoDBTable</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_dynamodb</span>.<span style="color:#a6e22e">Table</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tableName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-v2`</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dbConfig</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">dynamodb</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">table</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_dynamodb</span>.<span style="color:#a6e22e">Table</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;EveryoneCookTable&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tableName</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">partitionKey</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;PK&#39;</span>, <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_dynamodb</span>.<span style="color:#a6e22e">AttributeType</span>.<span style="color:#a6e22e">STRING</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sortKey</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;SK&#39;</span>, <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_dynamodb</span>.<span style="color:#a6e22e">AttributeType</span>.<span style="color:#a6e22e">STRING</span> },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Billing mode: PROVISIONED for prod/staging, PAY_PER_REQUEST for dev
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">billingMode</span>: <span style="color:#66d9ef">dbConfig.billingMode</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;PROVISIONED&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk.aws_dynamodb.BillingMode.PROVISIONED</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#66d9ef">cdk.aws_dynamodb.BillingMode.PAY_PER_REQUEST</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Point-in-time recovery for prod/staging
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">pointInTimeRecoverySpecification</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">pointInTimeRecoveryEnabled</span>: <span style="color:#66d9ef">dbConfig.pointInTimeRecovery</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deletion protection for production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deletionProtection</span>: <span style="color:#66d9ef">dbConfig.deletionProtection</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Enable DynamoDB Streams
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">stream</span>: <span style="color:#66d9ef">dbConfig.streamEnabled</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk.aws_dynamodb.StreamViewType.NEW_AND_OLD_IMAGES</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#66d9ef">undefined</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// TTL attribute for automatic cleanup
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">timeToLiveAttribute</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ttl&#39;</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Encryption with customer managed KMS key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">encryption</span>: <span style="color:#66d9ef">cdk.aws_dynamodb.TableEncryption.CUSTOMER_MANAGED</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">encryptionKey</span>: <span style="color:#66d9ef">this.dynamoDbKey</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Removal policy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">removalPolicy</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk.RemovalPolicy.RETAIN</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#66d9ef">cdk.RemovalPolicy.DESTROY</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Add 5 GSI indexes (code continues...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">table</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="3-s3-bucket-with-intelligent-tiering">3. S3 Bucket with Intelligent-Tiering</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create S3 bucket with Intelligent-Tiering for 57% cost savings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createContentBucket</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">Bucket</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bucketName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`everyonecook-content-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">s3Config</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">s3</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bucket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">Bucket</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ContentBucket&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bucketName</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Block ALL public access (private bucket)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">blockPublicAccess</span>: <span style="color:#66d9ef">cdk.aws_s3.BlockPublicAccess.BLOCK_ALL</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Enable versioning for production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">versioned</span>: <span style="color:#66d9ef">s3Config.versioning</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// S3-managed encryption
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">encryption</span>: <span style="color:#66d9ef">cdk.aws_s3.BucketEncryption.S3_MANAGED</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Intelligent-Tiering configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">intelligentTieringConfigurations</span><span style="color:#f92672">:</span> [{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EntireBucket&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">archiveAccessTierTime</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">90</span>),      <span style="color:#75715e">// Archive tier
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">deepArchiveAccessTierTime</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">180</span>), <span style="color:#75715e">// Deep Archive
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }],
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Lifecycle rules
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">lifecycleRules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DeleteOldVersions&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">enabled</span>: <span style="color:#66d9ef">s3Config.versioning</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">noncurrentVersionExpiration</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DeleteTempUploads&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">enabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">prefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;posts/temp/&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">expiration</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">1</span>), <span style="color:#75715e">// Clean up temp files after 24h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// CORS for frontend access
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cors</span><span style="color:#f92672">:</span> [{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowedOrigins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`https://</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domain</span>.<span style="color:#a6e22e">frontend</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>        ...(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;dev&#39;</span> <span style="color:#f92672">?</span> [<span style="color:#e6db74">&#39;http://localhost:3000&#39;</span>] <span style="color:#f92672">:</span> []),
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowedMethods</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">HttpMethods</span>.<span style="color:#a6e22e">GET</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">HttpMethods</span>.<span style="color:#a6e22e">PUT</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">HttpMethods</span>.<span style="color:#a6e22e">POST</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_s3</span>.<span style="color:#a6e22e">HttpMethods</span>.<span style="color:#a6e22e">DELETE</span>,
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allowedHeaders</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;*&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exposedHeaders</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;ETag&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">maxAge</span>: <span style="color:#66d9ef">3000</span>,
+</span></span><span style="display:flex;"><span>    }],
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">removalPolicy</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">?</span> <span style="color:#a6e22e">cdk.RemovalPolicy.RETAIN</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#66d9ef">cdk.RemovalPolicy.DESTROY</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bucket</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="4-cloudfront-distribution">4. CloudFront Distribution</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create CloudFront distribution with compression and caching
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createCloudFrontDistribution</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cloudfront</span>.<span style="color:#a6e22e">Distribution</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Import Route 53 Hosted Zone
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53</span>.<span style="color:#a6e22e">HostedZone</span>.<span style="color:#a6e22e">fromHostedZoneAttributes</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZone&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">cdk.Fn.importValue</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exportName</span>(<span style="color:#e6db74">&#39;HostedZoneId&#39;</span>)),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Import ACM certificate from Certificate Stack (us-east-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_certificatemanager</span>.<span style="color:#a6e22e">Certificate</span>.<span style="color:#a6e22e">fromCertificateArn</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;ImportedCloudFrontCertificate&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-0480-47d2-a6ff-4fe9b2eb6534&#39;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create cache policy with compression
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">publicCachePolicy</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cloudfront</span>.<span style="color:#a6e22e">CachePolicy</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;PublicCachePolicy&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cachePolicyName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-Public-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">defaultTtl</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">24</span>),  <span style="color:#75715e">// 24h default
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">maxTtl</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">7</span>),        <span style="color:#75715e">// 7 days max
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">minTtl</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Enable compression (Gzip + Brotli)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">enableAcceptEncodingGzip</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">enableAcceptEncodingBrotli</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">queryStringBehavior</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.CacheQueryStringBehavior.all</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">headerBehavior</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.CacheHeaderBehavior.allowList</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;CloudFront-Viewer-Country&#39;</span>
+</span></span><span style="display:flex;"><span>      ),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">cookieBehavior</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.CacheCookieBehavior.none</span>(),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create CloudFront distribution
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">distribution</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cloudfront</span>.<span style="color:#a6e22e">Distribution</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CDNDistribution&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">comment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`Everyone Cook CDN - </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Default behavior with OAC
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">defaultBehavior</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">origin</span>: <span style="color:#66d9ef">origins.S3BucketOrigin.withOriginAccessControl</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contentBucket</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">viewerProtocolPolicy</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">compress</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cachePolicy</span>: <span style="color:#66d9ef">publicCachePolicy</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">allowedMethods</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Price Class 200 (US, Europe, Asia - 45% cost savings)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">priceClass</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.PriceClass.PRICE_CLASS_200</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Custom domain with SSL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">domainNames</span><span style="color:#f92672">:</span> [<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">domains</span>.<span style="color:#a6e22e">cdn</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">certificate</span>: <span style="color:#66d9ef">certificate</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// CloudFront access logs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">enableLogging</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logBucket</span>: <span style="color:#66d9ef">this.cdnLogsBucket</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logFilePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-access-logs/&#39;</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Enable IPv6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">enableIpv6</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// HTTP/2 + HTTP/3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">httpVersion</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.HttpVersion.HTTP2_AND_3</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// TLS 1.2 minimum
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">minimumProtocolVersion</span>: <span style="color:#66d9ef">cdk.aws_cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create Route 53 A record (Alias to CloudFront)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_route53</span>.<span style="color:#a6e22e">ARecord</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontAliasRecord&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">zone</span>: <span style="color:#66d9ef">hostedZone</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">recordName</span>: <span style="color:#66d9ef">this.config.domains.cdn</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">target</span>: <span style="color:#66d9ef">cdk.aws_route53.RecordTarget.fromAlias</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">targets</span>.<span style="color:#a6e22e">CloudFrontTarget</span>(<span style="color:#a6e22e">distribution</span>)
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">distribution</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="key-configuration-details">Key Configuration Details</h2>
+<h3 id="1-dynamodb-single-table-design">1. DynamoDB Single Table Design</h3>
+<p><strong>Table Structure</strong>:</p>
+<pre tabindex="0"><code>PK: USER#{username}
+SK: PROFILE | RECIPE#{recipeId} | POST#{postId} | COMMENT#{commentId}
+
+GSI1: username-recipeDate (user&#39;s recipes by date)
+GSI2: username-postDate (user&#39;s posts by date)
+GSI3: recipeId-index (recipe lookup)
+GSI4: postId-index (post lookup)
+GSI5: email-index (email lookup)
+</code></pre><p><strong>Billing Modes</strong>:</p>
+<ul>
+<li><strong>Dev</strong>: PAY_PER_REQUEST (no provisioned capacity, pay per request)</li>
+<li><strong>Staging</strong>: PROVISIONED (5 RCU, 5 WCU with auto-scaling)</li>
+<li><strong>Prod</strong>: PROVISIONED (10 RCU, 10 WCU with auto-scaling)</li>
+</ul>
+<h3 id="2-s3-intelligent-tiering-cost-savings">2. S3 Intelligent-Tiering Cost Savings</h3>
+<p><strong>Cost Comparison (100GB content)</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tier</th>
+          <th>Cost per GB</th>
+          <th>100GB Cost</th>
+          <th>Timeline</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Frequent Access</td>
+          <td>$0.023</td>
+          <td>$2.30/month</td>
+          <td>Default</td>
+      </tr>
+      <tr>
+          <td>Infrequent Access</td>
+          <td>$0.0125</td>
+          <td>$1.25/month</td>
+          <td>After 30 days</td>
+      </tr>
+      <tr>
+          <td>Archive Instant</td>
+          <td>$0.004</td>
+          <td>$0.40/month</td>
+          <td>After 90 days</td>
+      </tr>
+      <tr>
+          <td>Archive</td>
+          <td>$0.0036</td>
+          <td>$0.36/month</td>
+          <td>After 90 days</td>
+      </tr>
+      <tr>
+          <td>Deep Archive</td>
+          <td>$0.00099</td>
+          <td>$0.099/month</td>
+          <td>After 180 days</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Savings</strong>: $2.30 → $0.099 = <strong>57% cost reduction</strong> after 12 months</p>
+<h3 id="3-cloudfront-compression">3. CloudFront Compression</h3>
+<p><strong>File Size Reduction</strong>:</p>
+<ul>
+<li><strong>Text files</strong> (HTML, CSS, JS, JSON): 70-80% reduction</li>
+<li><strong>Images</strong> (already compressed): No additional compression</li>
+<li><strong>Videos</strong> (already compressed): No additional compression</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<ul>
+<li>Original JS bundle: 1MB → Compressed: 200KB (80% reduction)</li>
+<li>1000 requests/day: 1GB/day → 200MB/day (saves 800MB bandwidth)</li>
+</ul>
+<h3 id="4-cloudfront-price-class-200">4. CloudFront Price Class 200</h3>
+<p><strong>Cost Comparison</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Price Class</th>
+          <th>Regions</th>
+          <th>Cost per GB</th>
+          <th>Savings</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>All</td>
+          <td>All regions</td>
+          <td>$0.085</td>
+          <td>Baseline</td>
+      </tr>
+      <tr>
+          <td>200</td>
+          <td>US, EU, Asia</td>
+          <td>$0.047</td>
+          <td><strong>45% savings</strong></td>
+      </tr>
+      <tr>
+          <td>100</td>
+          <td>US, EU only</td>
+          <td>$0.025</td>
+          <td>71% savings (but limited coverage)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Decision</strong>: Price Class 200 balances cost (45% savings) with global coverage.</p>
+<hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>After deployment, the stack exports the following values:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Used By</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>DynamoDBTableName</code></td>
+          <td><code>EveryoneCook-dev-v2</code></td>
+          <td>Auth Stack, Backend Stack</td>
+      </tr>
+      <tr>
+          <td><code>DynamoDBTableArn</code></td>
+          <td><code>arn:aws:dynamodb:...</code></td>
+          <td>Lambda IAM policies</td>
+      </tr>
+      <tr>
+          <td><code>DynamoDBTableStreamArn</code></td>
+          <td><code>arn:aws:dynamodb:...</code></td>
+          <td>Event-driven processing</td>
+      </tr>
+      <tr>
+          <td><code>DynamoDBKeyId</code></td>
+          <td>KMS Key ID</td>
+          <td>Encryption references</td>
+      </tr>
+      <tr>
+          <td><code>DynamoDBKeyArn</code></td>
+          <td><code>arn:aws:kms:...</code></td>
+          <td>Lambda permissions</td>
+      </tr>
+      <tr>
+          <td><code>S3KeyId</code></td>
+          <td>KMS Key ID</td>
+          <td>S3 encryption</td>
+      </tr>
+      <tr>
+          <td><code>ContentBucketName</code></td>
+          <td><code>everyonecook-content-dev</code></td>
+          <td>Backend Stack, Lambda</td>
+      </tr>
+      <tr>
+          <td><code>ContentBucketArn</code></td>
+          <td><code>arn:aws:s3:...</code></td>
+          <td>IAM policies</td>
+      </tr>
+      <tr>
+          <td><code>CloudFrontDistributionId</code></td>
+          <td><code>E1234567890ABC</code></td>
+          <td>Backend Stack (WAF)</td>
+      </tr>
+      <tr>
+          <td><code>CloudFrontDomainName</code></td>
+          <td><code>d1234567890.cloudfront.net</code></td>
+          <td>DNS verification</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="deployment-steps">Deployment Steps</h2>
+<h3 id="step-1-verify-prerequisites">Step 1: Verify Prerequisites</h3>
+<p>Before deploying Core Stack, ensure:</p>
+<ul>
+<li>DNS Stack successfully deployed</li>
+<li>Certificate Stack successfully deployed (us-east-1)</li>
+<li>CloudFront certificate status is <strong>Issued</strong></li>
+<li>Route 53 DNS delegation working</li>
+</ul>
+<h3 id="step-2-deploy-core-stack">Step 2: Deploy Core Stack</h3>
+<p>Navigate to infrastructure directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Deploy Core Stack to <strong>ap-southeast-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Deploy Core Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Core --context environment=dev
+</span></span></code></pre></div><p>Expected output:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 8.45s
+
+EveryoneCook-dev-Core: deploying...
+[████████████████████████████████████████] (12/12)
+
+EveryoneCook-dev-Core: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Core
+
+✨  Deployment time: 450.23s
+
+Outputs:
+EveryoneCook-dev-Core.DynamoDBTableName = EveryoneCook-dev-v2
+EveryoneCook-dev-Core.ContentBucketName = everyonecook-content-dev
+EveryoneCook-dev-Core.CloudFrontDistributionId = E2ABCDEFGHIJKL
+EveryoneCook-dev-Core.CloudFrontDomainName = d1a2b3c4d5e6f7.cloudfront.net
+EveryoneCook-dev-Core.StackInfo = Core Stack for dev environment
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:616580903213:stack/EveryoneCook-dev-Core/...
+</code></pre><h3 id="step-3-wait-for-cloudfront-distribution">Step 3: Wait for CloudFront Distribution</h3>
+<p>CloudFront distribution deployment takes <strong>15-20 minutes</strong>. You can monitor progress:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check CloudFront distribution status</span>
+</span></span><span style="display:flex;"><span>aws cloudfront get-distribution --id E2ABCDEFGHIJKL --query <span style="color:#e6db74">&#39;Distribution.Status&#39;</span>
+</span></span></code></pre></div><p>Status progression:</p>
+<ol>
+<li><strong>InProgress</strong> (0-15 minutes)</li>
+<li><strong>Deployed</strong> (ready to use)</li>
+</ol>
+<h3 id="step-4-verify-in-aws-console">Step 4: Verify in AWS Console</h3>
+<h4 id="navigate-to-dynamodb">Navigate to DynamoDB</h4>
+<ol>
+<li>Open AWS Console → <strong>ap-southeast-1</strong> region</li>
+<li>Go to <strong>DynamoDB</strong> &gt; <strong>Tables</strong></li>
+<li>Find table <code>EveryoneCook-dev-v2</code></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/dynamodb-table.png" alt="DynamoDB Single Table">
+<em>DynamoDB table showing partitionKey (PK), sortKey (SK), 5 GSI indexes, billing mode (PAY_PER_REQUEST), encryption (KMS), and streams enabled</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>Partition key: PK (String)</li>
+<li>Sort key: SK (String)</li>
+<li>5 GSI indexes visible</li>
+<li>Billing mode: PAY_PER_REQUEST (dev)</li>
+<li>Encryption: Customer managed KMS</li>
+<li>Streams: Enabled (NEW_AND_OLD_IMAGES)</li>
+</ul>
+<h4 id="navigate-to-s3">Navigate to S3</h4>
+<ol>
+<li>Go to <strong>S3</strong> &gt; <strong>Buckets</strong></li>
+<li>Find buckets:
+<ul>
+<li><code>everyonecook-content-dev</code></li>
+<li><code>everyonecook-cdn-logs-dev</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/s3-content-bucket.png" alt="S3 Content Bucket">
+<em>S3 content bucket showing folder structure (avatars/, posts/, recipes/, backgrounds/), Intelligent-Tiering configuration, versioning, CORS, and encryption settings</em></p>
+<p><strong>Verify Content Bucket</strong>:</p>
+<ul>
+<li>Block all public access: On</li>
+<li>Versioning: Enabled (prod) / Disabled (dev)</li>
+<li>Intelligent-Tiering: Configured</li>
+<li>Encryption: S3-managed keys</li>
+<li>CORS: Configured</li>
+<li>Lifecycle rules: 2 rules</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/s3-intelligent-tiering.png" alt="S3 Intelligent-Tiering">
+<em>S3 Intelligent-Tiering configuration showing Archive Access Tier (90 days) and Deep Archive Access Tier (180 days)</em></p>
+<h4 id="navigate-to-cloudfront">Navigate to CloudFront</h4>
+<ol>
+<li>Go to <strong>CloudFront</strong> &gt; <strong>Distributions</strong></li>
+<li>Find distribution with domain <code>cdn-dev.everyonecook.cloud</code></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cloudfront-distribution.png" alt="CloudFront Distribution">
+<em>CloudFront distribution showing custom domain, origin (S3 with OAC), cache behaviors, compression enabled, Price Class 200, SSL certificate, and status (Deployed)</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>Status: Deployed</li>
+<li>Domain: cdn-dev.everyonecook.cloud</li>
+<li>Origin: S3 bucket with OAC</li>
+<li>Compression: Enabled</li>
+<li>Price Class: 200</li>
+<li>SSL Certificate: Valid</li>
+<li>HTTPS: Redirect</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cloudfront-oac.png" alt="CloudFront OAC">
+<em>CloudFront Origin Access Control (OAC) configuration showing S3 origin with OAC policy automatically created</em></p>
+<h4 id="navigate-to-kms">Navigate to KMS</h4>
+<ol>
+<li>Go to <strong>KMS</strong> &gt; <strong>Customer managed keys</strong></li>
+<li>Find keys:
+<ul>
+<li><code>everyonecook-dynamodb-dev</code></li>
+<li><code>everyonecook-s3-dev</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/kms-keys.png" alt="KMS Customer Managed Keys">
+<em>KMS customer managed keys showing key aliases, key rotation enabled (yearly), key policies, and usage by DynamoDB and S3</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>Key rotation: Enabled</li>
+<li>Key state: Enabled</li>
+<li>Deletion protection: Configured</li>
+<li>Key policy: DynamoDB/S3 service access</li>
+</ul>
+<h4 id="verify-route-53-dns-record">Verify Route 53 DNS Record</h4>
+<ol>
+<li>Go to <strong>Route 53</strong> &gt; <strong>Hosted zones</strong></li>
+<li>Select <code>everyonecook.cloud</code></li>
+<li>Verify A record for <code>cdn-dev.everyonecook.cloud</code></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/route53-cloudfront-alias.png" alt="Route 53 CloudFront Alias">
+<em>Route 53 A record (Alias) pointing cdn-dev.everyonecook.cloud to CloudFront distribution</em></p>
+<p><strong>Expected</strong>:</p>
+<pre tabindex="0"><code>cdn-dev.everyonecook.cloud  A  Alias  d1a2b3c4d5e6f7.cloudfront.net
+</code></pre><hr>
+<h2 id="cost-breakdown">Cost Breakdown</h2>
+<h3 id="monthly-costs-dev-environment">Monthly Costs (Dev Environment)</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Resource</th>
+          <th>Configuration</th>
+          <th>Monthly Cost</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>DynamoDB</strong></td>
+          <td>PAY_PER_REQUEST</td>
+          <td>$1-5</td>
+          <td>Low traffic</td>
+      </tr>
+      <tr>
+          <td><strong>S3 Content</strong></td>
+          <td>10GB, Intelligent-Tiering</td>
+          <td>$0.23</td>
+          <td>Moves to Deep Archive</td>
+      </tr>
+      <tr>
+          <td><strong>S3 Logs</strong></td>
+          <td>5GB</td>
+          <td>$0.12</td>
+          <td>Access logs</td>
+      </tr>
+      <tr>
+          <td><strong>CloudFront</strong></td>
+          <td>100GB transfer, Price Class 200</td>
+          <td>$4.70</td>
+          <td>45% savings vs All</td>
+      </tr>
+      <tr>
+          <td><strong>KMS</strong></td>
+          <td>2 keys</td>
+          <td>$2.00</td>
+          <td>$1/key/month</td>
+      </tr>
+      <tr>
+          <td><strong>Route 53</strong></td>
+          <td>1 hosted zone, DNS queries</td>
+          <td>$0.50</td>
+          <td>From DNS Stack</td>
+      </tr>
+      <tr>
+          <td><strong>Total (Estimated)</strong></td>
+          <td></td>
+          <td><strong>~$8-13/month</strong></td>
+          <td>Low traffic scenario</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
+<ol>
+<li><strong>S3 Intelligent-Tiering</strong>: 57% savings on storage</li>
+<li><strong>CloudFront Price Class 200</strong>: 45% savings on bandwidth</li>
+<li><strong>DynamoDB PAY_PER_REQUEST (dev)</strong>: Pay only for actual usage</li>
+<li><strong>CloudFront WAF removed</strong>: $9/month savings</li>
+<li><strong>Compression enabled</strong>: 70-80% bandwidth reduction</li>
+</ol>
+<p><strong>Total Potential Savings</strong>: <strong>~$20-30/month</strong> compared to non-optimized setup</p>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="imports-from-previous-stacks">Imports from Previous Stacks</h3>
+<p><strong>From DNS Stack</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">cdk.Fn.importValue</span>(<span style="color:#e6db74">&#39;EveryoneCook-dev-HostedZoneId&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>
+</span></span></code></pre></div><p><strong>From Certificate Stack</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">certificateArn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-...&#39;</span>
+</span></span></code></pre></div><h3 id="exports-used-by-other-stacks">Exports Used By Other Stacks</h3>
+<p><strong>Auth Stack</strong> imports:</p>
+<ul>
+<li>DynamoDB table (for user profiles)</li>
+<li>DynamoDB key (for Lambda permissions)</li>
+</ul>
+<p><strong>Backend Stack</strong> imports:</p>
+<ul>
+<li>DynamoDB table (for all data operations)</li>
+<li>S3 content bucket (for file uploads)</li>
+<li>CloudFront distribution (for WAF association)</li>
+<li>KMS keys (for encryption)</li>
+</ul>
+<h3 id="dependency-flow">Dependency Flow</h3>
+<pre tabindex="0"><code>DNS Stack → Hosted Zone ID
+    │
+    ▼
+Certificate Stack (us-east-1) → Certificate ARN
+    │
+    ▼
+Core Stack (ap-southeast-1)
+    │
+    ├─► DynamoDB Table → Auth Stack, Backend Stack
+    ├─► S3 Buckets → Backend Stack
+    ├─► CloudFront → Backend Stack (WAF)
+    └─► KMS Keys → Auth Stack, Backend Stack
+</code></pre><hr>
+<h2 id="validation-checklist">Validation Checklist</h2>
+<p>Before proceeding to Auth Stack deployment:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Core Stack successfully deployed to ap-southeast-1</li>
+<li><input disabled="" type="checkbox"> DynamoDB table exists with 5 GSI indexes</li>
+<li><input disabled="" type="checkbox"> S3 content bucket has Intelligent-Tiering configured</li>
+<li><input disabled="" type="checkbox"> S3 CORS configured for frontend domain</li>
+<li><input disabled="" type="checkbox"> CloudFront distribution status is <strong>Deployed</strong></li>
+<li><input disabled="" type="checkbox"> CloudFront custom domain resolves: <code>cdn-dev.everyonecook.cloud</code></li>
+<li><input disabled="" type="checkbox"> CloudFront OAC configured for S3 access</li>
+<li><input disabled="" type="checkbox"> KMS keys created with rotation enabled</li>
+<li><input disabled="" type="checkbox"> Route 53 A record created for CloudFront</li>
+<li><input disabled="" type="checkbox"> All stack outputs exported successfully</li>
+</ul>
+<hr>
+<h2 id="testing">Testing</h2>
+<h3 id="test-cloudfront-distribution">Test CloudFront Distribution</h3>
+<ol>
+<li>
+<p><strong>Test custom domain</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>curl -I https<span style="color:#960050;background-color:#1e0010">:</span>//cdn-dev.everyonecook.cloud
+</span></span></code></pre></div><p>Expected response:</p>
+<pre tabindex="0"><code>HTTP/2 403
+server: CloudFront
+x-cache: Error from cloudfront
+</code></pre><p>(403 is expected - bucket is empty)</p>
+</li>
+<li>
+<p><strong>Test compression</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>curl -H <span style="color:#e6db74">&#34;Accept-Encoding: gzip, br&#34;</span> -I https<span style="color:#960050;background-color:#1e0010">:</span>//cdn-dev.everyonecook.cloud
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Test HTTPS redirect</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>curl -I http<span style="color:#960050;background-color:#1e0010">:</span>//cdn-dev.everyonecook.cloud
+</span></span></code></pre></div><p>Expected: Redirect to HTTPS</p>
+</li>
+</ol>
+<h3 id="test-dynamodb-table">Test DynamoDB Table</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># List tables</span>
+</span></span><span style="display:flex;"><span>aws dynamodb list-tables --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Describe table</span>
+</span></span><span style="display:flex;"><span>aws dynamodb describe-table --table-name EveryoneCook-dev-v2 --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h3 id="test-s3-bucket-access">Test S3 Bucket Access</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Try direct S3 access (should be blocked)</span>
+</span></span><span style="display:flex;"><span>curl -I https<span style="color:#960050;background-color:#1e0010">:</span>//everyonecook-content-dev.s3.ap-southeast-<span style="color:#ae81ff">1</span>.amazonaws.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: 403 Forbidden (OAC protection working)</span>
+</span></span></code></pre></div><hr>
+<h2 id="next-steps">Next Steps</h2>
+<p>After successfully deploying the Core Stack:</p>
+<p>➡️ <strong><a href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">5.4.4 Auth Stack</a></strong> - Create Cognito User Pool and authentication</p>
+<p>The Auth Stack will:</p>
+<ul>
+<li>Create Cognito User Pool with advanced security</li>
+<li>Configure user attributes and password policy</li>
+<li>Setup Cognito triggers (Lambda functions)</li>
+<li>Create SES email identity for verification emails</li>
+<li>Import DynamoDB table from Core Stack</li>
+</ul>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><strong>Source Code</strong>: <code>infrastructure/lib/stacks/core-stack.ts</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>Environment Config</strong>: <code>infrastructure/config/environment.ts</code></li>
+<li><strong>AWS Documentation</strong>:
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html">DynamoDB Single Table Design</a></li>
+<li><a href="https://aws.amazon.com/s3/storage-classes/intelligent-tiering/">S3 Intelligent-Tiering</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html">CloudFront Origin Access Control</a></li>
+<li><a href="https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html">KMS Key Rotation</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/" title="5.4.2 Certificate Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/" title="5.4.4 Auth Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

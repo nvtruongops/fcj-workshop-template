@@ -1,0 +1,2880 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>5.4.4 Auth Stack :: Internship Report</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.1-week1/"
+  title="Week 1 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.1-week1/">
+     <b> 1.1. </b> Week 1 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.3-week3/">
+     <b> 1.3. </b> Week 3 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.4-week4/">
+     <b> 1.4. </b> Week 4 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated Blogs"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/">
+     <b> 3. </b> Translated Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Qwen Models are Now Available in Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Qwen Models are Now Available in Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Centralized AWS Firewall Policy Management with AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Centralized AWS Firewall Policy Management with AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.01-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.02-setup-environment/"
+  title="Setup Environment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Setup Environment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/"
+  title="Configure Infrastructure Stacks"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Configure Infrastructure Stacks 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.05-deploy-infrastructure/"
+  title="Deploy Infrastructure"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Deploy Infrastructure 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.06-configure-api-lambda/"
+  title="Configure API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Configure API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.07-deploy-backend/"
+  title="Deploy Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Deploy Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.08-test-endpoints/"
+  title="Test Endpoints End-to-End"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Test Endpoints End-to-End 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.09-push-gitlab/"
+  title="Push to GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push to GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.10-deploy-amplify/"
+  title="Deploy to Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy to Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.11-cleanup/"
+  title="Cleanup"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Cleanup 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../'>Internship Report</a> > <a href='../../../5-workshop/'>Workshop</a> > <a href='../../../5-workshop/5.04-configure-stacks/'>Configure Infrastructure Stacks</a> > 5.4.4 Auth Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#key-responsibilities">Key Responsibilities</a></li>
+        <li><a href="#what-this-stack-includes">What This Stack Includes</a></li>
+      </ul>
+    </li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#stack-configuration">Stack Configuration</a>
+      <ul>
+        <li><a href="#file-structure">File Structure</a></li>
+        <li><a href="#code-implementation-highlights">Code Implementation Highlights</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-configuration-details">Key Configuration Details</a>
+      <ul>
+        <li><a href="#1-user-registration-flow">1. User Registration Flow</a></li>
+        <li><a href="#2-password-policy">2. Password Policy</a></li>
+        <li><a href="#3-token-validity">3. Token Validity</a></li>
+        <li><a href="#4-lambda-trigger-details">4. Lambda Trigger Details</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#deployment-steps">Deployment Steps</a>
+      <ul>
+        <li><a href="#step-1-build-lambda-triggers">Step 1: Build Lambda Triggers</a></li>
+        <li><a href="#step-2-verify-prerequisites">Step 2: Verify Prerequisites</a></li>
+        <li><a href="#step-3-deploy-auth-stack">Step 3: Deploy Auth Stack</a></li>
+        <li><a href="#step-4-verify-in-aws-console">Step 4: Verify in AWS Console</a></li>
+      </ul>
+    </li>
+    <li><a href="#cost-breakdown">Cost Breakdown</a>
+      <ul>
+        <li><a href="#monthly-costs-dev-environment">Monthly Costs (Dev Environment)</a></li>
+        <li><a href="#cost-notes">Cost Notes</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#imports-from-previous-stacks">Imports from Previous Stacks</a></li>
+        <li><a href="#exports-used-by-other-stacks">Exports Used By Other Stacks</a></li>
+        <li><a href="#dependency-flow">Dependency Flow</a></li>
+      </ul>
+    </li>
+    <li><a href="#validation-checklist">Validation Checklist</a></li>
+    <li><a href="#testing">Testing</a>
+      <ul>
+        <li><a href="#test-user-registration-flow">Test User Registration Flow</a></li>
+        <li><a href="#test-authentication-flow">Test Authentication Flow</a></li>
+        <li><a href="#test-presignup-cleanup">Test PreSignUp Cleanup</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.4 Auth Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="auth-stack---authentication--user-management">Auth Stack - Authentication &amp; User Management</h1>
+<h2 id="overview">Overview</h2>
+<p>The Auth Stack is the <strong>Phase 3 authentication layer</strong> of the EveryoneCook project. It manages user authentication, registration, and account security using AWS Cognito with custom Lambda triggers for enhanced user experience.</p>
+<p><strong>Deployment Order</strong>: This stack <strong>MUST</strong> be deployed after Core Stack and <strong>before</strong> Backend Stack.</p>
+<h3 id="key-responsibilities">Key Responsibilities</h3>
+<ul>
+<li>Create Cognito User Pool with production-grade security settings</li>
+<li>Configure Cognito User Pool Client for web application</li>
+<li>Setup 5 Lambda triggers for custom authentication workflows</li>
+<li>Manage user registration, email verification, and login flows</li>
+<li>Handle user profile creation in DynamoDB (via PostConfirmation trigger)</li>
+</ul>
+<h3 id="what-this-stack-includes">What This Stack Includes</h3>
+<p><strong>Cognito User Pool</strong>:</p>
+<ul>
+<li>Sign-in: Username or email</li>
+<li>Password policy: Min 12 chars (8 for dev), uppercase, lowercase, digits, symbols</li>
+<li>Email verification required</li>
+<li>MFA: Disabled (email + password only)</li>
+<li>Device tracking: Enabled (no MFA challenge)</li>
+<li>Standard attributes: username, email, given_name (fullName)</li>
+<li>Custom attributes: account_status, country</li>
+</ul>
+<p><strong>Cognito User Pool Client</strong>:</p>
+<ul>
+<li>Auth flows: USER_PASSWORD_AUTH, USER_SRP_AUTH</li>
+<li>OAuth flows: Authorization code grant (future social login)</li>
+<li>Token validity: Access/ID (1h), Refresh (30 days)</li>
+<li>Callback URLs: Environment-specific</li>
+</ul>
+<p><strong>Lambda Triggers</strong> (5 triggers):</p>
+<ol>
+<li><strong>PreSignUp</strong>: Cleanup unverified users (24h expiration)</li>
+<li><strong>CustomMessage</strong>: Customize email templates</li>
+<li><strong>PostConfirmation</strong>: Create user profile in DynamoDB</li>
+<li><strong>PreAuthentication</strong>: Check if user is banned/suspended</li>
+<li><strong>PostAuthentication</strong>: Update last login timestamp</li>
+</ol>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Auth Stack (Phase 3)                          │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Cognito User Pool                                        │  │
+│  │  ├─ Sign-in: Username or Email                          │  │
+│  │  ├─ Password: Min 12 chars, strong policy              │  │
+│  │  ├─ Email Verification: Required                       │  │
+│  │  ├─ MFA: Disabled (email + password only)              │  │
+│  │  ├─ Device Tracking: Enabled (no MFA)                  │  │
+│  │  └─ Custom Attributes: account_status, country         │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Lambda Triggers (Custom Workflows)                       │  │
+│  │                                                           │  │
+│  │  1️⃣ PreSignUp                                            │  │
+│  │     ├─ Check existing username/email                    │  │
+│  │     ├─ Delete expired unverified users (&gt;24h)          │  │
+│  │     └─ Allow new registration                          │  │
+│  │                                                           │  │
+│  │  2️⃣ CustomMessage                                         │  │
+│  │     ├─ Customize email verification template           │  │
+│  │     ├─ Customize password reset template               │  │
+│  │     └─ Add styling and branding                        │  │
+│  │                                                           │  │
+│  │  3️⃣ PostConfirmation                                      │  │
+│  │     ├─ Create DynamoDB entities:                        │  │
+│  │     │  ├─ Core Profile (PK=USER#{userId}, SK=PROFILE) │  │
+│  │     │  ├─ Privacy Settings (SK=PRIVACY_SETTINGS)      │  │
+│  │     │  └─ AI Preferences (SK=AI_PREFERENCES)          │  │
+│  │     └─ Initialize user data                            │  │
+│  │                                                           │  │
+│  │  4️⃣ PreAuthentication                                     │  │
+│  │     ├─ Check user account status                       │  │
+│  │     ├─ Reject if banned/suspended                      │  │
+│  │     └─ Allow login if active                           │  │
+│  │                                                           │  │
+│  │  5️⃣ PostAuthentication                                    │  │
+│  │     ├─ Update lastLoginAt timestamp                    │  │
+│  │     └─ Track user activity                             │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Cognito User Pool Client                                │  │
+│  │  ├─ Client Type: Web (no secret)                        │  │
+│  │  ├─ Auth Flows: Password, SRP                          │  │
+│  │  ├─ OAuth: Authorization code grant                     │  │
+│  │  ├─ Tokens: 1h access, 1h ID, 30d refresh             │  │
+│  │  ├─ Callback: https://{env}.everyonecook.cloud        │  │
+│  │  └─ Security: Token revocation, user enum protection   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+                          │
+                          │ Exports
+                          ▼
+                   Backend Stack
+        (API Gateway Cognito Authorizer)
+</code></pre><hr>
+<h2 id="stack-configuration">Stack Configuration</h2>
+<h3 id="file-structure">File Structure</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── auth-stack.ts                           # Auth Stack (865 lines)
+
+services/auth-module/triggers/
+├── pre-signup.ts                          # PreSignUp trigger
+├── custom-message.ts                      # CustomMessage trigger
+├── post-confirmation.ts                   # PostConfirmation trigger
+├── pre-authentication.ts                  # PreAuthentication trigger
+└── post-authentication.ts                 # PostAuthentication trigger
+</code></pre><h3 id="code-implementation-highlights">Code Implementation Highlights</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/auth-stack.ts</code></p>
+<h4 id="1-cognito-user-pool-creation">1. Cognito User Pool Creation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create Cognito User Pool with production-grade security
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createUserPool</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPool</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cognitoConfig</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">cognito</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userPool</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPool</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;UserPool&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">userPoolName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Sign-in configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">signInAliases</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Self sign-up enabled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">selfSignUpEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Standard attributes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">standardAttributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// Email cannot be changed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">givenName</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// fullName stored in given_name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">birthdate</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">gender</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Custom attributes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">customAttributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">account_status</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">StringAttribute</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">minLen</span>: <span style="color:#66d9ef">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">maxLen</span>: <span style="color:#66d9ef">20</span>,
+</span></span><span style="display:flex;"><span>      }),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">country</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">StringAttribute</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">minLen</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">maxLen</span>: <span style="color:#66d9ef">2</span>,  <span style="color:#75715e">// ISO 3166-1 alpha-2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Password policy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">passwordPolicy</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">minLength</span>: <span style="color:#66d9ef">12</span>,  <span style="color:#75715e">// 8 for dev
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">requireLowercase</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireUppercase</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireDigits</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireSymbols</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">tempPasswordValidity</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">7</span>),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Account recovery
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">accountRecovery</span>: <span style="color:#66d9ef">cdk.aws_cognito.AccountRecovery.EMAIL_ONLY</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Email configuration (Cognito default)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">cdk.aws_cognito.UserPoolEmail.withCognito</span>(),
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Auto-verify email
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">autoVerify</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// MFA: Disabled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mfa</span>: <span style="color:#66d9ef">cdk.aws_cognito.Mfa.OFF</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Device tracking (no MFA challenge)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deviceTracking</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">challengeRequiredOnNewDevice</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">deviceOnlyRememberedOnUserPrompt</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Email templates
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">userVerification</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailSubject</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;🍳 Verify your Everyone Cook account&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailBody</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Hello {username}, your verification code is: {####}&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailStyle</span>: <span style="color:#66d9ef">cdk.aws_cognito.VerificationEmailStyle.CODE</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deletion protection for production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deletionProtection</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userPool</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="2-lambda-triggers">2. Lambda Triggers</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create PostConfirmation Lambda Trigger
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Creates 3 DynamoDB entities after email verification:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 1. Core Profile (PK=USER#{userId}, SK=PROFILE)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 2. Privacy Settings (SK=PRIVACY_SETTINGS)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 3. AI Preferences (SK=AI_PREFERENCES)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createPostConfirmationTrigger</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dynamoTable</span>: <span style="color:#66d9ef">cdk.aws_dynamodb.ITable</span>
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">trigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;PostConfirmationTrigger&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-PostConfirmation`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>: <span style="color:#66d9ef">cdk.aws_lambda.Runtime.NODEJS_20_X</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;post-confirmation.handler&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">code</span>: <span style="color:#66d9ef">cdk.aws_lambda.Code.fromAsset</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;../../../services/auth-module/triggers/dist&#39;</span>)
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memorySize</span>: <span style="color:#66d9ef">512</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">DYNAMODB_TABLE_NAME</span>: <span style="color:#66d9ef">dynamoTable.tableName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ENVIRONMENT</span>: <span style="color:#66d9ef">this.config.environment</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Grant DynamoDB write permissions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">dynamoTable</span>.<span style="color:#a6e22e">grantReadWriteData</span>(<span style="color:#a6e22e">trigger</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">trigger</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create PreSignUp Lambda Trigger
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Handles cleanup of unverified users:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - If user exists and UNCONFIRMED &gt;24h → delete and allow new signup
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - If user exists and UNCONFIRMED &lt;24h → reject with &#34;wait 24h&#34; message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - If user doesn&#39;t exist → allow signup
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createPreSignUpTrigger</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">trigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;PreSignUpTrigger&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-PreSignUp`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>: <span style="color:#66d9ef">cdk.aws_lambda.Runtime.NODEJS_20_X</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pre-signup.handler&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">code</span>: <span style="color:#66d9ef">cdk.aws_lambda.Code.fromAsset</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;../../../services/auth-module/triggers/dist&#39;</span>)
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memorySize</span>: <span style="color:#66d9ef">256</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Grant Cognito permissions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">trigger</span>.<span style="color:#a6e22e">addToRolePolicy</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_iam</span>.<span style="color:#a6e22e">PolicyStatement</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">effect</span>: <span style="color:#66d9ef">cdk.aws_iam.Effect.ALLOW</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;cognito-idp:ListUsers&#39;</span>, <span style="color:#e6db74">&#39;cognito-idp:AdminDeleteUser&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resources</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`arn:aws:cognito-idp:</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">region</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">account</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:userpool/*`</span>],
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">trigger</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="3-user-pool-client">3. User Pool Client</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create Cognito User Pool Client for web application
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createUserPoolClient</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPoolClient</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">callbackUrls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getCallbackUrls</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logoutUrls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getLogoutUrls</span>();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userPoolClient</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPoolClient</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;UserPoolClient&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">userPoolClientName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-Web-Client-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">userPool</span>: <span style="color:#66d9ef">this.userPool</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Auth flows
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">authFlows</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">userPassword</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// USER_PASSWORD_AUTH
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">userSrp</span>: <span style="color:#66d9ef">true</span>,       <span style="color:#75715e">// USER_SRP_AUTH (Secure Remote Password)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">custom</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">adminUserPassword</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// OAuth configuration (future social login)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">oAuth</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">flows</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">authorizationCodeGrant</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">implicitCodeGrant</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">clientCredentials</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">scopes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">EMAIL</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">OPENID</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">PROFILE</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">callbackUrls</span>: <span style="color:#66d9ef">callbackUrls</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">logoutUrls</span>: <span style="color:#66d9ef">logoutUrls</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Token validity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">accessTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">idTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">refreshTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Read attributes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">readAttributes</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">ClientAttributes</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withStandardAttributes</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">emailVerified</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">givenName</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withCustomAttributes</span>(<span style="color:#e6db74">&#39;account_status&#39;</span>, <span style="color:#e6db74">&#39;country&#39;</span>),
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Security settings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">preventUserExistenceErrors</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// Prevent enumeration attacks
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">enableTokenRevocation</span>: <span style="color:#66d9ef">true</span>,       <span style="color:#75715e">// Allow token revocation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">generateSecret</span>: <span style="color:#66d9ef">false</span>,             <span style="color:#75715e">// No secret for web apps
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userPoolClient</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="key-configuration-details">Key Configuration Details</h2>
+<h3 id="1-user-registration-flow">1. User Registration Flow</h3>
+<p><strong>Registration Process</strong>:</p>
+<pre tabindex="0"><code>1. User signs up → PreSignUp trigger
+   ├─ Check if username/email exists
+   ├─ If UNCONFIRMED &gt;24h: Delete old user
+   ├─ If UNCONFIRMED &lt;24h: Reject with &#34;wait 24h&#34;
+   └─ Allow registration
+
+2. User receives verification email → CustomMessage trigger
+   ├─ Customize email template
+   └─ Send verification code
+
+3. User verifies email → PostConfirmation trigger
+   ├─ Create DynamoDB entities:
+   │  ├─ Core Profile (username, email, fullName, etc.)
+   │  ├─ Privacy Settings (default: private)
+   │  └─ AI Preferences (default settings)
+   └─ User account ready
+
+4. User logs in → PreAuthentication trigger
+   ├─ Check account_status
+   ├─ If banned/suspended: Reject login
+   └─ Allow login
+
+5. Login successful → PostAuthentication trigger
+   └─ Update lastLoginAt timestamp
+</code></pre><h3 id="2-password-policy">2. Password Policy</h3>
+<p><strong>Environments</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Environment</th>
+          <th>Min Length</th>
+          <th>Requirements</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Dev</strong></td>
+          <td>8 chars</td>
+          <td>Uppercase, lowercase, digits, symbols</td>
+      </tr>
+      <tr>
+          <td><strong>Staging</strong></td>
+          <td>12 chars</td>
+          <td>Uppercase, lowercase, digits, symbols</td>
+      </tr>
+      <tr>
+          <td><strong>Prod</strong></td>
+          <td>12 chars</td>
+          <td>Uppercase, lowercase, digits, symbols</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Example Valid Passwords</strong>:</p>
+<ul>
+<li><code>MyP@ssw0rd123</code> (12 chars)</li>
+<li><code>Str0ng!Pass</code> (11 chars, invalid for prod/staging)</li>
+</ul>
+<h3 id="3-token-validity">3. Token Validity</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Token Type</th>
+          <th>Validity</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Access Token</strong></td>
+          <td>1 hour</td>
+          <td>API authorization</td>
+      </tr>
+      <tr>
+          <td><strong>ID Token</strong></td>
+          <td>1 hour</td>
+          <td>User identity claims</td>
+      </tr>
+      <tr>
+          <td><strong>Refresh Token</strong></td>
+          <td>30 days</td>
+          <td>Renew access/ID tokens</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Token Refresh Flow</strong>:</p>
+<pre tabindex="0"><code>Access token expires (1h) → Use refresh token → Get new access/ID tokens
+Refresh token expires (30d) → User must login again
+</code></pre><h3 id="4-lambda-trigger-details">4. Lambda Trigger Details</h3>
+<h4 id="presignup-trigger">PreSignUp Trigger</h4>
+<p><strong>Purpose</strong>: Prevent &ldquo;username already taken&rdquo; errors for unverified users</p>
+<p><strong>Logic</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userExists</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">userStatus</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;UNCONFIRMED&#39;</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hoursSinceCreation</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">now</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">userCreationDate</span>) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1000</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">hoursSinceCreation</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">24</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Delete expired unverified user
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">deleteUser</span>(<span style="color:#a6e22e">username</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">allowSignUp</span>();
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// User still has time to verify
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">rejectSignUp</span>(<span style="color:#e6db74">`Please wait </span><span style="color:#e6db74">${</span><span style="color:#ae81ff">24</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">hoursSinceCreation</span><span style="color:#e6db74">}</span><span style="color:#e6db74">h to register again`</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">allowSignUp</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="postconfirmation-trigger">PostConfirmation Trigger</h4>
+<p><strong>DynamoDB Entities Created</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Core Profile
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PROFILE&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;john_doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;john@example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fullName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account_status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;active&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">createdAt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2025-01-01T00:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... other fields
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Privacy Settings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PRIVACY_SETTINGS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">profileVisibility</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;private&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">showEmail</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">allowMessages</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;friends&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... other settings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. AI Preferences
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AI_PREFERENCES&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">aiEnabled</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">preferredLanguage</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;en&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dietaryRestrictions</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... other preferences
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>After deployment, the stack exports the following values:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Used By</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>UserPoolId</code></td>
+          <td><code>ap-southeast-1_XXXXXXXXX</code></td>
+          <td>Backend Stack (Authorizer)</td>
+      </tr>
+      <tr>
+          <td><code>UserPoolArn</code></td>
+          <td><code>arn:aws:cognito-idp:...</code></td>
+          <td>Lambda IAM policies</td>
+      </tr>
+      <tr>
+          <td><code>UserPoolClientId</code></td>
+          <td><code>1234567890abcdef</code></td>
+          <td>Frontend (Amplify config)</td>
+      </tr>
+      <tr>
+          <td><code>CustomMessageFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PostConfirmationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PreAuthenticationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PostAuthenticationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="deployment-steps">Deployment Steps</h2>
+<h3 id="step-1-build-lambda-triggers">Step 1: Build Lambda Triggers</h3>
+<p>Before deploying, compile Lambda triggers to JavaScript:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\auth-module\triggers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build TypeScript to JavaScript</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span></code></pre></div><p>Expected output:</p>
+<pre tabindex="0"><code>&gt; auth-module-triggers@1.0.0 build
+&gt; tsc
+
+Compiled successfully to dist/
+</code></pre><h3 id="step-2-verify-prerequisites">Step 2: Verify Prerequisites</h3>
+<ul>
+<li>Core Stack successfully deployed</li>
+<li>DynamoDB table exists</li>
+<li>Lambda triggers built to <code>dist/</code> folder</li>
+</ul>
+<h3 id="step-3-deploy-auth-stack">Step 3: Deploy Auth Stack</h3>
+<p>Navigate to infrastructure directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Deploy Auth Stack to <strong>ap-southeast-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Deploy Auth Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Auth --context environment=dev
+</span></span></code></pre></div><p>Expected output:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 7.23s
+
+EveryoneCook-dev-Auth: deploying...
+[████████████████████████████████████████] (9/9)
+
+EveryoneCook-dev-Auth: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Auth
+
+✨  Deployment time: 180.45s
+
+Outputs:
+EveryoneCook-dev-Auth.UserPoolId = ap-southeast-1_a1B2c3D4e
+EveryoneCook-dev-Auth.UserPoolClientId = 1a2b3c4d5e6f7g8h9i0j
+EveryoneCook-dev-Auth.UserPoolArn = arn:aws:cognito-idp:ap-southeast-1:616580903213:userpool/...
+EveryoneCook-dev-Auth.PostConfirmationFunctionArn = arn:aws:lambda:ap-southeast-1:...
+EveryoneCook-dev-Auth.PreAuthenticationFunctionArn = arn:aws:lambda:ap-southeast-1:...
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:616580903213:stack/EveryoneCook-dev-Auth/...
+</code></pre><h3 id="step-4-verify-in-aws-console">Step 4: Verify in AWS Console</h3>
+<h4 id="navigate-to-cognito-user-pool">Navigate to Cognito User Pool</h4>
+<ol>
+<li>Open AWS Console → <strong>ap-southeast-1</strong> region</li>
+<li>Go to <strong>Amazon Cognito</strong> &gt; <strong>User pools</strong></li>
+<li>Find <code>EveryoneCook-dev</code></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cognito-user-pool.png" alt="Cognito User Pool Overview">
+<em>Cognito User Pool showing sign-in options (username/email), MFA disabled, password policy, and deletion protection</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>Sign-in: Username or Email</li>
+<li>MFA: Disabled</li>
+<li>Password policy: Configured</li>
+<li>Email verification: Required</li>
+</ul>
+<h4 id="verify-user-pool-configuration">Verify User Pool Configuration</h4>
+<p>Click on the User Pool to view details:</p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cognito-pool-details.png" alt="Cognito User Pool Details">
+<em>User Pool configuration showing authentication settings, attributes, password policy, and security features</em></p>
+<p><strong>Check</strong>:</p>
+<ul>
+<li><strong>Sign-in experience</strong>: Username and Email enabled</li>
+<li><strong>User attributes</strong>: email, given_name (required), birthdate, gender (optional)</li>
+<li><strong>Custom attributes</strong>: account_status, country</li>
+<li><strong>Password policy</strong>: Min 12 chars, requires uppercase, lowercase, digits, symbols</li>
+<li><strong>MFA</strong>: Off</li>
+<li><strong>Device tracking</strong>: Enabled</li>
+</ul>
+<h4 id="verify-lambda-triggers">Verify Lambda Triggers</h4>
+<p>Go to <strong>User pool properties</strong> &gt; <strong>Lambda triggers</strong>:</p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cognito-triggers.png" alt="Cognito Lambda Triggers">
+<em>Lambda triggers configured for Pre sign-up, Custom message, Post confirmation, Pre authentication, and Post authentication</em></p>
+<p><strong>Verify 5 triggers</strong>:</p>
+<ul>
+<li>Pre sign-up: <code>EveryoneCook-dev-PreSignUp</code></li>
+<li>Custom message: <code>EveryoneCook-dev-CustomMessage</code></li>
+<li>Post confirmation: <code>EveryoneCook-dev-PostConfirmation</code></li>
+<li>Pre authentication: <code>EveryoneCook-dev-PreAuthentication</code></li>
+<li>Post authentication: <code>EveryoneCook-dev-PostAuthentication</code></li>
+</ul>
+<h4 id="verify-user-pool-client">Verify User Pool Client</h4>
+<p>Go to <strong>App integration</strong> &gt; <strong>App clients</strong>:</p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cognito-client.png" alt="Cognito User Pool Client">
+<em>User Pool Client showing auth flows, OAuth settings, token validity, callback URLs, and security settings</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>Client type: Public (no secret)</li>
+<li>Auth flows: USER_PASSWORD_AUTH, USER_SRP_AUTH</li>
+<li>OAuth flows: Authorization code grant</li>
+<li>Callback URLs: Environment-specific</li>
+<li>Token validity: 1h access, 1h ID, 30d refresh</li>
+</ul>
+<h4 id="navigate-to-lambda-functions">Navigate to Lambda Functions</h4>
+<p>Go to <strong>Lambda</strong> &gt; <strong>Functions</strong>, find Auth triggers:</p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cognito-triggers.png" alt="Lambda Triggers List">
+<em>Lambda functions showing all 5 Cognito triggers with runtime Node.js 20.x, memory 256-512 MB, and timeout 10-30s</em></p>
+<p><strong>Verify</strong>:</p>
+<ul>
+<li>All 5 Lambda functions created</li>
+<li>Runtime: Node.js 20.x</li>
+<li>Environment variables configured</li>
+<li>CloudWatch log groups created</li>
+</ul>
+<h4 id="check-lambda-permissions">Check Lambda Permissions</h4>
+<p>Click on a Lambda function → <strong>Configuration</strong> &gt; <strong>Permissions</strong>:</p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/lambda-permissions.png" alt="Lambda IAM Permissions">
+<em>Lambda execution role showing permissions for DynamoDB (PostConfirmation), Cognito (PreSignUp), and CloudWatch Logs</em></p>
+<p><strong>Expected permissions</strong>:</p>
+<ul>
+<li><strong>PostConfirmation</strong>: DynamoDB read/write</li>
+<li><strong>PreAuthentication</strong>: DynamoDB read</li>
+<li><strong>PostAuthentication</strong>: DynamoDB read/write</li>
+<li><strong>PreSignUp</strong>: Cognito ListUsers, AdminDeleteUser</li>
+<li><strong>All triggers</strong>: CloudWatch Logs write</li>
+</ul>
+<hr>
+<h2 id="cost-breakdown">Cost Breakdown</h2>
+<h3 id="monthly-costs-dev-environment">Monthly Costs (Dev Environment)</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Resource</th>
+          <th>Configuration</th>
+          <th>Monthly Cost</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Cognito User Pool</strong></td>
+          <td>&lt;50 MAU</td>
+          <td>$0</td>
+          <td>First 50K MAU free</td>
+      </tr>
+      <tr>
+          <td><strong>Lambda Triggers</strong></td>
+          <td>5 functions, low invocations</td>
+          <td>$0-1</td>
+          <td>Free tier covers most</td>
+      </tr>
+      <tr>
+          <td><strong>CloudWatch Logs</strong></td>
+          <td>7-day retention, 5 log groups</td>
+          <td>$0.50</td>
+          <td>~1GB logs</td>
+      </tr>
+      <tr>
+          <td><strong>Total (Estimated)</strong></td>
+          <td></td>
+          <td><strong>~$0.50-1.50/month</strong></td>
+          <td>Very low for dev</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="cost-notes">Cost Notes</h3>
+<ul>
+<li><strong>Cognito</strong>: First 50,000 MAU free, then $0.0055/MAU</li>
+<li><strong>Lambda</strong>: 1M requests/month free, then $0.20 per 1M</li>
+<li><strong>CloudWatch Logs</strong>: $0.50/GB ingested, $0.03/GB stored</li>
+<li><strong>No MFA charges</strong>: MFA disabled saves $0.05/MAU</li>
+</ul>
+<p><strong>Production Estimate</strong> (1000 MAU):</p>
+<ul>
+<li>Cognito: 1000 MAU × $0.0055 = <strong>$5.50/month</strong></li>
+<li>Lambda triggers: ~5000 invocations/month = <strong>$0 (free tier)</strong></li>
+<li>CloudWatch Logs: <strong>$1-2/month</strong></li>
+<li><strong>Total</strong>: <strong>~$7-8/month</strong></li>
+</ul>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="imports-from-previous-stacks">Imports from Previous Stacks</h3>
+<p><strong>From Core Stack</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dynamoTable</span>: <span style="color:#66d9ef">cdk.Fn.importValue</span>(<span style="color:#e6db74">&#39;EveryoneCook-dev-DynamoDBTableName&#39;</span>)
+</span></span></code></pre></div><h3 id="exports-used-by-other-stacks">Exports Used By Other Stacks</h3>
+<p><strong>Backend Stack</strong> imports:</p>
+<ul>
+<li>User Pool ID (for Cognito Authorizer)</li>
+<li>User Pool ARN (for API Gateway)</li>
+<li>User Pool Client ID (for frontend config)</li>
+</ul>
+<h3 id="dependency-flow">Dependency Flow</h3>
+<pre tabindex="0"><code>Core Stack → DynamoDB Table
+    │
+    ▼
+Auth Stack (creates Cognito + Lambda triggers)
+    │
+    ├─► User Pool ID → Backend Stack (API Gateway Authorizer)
+    ├─► User Pool Client ID → Frontend (Amplify config)
+    └─► Lambda triggers → User management workflows
+</code></pre><hr>
+<h2 id="validation-checklist">Validation Checklist</h2>
+<p>Before proceeding to Backend Stack deployment:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Auth Stack successfully deployed to ap-southeast-1</li>
+<li><input disabled="" type="checkbox"> Cognito User Pool exists with correct settings</li>
+<li><input disabled="" type="checkbox"> 5 Lambda triggers configured and attached</li>
+<li><input disabled="" type="checkbox"> User Pool Client created with OAuth settings</li>
+<li><input disabled="" type="checkbox"> Lambda functions have correct IAM permissions</li>
+<li><input disabled="" type="checkbox"> CloudWatch log groups created (7-day retention)</li>
+<li><input disabled="" type="checkbox"> Stack outputs exported successfully</li>
+<li><input disabled="" type="checkbox"> Lambda trigger code built to <code>dist/</code> folder</li>
+</ul>
+<hr>
+<h2 id="testing">Testing</h2>
+<h3 id="test-user-registration-flow">Test User Registration Flow</h3>
+<ol>
+<li>
+<p><strong>Test sign-up with Cognito console</strong>:</p>
+<p>Go to <strong>Cognito</strong> &gt; <strong>User pools</strong> &gt; <strong>EveryoneCook-dev</strong> &gt; <strong>Users</strong> &gt; <strong>Create user</strong></p>
+<p>Create a test user:</p>
+<pre tabindex="0"><code>Username: testuser01
+Email: your-email@example.com
+Full Name: Test User
+Temporary Password: TempP@ss123
+</code></pre></li>
+<li>
+<p><strong>Verify email sent</strong>:</p>
+<p>Check your email for verification code.</p>
+</li>
+<li>
+<p><strong>Check Lambda logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># View PostConfirmation logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PostConfirmation --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Verify DynamoDB entries</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Query user profile</span>
+</span></span><span style="display:flex;"><span>aws dynamodb query \
+</span></span><span style="display:flex;"><span>  --table-name EveryoneCook-dev-v2 \
+</span></span><span style="display:flex;"><span>  --key-condition-expression <span style="color:#e6db74">&#34;PK = :pk&#34;</span> \
+</span></span><span style="display:flex;"><span>  --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:pk&#34;:{&#34;S&#34;:&#34;USER#testuser01&#34;}}&#39;</span> \
+</span></span><span style="display:flex;"><span>  --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Expected: 3 items (PROFILE, PRIVACY_SETTINGS, AI_PREFERENCES)</p>
+</li>
+</ol>
+<h3 id="test-authentication-flow">Test Authentication Flow</h3>
+<ol>
+<li>
+<p><strong>Login with test user</strong>:</p>
+<p>Use AWS CLI to authenticate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws cognito-idp initiate-auth \
+</span></span><span style="display:flex;"><span>  --auth-flow USER_PASSWORD_AUTH \
+</span></span><span style="display:flex;"><span>  --client-id &lt;USER_POOL_CLIENT_ID&gt; \
+</span></span><span style="display:flex;"><span>  --auth-parameters USERNAME=testuser01,PASSWORD=&lt;password&gt; \
+</span></span><span style="display:flex;"><span>  --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Check PreAuthentication logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PreAuthentication --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Check PostAuthentication logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PostAuthentication --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="test-presignup-cleanup">Test PreSignUp Cleanup</h3>
+<ol>
+<li>
+<p><strong>Create unverified user</strong>:</p>
+<p>Sign up a user but don&rsquo;t verify email.</p>
+</li>
+<li>
+<p><strong>Wait 24 hours</strong> (or modify trigger code to 1 minute for testing)</p>
+</li>
+<li>
+<p><strong>Try to sign up again with same username</strong>:</p>
+<p>PreSignUp trigger should delete old user and allow new signup.</p>
+</li>
+</ol>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<p>After successfully deploying the Auth Stack:</p>
+<p>➡️ <strong><a href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">5.4.5 Backend Stack</a></strong> - Create API Gateway, Lambda functions, and SQS queues</p>
+<p>The Backend Stack will:</p>
+<ul>
+<li>Create API Gateway REST API with Cognito Authorizer</li>
+<li>Create 5 Lambda functions (auth, social, recipe, AI, admin)</li>
+<li>Create 6 SQS queues for async processing</li>
+<li>Create 6 worker Lambda functions</li>
+<li>Import User Pool ID from Auth Stack</li>
+<li>Configure API Gateway custom domain</li>
+</ul>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><strong>Source Code</strong>: <code>infrastructure/lib/stacks/auth-stack.ts</code></li>
+<li><strong>Lambda Triggers</strong>: <code>services/auth-module/triggers/</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>Environment Config</strong>: <code>infrastructure/config/environment.ts</code></li>
+<li><strong>AWS Documentation</strong>:
+<ul>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">Cognito User Pools</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html">Cognito Lambda Triggers</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html">Cognito User Pool Client</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-policies.html">Password Policies</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/" title="5.4.3 Core Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/" title="5.4.5 Backend Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

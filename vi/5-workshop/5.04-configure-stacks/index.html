@@ -1,0 +1,2996 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Cấu hình các Infrastructure Stack :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/5-workshop/5.04-configure-stacks/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Cấu hình các Infrastructure Stack
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tổng-quan-dự-án-everyonecook">Tổng quan dự án EveryoneCook</a>
+      <ul>
+        <li><a href="#giới-thiệu">Giới thiệu</a></li>
+        <li><a href="#kiến-trúc-hệ-thống">Kiến trúc hệ thống</a></li>
+        <li><a href="#công-nghệ-sử-dụng">Công nghệ sử dụng</a></li>
+        <li><a href="#cấu-trúc-thư-mục-dự-án">Cấu trúc thư mục dự án</a></li>
+      </ul>
+    </li>
+    <li><a href="#tổng-quan-kiến-trúc-stack">Tổng quan kiến trúc Stack</a>
+      <ul>
+        <li><a href="#1-dns-stack-phase-1">1. DNS Stack (Phase 1)</a></li>
+        <li><a href="#2-certificate-stack-phase-15">2. Certificate Stack (Phase 1.5)</a></li>
+        <li><a href="#3-core-stack-phase-2">3. Core Stack (Phase 2)</a></li>
+        <li><a href="#4-auth-stack-phase-3">4. Auth Stack (Phase 3)</a></li>
+        <li><a href="#5-backend-stack-phase-4">5. Backend Stack (Phase 4)</a></li>
+        <li><a href="#6-observability-stack-phase-7">6. Observability Stack (Phase 7)</a></li>
+        <li><a href="#luồng-phụ-thuộc-stack">Luồng phụ thuộc Stack</a></li>
+        <li><a href="#tổng-chi-phí-ước-tính">Tổng chi phí ước tính</a></li>
+      </ul>
+    </li>
+    <li><a href="#hướng-dẫn-cấu-hình">Hướng dẫn cấu hình</a>
+      <ul>
+        <li><a href="#bước-1-chuẩn-bị-thư-mục-infrastructure">Bước 1: Chuẩn bị thư mục Infrastructure</a></li>
+        <li><a href="#bước-2-cấu-hình-environment-settings">Bước 2: Cấu hình Environment Settings</a></li>
+        <li><a href="#bước-3-xem-lại-cấu-trúc-cdk-app">Bước 3: Xem lại cấu trúc CDK App</a></li>
+        <li><a href="#bước-4-validate-cấu-hình">Bước 4: Validate cấu hình</a></li>
+        <li><a href="#bước-5-xem-lại-tài-nguyên-stack-tùy-chọn">Bước 5: Xem lại tài nguyên Stack (Tùy chọn)</a></li>
+        <li><a href="#bước-6-cấu-hình-chi-tiết-cho-từng-stack">Bước 6: Cấu hình chi tiết cho từng Stack</a></li>
+      </ul>
+    </li>
+    <li><a href="#checklist-cấu-hình">Checklist cấu hình</a></li>
+    <li><a href="#bước-tiếp-theo">Bước tiếp theo</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Cấu hình các Infrastructure Stack
+            </h1>
+          
+
+        
+
+
+
+	<h1 id="cấu-hình-các-infrastructure-stack">Cấu hình các Infrastructure Stack</h1>
+<h2 id="tổng-quan-dự-án-everyonecook">Tổng quan dự án EveryoneCook</h2>
+<h3 id="giới-thiệu">Giới thiệu</h3>
+<p>EveryoneCook là một nền tảng mạng xã hội chia sẻ công thức nấu ăn, được xây dựng hoàn toàn trên AWS Cloud. Dự án sử dụng kiến trúc serverless, tận dụng các dịch vụ quản lý của AWS để đảm bảo khả năng mở rộng, bảo mật và tối ưu hóa chi phí.</p>
+<h3 id="kiến-trúc-hệ-thống">Kiến trúc hệ thống</h3>
+<p>Dự án được thiết kế với <strong>Kiến trúc 5-Stack</strong> với các lớp rõ ràng:</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
+│                    EveryoneCook Platform                     │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: DNS &amp; Certificate (Foundation)                    │
+│  ├─ DNS Stack: Route 53 Hosted Zone                         │
+│  └─ Certificate Stack: ACM Certificates (us-east-1)         │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: Data &amp; Storage (Core Infrastructure)              │
+│  └─ Core Stack: DynamoDB, S3, CloudFront, KMS               │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Authentication &amp; Security                         │
+│  └─ Auth Stack: Cognito, Lambda Triggers, SES               │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 4: Application &amp; Business Logic                      │
+│  └─ Backend Stack: API Gateway, Lambda, SQS, WAF            │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 5: Monitoring &amp; Observability                        │
+│  └─ Observability Stack: CloudWatch, Alarms, Dashboards     │
+└─────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="công-nghệ-sử-dụng">Công nghệ sử dụng</h3>
+<h4 id="infrastructure-as-code">Infrastructure as Code</h4>
+<ul>
+<li><strong>AWS CDK (TypeScript)</strong>: Quản lý hạ tầng bằng code</li>
+<li><strong>CloudFormation</strong>: Engine template cơ sở cho CDK</li>
+<li><strong>Git</strong>: Quản lý phiên bản cho infrastructure code</li>
+</ul>
+<h4 id="backend-services">Backend Services</h4>
+<ul>
+<li><strong>API Gateway REST API</strong>: RESTful API endpoint với custom domain</li>
+<li><strong>Lambda Functions</strong>: Serverless compute cho business logic (6 hàm chính + 1 worker)</li>
+<li><strong>Lambda Layers</strong>: Lớp shared dependencies (giảm kích thước deployment 90%)</li>
+<li><strong>DynamoDB</strong>: NoSQL database với Single Table Design + 5 GSI indexes</li>
+<li><strong>S3</strong>: Object storage cho user content (avatars, posts, recipes, backgrounds)</li>
+<li><strong>SQS</strong>: Message queue cho async processing (4 queues + 4 DLQs)</li>
+</ul>
+<h4 id="security--authentication">Security &amp; Authentication</h4>
+<ul>
+<li><strong>Cognito User Pool</strong>: User authentication &amp; management</li>
+<li><strong>Cognito User Pool Client</strong>: Frontend authentication config</li>
+<li><strong>WAF (Web Application Firewall)</strong>: API Gateway protection với rate limiting</li>
+<li><strong>KMS (Key Management Service)</strong>: 2 customer-managed keys (DynamoDB, S3)</li>
+<li><strong>IAM Roles &amp; Policies</strong>: Fine-grained access control cho tất cả services</li>
+</ul>
+<h4 id="content-delivery--networking">Content Delivery &amp; Networking</h4>
+<ul>
+<li><strong>CloudFront</strong>: CDN với Origin Access Control (OAC) + Shield Standard</li>
+<li><strong>Route 53</strong>: DNS management với Hosted Zone</li>
+<li><strong>ACM (Certificate Manager)</strong>: SSL/TLS certificates (2 certificates)</li>
+</ul>
+<h4 id="monitoring--operations">Monitoring &amp; Operations</h4>
+<ul>
+<li><strong>CloudWatch Logs</strong>: Centralized logging cho Lambda functions</li>
+<li><strong>CloudWatch Metrics</strong>: Performance metrics tracking</li>
+<li><strong>CloudWatch Dashboards</strong>: 4 dashboards (Core, Auth, Backend, Overview)</li>
+<li><strong>CloudWatch Alarms</strong>: Real-time monitoring (10+ alarms) + Composite Alarm</li>
+<li><strong>SNS (Simple Notification Service)</strong>: Email notifications cho alarms</li>
+</ul>
+<h3 id="cấu-trúc-thư-mục-dự-án">Cấu trúc thư mục dự án</h3>
+<pre tabindex="0"><code>everyonecook/
+├── infrastructure/                    # AWS CDK Infrastructure
+│   ├── bin/
+│   │   └── app.ts                    # CDK app entry point - tạo tất cả stacks
+│   ├── lib/
+│   │   ├── base-stack.ts             # Base class cho tất cả stacks
+│   │   ├── stacks/                   # Stack definitions
+│   │   │   ├── dns-stack.ts          # Route 53 Hosted Zone
+│   │   │   ├── certificate-stack.ts  # ACM Certificates
+│   │   │   ├── core-stack.ts         # DynamoDB, S3, CloudFront
+│   │   │   ├── auth-stack.ts         # Cognito, Lambda triggers
+│   │   │   ├── backend-stack.ts      # API Gateway, Lambda, SQS
+│   │   │   └── observability-stack.ts # CloudWatch, Alarms
+│   │   └── constructs/               # Reusable CDK constructs
+│   │       └── shared-layer.ts       # Lambda Layer với dependencies
+│   ├── config/
+│   │   └── environment.ts            # Environment configuration (dev/staging/prod)
+│   ├── cdk.json                      # CDK configuration
+│   ├── package.json                  # Node.js dependencies
+│   └── tsconfig.json                 # TypeScript configuration
+├── services/                         # Lambda function source code
+│   ├── api-router/                   # API request routing
+│   ├── auth-user/                    # Authentication endpoints
+│   ├── social/                       # Social features (posts, comments)
+│   ├── recipe-ai/                    # Recipe &amp; AI endpoints
+│   ├── admin/                        # Admin management
+│   └── upload/                       # File upload handler
+├── shared/                           # Shared code &amp; utilities
+│   ├── utils/                        # Common utilities
+│   ├── models/                       # Data models
+│   └── middleware/                   # Lambda middleware
+├── frontend/                         # Next.js frontend (deployed separately)
+│   └── ...
+└── layers/                           # Lambda layers
+    └── shared-dependencies/          # Common npm packages
+</code></pre><h2 id="tổng-quan-kiến-trúc-stack">Tổng quan kiến trúc Stack</h2>
+<h3 id="1-dns-stack-phase-1">1. DNS Stack (Phase 1)</h3>
+<p><strong>Mục đích</strong>: Tạo nền tảng cho DNS management</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li>Route 53 Hosted Zone cho domain <code>everyonecook.cloud</code></li>
+<li>Export nameservers để cấu hình tại domain registrar</li>
+</ul>
+<p><strong>Thứ tự triển khai</strong>: Stack này phải được triển khai đầu tiên</p>
+<p><strong>Chi phí ước tính</strong>: ~$0.50/tháng</p>
+<blockquote>
+<p><strong>Lưu ý</strong>: Sau khi triển khai stack này, cập nhật nameservers tại Hostinger để trỏ về Route 53.</p></blockquote>
+<hr>
+<h3 id="2-certificate-stack-phase-15">2. Certificate Stack (Phase 1.5)</h3>
+<p><strong>Mục đích</strong>: Tạo SSL/TLS certificates cho CloudFront và API Gateway</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li>ACM Certificate cho CloudFront: <code>cdn.everyonecook.cloud</code></li>
+<li>ACM Wildcard Certificate cho API Gateway: <code>*.everyonecook.cloud</code></li>
+<li>DNS validation records trong Route 53</li>
+</ul>
+<p><strong>Region đặc biệt</strong>: <strong>BẮT BUỘC triển khai tại us-east-1</strong> (yêu cầu của CloudFront)</p>
+<p><strong>Phụ thuộc</strong>: DNS Stack (cần Hosted Zone cho DNS validation)</p>
+<p><strong>Chi phí ước tính</strong>: Miễn phí (ACM certificates miễn phí)</p>
+<blockquote>
+<p><strong>Lưu ý quan trọng</strong>: CloudFront chỉ chấp nhận certificates từ region us-east-1.</p></blockquote>
+<hr>
+<h3 id="3-core-stack-phase-2">3. Core Stack (Phase 2)</h3>
+<p><strong>Mục đích</strong>: Tạo lớp dữ liệu và storage infrastructure</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li><strong>DynamoDB Table</strong>: Single Table Design với 5 GSI indexes
+<ul>
+<li>PK: <code>USER#{username}</code>, SK: <code>PROFILE|RECIPE#{id}|POST#{id}|COMMENT#{id}</code></li>
+<li>Username-based primary key (immutable)</li>
+<li>GSI1-GSI5 cho các query patterns khác nhau:
+<ul>
+<li>GSI1: User recipes theo date</li>
+<li>GSI2: User posts theo date</li>
+<li>GSI3: Post comments</li>
+<li>GSI4: Recipe search theo cuisine/difficulty</li>
+<li>GSI5: Social interactions (likes, follows)</li>
+</ul>
+</li>
+<li>Billing mode: Pay-per-request (on-demand)</li>
+<li>Encryption: Customer-managed KMS key với auto-rotation</li>
+</ul>
+</li>
+<li><strong>S3 Buckets</strong> (2 buckets):
+<ul>
+<li><strong>Content Bucket</strong>: User uploads (avatars, posts, recipes, backgrounds)
+<ul>
+<li>Intelligent-Tiering enabled (tự động tối ưu chi phí)</li>
+<li>Versioning enabled</li>
+<li>Lifecycle rules: Xóa incomplete multipart uploads sau 7 ngày</li>
+<li>Encryption: Customer-managed KMS key</li>
+</ul>
+</li>
+<li><strong>CDN Logs Bucket</strong>: CloudFront access logs
+<ul>
+<li>Intelligent-Tiering enabled</li>
+<li>Tự động xóa logs sau 90 ngày (tối ưu chi phí)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>CloudFront Distribution</strong>:
+<ul>
+<li>Origin: S3 Content Bucket</li>
+<li>Origin Access Control (OAC) để bảo mật S3 access (thay thế OAI)</li>
+<li>Custom domain: <code>cdn.everyonecook.cloud</code></li>
+<li>SSL Certificate: ACM certificate từ Certificate Stack</li>
+<li>Cache behaviors: Tối ưu cho images &amp; static content</li>
+<li>Compression: Gzip &amp; Brotli enabled</li>
+<li>Shield Standard: DDoS protection (miễn phí, tự động bật)</li>
+<li><strong>LƯU Ý</strong>: CloudFront WAF đã được gỡ bỏ để tiết kiệm $9/tháng</li>
+</ul>
+</li>
+<li><strong>KMS Keys</strong> (2 customer-managed keys):
+<ul>
+<li><strong>DynamoDB Encryption Key</strong>:
+<ul>
+<li>Auto-rotation enabled (hàng năm)</li>
+<li>Sử dụng bởi: DynamoDB table, CloudWatch Logs</li>
+</ul>
+</li>
+<li><strong>S3 Encryption Key</strong>:
+<ul>
+<li>Auto-rotation enabled (hàng năm)</li>
+<li>Sử dụng bởi: S3 buckets, CloudFront signed URLs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>IAM Roles</strong>:
+<ul>
+<li>CloudFront Origin Access Control role</li>
+<li>Lambda execution roles với DynamoDB &amp; S3 access</li>
+</ul>
+</li>
+</ul>
+<p><strong>Phụ thuộc</strong>: Certificate Stack (cần certificate cho CloudFront)</p>
+<p><strong>Chi phí ước tính</strong>: ~$8-15/tháng</p>
+<blockquote>
+<p><strong>Tối ưu chi phí</strong>:</p>
+<ul>
+<li>S3 Intelligent-Tiering tự động chuyển objects sang storage rẻ hơn</li>
+<li>CloudFront WAF đã gỡ bỏ (Shield Standard cung cấp DDoS protection)</li>
+<li>CloudWatch Logs tự động xóa sau retention period</li>
+</ul></blockquote>
+<hr>
+<h3 id="4-auth-stack-phase-3">4. Auth Stack (Phase 3)</h3>
+<p><strong>Mục đích</strong>: Authentication và user management</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li><strong>Cognito User Pool</strong>:
+<ul>
+<li>Phương thức đăng nhập: Username HOẶC Email + Password</li>
+<li>KHÔNG yêu cầu MFA (chỉ email + password)</li>
+<li>Password policy:
+<ul>
+<li>Min 12 ký tự cho prod (8 ký tự cho dev)</li>
+<li>Yêu cầu uppercase, lowercase, digits, symbols</li>
+</ul>
+</li>
+<li>Standard attributes: email, given_name (fullName), birthdate, gender</li>
+<li>Custom attributes: account_status (cho admin ban), country (ISO 3166-1)</li>
+<li>Device tracking: Enabled (KHÔNG yêu cầu challenge)</li>
+<li>Email verification: Bắt buộc trước khi sử dụng</li>
+<li>Account recovery: Dựa trên Email</li>
+<li><strong>LƯU Ý</strong>: Advanced Security Mode TẮT để tiết kiệm ~$5/tháng</li>
+</ul>
+</li>
+<li><strong>Lambda Triggers</strong> (5 functions với CloudWatch Logs):
+<ul>
+<li><strong>Pre-signup</strong>:
+<ul>
+<li>Validate username uniqueness</li>
+<li>Kiểm tra profanity/banned words</li>
+<li>Runtime: Node.js 20.x</li>
+</ul>
+</li>
+<li><strong>Post-confirmation</strong>:
+<ul>
+<li>Tạo user profile trong DynamoDB</li>
+<li>Initialize user stats</li>
+</ul>
+</li>
+<li><strong>Pre-authentication</strong>:
+<ul>
+<li>Kiểm tra account status (active/banned)</li>
+<li>Log login attempts</li>
+</ul>
+</li>
+<li><strong>Post-authentication</strong>:
+<ul>
+<li>Cập nhật last login timestamp</li>
+<li>Track user activity</li>
+</ul>
+</li>
+<li><strong>Custom message</strong>:
+<ul>
+<li>Customize verification emails</li>
+<li>Branded email templates</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Cognito User Pool Client</strong>:
+<ul>
+<li>OAuth flows: Authorization code grant</li>
+<li>Token validity:
+<ul>
+<li>Access token: 1 giờ</li>
+<li>Refresh token: 30 ngày</li>
+</ul>
+</li>
+<li>Read/Write attributes được cấu hình</li>
+</ul>
+</li>
+<li><strong>CloudWatch Log Groups</strong>:
+<ul>
+<li>Mỗi Lambda trigger có dedicated log group</li>
+<li>Retention: 7 ngày</li>
+<li>Encryption: KMS DynamoDB key</li>
+</ul>
+</li>
+<li><strong>IAM Roles</strong>:
+<ul>
+<li>Lambda execution roles</li>
+<li>Permissions: DynamoDB read/write, Cognito admin, Logs write</li>
+</ul>
+</li>
+</ul>
+<p><strong>Phụ thuộc</strong>: Core Stack (Lambda triggers cần access DynamoDB)</p>
+<p><strong>Chi phí ước tính</strong>: ~$0-2/tháng (Cognito free tier: 50,000 MAU)</p>
+<blockquote>
+<p><strong>Bảo mật</strong>:</p>
+<ul>
+<li>Advanced Security Mode không bật để tối ưu chi phí (sẽ tốn thêm ~$5/tháng)</li>
+<li>Device tracking enabled nhưng KHÔNG MFA để cải thiện user experience</li>
+<li>Tất cả Lambda triggers có CloudWatch logging</li>
+</ul></blockquote>
+<hr>
+<h3 id="5-backend-stack-phase-4">5. Backend Stack (Phase 4)</h3>
+<p><strong>Mục đích</strong>: Application layer và business logic</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li><strong>API Gateway REST API</strong>:
+<ul>
+<li>Custom domain: <code>api.everyonecook.cloud</code></li>
+<li>SSL Certificate: Wildcard ACM certificate (<code>*.everyonecook.cloud</code>)</li>
+<li>Cognito Authorizer: Validate JWT tokens</li>
+<li>Request validators:
+<ul>
+<li>Body validator: Validate request body</li>
+<li>Params validator: Validate query params &amp; path params</li>
+<li>Full validator: Validate cả body &amp; params</li>
+</ul>
+</li>
+<li>Deployment stage: dev/staging/prod</li>
+<li>CloudWatch Logs: Access logs + execution logs</li>
+<li>WAF Web ACL attached (API protection)</li>
+</ul>
+</li>
+<li><strong>Lambda Functions</strong> (6 main modules + CloudWatch Logs):
+<ul>
+<li><strong>API Router</strong>:
+<ul>
+<li>Route requests tới appropriate handlers</li>
+<li>Memory: 256 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Auth User</strong>:
+<ul>
+<li>Login, register, forgot-password, verify-email</li>
+<li>Cognito integration</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Social</strong>:
+<ul>
+<li>Create/edit/delete posts, comments, likes</li>
+<li>Follow/unfollow users</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Recipe AI</strong>:
+<ul>
+<li>CRUD operations cho recipes</li>
+<li>AI recipe generation (Bedrock integration)</li>
+<li>Recipe search &amp; recommendations</li>
+<li>Memory: 1024 MB, Timeout: 60s</li>
+</ul>
+</li>
+<li><strong>Admin</strong>:
+<ul>
+<li>User management, ban/unban</li>
+<li>Content moderation</li>
+<li>Analytics dashboard</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Upload</strong>:
+<ul>
+<li>File upload lên S3</li>
+<li>Generate pre-signed URLs</li>
+<li>Image validation</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li>Runtime: Node.js 20.x</li>
+<li>Environment variables: DynamoDB table, S3 bucket, SQS queues</li>
+</ul>
+</li>
+<li><strong>Lambda Layer - Shared Dependencies</strong>:
+<ul>
+<li>AWS SDK v3 clients: DynamoDB, S3, SQS, Cognito, Bedrock, Lambda</li>
+<li>Utilities: uuid, jsonwebtoken, jwks-rsa</li>
+<li><strong>Lợi ích</strong>: Giảm kích thước deployment từ 8MB → 200KB per function (giảm 90%)</li>
+<li>Compatible runtimes: Node.js 18.x, 20.x</li>
+</ul>
+</li>
+<li><strong>SQS Queues</strong> (4 main queues + 4 DLQs):
+<ul>
+<li><strong>AI Queue</strong>:
+<ul>
+<li>AI recipe generation requests</li>
+<li>Visibility timeout: 120s (2 phút)</li>
+<li>Message retention: 4 ngày</li>
+<li>Max receive count: 3 (sau đó chuyển sang DLQ)</li>
+</ul>
+</li>
+<li><strong>Image Processing Queue</strong>:
+<ul>
+<li>Image optimization, thumbnails</li>
+<li>Visibility timeout: 60s</li>
+<li>Message retention: 4 ngày</li>
+</ul>
+</li>
+<li><strong>Analytics Queue</strong>:
+<ul>
+<li>User activity tracking</li>
+<li>Visibility timeout: 30s</li>
+<li>Message retention: 4 ngày</li>
+</ul>
+</li>
+<li><strong>Notification Queue</strong>:
+<ul>
+<li>Push notifications, emails</li>
+<li>Visibility timeout: 30s</li>
+<li>Message retention: 4 ngày</li>
+</ul>
+</li>
+<li>Encryption: AWS managed KMS keys</li>
+</ul>
+</li>
+<li><strong>Worker Lambda</strong> (1 active):
+<ul>
+<li><strong>AI Worker</strong>:
+<ul>
+<li>Process AI Queue messages</li>
+<li>Call Amazon Bedrock cho recipe generation</li>
+<li>Store results trong DynamoDB</li>
+<li>Memory: 1024 MB, Timeout: 120s</li>
+<li>Event source: AI Queue (batch size: 10)</li>
+</ul>
+</li>
+<li><em>Lưu ý: Các workers khác chưa được implement</em></li>
+</ul>
+</li>
+<li><strong>WAF Web ACL</strong> (chỉ API Gateway):
+<ul>
+<li><strong>Rate limiting</strong>: 2000 requests / 5 phút per IP</li>
+<li><strong>AWS Managed Rules</strong>:
+<ul>
+<li>AWSManagedRulesCommonRuleSet (OWASP Top 10)</li>
+<li>AWSManagedRulesKnownBadInputsRuleSet</li>
+</ul>
+</li>
+<li><strong>Custom rules</strong>: Block specific patterns</li>
+<li><strong>LƯU Ý</strong>: CloudFront WAF đã gỡ bỏ để tiết kiệm $9/tháng</li>
+<li>Shield Standard: Tự động bật (DDoS protection - miễn phí)</li>
+</ul>
+</li>
+<li><strong>CloudWatch Log Groups</strong>:
+<ul>
+<li>API Gateway access logs + execution logs</li>
+<li>Lambda function logs (per function)</li>
+<li>Retention: 7 ngày (tối ưu chi phí)</li>
+<li>Encryption: KMS DynamoDB key</li>
+</ul>
+</li>
+<li><strong>IAM Roles &amp; Policies</strong>:
+<ul>
+<li>API Gateway execution role</li>
+<li>Lambda execution roles (per function)</li>
+<li>Permissions: DynamoDB, S3, SQS, Cognito, Bedrock, Logs, KMS</li>
+</ul>
+</li>
+</ul>
+<p><strong>Shared Lambda Layer</strong>:</p>
+<ul>
+<li>AWS SDK v3 clients (DynamoDB, S3, SQS, Cognito, Bedrock)</li>
+<li>Common utilities (uuid, jsonwebtoken, jwks-rsa)</li>
+<li>Giảm deployment size: 8MB → 200KB per function</li>
+</ul>
+<p><strong>Phụ thuộc</strong>: Auth Stack (cần Cognito User Pool)</p>
+<p><strong>Chi phí ước tính</strong>: ~$10-25/tháng</p>
+<blockquote>
+<p><strong>Tối ưu chi phí</strong>:</p>
+<ul>
+<li>CloudFront WAF đã gỡ bỏ (Shield Standard cung cấp DDoS protection)</li>
+<li>WAF chỉ enabled cho API Gateway (main attack surface)</li>
+<li>Lambda Layer giảm deployment size 90%</li>
+<li>CloudWatch Logs tự động xóa sau 7 ngày</li>
+</ul></blockquote>
+<hr>
+<h3 id="6-observability-stack-phase-7">6. Observability Stack (Phase 7)</h3>
+<p><strong>Mục đích</strong>: Monitoring, logging và alerting</p>
+<p><strong>Tài nguyên chính</strong>:</p>
+<ul>
+<li><strong>CloudWatch Dashboards</strong> (4 dashboards):
+<ul>
+<li><strong>Core Dashboard</strong>:
+<ul>
+<li>DynamoDB metrics: Read/write capacity, throttling, latency</li>
+<li>S3 metrics: Request count, 4xx/5xx errors, bytes downloaded</li>
+<li>CloudFront metrics: Request count, cache hit rate, error rate</li>
+<li>KMS metrics: Key usage, encryption/decryption operations</li>
+</ul>
+</li>
+<li><strong>Auth Dashboard</strong>:
+<ul>
+<li>Cognito metrics: Sign-ups, sign-ins, failed authentications</li>
+<li>Lambda trigger metrics: Invocations, errors, duration</li>
+<li>User pool analytics</li>
+</ul>
+</li>
+<li><strong>Backend Dashboard</strong>:
+<ul>
+<li>API Gateway metrics: Request count, 4xx/5xx errors, latency</li>
+<li>Lambda metrics: Invocations, errors, duration, throttles, concurrent executions</li>
+<li>SQS metrics: Messages sent, received, deleted, DLQ depth</li>
+<li>WAF metrics: Blocked requests, allowed requests, rule matches</li>
+</ul>
+</li>
+<li><strong>Overview Dashboard</strong>:
+<ul>
+<li>System health summary</li>
+<li>Cost tracking</li>
+<li>Composite alarm status</li>
+<li>Key metrics từ tất cả stacks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>CloudWatch Alarms</strong> (15+ alarms):
+<ul>
+<li><strong>Critical Alarms</strong> (notify ngay lập tức):
+<ul>
+<li>API Gateway 5xx errors &gt; 5% (system errors)</li>
+<li>Lambda error rate &gt; 10%</li>
+<li>DynamoDB read/write throttling</li>
+<li>SQS DLQ có messages (failed processing)</li>
+<li>S3 5xx errors</li>
+<li>Cost &gt; $50/tháng (vượt ngân sách)</li>
+</ul>
+</li>
+<li><strong>Warning Alarms</strong> (notify nhưng không khẩn cấp):
+<ul>
+<li>API Gateway 4xx errors &gt; 10% (client errors)</li>
+<li>Lambda duration &gt; 25s (sắp timeout)</li>
+<li>Lambda throttling (đạt concurrent limit)</li>
+<li>DynamoDB latency cao (&gt; 100ms)</li>
+<li>S3 4xx errors</li>
+<li>SQS queue age &gt; 15 phút (processing lag)</li>
+<li>Cost &gt; $35/tháng (cảnh báo ngân sách)</li>
+</ul>
+</li>
+<li>Tất cả alarms:
+<ul>
+<li>Evaluation periods: 1-2 periods</li>
+<li>Datapoints to alarm: Có thể cấu hình</li>
+<li>Treatment of missing data: NOT_BREACHING</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Composite Alarm</strong>:
+<ul>
+<li>Name: &ldquo;SystemHealth&rdquo;</li>
+<li>Kết hợp tất cả critical alarms</li>
+<li>Alarm rule: OR logic (bất kỳ critical alarm nào trigger)</li>
+<li>Actions: Gửi SNS notification</li>
+<li>Mục đích: Một alarm duy nhất cho overall system health</li>
+</ul>
+</li>
+<li><strong>SNS Topic</strong>:
+<ul>
+<li>Topic name: <code>EveryoneCook-{env}-Alarms</code></li>
+<li>Email subscription: Admin email từ config</li>
+<li>Delivery status logging enabled</li>
+<li>Encryption: AWS managed key</li>
+</ul>
+</li>
+<li><strong>CloudWatch Logs</strong>:
+<ul>
+<li>Retention: 7 ngày (tối ưu chi phí)</li>
+<li>Encryption: KMS DynamoDB key</li>
+<li>Log groups: API Gateway, Lambda functions (tất cả đều có logs)</li>
+</ul>
+</li>
+<li><strong>Cost Tracking</strong>:
+<ul>
+<li>CloudWatch metric: EstimatedCharges</li>
+<li>Alarms: Warning ($35) + Critical ($50)</li>
+<li>Daily cost monitoring</li>
+</ul>
+</li>
+</ul>
+<p><strong>Phụ thuộc</strong>: Tất cả stacks khác (monitor toàn bộ infrastructure)</p>
+<p><strong>Chi phí ước tính</strong>: ~$3-8/tháng</p>
+<blockquote>
+<p><strong>Best practice</strong>:</p>
+<ul>
+<li>Deploy stack này cuối cùng để có visibility hoàn chỉnh</li>
+<li>Composite alarm giúp giảm alarm fatigue</li>
+<li>7-day log retention cân bằng debugging needs và cost</li>
+<li>Cost alarms ngăn ngừa hóa đơn bất ngờ</li>
+</ul></blockquote>
+<hr>
+<h3 id="luồng-phụ-thuộc-stack">Luồng phụ thuộc Stack</h3>
+<pre tabindex="0"><code>DNS Stack (Route 53)
+  ↓
+Certificate Stack (ACM in us-east-1)
+  ↓
+Core Stack (DynamoDB, S3, CloudFront, KMS)
+  ↓
+Auth Stack (Cognito, Lambda Triggers)
+  ↓
+Backend Stack (API Gateway, Lambda, SQS, WAF)
+  ↓
+Observability Stack (CloudWatch, Alarms)
+</code></pre><p><strong>Giải thích phụ thuộc</strong>:</p>
+<ol>
+<li><strong>Certificate Stack</strong> cần DNS Stack để validate certificates qua Route 53 DNS</li>
+<li><strong>Core Stack</strong> cần Certificate Stack để attach certificate vào CloudFront</li>
+<li><strong>Auth Stack</strong> cần Core Stack để Lambda triggers có thể access DynamoDB</li>
+<li><strong>Backend Stack</strong> cần Auth Stack để integrate Cognito Authorizer vào API Gateway</li>
+<li><strong>Observability Stack</strong> cần tất cả stacks để monitor tất cả resources</li>
+</ol>
+<h3 id="tổng-chi-phí-ước-tính">Tổng chi phí ước tính</h3>
+<p><strong>Development Environment</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Service</th>
+          <th>Chi phí/tháng</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Route 53 Hosted Zone</td>
+          <td>$0.50</td>
+          <td>1 hosted zone + DNS queries</td>
+      </tr>
+      <tr>
+          <td>ACM Certificates</td>
+          <td>$0</td>
+          <td>Miễn phí cho public certificates</td>
+      </tr>
+      <tr>
+          <td>DynamoDB (Pay-per-request)</td>
+          <td>$3-5</td>
+          <td>Phụ thuộc usage, có free tier</td>
+      </tr>
+      <tr>
+          <td>S3 (Intelligent-Tiering)</td>
+          <td>$1-3</td>
+          <td>2 buckets, auto-tiering tiết kiệm chi phí</td>
+      </tr>
+      <tr>
+          <td>CloudFront</td>
+          <td>$2-5</td>
+          <td>CDN distribution + data transfer</td>
+      </tr>
+      <tr>
+          <td>Lambda</td>
+          <td>$0-3</td>
+          <td>7 functions + 1 worker, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>Lambda Layer</td>
+          <td>$0</td>
+          <td>Không tính phí thêm</td>
+      </tr>
+      <tr>
+          <td>API Gateway</td>
+          <td>$0-3</td>
+          <td>REST API, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>Cognito (Free tier)</td>
+          <td>$0</td>
+          <td>Lên đến 50,000 MAU</td>
+      </tr>
+      <tr>
+          <td>SQS</td>
+          <td>$0-1</td>
+          <td>4 queues + 4 DLQs, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>WAF (chỉ API Gateway)</td>
+          <td>$5-8</td>
+          <td>Web ACL + rules + requests processed</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Logs</td>
+          <td>$1-2</td>
+          <td>7-day retention, tất cả services</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Dashboards</td>
+          <td>$0-1</td>
+          <td>4 dashboards, 3 đầu tiên miễn phí</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>$0.50-1</td>
+          <td>15+ alarms, $0.10/alarm</td>
+      </tr>
+      <tr>
+          <td>SNS</td>
+          <td>$0</td>
+          <td>Email notifications, volume thấp</td>
+      </tr>
+      <tr>
+          <td>KMS</td>
+          <td>$2</td>
+          <td>2 customer-managed keys @ $1 mỗi cái</td>
+      </tr>
+      <tr>
+          <td>IAM</td>
+          <td>$0</td>
+          <td>Roles &amp; policies miễn phí</td>
+      </tr>
+      <tr>
+          <td><strong>TỔNG CỘNG</strong></td>
+          <td><strong>$15-35/tháng</strong></td>
+          <td>Development với traffic thấp</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Đây là ước tính cho development environment với traffic thấp</li>
+<li>Production environment với high traffic sẽ có chi phí cao hơn đáng kể</li>
+<li>Free tier: Cognito (50K MAU), Lambda (1M requests), API Gateway (1M requests), SQS (1M requests)</li>
+<li>Các tối ưu chi phí đã áp dụng:
+<ul>
+<li>CloudFront WAF đã gỡ bỏ (-$9/tháng)</li>
+<li>S3 Intelligent-Tiering (tự động giảm chi phí)</li>
+<li>CloudWatch Logs 7-day retention</li>
+<li>Lambda Layer giảm deployment costs</li>
+</ul>
+</li>
+</ul></blockquote>
+<hr>
+<p>authStack.addDependency(coreStack);
+backendStack.addDependency(authStack);
+observabilityStack.addDependency(backendStack);</p>
+<h2 id="hướng-dẫn-cấu-hình">Hướng dẫn cấu hình</h2>
+<h3 id="bước-1-chuẩn-bị-thư-mục-infrastructure">Bước 1: Chuẩn bị thư mục Infrastructure</h3>
+<p><strong>1. Di chuyển đến thư mục infrastructure</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p><strong>2. Cài đặt dependencies</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>npm install
+</span></span></code></pre></div><blockquote>
+<p><strong>TODO</strong>: Chụp screenshot terminal với output của lệnh <code>npm install</code></p></blockquote>
+<h3 id="bước-2-cấu-hình-environment-settings">Bước 2: Cấu hình Environment Settings</h3>
+<p><strong>1. Xem lại cấu hình environment</strong></p>
+<p>Mở file <code>config/environment.ts</code> để xem lại cấu hình:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>code config\environment.ts
+</span></span></code></pre></div><p>File này chứa cấu hình cho các environments (dev, staging, prod):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Ví dụ cấu hình Dev environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;123456789012&#39;</span>,        <span style="color:#75715e">// Cập nhật với AWS Account ID của bạn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ap-southeast-1&#39;</span>,        <span style="color:#75715e">// Singapore region
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">domains</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">frontend</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">api</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;api-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cognito</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">passwordPolicy</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">minLength</span>: <span style="color:#66d9ef">8</span>,  <span style="color:#75715e">// Dev: 8 ký tự, Prod: 12 ký tự
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>2. Xác minh AWS Account ID</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra AWS Account ID hiện tại</span>
+</span></span><span style="display:flex;"><span>aws sts get-caller-identity
+</span></span></code></pre></div><p>Output sẽ hiển thị:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;UserId&#34;</span>: <span style="color:#e6db74">&#34;AIDAXXXXXXXXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Account&#34;</span>: <span style="color:#e6db74">&#34;123456789012&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Arn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::123456789012:user/your-username&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>3. Cập nhật account ID trong config (nếu cần)</strong></p>
+<p>Nếu account ID không khớp, cập nhật trong <code>config/environment.ts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;YOUR_ACTUAL_ACCOUNT_ID&#39;</span>,  <span style="color:#75715e">// Cập nhật tại đây
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ... các configs khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="bước-3-xem-lại-cấu-trúc-cdk-app">Bước 3: Xem lại cấu trúc CDK App</h3>
+<p><strong>1. Xem lại file CDK app chính</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>code bin\app.ts
+</span></span></code></pre></div><p>File <code>bin/app.ts</code> là entry point của CDK application. Nội dung chính:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#f92672">!</span><span style="color:#960050;background-color:#1e0010">/usr/bin/env node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getConfig</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../config/environment&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">App</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lấy environment từ context (mặc định: &#39;dev&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">environment</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">tryGetContext</span>(<span style="color:#e6db74">&#39;environment&#39;</span>) <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;dev&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getConfig</span>(<span style="color:#a6e22e">environment</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`🚀 Deploying Everyone Cook infrastructure for environment: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tạo stacks theo thứ tự phụ thuộc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dnsStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DnsStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-DNS`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificateStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CertificateStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Certificate`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">coreStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CoreStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Core`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Auth`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">backendStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BackendStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Backend`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">observabilityStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ObservabilityStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Observability`</span>, {...});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thêm dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">certificateStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">dnsStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">coreStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">certificateStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">coreStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">backendStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">authStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">observabilityStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">backendStack</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thêm tags cho tất cả stacks
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, <span style="color:#e6db74">&#39;EveryoneCook&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Environment&#39;</span>, <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;ManagedBy&#39;</span>, <span style="color:#e6db74">&#39;CDK&#39;</span>);
+</span></span></code></pre></div><p><strong>2. Hiểu về stack dependencies</strong></p>
+<p>Stacks được tạo theo thứ tự và có explicit dependencies:</p>
+<ul>
+<li><strong>Certificate Stack</strong> phụ thuộc vào <strong>DNS Stack</strong></li>
+<li><strong>Core Stack</strong> phụ thuộc vào <strong>Certificate Stack</strong></li>
+<li><strong>Auth Stack</strong> phụ thuộc vào <strong>Core Stack</strong></li>
+<li><strong>Backend Stack</strong> phụ thuộc vào <strong>Auth Stack</strong></li>
+<li><strong>Observability Stack</strong> phụ thuộc vào tất cả stacks khác</li>
+</ul>
+<h3 id="bước-4-validate-cấu-hình">Bước 4: Validate cấu hình</h3>
+<p><strong>1. Compile TypeScript</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Di chuyển đến thư mục infrastructure</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compile TypeScript</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span></code></pre></div><p>Output thành công:</p>
+<pre tabindex="0"><code>&gt; everyonecook-infrastructure@1.0.0 build
+&gt; tsc
+
+# Không có lỗi - compilation thành công
+</code></pre><p><strong>2. Liệt kê tất cả CDK stacks</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Liệt kê tất cả stacks cho dev environment</span>
+</span></span><span style="display:flex;"><span>npx cdk list --context environment=dev
+</span></span></code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>EveryoneCook-dev-DNS
+EveryoneCook-dev-Certificate
+EveryoneCook-dev-Core
+EveryoneCook-dev-Auth
+EveryoneCook-dev-Backend
+EveryoneCook-dev-Observability
+</code></pre><p><strong>3. Synthesize CloudFormation templates</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Generate CloudFormation templates</span>
+</span></span><span style="display:flex;"><span>npx cdk synth --context environment=dev
+</span></span></code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>Successfully synthesized to D:\Project_AWS\everyonecook\infrastructure\cdk.out
+Supply a stack id (EveryoneCook-dev-DNS, EveryoneCook-dev-Certificate, ...) to display its template.
+</code></pre><p>Thư mục <code>cdk.out/</code> được tạo với CloudFormation templates:</p>
+<pre tabindex="0"><code>cdk.out/
+├── EveryoneCook-dev-DNS.template.json
+├── EveryoneCook-dev-Certificate.template.json
+├── EveryoneCook-dev-Core.template.json
+├── EveryoneCook-dev-Auth.template.json
+├── EveryoneCook-dev-Backend.template.json
+└── EveryoneCook-dev-Observability.template.json
+</code></pre><h3 id="bước-5-xem-lại-tài-nguyên-stack-tùy-chọn">Bước 5: Xem lại tài nguyên Stack (Tùy chọn)</h3>
+<p>Nếu bạn muốn xem chi tiết resources trong mỗi stack:</p>
+<p><strong>1. Tài nguyên DNS Stack</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Xem DNS stack template</span>
+</span></span><span style="display:flex;"><span>Get-Content cdk.out\EveryoneCook-dev-DNS.template.json | ConvertFrom-Json | Select-Object -ExpandProperty Resources
+</span></span></code></pre></div><p>Resources:</p>
+<ul>
+<li><strong>HostedZone</strong>: Route 53 Hosted Zone</li>
+<li><strong>Outputs</strong>: Nameservers, Hosted Zone ID</li>
+</ul>
+<p><strong>2. Tài nguyên Certificate Stack</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Xem Certificate stack template</span>
+</span></span><span style="display:flex;"><span>Get-Content cdk.out\EveryoneCook-dev-Certificate.template.json | ConvertFrom-Json | Select-Object -ExpandProperty Resources
+</span></span></code></pre></div><p>Resources:</p>
+<ul>
+<li><strong>CloudFrontCertificate</strong>: ACM Certificate cho CloudFront (<code>cdn.everyonecook.cloud</code>)</li>
+<li><strong>ApiGatewayCertificate</strong>: Wildcard ACM Certificate (<code>*.everyonecook.cloud</code>)</li>
+<li><strong>ValidationRecords</strong>: Route 53 DNS validation records</li>
+</ul>
+<p><strong>3. Tài nguyên Core Stack</strong></p>
+<p>Resources (30+ resources):</p>
+<ul>
+<li><strong>DynamoDB Table</strong> với 5 GSI indexes</li>
+<li><strong>S3 Buckets</strong> (2 buckets: content, cdn-logs)</li>
+<li><strong>CloudFront Distribution</strong> với OAC</li>
+<li><strong>KMS Keys</strong> (2 keys: DynamoDB, S3)</li>
+<li><strong>IAM Roles</strong> và Policies</li>
+</ul>
+<p><strong>4. Tài nguyên Auth Stack</strong></p>
+<p>Resources (20+ resources):</p>
+<ul>
+<li><strong>Cognito User Pool</strong> với password policy</li>
+<li><strong>Cognito User Pool Client</strong></li>
+<li><strong>Lambda Functions</strong> (5 triggers)</li>
+<li><strong>IAM Roles</strong> cho Lambda functions</li>
+</ul>
+<p><strong>5. Tài nguyên Backend Stack</strong></p>
+<p>Resources (50+ resources):</p>
+<ul>
+<li><strong>API Gateway REST API</strong> với custom domain</li>
+<li><strong>Lambda Functions</strong> (6 modules + 1 worker)</li>
+<li><strong>SQS Queues</strong> (4 queues + 4 DLQs)</li>
+<li><strong>WAF Web ACL</strong> cho API Gateway</li>
+<li><strong>Lambda Layer</strong> (shared dependencies)</li>
+<li><strong>IAM Roles</strong> và Policies</li>
+</ul>
+<p><strong>6. Tài nguyên Observability Stack</strong></p>
+<p>Resources (15+ resources):</p>
+<ul>
+<li><strong>CloudWatch Dashboards</strong> (4 dashboards)</li>
+<li><strong>CloudWatch Alarms</strong> (10+ alarms)</li>
+<li><strong>Composite Alarm</strong> cho overall health</li>
+<li><strong>SNS Topic</strong> cho notifications</li>
+</ul>
+<h3 id="bước-6-cấu-hình-chi-tiết-cho-từng-stack">Bước 6: Cấu hình chi tiết cho từng Stack</h3>
+<p>Để tìm hiểu thêm về cấu hình và resources của từng stack, xem các phần sau:</p>
+<ul>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">5.4.1 DNS Stack</a></strong>: Cấu hình Route 53 Hosted Zone</li>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">5.4.2 Certificate Stack</a></strong>: Cấu hình ACM Certificates</li>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">5.4.3 Core Stack</a></strong>: Cấu hình DynamoDB, S3, CloudFront</li>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">5.4.4 Auth Stack</a></strong>: Cấu hình Cognito, Lambda Triggers</li>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">5.4.5 Backend Stack</a></strong>: Cấu hình API Gateway, Lambda, SQS</li>
+<li><strong><a href="../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">5.4.7 Observability Stack</a></strong>: Cấu hình CloudWatch, Alarms</li>
+</ul>
+<hr>
+<h2 id="checklist-cấu-hình">Checklist cấu hình</h2>
+<p>Trước khi triển khai, kiểm tra các mục sau:</p>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Cấu hình Environment</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> AWS Account ID đã được xác minh và cập nhật trong <code>config/environment.ts</code></li>
+<li><input disabled="" type="checkbox"> Region được set đúng (ap-southeast-1 cho dev)</li>
+<li><input disabled="" type="checkbox"> Domain names được cấu hình đúng</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Dependencies</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Node.js và npm đã được cài đặt</li>
+<li><input disabled="" type="checkbox"> AWS CLI đã được cấu hình với credentials</li>
+<li><input disabled="" type="checkbox"> AWS CDK CLI đã được cài đặt globally</li>
+<li><input disabled="" type="checkbox"> npm dependencies đã được cài đặt (<code>npm install</code>)</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Validation</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> TypeScript compilation thành công (<code>npm run build</code>)</li>
+<li><input disabled="" type="checkbox"> CDK list hiển thị tất cả 6 stacks</li>
+<li><input disabled="" type="checkbox"> CDK synth tạo CloudFormation templates thành công</li>
+<li><input disabled="" type="checkbox"> Không có lỗi syntax trong stack code</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Chuẩn bị Deployment</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> CDK bootstrap đã được chạy (xem <a href="../../../vi/5-workshop/5.03-cdk-bootstrap/">5.03 CDK Bootstrap</a>)</li>
+<li><input disabled="" type="checkbox"> AWS account có đủ permissions để tạo resources</li>
+<li><input disabled="" type="checkbox"> Domain đã được đăng ký (hoặc sẵn sàng đăng ký)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="bước-tiếp-theo">Bước tiếp theo</h2>
+<p>Sau khi hoàn thành cấu hình và validation, tiếp tục đến:</p>
+<p><strong><a href="../../../vi/5-workshop/5.05-deploy-infrastructure/">5.05 Deploy Infrastructure</a></strong> - Triển khai tất cả stacks lên AWS</p>
+<p>Trong bước tiếp theo, bạn sẽ:</p>
+<ol>
+<li>Deploy DNS Stack và cấu hình nameservers</li>
+<li>Deploy Certificate Stack và validate certificates</li>
+<li>Deploy Core Stack (DynamoDB, S3, CloudFront)</li>
+<li>Deploy Auth Stack (Cognito, Lambda Triggers)</li>
+<li>Deploy Backend Stack (API Gateway, Lambda Functions)</li>
+<li>Deploy Observability Stack (CloudWatch Dashboards)</li>
+</ol>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.03-cdk-bootstrap/" title="CDK Bootstrap"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/" title="5.4.1 DNS Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../../images/favicon.png" type="image/png">
+
+    <title>5.4.2 Certificate Stack :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../../vi/'>Báo cáo thực tập</a> > <a href='../../../../vi/5-workshop/'>Workshop</a> > <a href='../../../../vi/5-workshop/5.04-configure-stacks/'>Cấu hình các Infrastructure Stack</a> > 5.4.2 Certificate Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tổng-quan">Tổng Quan</a>
+      <ul>
+        <li><a href="#trách-nhiệm-chính">Trách Nhiệm Chính</a></li>
+        <li><a href="#những-gì-stack-này-không-bao-gồm">Những Gì Stack Này KHÔNG Bao Gồm</a></li>
+      </ul>
+    </li>
+    <li><a href="#kiến-trúc">Kiến Trúc</a></li>
+    <li><a href="#cấu-hình-stack">Cấu Hình Stack</a>
+      <ul>
+        <li><a href="#cấu-trúc-file">Cấu Trúc File</a></li>
+        <li><a href="#triển-khai-code">Triển Khai Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</a>
+      <ul>
+        <li><a href="#1-yêu-cầu-region">1. Yêu Cầu Region</a></li>
+        <li><a href="#2-certificate-domains">2. Certificate Domains</a></li>
+        <li><a href="#3-xác-thực-dns-tự-động">3. Xác Thực DNS Tự Động</a></li>
+        <li><a href="#4-cross-region-certificate-reference">4. Cross-Region Certificate Reference</a></li>
+        <li><a href="#5-tối-ưu-chi-phí---loại-bỏ-waf">5. Tối Ưu Chi Phí - Loại Bỏ WAF</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#các-bước-triển-khai">Các Bước Triển Khai</a>
+      <ul>
+        <li><a href="#bước-1-xác-minh-điều-kiện-tiên-quyết">Bước 1: Xác Minh Điều Kiện Tiên Quyết</a></li>
+        <li><a href="#bước-2-triển-khai-certificate-stack">Bước 2: Triển Khai Certificate Stack</a></li>
+        <li><a href="#bước-3-chờ-xác-thực-certificate">Bước 3: Chờ Xác Thực Certificate</a></li>
+        <li><a href="#bước-4-xác-minh-trong-aws-console">Bước 4: Xác Minh trong AWS Console</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-chi-phí">Chi Tiết Chi Phí</a>
+      <ul>
+        <li><a href="#chi-phí-hàng-tháng">Chi Phí Hàng Tháng</a></li>
+        <li><a href="#tối-ưu-chi-phí">Tối Ưu Chi Phí</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#import-từ-dns-stack">Import từ DNS Stack</a></li>
+        <li><a href="#export-được-sử-dụng-bởi-các-stack-khác">Export Được Sử Dụng Bởi Các Stack Khác</a></li>
+        <li><a href="#luồng-dependency">Luồng Dependency</a></li>
+      </ul>
+    </li>
+    <li><a href="#danh-sách-kiểm-tra-xác-thực">Danh Sách Kiểm Tra Xác Thực</a></li>
+    <li><a href="#các-bước-tiếp-theo">Các Bước Tiếp Theo</a></li>
+    <li><a href="#tài-liệu-tham-khảo">Tài Liệu Tham Khảo</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.2 Certificate Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="certificate-stack---chứng-chỉ-acm-cho-ssltls">Certificate Stack - Chứng Chỉ ACM cho SSL/TLS</h1>
+<h2 id="tổng-quan">Tổng Quan</h2>
+<p>Certificate Stack là <strong>tầng hạ tầng Phase 1.5</strong> của dự án EveryoneCook. Nó quản lý các chứng chỉ AWS Certificate Manager (ACM) cho CloudFront CDN và API Gateway, cung cấp mã hóa SSL/TLS cho mọi lưu lượng HTTPS.</p>
+<p><strong>Thứ Tự Triển Khai</strong>: Stack này <strong>BẮT BUỘC</strong> phải được triển khai sau DNS Stack và <strong>trước</strong> Core Stack và Backend Stack.</p>
+<p><strong>Yêu Cầu Region Quan Trọng</strong>: Stack này <strong>BẮT BUỘC</strong> phải được triển khai ở region <strong>us-east-1</strong> vì CloudFront là dịch vụ toàn cầu chỉ có thể truy cập chứng chỉ ACM từ us-east-1.</p>
+<h3 id="trách-nhiệm-chính">Trách Nhiệm Chính</h3>
+<ul>
+<li>Tạo chứng chỉ ACM cho CloudFront CDN (<code>cdn.everyonecook.cloud</code> hoặc <code>cdn-dev.everyonecook.cloud</code>)</li>
+<li>Tạo chứng chỉ ACM wildcard cho API Gateway (<code>*.everyonecook.cloud</code>)</li>
+<li>Xác thực DNS tự động qua Route 53</li>
+<li>Export các Certificate ARN cho Core Stack và Backend Stack</li>
+</ul>
+<h3 id="những-gì-stack-này-không-bao-gồm">Những Gì Stack Này KHÔNG Bao Gồm</h3>
+<ul>
+<li>DNS records (được quản lý bởi DNS Stack - Phase 1)</li>
+<li>CloudFront distribution (được quản lý bởi Core Stack - Phase 2)</li>
+<li>API Gateway custom domain (được quản lý bởi Backend Stack - Phase 4)</li>
+<li>CloudFront WAF Web ACL (đã loại bỏ để tối ưu chi phí)</li>
+</ul>
+<hr>
+<h2 id="kiến-trúc">Kiến Trúc</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Route 53 Hosted Zone                          │
+│                    everyonecook.cloud                            │
+│                    (từ DNS Stack)                                │
+└───────────────────┬─────────────────────────────────────────────┘
+                    │ DNS Validation
+                    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│            AWS Certificate Manager (us-east-1)                   │
+│                                                                  │
+│  Certificate 1: CloudFront Certificate                          │
+│  ├─ Domain: cdn.everyonecook.cloud (hoặc cdn-dev)              │
+│  ├─ Validation: DNS (Route 53)                                 │
+│  ├─ Status: Issued (5-10 phút)                                 │
+│  └─ Export: CloudFrontCertificateArn                           │
+│                                                                  │
+│  Certificate 2: API Gateway Wildcard Certificate               │
+│  ├─ Domain: *.everyonecook.cloud                               │
+│  ├─ SAN: everyonecook.cloud                                    │
+│  ├─ Bao gồm: api.everyonecook.cloud, api-dev, api-staging     │
+│  ├─ Validation: DNS (Route 53)                                 │
+│  ├─ Status: Issued (5-10 phút)                                 │
+│  └─ Export: ApiGatewayCertificateArn                           │
+│                                                                  │
+│  Tối ưu chi phí:                                                │
+│   CloudFront WAF đã loại bỏ (-$9/tháng)                      │
+│   Shield Standard (miễn phí, tự động bật)                    │
+└─────────────────────────────────────────────────────────────────┘
+                    │
+                    │ Certificate ARN Exports
+                    ▼
+        ┌───────────────────────┬
+        ▼                       ▼                    
+  Core Stack              Backend Stack       
+  (CloudFront)           (API Gateway)
+</code></pre><hr>
+<h2 id="cấu-hình-stack">Cấu Hình Stack</h2>
+<h3 id="cấu-trúc-file">Cấu Trúc File</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── certificate-stack.ts     # Certificate Stack implementation
+</code></pre><h3 id="triển-khai-code">Triển Khai Code</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/certificate-stack.ts</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">acm</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib/aws-certificatemanager&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">route53</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib/aws-route53&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Construct</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;constructs&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BaseStack</span>, <span style="color:#a6e22e">BaseStackProps</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../base-stack&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Certificate Stack cho CloudFront và API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Stack này tạo các chứng chỉ ACM cho CloudFront và API Gateway.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * YÊU CẦU REGION QUAN TRỌNG:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront certificate: BẮT BUỘC ở us-east-1 (yêu cầu của CloudFront)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - API Gateway certificate: Nên ở cùng region với API Gateway (ap-southeast-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Stack này được triển khai ở us-east-1 để xử lý yêu cầu cross-region của CloudFront.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Với API Gateway, chúng ta sử dụng wildcard certificate bao phủ api.everyonecook.cloud.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Trách nhiệm:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Tạo chứng chỉ ACM cho CloudFront ở us-east-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Tạo chứng chỉ ACM wildcard cho API Gateway ở us-east-1 (hoạt động toàn cầu)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Xác thực chứng chỉ qua Route 53 DNS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Export các certificate ARN để Core Stack và Backend Stack sử dụng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * LƯU Ý TỐI ƯU CHI PHÍ:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront WAF đã loại bỏ để tiết kiệm $9/tháng ($108/năm)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront vẫn được bảo vệ bởi Shield Standard (miễn phí, tự động bật)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - API Gateway có đầy đủ bảo vệ WAF (BackendStack)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CertificateStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseStack</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">cloudFrontCertificate</span>: <span style="color:#66d9ef">acm.ICertificate</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">apiGatewayCertificate</span>: <span style="color:#66d9ef">acm.ICertificate</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">BaseStackProps</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thêm các tag đặc thù cho stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;StackType&#39;</span>, <span style="color:#e6db74">&#39;Certificate&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Layer&#39;</span>, <span style="color:#e6db74">&#39;Infrastructure&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;CostCenter&#39;</span>, <span style="color:#e6db74">`Certificate-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Import Route 53 Hosted Zone từ DNS Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Lưu ý: Không thể sử dụng Fn.importValue hoặc SSM Parameter cho cross-region references
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Hosted Zone ID là ổn định và không thay đổi, nên chúng ta hardcode nó
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Giá trị này đến từ DNS Stack output: Z018823421GWCSYG5UMHV
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZoneId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Z018823421GWCSYG5UMHV&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">route53</span>.<span style="color:#a6e22e">HostedZone</span>.<span style="color:#a6e22e">fromHostedZoneAttributes</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZone&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">hostedZoneId</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Tạo chứng chỉ ACM cho CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Chứng chỉ này BẮT BUỘC ở us-east-1 để CloudFront sử dụng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cloudFrontCertificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createCloudFrontCertificate</span>(<span style="color:#a6e22e">hostedZone</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Tạo chứng chỉ ACM wildcard cho API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Wildcard *.everyonecook.cloud bao phủ api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Chứng chỉ này ở us-east-1 có thể được sử dụng bởi API Gateway ở bất kỳ region nào
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">apiGatewayCertificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createApiGatewayCertificate</span>(<span style="color:#a6e22e">hostedZone</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// TỐI ƯU CHI PHÍ: CloudFront WAF đã loại bỏ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// CloudFront được bảo vệ bởi Shield Standard (miễn phí, tự động bật)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// API Gateway có đầy đủ bảo vệ WAF trong BackendStack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Tiết kiệm: $9/tháng ($108/năm)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export các certificate ARN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exportOutputs</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Tạo chứng chỉ ACM cho CloudFront CDN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * QUAN TRỌNG: Stack này BẮT BUỘC phải được triển khai ở region us-east-1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * CloudFront là dịch vụ toàn cầu nhưng control plane của nó ở us-east-1,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * nên nó chỉ có thể truy cập chứng chỉ từ us-east-1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Xác thực DNS là tự động qua Route 53.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Xác thực thường mất 5-10 phút.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @param hostedZone - Route 53 Hosted Zone cho DNS validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @returns ACM Certificate cho CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createCloudFrontCertificate</span>(<span style="color:#a6e22e">hostedZone</span>: <span style="color:#66d9ef">route53.IHostedZone</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificate&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">domainName</span>: <span style="color:#66d9ef">this.config.domains.cdn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">certificateName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-CloudFront-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thêm tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;CloudFront&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Purpose&#39;</span>, <span style="color:#e6db74">&#39;CDN-SSL&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">certificate</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Tạo chứng chỉ ACM wildcard cho API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Tạo wildcard certificate (*.everyonecook.cloud) bao phủ:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api.everyonecook.cloud (API Gateway)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api-dev.everyonecook.cloud (API Gateway dev)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api-staging.everyonecook.cloud (API Gateway staging)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Chứng chỉ này được tạo ở us-east-1 nhưng có thể được sử dụng bởi API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * ở bất kỳ region nào qua cross-region certificate reference.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Xác thực DNS là tự động qua Route 53.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Xác thực thường mất 5-10 phút.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @param hostedZone - Route 53 Hosted Zone cho DNS validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @returns ACM Certificate cho API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createApiGatewayCertificate</span>(<span style="color:#a6e22e">hostedZone</span>: <span style="color:#66d9ef">route53.IHostedZone</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificate&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>, <span style="color:#75715e">// Wildcard bao phủ api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">subjectAlternativeNames</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>], <span style="color:#75715e">// Cũng bao phủ root domain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">certificateName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thêm tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;APIGateway&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Purpose&#39;</span>, <span style="color:#e6db74">&#39;API-SSL&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">certificate</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Export stack outputs cho cross-stack references
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Exports:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - CloudFrontCertificateArn: ACM Certificate ARN cho CloudFront (us-east-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - ApiGatewayCertificateArn: ACM Certificate ARN cho API Gateway (us-east-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * ĐÃ LOẠI BỎ: CloudFrontWebAclArn (tối ưu chi phí)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">exportOutputs</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export CloudFront certificate ARN cho Core Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificateArn&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.cloudFrontCertificate.certificateArn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;CloudFrontCertificateArn&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ACM Certificate ARN cho CloudFront (us-east-1)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export CloudFront certificate domain để xác minh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificateDomain&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.config.domains.cdn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Domain name cho CloudFront certificate&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export API Gateway certificate ARN cho Backend Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificateArn&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.apiGatewayCertificate.certificateArn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;ApiGatewayCertificateArn&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ACM Wildcard Certificate ARN cho API Gateway (us-east-1)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export API Gateway certificate domain để xác minh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificateDomain&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Domain name cho API Gateway certificate (wildcard)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</h2>
+<h3 id="1-yêu-cầu-region">1. Yêu Cầu Region</h3>
+<p><strong>Quan Trọng</strong>: Stack này <strong>BẮT BUỘC</strong> phải được triển khai ở <strong>us-east-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Trong infrastructure/bin/app.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificateStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CertificateStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">stackPrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Certificate`</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">account</span>: <span style="color:#66d9ef">config.account</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;us-east-1&#39;</span>, <span style="color:#75715e">// BẮT BUỘC là us-east-1 cho CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`ACM Certificate cho CloudFront (</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">) - us-east-1`</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Tại sao us-east-1?</strong></p>
+<ul>
+<li>CloudFront là dịch vụ toàn cầu với control plane ở us-east-1</li>
+<li>CloudFront <strong>chỉ</strong> có thể truy cập chứng chỉ ACM từ us-east-1</li>
+<li>API Gateway wildcard certificate ở us-east-1 hoạt động toàn cầu</li>
+</ul>
+<h3 id="2-certificate-domains">2. Certificate Domains</h3>
+<p>Stack tạo hai chứng chỉ với domain theo environment:</p>
+<p><strong>CloudFront Certificate</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Dev environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Staging environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-staging.everyonecook.cloud&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Production environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn.everyonecook.cloud&#39;</span>
+</span></span></code></pre></div><p><strong>API Gateway Wildcard Certificate</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>           <span style="color:#75715e">// Bao phủ tất cả subdomain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">subjectAlternativeNames</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>]  <span style="color:#75715e">// Cũng bao phủ root domain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Bao phủ:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api-dev.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api-staging.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Bất kỳ *.everyonecook.cloud subdomain nào trong tương lai
+</span></span></span></code></pre></div><h3 id="3-xác-thực-dns-tự-động">3. Xác Thực DNS Tự Động</h3>
+<p>ACM tự động tạo DNS validation records trong Route 53:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>)
+</span></span></code></pre></div><p><strong>Điều gì xảy ra</strong>:</p>
+<ol>
+<li>ACM tạo CNAME record trong Route 53 để xác thực</li>
+<li>Route 53 ngay lập tức phản hồi với validation record</li>
+<li>ACM xác minh record và cấp chứng chỉ</li>
+<li>Xác thực hoàn thành trong 5-10 phút (thường nhanh hơn)</li>
+</ol>
+<h3 id="4-cross-region-certificate-reference">4. Cross-Region Certificate Reference</h3>
+<p>Chứng chỉ được tạo ở us-east-1 được sử dụng bởi các stack khác ở ap-southeast-1:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Trong Core Stack (ap-southeast-1) - import CloudFront certificate từ us-east-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>.<span style="color:#a6e22e">fromCertificateArn</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;ImportedCloudFrontCertificate&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-0480-47d2-a6ff-4fe9b2eb6534&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="5-tối-ưu-chi-phí---loại-bỏ-waf">5. Tối Ưu Chi Phí - Loại Bỏ WAF</h3>
+<p><strong>Quyết định</strong>: CloudFront WAF Web ACL đã loại bỏ để tiết kiệm chi phí:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// ĐÃ LOẠI BỎ: CloudFront WAF Web ACL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Chi phí hàng tháng trước đây: $9/tháng = $108/năm
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tình trạng bảo vệ:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  Shield Standard: Bảo vệ DDoS (miễn phí, tự động bật)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  CloudFront OAC: Chặn truy cập S3 trực tiếp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  Signed URLs: Bảo vệ nội dung riêng tư
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ❌ WAF: Đã loại bỏ (tối ưu chi phí)
+</span></span></span></code></pre></div><p><strong>Lý do</strong>:</p>
+<ul>
+<li>CloudFront chỉ phục vụ nội dung tĩnh (bề mặt tấn công thấp)</li>
+<li>Shield Standard cung cấp bảo vệ DDoS Layer 3/4 (miễn phí)</li>
+<li>API Gateway có đầy đủ bảo vệ WAF cho tấn công Layer 7</li>
+<li><strong>Tiết kiệm</strong>: $9/tháng = $108/năm</li>
+</ul>
+<hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>Sau khi triển khai, stack export các giá trị sau:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Sử dụng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>CloudFrontCertificateArn</code></td>
+          <td><code>arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-...</code></td>
+          <td>Được Core Stack sử dụng cho CloudFront distribution</td>
+      </tr>
+      <tr>
+          <td><code>CloudFrontCertificateDomain</code></td>
+          <td><code>cdn.everyonecook.cloud</code> (hoặc <code>cdn-dev</code>)</td>
+          <td>Chỉ để xác minh</td>
+      </tr>
+      <tr>
+          <td><code>ApiGatewayCertificateArn</code></td>
+          <td><code>arn:aws:acm:us-east-1:616580903213:certificate/a1b2c3d4-...</code></td>
+          <td>Được Backend Stack sử dụng cho API Gateway domain</td>
+      </tr>
+      <tr>
+          <td><code>ApiGatewayCertificateDomain</code></td>
+          <td><code>*.everyonecook.cloud</code></td>
+          <td>Chỉ để xác minh (wildcard)</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="các-bước-triển-khai">Các Bước Triển Khai</h2>
+<h3 id="bước-1-xác-minh-điều-kiện-tiên-quyết">Bước 1: Xác Minh Điều Kiện Tiên Quyết</h3>
+<p>Trước khi triển khai Certificate Stack, hãy đảm bảo:</p>
+<ul>
+<li>DNS Stack đã triển khai thành công</li>
+<li>Route 53 Hosted Zone tồn tại với nameserver chính xác</li>
+<li>Ủy quyền DNS từ Hostinger đã hoàn thành và lan truyền</li>
+</ul>
+<p>Xác minh DNS đang hoạt động:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>nslookup -type=NS everyonecook.cloud
+</span></span></code></pre></div><h3 id="bước-2-triển-khai-certificate-stack">Bước 2: Triển Khai Certificate Stack</h3>
+<p>Di chuyển đến thư mục infrastructure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Triển khai Certificate Stack đến <strong>us-east-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Triển khai Certificate Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Certificate --context environment=dev
+</span></span></code></pre></div><p><strong>Quan trọng</strong>: Lưu ý region là <strong>us-east-1</strong>, không phải ap-southeast-1.</p>
+<p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 6.12s
+
+EveryoneCook-dev-Certificate: deploying...
+[████████████████████████████████████████] (3/3)
+
+EveryoneCook-dev-Certificate: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Certificate
+
+✨  Deployment time: 125.34s
+
+Outputs:
+EveryoneCook-dev-Certificate.CloudFrontCertificateArn = 
+  arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-0480-47d2-a6ff-4fe9b2eb6534
+EveryoneCook-dev-Certificate.CloudFrontCertificateDomain = cdn-dev.everyonecook.cloud
+EveryoneCook-dev-Certificate.ApiGatewayCertificateArn = 
+  arn:aws:acm:us-east-1:616580903213:certificate/a1b2c3d4-5678-90ef-ghij-klmnopqrstuv
+EveryoneCook-dev-Certificate.ApiGatewayCertificateDomain = *.everyonecook.cloud
+
+Stack ARN:
+arn:aws:cloudformation:us-east-1:616580903213:stack/EveryoneCook-dev-Certificate/...
+</code></pre><h3 id="bước-3-chờ-xác-thực-certificate">Bước 3: Chờ Xác Thực Certificate</h3>
+<p>Chứng chỉ ACM yêu cầu xác thực DNS. Quá trình này mất 5-10 phút:</p>
+<ol>
+<li>ACM tạo CNAME validation records trong Route 53</li>
+<li>Route 53 phản hồi với dữ liệu xác thực</li>
+<li>ACM xác minh và cấp chứng chỉ</li>
+<li>Trạng thái thay đổi từ &ldquo;Pending validation&rdquo; thành &ldquo;Issued&rdquo;</li>
+</ol>
+<p>Bạn có thể theo dõi tiến trình xác thực trong AWS Console.</p>
+<h3 id="bước-4-xác-minh-trong-aws-console">Bước 4: Xác Minh trong AWS Console</h3>
+<h4 id="điều-hướng-đến-acm-region-us-east-1">Điều hướng đến ACM (region us-east-1)</h4>
+<ol>
+<li>Mở AWS Console</li>
+<li><strong>QUAN TRỌNG</strong>: Chuyển region sang <strong>N. Virginia (us-east-1)</strong></li>
+<li>Điều hướng đến <strong>Certificate Manager</strong></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/switch-region-us-east-1.png" alt="Switch to us-east-1 Region">
+<em>Chuyển AWS Console sang region us-east-1 trước khi xem chứng chỉ</em></p>
+<h4 id="xác-minh-cloudfront-certificate">Xác Minh CloudFront Certificate</h4>
+<ol>
+<li>Tìm certificate với domain <code>cdn-dev.everyonecook.cloud</code></li>
+<li>Kiểm tra trạng thái là <strong>Issued</strong></li>
+<li>Xác minh DNS validation records đã có mặt</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/acm-cloudfront-cert.png" alt="CloudFront ACM Certificate">
+<em>Chứng chỉ ACM cho CloudFront hiển thị trạng thái &ldquo;Issued&rdquo;, tên domain, phương thức xác thực (DNS), và CNAME validation record</em></p>
+<h4 id="xác-minh-api-gateway-wildcard-certificate">Xác Minh API Gateway Wildcard Certificate</h4>
+<ol>
+<li>Tìm certificate với domain <code>*.everyonecook.cloud</code></li>
+<li>Kiểm tra trạng thái là <strong>Issued</strong></li>
+<li>Xác minh nó bao phủ wildcard và SAN (everyonecook.cloud)</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/acm-api-wildcard-cert.png" alt="API Gateway Wildcard Certificate">
+<em>Chứng chỉ ACM Wildcard cho API Gateway hiển thị domain <code>*.everyonecook.cloud</code>, SAN <code>everyonecook.cloud</code>, và validation records</em></p>
+<h4 id="xác-minh-dns-validation-records-trong-route-53">Xác Minh DNS Validation Records trong Route 53</h4>
+<ol>
+<li>Điều hướng đến <strong>Route 53</strong> &gt; <strong>Hosted zones</strong></li>
+<li>Chọn <code>everyonecook.cloud</code> hosted zone</li>
+<li>Xác minh CNAME validation records đã được tạo</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/route53-acm-validation.png" alt="Route 53 ACM Validation Records">
+<em>Route 53 hiển thị CNAME validation records tự động được tạo bởi ACM để xác thực chứng chỉ</em></p>
+<p>Records mong đợi:</p>
+<pre tabindex="0"><code>_abc123def456.cdn-dev.everyonecook.cloud  CNAME  _xyz789.acm-validations.aws.
+_ghi789jkl012.everyonecook.cloud          CNAME  _mno345.acm-validations.aws.
+</code></pre><hr>
+<h2 id="chi-tiết-chi-phí">Chi Tiết Chi Phí</h2>
+<h3 id="chi-phí-hàng-tháng">Chi Phí Hàng Tháng</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Tài nguyên</th>
+          <th>Chi phí</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Chứng chỉ ACM</strong></td>
+          <td><strong>$0/tháng</strong></td>
+          <td>Miễn phí cho chứng chỉ sử dụng với dịch vụ AWS</td>
+      </tr>
+      <tr>
+          <td><strong>DNS Validation Records</strong></td>
+          <td><strong>$0/tháng</strong></td>
+          <td>Bao gồm trong chi phí Route 53 hosted zone</td>
+      </tr>
+      <tr>
+          <td><strong>Gia hạn chứng chỉ</strong></td>
+          <td><strong>$0/tháng</strong></td>
+          <td>Gia hạn tự động (miễn phí)</td>
+      </tr>
+      <tr>
+          <td><strong>Tổng</strong></td>
+          <td><strong>$0/tháng</strong></td>
+          <td>100% miễn phí (không có chi phí liên tục)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="tối-ưu-chi-phí">Tối Ưu Chi Phí</h3>
+<ul>
+<li>Chứng chỉ ACM miễn phí khi sử dụng với CloudFront, API Gateway, ALB, v.v.</li>
+<li>Gia hạn tự động (không cần can thiệp thủ công)</li>
+<li>CloudFront WAF đã loại bỏ để tiết kiệm $9/tháng ($108/năm)</li>
+<li>Shield Standard cung cấp bảo vệ DDoS miễn phí</li>
+</ul>
+<p><strong>Tiết Kiệm Hàng Năm từ Loại Bỏ WAF</strong>: $108/năm</p>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="import-từ-dns-stack">Import từ DNS Stack</h3>
+<p>Certificate Stack import từ DNS Stack:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Hardcoded Hosted Zone ID (ổn định, không thay đổi)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZoneId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Z018823421GWCSYG5UMHV&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">route53</span>.<span style="color:#a6e22e">HostedZone</span>.<span style="color:#a6e22e">fromHostedZoneAttributes</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZone&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">hostedZoneId</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Tại sao Hardcoded?</strong></p>
+<ul>
+<li>Không thể sử dụng <code>Fn.importValue</code> cho cross-region references (us-east-1 ← ap-southeast-1)</li>
+<li>Hosted Zone ID ổn định và không bao giờ thay đổi</li>
+<li>Thay thế: Sử dụng SSM Parameter Store (phức tạp hơn, kết quả giống nhau)</li>
+</ul>
+<h3 id="export-được-sử-dụng-bởi-các-stack-khác">Export Được Sử Dụng Bởi Các Stack Khác</h3>
+<p>Certificate Stack export được sử dụng bởi:</p>
+<ol>
+<li>
+<p><strong>Core Stack</strong> (Phase 2)</p>
+<ul>
+<li>Import: <code>CloudFrontCertificateArn</code></li>
+<li>Mục đích: Gắn chứng chỉ SSL vào CloudFront distribution</li>
+<li>Region: ap-southeast-1 (cross-region import)</li>
+</ul>
+</li>
+<li>
+<p><strong>Backend Stack</strong> (Phase 4)</p>
+<ul>
+<li>Import: <code>ApiGatewayCertificateArn</code></li>
+<li>Mục đích: Tạo API Gateway custom domain với SSL</li>
+<li>Region: ap-southeast-1 (cross-region import)</li>
+</ul>
+</li>
+</ol>
+<h3 id="luồng-dependency">Luồng Dependency</h3>
+<pre tabindex="0"><code>DNS Stack (ap-southeast-1)
+    │
+    ├─ Hosted Zone ID: Z018823421GWCSYG5UMHV
+    │
+    ▼
+Certificate Stack (us-east-1) ← BẮT BUỘC là us-east-1
+    │
+    ├─ CloudFront Certificate ARN
+    │  └─► Core Stack (ap-southeast-1)
+    │
+    └─ API Gateway Certificate ARN
+       └─► Backend Stack (ap-southeast-1)
+</code></pre><hr>
+<h2 id="danh-sách-kiểm-tra-xác-thực">Danh Sách Kiểm Tra Xác Thực</h2>
+<p>Trước khi tiến hành triển khai Core Stack:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Certificate Stack đã triển khai đến region <strong>us-east-1</strong></li>
+<li><input disabled="" type="checkbox"> Trạng thái CloudFront certificate là <strong>Issued</strong></li>
+<li><input disabled="" type="checkbox"> Trạng thái API Gateway wildcard certificate là <strong>Issued</strong></li>
+<li><input disabled="" type="checkbox"> DNS validation CNAME records hiển thị trong Route 53</li>
+<li><input disabled="" type="checkbox"> Certificate ARN đã export trong CloudFormation outputs</li>
+<li><input disabled="" type="checkbox"> Region được xác nhận là us-east-1 trong AWS Console</li>
+<li><input disabled="" type="checkbox"> Tags được áp dụng chính xác cho tất cả tài nguyên</li>
+</ul>
+<h2 id="các-bước-tiếp-theo">Các Bước Tiếp Theo</h2>
+<p>Sau khi triển khai thành công Certificate Stack:</p>
+<p>➡️ <strong><a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">5.4.3 Core Stack</a></strong> - Tạo DynamoDB, S3, và CloudFront infrastructure</p>
+<p>Core Stack sẽ:</p>
+<ul>
+<li>Tạo DynamoDB Single Table với mã hóa</li>
+<li>Tạo S3 buckets cho nội dung và CDN logs</li>
+<li>Tạo CloudFront distribution với chứng chỉ SSL</li>
+<li>Import <code>CloudFrontCertificateArn</code> từ stack này</li>
+<li>Cấu hình custom domain <code>cdn.everyonecook.cloud</code></li>
+</ul>
+<hr>
+<h2 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h2>
+<ul>
+<li><strong>Mã nguồn</strong>: <code>infrastructure/lib/stacks/certificate-stack.ts</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>Cấu hình App</strong>: <code>infrastructure/bin/app.ts</code></li>
+<li><strong>Tài liệu AWS</strong>:
+<ul>
+<li><a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">ACM Certificates</a></li>
+<li><a href="https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html">DNS Validation</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html">CloudFront with ACM</a></li>
+</ul>
+</li>
+<li><strong>Cross-Region References</strong>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-crossstackref.html">CloudFormation Cross-Region References</a></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/" title="5.4.1 DNS Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/" title="5.4.3 Core Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../../js/learn.js?1765346855"></script>
+    <script src="../../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

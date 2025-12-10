@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>5.4.2 Certificate Stack :: Internship Report</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.1-week1/"
+  title="Week 1 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.1-week1/">
+     <b> 1.1. </b> Week 1 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.3-week3/">
+     <b> 1.3. </b> Week 3 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.4-week4/">
+     <b> 1.4. </b> Week 4 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated Blogs"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/">
+     <b> 3. </b> Translated Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Qwen Models are Now Available in Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Qwen Models are Now Available in Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Centralized AWS Firewall Policy Management with AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Centralized AWS Firewall Policy Management with AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.01-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.02-setup-environment/"
+  title="Setup Environment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Setup Environment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/"
+  title="Configure Infrastructure Stacks"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Configure Infrastructure Stacks 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.05-deploy-infrastructure/"
+  title="Deploy Infrastructure"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Deploy Infrastructure 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.06-configure-api-lambda/"
+  title="Configure API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Configure API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.07-deploy-backend/"
+  title="Deploy Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Deploy Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.08-test-endpoints/"
+  title="Test Endpoints End-to-End"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Test Endpoints End-to-End 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.09-push-gitlab/"
+  title="Push to GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push to GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.10-deploy-amplify/"
+  title="Deploy to Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy to Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.11-cleanup/"
+  title="Cleanup"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Cleanup 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../'>Internship Report</a> > <a href='../../../5-workshop/'>Workshop</a> > <a href='../../../5-workshop/5.04-configure-stacks/'>Configure Infrastructure Stacks</a> > 5.4.2 Certificate Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#key-responsibilities">Key Responsibilities</a></li>
+        <li><a href="#what-this-stack-does-not-include">What This Stack Does NOT Include</a></li>
+      </ul>
+    </li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#stack-configuration">Stack Configuration</a>
+      <ul>
+        <li><a href="#file-structure">File Structure</a></li>
+        <li><a href="#code-implementation">Code Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-configuration-details">Key Configuration Details</a>
+      <ul>
+        <li><a href="#1-region-requirements">1. Region Requirements</a></li>
+        <li><a href="#2-certificate-domains">2. Certificate Domains</a></li>
+        <li><a href="#3-automatic-dns-validation">3. Automatic DNS Validation</a></li>
+        <li><a href="#4-cross-region-certificate-reference">4. Cross-Region Certificate Reference</a></li>
+        <li><a href="#5-cost-optimization---waf-removed">5. Cost Optimization - WAF Removed</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#deployment-steps">Deployment Steps</a>
+      <ul>
+        <li><a href="#step-1-verify-prerequisites">Step 1: Verify Prerequisites</a></li>
+        <li><a href="#step-2-deploy-certificate-stack">Step 2: Deploy Certificate Stack</a></li>
+        <li><a href="#step-3-wait-for-certificate-validation">Step 3: Wait for Certificate Validation</a></li>
+        <li><a href="#step-4-verify-in-aws-console">Step 4: Verify in AWS Console</a></li>
+      </ul>
+    </li>
+    <li><a href="#cost-breakdown">Cost Breakdown</a>
+      <ul>
+        <li><a href="#monthly-costs">Monthly Costs</a></li>
+        <li><a href="#cost-optimization">Cost Optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#imports-from-dns-stack">Imports from DNS Stack</a></li>
+        <li><a href="#exports-used-by-other-stacks">Exports Used By Other Stacks</a></li>
+        <li><a href="#dependency-flow">Dependency Flow</a></li>
+      </ul>
+    </li>
+    <li><a href="#validation-checklist">Validation Checklist</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.2 Certificate Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="certificate-stack---acm-certificates-for-ssltls">Certificate Stack - ACM Certificates for SSL/TLS</h1>
+<h2 id="overview">Overview</h2>
+<p>The Certificate Stack is the <strong>Phase 1.5 infrastructure layer</strong> of the EveryoneCook project. It manages AWS Certificate Manager (ACM) certificates for CloudFront CDN and API Gateway, providing SSL/TLS encryption for all HTTPS traffic.</p>
+<p><strong>Deployment Order</strong>: This stack <strong>MUST</strong> be deployed after DNS Stack and <strong>before</strong> Core Stack and Backend Stack.</p>
+<p><strong>Critical Region Requirement</strong>: This stack <strong>MUST</strong> be deployed in <strong>us-east-1</strong> region because CloudFront is a global service that can only access ACM certificates from us-east-1.</p>
+<h3 id="key-responsibilities">Key Responsibilities</h3>
+<ul>
+<li>Create ACM certificate for CloudFront CDN (<code>cdn.everyonecook.cloud</code> or <code>cdn-dev.everyonecook.cloud</code>)</li>
+<li>Create wildcard ACM certificate for API Gateway (<code>*.everyonecook.cloud</code>)</li>
+<li>Automatic DNS validation via Route 53</li>
+<li>Export certificate ARNs for Core Stack and Backend Stack</li>
+</ul>
+<h3 id="what-this-stack-does-not-include">What This Stack Does NOT Include</h3>
+<ul>
+<li>DNS records (managed by DNS Stack - Phase 1)</li>
+<li>CloudFront distribution (managed by Core Stack - Phase 2)</li>
+<li>API Gateway custom domain (managed by Backend Stack - Phase 4)</li>
+<li>CloudFront WAF Web ACL (removed for cost optimization)</li>
+</ul>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Route 53 Hosted Zone                          │
+│                    everyonecook.cloud                            │
+│                    (from DNS Stack)                              │
+└───────────────────┬─────────────────────────────────────────────┘
+                    │ DNS Validation
+                    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│            AWS Certificate Manager (us-east-1)                   │
+│                                                                  │
+│  Certificate 1: CloudFront Certificate                          │
+│  ├─ Domain: cdn.everyonecook.cloud (or cdn-dev)                │
+│  ├─ Validation: DNS (Route 53)                                 │
+│  ├─ Status: Issued (5-10 minutes)                              │
+│  └─ Export: CloudFrontCertificateArn                           │
+│                                                                  │
+│  Certificate 2: API Gateway Wildcard Certificate               │
+│  ├─ Domain: *.everyonecook.cloud                               │
+│  ├─ SAN: everyonecook.cloud                                    │
+│  ├─ Covers: api.everyonecook.cloud, api-dev, api-staging      │
+│  ├─ Validation: DNS (Route 53)                                 │
+│  ├─ Status: Issued (5-10 minutes)                              │
+│  └─ Export: ApiGatewayCertificateArn                           │
+│                                                                  │
+│  Cost Optimization:                                             │
+│   CloudFront WAF removed (-$9/month)                         │
+│   Shield Standard (free, auto-enabled)                       │
+└─────────────────────────────────────────────────────────────────┘
+                    │
+                    │ Certificate ARN Exports
+                    ▼
+        ┌───────────────────────┬
+        ▼                       ▼                    
+  Core Stack              Backend Stack       
+  (CloudFront)           (API Gateway)
+</code></pre><hr>
+<h2 id="stack-configuration">Stack Configuration</h2>
+<h3 id="file-structure">File Structure</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── certificate-stack.ts     # Certificate Stack implementation
+</code></pre><h3 id="code-implementation">Code Implementation</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/certificate-stack.ts</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">acm</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib/aws-certificatemanager&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">route53</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib/aws-route53&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Construct</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;constructs&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BaseStack</span>, <span style="color:#a6e22e">BaseStackProps</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../base-stack&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Certificate Stack for CloudFront and API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * This stack creates ACM certificates for CloudFront and API Gateway.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * IMPORTANT REGION REQUIREMENTS:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront certificate: MUST be in us-east-1 (CloudFront requirement)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - API Gateway certificate: Should be in same region as API Gateway (ap-southeast-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * This stack is deployed in us-east-1 to handle CloudFront&#39;s cross-region requirements.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * For API Gateway, we use a wildcard certificate that covers api.everyonecook.cloud.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Responsibilities:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Create ACM certificate for CloudFront in us-east-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Create ACM wildcard certificate for API Gateway in us-east-1 (works globally)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Validate certificates via Route 53 DNS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Export certificate ARNs for Core Stack and Backend Stack to use
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * COST OPTIMIZATION NOTE:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront WAF removed to save $9/month ($108/year)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - CloudFront still protected by Shield Standard (free, auto-enabled)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - API Gateway has full WAF protection (BackendStack)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CertificateStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseStack</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">cloudFrontCertificate</span>: <span style="color:#66d9ef">acm.ICertificate</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">apiGatewayCertificate</span>: <span style="color:#66d9ef">acm.ICertificate</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">BaseStackProps</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Add stack-specific tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;StackType&#39;</span>, <span style="color:#e6db74">&#39;Certificate&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Layer&#39;</span>, <span style="color:#e6db74">&#39;Infrastructure&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;CostCenter&#39;</span>, <span style="color:#e6db74">`Certificate-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Import Route 53 Hosted Zone from DNS Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Note: Cannot use Fn.importValue or SSM Parameter for cross-region references
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Hosted Zone ID is stable and doesn&#39;t change, so we hardcode it
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// This value comes from DNS Stack output: Z018823421GWCSYG5UMHV
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZoneId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Z018823421GWCSYG5UMHV&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">route53</span>.<span style="color:#a6e22e">HostedZone</span>.<span style="color:#a6e22e">fromHostedZoneAttributes</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZone&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">hostedZoneId</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Create ACM certificate for CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// This certificate MUST be in us-east-1 for CloudFront to use it
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cloudFrontCertificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createCloudFrontCertificate</span>(<span style="color:#a6e22e">hostedZone</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Create ACM wildcard certificate for API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Wildcard *.everyonecook.cloud covers api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// This certificate in us-east-1 can be used by API Gateway in any region
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">apiGatewayCertificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createApiGatewayCertificate</span>(<span style="color:#a6e22e">hostedZone</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// COST OPTIMIZATION: CloudFront WAF removed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// CloudFront is protected by Shield Standard (free, auto-enabled)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// API Gateway has full WAF protection in BackendStack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Savings: $9/month ($108/year)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export certificate ARNs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exportOutputs</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Create ACM certificate for CloudFront CDN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * CRITICAL: This stack MUST be deployed in us-east-1 region.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * CloudFront is a global service but its control plane is in us-east-1,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * so it can only access certificates from us-east-1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * DNS validation is automatic via Route 53.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Validation typically takes 5-10 minutes.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @param hostedZone - Route 53 Hosted Zone for DNS validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @returns ACM Certificate for CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createCloudFrontCertificate</span>(<span style="color:#a6e22e">hostedZone</span>: <span style="color:#66d9ef">route53.IHostedZone</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificate&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">domainName</span>: <span style="color:#66d9ef">this.config.domains.cdn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">certificateName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-CloudFront-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Add tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;CloudFront&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Purpose&#39;</span>, <span style="color:#e6db74">&#39;CDN-SSL&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">certificate</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Create ACM wildcard certificate for API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Creates a wildcard certificate (*.everyonecook.cloud) that covers:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api.everyonecook.cloud (API Gateway)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api-dev.everyonecook.cloud (API Gateway dev)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - api-staging.everyonecook.cloud (API Gateway staging)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * This certificate is created in us-east-1 but can be used by API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * in any region via cross-region certificate reference.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * DNS validation is automatic via Route 53.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Validation typically takes 5-10 minutes.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @param hostedZone - Route 53 Hosted Zone for DNS validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @returns ACM Certificate for API Gateway
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createApiGatewayCertificate</span>(<span style="color:#a6e22e">hostedZone</span>: <span style="color:#66d9ef">route53.IHostedZone</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificate&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>, <span style="color:#75715e">// Wildcard covers api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">subjectAlternativeNames</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>], <span style="color:#75715e">// Also covers root domain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">certificateName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-API-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Add tags
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;APIGateway&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">certificate</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Purpose&#39;</span>, <span style="color:#e6db74">&#39;API-SSL&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">certificate</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Export stack outputs for cross-stack references
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Exports:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - CloudFrontCertificateArn: ACM Certificate ARN for CloudFront (us-east-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * - ApiGatewayCertificateArn: ACM Certificate ARN for API Gateway (us-east-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * REMOVED: CloudFrontWebAclArn (cost optimization)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">exportOutputs</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export CloudFront certificate ARN for Core Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificateArn&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.cloudFrontCertificate.certificateArn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;CloudFrontCertificateArn&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ACM Certificate ARN for CloudFront (us-east-1)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export CloudFront certificate domain for verification
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CloudFrontCertificateDomain&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.config.domains.cdn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Domain name for CloudFront certificate&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export API Gateway certificate ARN for Backend Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificateArn&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.apiGatewayCertificate.certificateArn</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exportName</span>: <span style="color:#66d9ef">this.exportName</span>(<span style="color:#e6db74">&#39;ApiGatewayCertificateArn&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ACM Wildcard Certificate ARN for API Gateway (us-east-1)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Export API Gateway certificate domain for verification
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ApiGatewayCertificateDomain&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Domain name for API Gateway certificate (wildcard)&#39;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="key-configuration-details">Key Configuration Details</h2>
+<h3 id="1-region-requirements">1. Region Requirements</h3>
+<p><strong>Critical</strong>: This stack <strong>MUST</strong> be deployed to <strong>us-east-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// In infrastructure/bin/app.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificateStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CertificateStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">stackPrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Certificate`</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">account</span>: <span style="color:#66d9ef">config.account</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;us-east-1&#39;</span>, <span style="color:#75715e">// MUST be us-east-1 for CloudFront
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`ACM Certificate for CloudFront (</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">) - us-east-1`</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Why us-east-1?</strong></p>
+<ul>
+<li>CloudFront is a global service with control plane in us-east-1</li>
+<li>CloudFront can <strong>only</strong> access ACM certificates from us-east-1</li>
+<li>API Gateway wildcard certificate in us-east-1 works globally</li>
+</ul>
+<h3 id="2-certificate-domains">2. Certificate Domains</h3>
+<p>The stack creates two certificates with environment-specific domains:</p>
+<p><strong>CloudFront Certificate</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Dev environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Staging environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-staging.everyonecook.cloud&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Production environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn.everyonecook.cloud&#39;</span>
+</span></span></code></pre></div><p><strong>API Gateway Wildcard Certificate</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">domainName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;*.everyonecook.cloud&#39;</span>           <span style="color:#75715e">// Covers all subdomains
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">subjectAlternativeNames</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>]  <span style="color:#75715e">// Also covers root domain
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Covers:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api-dev.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - api-staging.everyonecook.cloud
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// - Any future *.everyonecook.cloud subdomains
+</span></span></span></code></pre></div><h3 id="3-automatic-dns-validation">3. Automatic DNS Validation</h3>
+<p>ACM automatically creates DNS validation records in Route 53:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">validation</span>: <span style="color:#66d9ef">acm.CertificateValidation.fromDns</span>(<span style="color:#a6e22e">hostedZone</span>)
+</span></span></code></pre></div><p><strong>What Happens</strong>:</p>
+<ol>
+<li>ACM creates CNAME record in Route 53 for validation</li>
+<li>Route 53 immediately responds with the validation record</li>
+<li>ACM verifies the record and issues the certificate</li>
+<li>Validation completes in 5-10 minutes (typically faster)</li>
+</ol>
+<h3 id="4-cross-region-certificate-reference">4. Cross-Region Certificate Reference</h3>
+<p>The certificate created in us-east-1 is used by other stacks in ap-southeast-1:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// In Core Stack (ap-southeast-1) - imports CloudFront certificate from us-east-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">acm</span>.<span style="color:#a6e22e">Certificate</span>.<span style="color:#a6e22e">fromCertificateArn</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;ImportedCloudFrontCertificate&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-0480-47d2-a6ff-4fe9b2eb6534&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="5-cost-optimization---waf-removed">5. Cost Optimization - WAF Removed</h3>
+<p><strong>Decision</strong>: CloudFront WAF Web ACL removed to save costs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// REMOVED: CloudFront WAF Web ACL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Previous monthly cost: $9/month = $108/year
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Protection Status:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  Shield Standard: DDoS protection (free, auto-enabled)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  CloudFront OAC: Blocks direct S3 access
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  Signed URLs: Private content protection
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ❌ WAF: Removed (cost optimization)
+</span></span></span></code></pre></div><p><strong>Rationale</strong>:</p>
+<ul>
+<li>CloudFront serves static content only (low attack surface)</li>
+<li>Shield Standard provides Layer 3/4 DDoS protection (free)</li>
+<li>API Gateway has full WAF protection for Layer 7 attacks</li>
+<li><strong>Savings</strong>: $9/month = $108/year</li>
+</ul>
+<hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>After deployment, the stack exports the following values:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Usage</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>CloudFrontCertificateArn</code></td>
+          <td><code>arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-...</code></td>
+          <td>Used by Core Stack for CloudFront distribution</td>
+      </tr>
+      <tr>
+          <td><code>CloudFrontCertificateDomain</code></td>
+          <td><code>cdn.everyonecook.cloud</code> (or <code>cdn-dev</code>)</td>
+          <td>Verification only</td>
+      </tr>
+      <tr>
+          <td><code>ApiGatewayCertificateArn</code></td>
+          <td><code>arn:aws:acm:us-east-1:616580903213:certificate/a1b2c3d4-...</code></td>
+          <td>Used by Backend Stack for API Gateway domain</td>
+      </tr>
+      <tr>
+          <td><code>ApiGatewayCertificateDomain</code></td>
+          <td><code>*.everyonecook.cloud</code></td>
+          <td>Verification only (wildcard)</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="deployment-steps">Deployment Steps</h2>
+<h3 id="step-1-verify-prerequisites">Step 1: Verify Prerequisites</h3>
+<p>Before deploying Certificate Stack, ensure:</p>
+<ul>
+<li>DNS Stack successfully deployed</li>
+<li>Route 53 Hosted Zone exists with correct nameservers</li>
+<li>DNS delegation from Hostinger completed and propagated</li>
+</ul>
+<p>Verify DNS is working:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>nslookup -type=NS everyonecook.cloud
+</span></span></code></pre></div><h3 id="step-2-deploy-certificate-stack">Step 2: Deploy Certificate Stack</h3>
+<p>Navigate to infrastructure directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Deploy Certificate Stack to <strong>us-east-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Deploy Certificate Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Certificate --context environment=dev
+</span></span></code></pre></div><p><strong>Important</strong>: Notice the region is <strong>us-east-1</strong>, not ap-southeast-1.</p>
+<p>Expected output:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 6.12s
+
+EveryoneCook-dev-Certificate: deploying...
+[████████████████████████████████████████] (3/3)
+
+EveryoneCook-dev-Certificate: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Certificate
+
+✨  Deployment time: 125.34s
+
+Outputs:
+EveryoneCook-dev-Certificate.CloudFrontCertificateArn = 
+  arn:aws:acm:us-east-1:616580903213:certificate/8d53776e-0480-47d2-a6ff-4fe9b2eb6534
+EveryoneCook-dev-Certificate.CloudFrontCertificateDomain = cdn-dev.everyonecook.cloud
+EveryoneCook-dev-Certificate.ApiGatewayCertificateArn = 
+  arn:aws:acm:us-east-1:616580903213:certificate/a1b2c3d4-5678-90ef-ghij-klmnopqrstuv
+EveryoneCook-dev-Certificate.ApiGatewayCertificateDomain = *.everyonecook.cloud
+
+Stack ARN:
+arn:aws:cloudformation:us-east-1:616580903213:stack/EveryoneCook-dev-Certificate/...
+</code></pre><h3 id="step-3-wait-for-certificate-validation">Step 3: Wait for Certificate Validation</h3>
+<p>ACM certificates require DNS validation. This process takes 5-10 minutes:</p>
+<ol>
+<li>ACM creates CNAME validation records in Route 53</li>
+<li>Route 53 responds with validation data</li>
+<li>ACM verifies and issues certificates</li>
+<li>Status changes from &ldquo;Pending validation&rdquo; to &ldquo;Issued&rdquo;</li>
+</ol>
+<p>You can monitor the validation progress in AWS Console.</p>
+<h3 id="step-4-verify-in-aws-console">Step 4: Verify in AWS Console</h3>
+<h4 id="navigate-to-acm-us-east-1-region">Navigate to ACM (us-east-1 region)</h4>
+<ol>
+<li>Open AWS Console</li>
+<li><strong>IMPORTANT</strong>: Switch region to <strong>N. Virginia (us-east-1)</strong></li>
+<li>Navigate to <strong>Certificate Manager</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/switch-region-us-east-1.png" alt="Switch to us-east-1 Region">
+<em>Switch AWS Console to us-east-1 region before viewing certificates</em></p>
+<h4 id="verify-cloudfront-certificate">Verify CloudFront Certificate</h4>
+<ol>
+<li>Find certificate with domain <code>cdn-dev.everyonecook.cloud</code></li>
+<li>Check status is <strong>Issued</strong></li>
+<li>Verify DNS validation records are present</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/acm-cloudfront-cert.png" alt="CloudFront ACM Certificate">
+<em>ACM Certificate for CloudFront showing &ldquo;Issued&rdquo; status, domain name, validation method (DNS), and CNAME validation record</em></p>
+<h4 id="verify-api-gateway-wildcard-certificate">Verify API Gateway Wildcard Certificate</h4>
+<ol>
+<li>Find certificate with domain <code>*.everyonecook.cloud</code></li>
+<li>Check status is <strong>Issued</strong></li>
+<li>Verify it covers wildcard and SAN (everyonecook.cloud)</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/acm-api-wildcard-cert.png" alt="API Gateway Wildcard Certificate">
+<em>ACM Wildcard Certificate for API Gateway showing domain <code>*.everyonecook.cloud</code>, SAN <code>everyonecook.cloud</code>, and validation records</em></p>
+<h4 id="verify-dns-validation-records-in-route-53">Verify DNS Validation Records in Route 53</h4>
+<ol>
+<li>Navigate to <strong>Route 53</strong> &gt; <strong>Hosted zones</strong></li>
+<li>Select <code>everyonecook.cloud</code> hosted zone</li>
+<li>Verify CNAME validation records are created</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/route53-acm-validation.png" alt="Route 53 ACM Validation Records">
+<em>Route 53 showing CNAME validation records automatically created by ACM for certificate validation</em></p>
+<p>Expected records:</p>
+<pre tabindex="0"><code>_abc123def456.cdn-dev.everyonecook.cloud  CNAME  _xyz789.acm-validations.aws.
+_ghi789jkl012.everyonecook.cloud          CNAME  _mno345.acm-validations.aws.
+</code></pre><hr>
+<h2 id="cost-breakdown">Cost Breakdown</h2>
+<h3 id="monthly-costs">Monthly Costs</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Resource</th>
+          <th>Cost</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>ACM Certificates</strong></td>
+          <td><strong>$0/month</strong></td>
+          <td>Free for certificates used with AWS services</td>
+      </tr>
+      <tr>
+          <td><strong>DNS Validation Records</strong></td>
+          <td><strong>$0/month</strong></td>
+          <td>Included in Route 53 hosted zone cost</td>
+      </tr>
+      <tr>
+          <td><strong>Certificate Renewal</strong></td>
+          <td><strong>$0/month</strong></td>
+          <td>Automatic renewal (free)</td>
+      </tr>
+      <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>$0/month</strong></td>
+          <td>100% free (no ongoing costs)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="cost-optimization">Cost Optimization</h3>
+<ul>
+<li>ACM certificates are free when used with CloudFront, API Gateway, ALB, etc.</li>
+<li>Automatic renewal (no manual intervention required)</li>
+<li>CloudFront WAF removed to save $9/month ($108/year)</li>
+<li>Shield Standard provides free DDoS protection</li>
+</ul>
+<p><strong>Annual Savings from WAF Removal</strong>: $108/year</p>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="imports-from-dns-stack">Imports from DNS Stack</h3>
+<p>The Certificate Stack imports from DNS Stack:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Hardcoded Hosted Zone ID (stable, doesn&#39;t change)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZoneId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Z018823421GWCSYG5UMHV&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hostedZone</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">route53</span>.<span style="color:#a6e22e">HostedZone</span>.<span style="color:#a6e22e">fromHostedZoneAttributes</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;HostedZone&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">hostedZoneId</span>: <span style="color:#66d9ef">hostedZoneId</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zoneName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Why Hardcoded?</strong></p>
+<ul>
+<li>Cannot use <code>Fn.importValue</code> for cross-region references (us-east-1 ← ap-southeast-1)</li>
+<li>Hosted Zone ID is stable and never changes</li>
+<li>Alternative: Use SSM Parameter Store (more complex, same result)</li>
+</ul>
+<h3 id="exports-used-by-other-stacks">Exports Used By Other Stacks</h3>
+<p>The Certificate Stack exports are used by:</p>
+<ol>
+<li>
+<p><strong>Core Stack</strong> (Phase 2)</p>
+<ul>
+<li>Imports: <code>CloudFrontCertificateArn</code></li>
+<li>Purpose: Attach SSL certificate to CloudFront distribution</li>
+<li>Region: ap-southeast-1 (cross-region import)</li>
+</ul>
+</li>
+<li>
+<p><strong>Backend Stack</strong> (Phase 4)</p>
+<ul>
+<li>Imports: <code>ApiGatewayCertificateArn</code></li>
+<li>Purpose: Create API Gateway custom domain with SSL</li>
+<li>Region: ap-southeast-1 (cross-region import)</li>
+</ul>
+</li>
+</ol>
+<h3 id="dependency-flow">Dependency Flow</h3>
+<pre tabindex="0"><code>DNS Stack (ap-southeast-1)
+    │
+    ├─ Hosted Zone ID: Z018823421GWCSYG5UMHV
+    │
+    ▼
+Certificate Stack (us-east-1) ← MUST be us-east-1
+    │
+    ├─ CloudFront Certificate ARN
+    │  └─► Core Stack (ap-southeast-1)
+    │
+    └─ API Gateway Certificate ARN
+       └─► Backend Stack (ap-southeast-1)
+</code></pre><hr>
+<h2 id="validation-checklist">Validation Checklist</h2>
+<p>Before proceeding to Core Stack deployment:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Certificate Stack deployed to <strong>us-east-1</strong> region</li>
+<li><input disabled="" type="checkbox"> CloudFront certificate status is <strong>Issued</strong></li>
+<li><input disabled="" type="checkbox"> API Gateway wildcard certificate status is <strong>Issued</strong></li>
+<li><input disabled="" type="checkbox"> DNS validation CNAME records visible in Route 53</li>
+<li><input disabled="" type="checkbox"> Certificate ARNs exported in CloudFormation outputs</li>
+<li><input disabled="" type="checkbox"> Region confirmed as us-east-1 in AWS Console</li>
+<li><input disabled="" type="checkbox"> Tags applied correctly to all resources</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>After successfully deploying the Certificate Stack:</p>
+<p>➡️ <strong><a href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">5.4.3 Core Stack</a></strong> - Create DynamoDB, S3, and CloudFront infrastructure</p>
+<p>The Core Stack will:</p>
+<ul>
+<li>Create DynamoDB Single Table with encryption</li>
+<li>Create S3 buckets for content and CDN logs</li>
+<li>Create CloudFront distribution with SSL certificate</li>
+<li>Import <code>CloudFrontCertificateArn</code> from this stack</li>
+<li>Configure custom domain <code>cdn.everyonecook.cloud</code></li>
+</ul>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><strong>Source Code</strong>: <code>infrastructure/lib/stacks/certificate-stack.ts</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>App Configuration</strong>: <code>infrastructure/bin/app.ts</code></li>
+<li><strong>AWS Documentation</strong>:
+<ul>
+<li><a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">ACM Certificates</a></li>
+<li><a href="https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html">DNS Validation</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html">CloudFront with ACM</a></li>
+</ul>
+</li>
+<li><strong>Cross-Region References</strong>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-crossstackref.html">CloudFormation Cross-Region References</a></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/" title="5.4.1 DNS Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/" title="5.4.3 Core Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

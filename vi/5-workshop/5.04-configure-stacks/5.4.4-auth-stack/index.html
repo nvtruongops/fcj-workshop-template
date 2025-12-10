@@ -1,0 +1,2880 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../../images/favicon.png" type="image/png">
+
+    <title>5.4.4 Auth Stack :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Nhật ký công việc Tuần 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Nhật ký công việc Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Nhật ký Tuần 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Nhật ký Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Nhật ký Tuần 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Nhật ký Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Nhật ký Tuần 4"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Nhật ký Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Nhật ký Tuần 5"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Nhật ký Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Báo cáo công việc Tuần 6"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Báo cáo công việc Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Báo cáo công việc Tuần 7"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Báo cáo công việc Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Báo cáo công việc Tuần 8"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Báo cáo công việc Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12 "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog Tuần 12  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Đề xuất dự án"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/2-proposal/">
+     <b> 2. </b> Đề xuất dự án 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Blog Dịch Sang Tiếng Việt"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/">
+     <b> 3. </b> Blog Dịch Sang Tiếng Việt 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS được vinh danh là Nhà lãnh đạo trong Magic Quadrant 2025 của Gartner về Dịch vụ Nền tảng Đám mây Chiến lược trong 15 năm liên tiếp 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Các mô hình Qwen hiện đã có sẵn trong Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Quản lý Chính sách Tường lửa AWS Tập trung với AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Hướng dẫn cốt lõi về Quản trị Cloud tại AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Chiến lược Mua sắm Tập trung vào Giải pháp trên AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: 10 Công bố Hàng đầu về AWS Cloud Operations tại re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.01-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.02-setup-environment/"
+  title="Thiết lập Môi trường"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Thiết lập Môi trường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/"
+  title="Cấu hình các Infrastructure Stack"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Cấu hình các Infrastructure Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.05-deploy-infrastructure/"
+  title="Triển khai Hạ tầng"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Triển khai Hạ tầng 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.06-configure-api-lambda/"
+  title="Cấu hình API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Cấu hình API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.07-deploy-backend/"
+  title="Triển khai Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Triển khai Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.08-test-endpoints/"
+  title="Kiểm Tra Endpoints Toàn Diện"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Kiểm Tra Endpoints Toàn Diện 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.09-push-gitlab/"
+  title="Push lên GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push lên GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.10-deploy-amplify/"
+  title="Deploy lên Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy lên Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.11-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự Đánh Giá"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự Đánh Giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia Sẻ và Phản Hồi"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../../vi/7-feedback/">
+     <b> 7. </b> Chia Sẻ và Phản Hồi 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../../vi/'>Báo cáo thực tập</a> > <a href='../../../../vi/5-workshop/'>Workshop</a> > <a href='../../../../vi/5-workshop/5.04-configure-stacks/'>Cấu hình các Infrastructure Stack</a> > 5.4.4 Auth Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tổng-quan">Tổng Quan</a>
+      <ul>
+        <li><a href="#trách-nhiệm-chính">Trách Nhiệm Chính</a></li>
+        <li><a href="#những-gì-stack-này-bao-gồm">Những Gì Stack Này Bao Gồm</a></li>
+      </ul>
+    </li>
+    <li><a href="#kiến-trúc">Kiến Trúc</a></li>
+    <li><a href="#cấu-hình-stack">Cấu Hình Stack</a>
+      <ul>
+        <li><a href="#cấu-trúc-file">Cấu Trúc File</a></li>
+        <li><a href="#điểm-nổi-bật-trong-triển-khai-code">Điểm Nổi Bật Trong Triển Khai Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</a>
+      <ul>
+        <li><a href="#1-quy-trình-đăng-ký-người-dùng">1. Quy Trình Đăng Ký Người Dùng</a></li>
+        <li><a href="#2-chính-sách-mật-khẩu">2. Chính Sách Mật Khẩu</a></li>
+        <li><a href="#3-token-validity">3. Token Validity</a></li>
+        <li><a href="#4-chi-tiết-lambda-trigger">4. Chi Tiết Lambda Trigger</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-outputs">Stack Outputs</a></li>
+    <li><a href="#các-bước-triển-khai">Các Bước Triển Khai</a>
+      <ul>
+        <li><a href="#bước-1-build-lambda-triggers">Bước 1: Build Lambda Triggers</a></li>
+        <li><a href="#bước-2-xác-minh-điều-kiện-tiên-quyết">Bước 2: Xác Minh Điều Kiện Tiên Quyết</a></li>
+        <li><a href="#bước-3-triển-khai-auth-stack">Bước 3: Triển Khai Auth Stack</a></li>
+        <li><a href="#bước-4-xác-minh-trong-aws-console">Bước 4: Xác Minh trong AWS Console</a></li>
+      </ul>
+    </li>
+    <li><a href="#chi-tiết-chi-phí">Chi Tiết Chi Phí</a>
+      <ul>
+        <li><a href="#chi-phí-hàng-tháng-dev-environment">Chi Phí Hàng Tháng (Dev Environment)</a></li>
+        <li><a href="#ghi-chú-chi-phí">Ghi Chú Chi Phí</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-stack-dependencies">Cross-Stack Dependencies</a>
+      <ul>
+        <li><a href="#import-từ-các-stack-trước">Import từ Các Stack Trước</a></li>
+        <li><a href="#export-được-sử-dụng-bởi-các-stack-khác">Export Được Sử Dụng Bởi Các Stack Khác</a></li>
+        <li><a href="#luồng-dependency">Luồng Dependency</a></li>
+      </ul>
+    </li>
+    <li><a href="#danh-sách-kiểm-tra-xác-thực">Danh Sách Kiểm Tra Xác Thực</a></li>
+    <li><a href="#kiểm-tra">Kiểm Tra</a>
+      <ul>
+        <li><a href="#kiểm-tra-quy-trình-đăng-ký-người-dùng">Kiểm Tra Quy Trình Đăng Ký Người Dùng</a></li>
+        <li><a href="#kiểm-tra-quy-trình-xác-thực">Kiểm Tra Quy Trình Xác Thực</a></li>
+        <li><a href="#kiểm-tra-presignup-cleanup">Kiểm Tra PreSignUp Cleanup</a></li>
+      </ul>
+    </li>
+    <li><a href="#các-bước-tiếp-theo">Các Bước Tiếp Theo</a></li>
+    <li><a href="#tài-liệu-tham-khảo">Tài Liệu Tham Khảo</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.4 Auth Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="auth-stack---xác-thực--quản-lý-người-dùng">Auth Stack - Xác Thực &amp; Quản Lý Người Dùng</h1>
+<h2 id="tổng-quan">Tổng Quan</h2>
+<p>Auth Stack là <strong>tầng xác thực Phase 3</strong> của dự án EveryoneCook. Nó quản lý xác thực người dùng, đăng ký và bảo mật tài khoản bằng AWS Cognito với các Lambda trigger tùy chỉnh để nâng cao trải nghiệm người dùng.</p>
+<p><strong>Thứ Tự Triển Khai</strong>: Stack này <strong>BẮT BUỘC</strong> phải được triển khai sau Core Stack và <strong>trước</strong> Backend Stack.</p>
+<h3 id="trách-nhiệm-chính">Trách Nhiệm Chính</h3>
+<ul>
+<li>Tạo Cognito User Pool với các thiết lập bảo mật cấp production</li>
+<li>Cấu hình Cognito User Pool Client cho ứng dụng web</li>
+<li>Thiết lập 5 Lambda triggers cho các quy trình xác thực tùy chỉnh</li>
+<li>Quản lý đăng ký người dùng, xác minh email và quy trình đăng nhập</li>
+<li>Xử lý tạo hồ sơ người dùng trong DynamoDB (qua PostConfirmation trigger)</li>
+</ul>
+<h3 id="những-gì-stack-này-bao-gồm">Những Gì Stack Này Bao Gồm</h3>
+<p><strong>Cognito User Pool</strong>:</p>
+<ul>
+<li>Đăng nhập: Username hoặc email</li>
+<li>Chính sách mật khẩu: Tối thiểu 12 ký tự (8 cho dev), chữ hoa, chữ thường, chữ số, ký hiệu</li>
+<li>Yêu cầu xác minh email</li>
+<li>MFA: Tắt (chỉ email + mật khẩu)</li>
+<li>Device tracking: Bật (không có MFA challenge)</li>
+<li>Thuộc tính chuẩn: username, email, given_name (fullName)</li>
+<li>Thuộc tính tùy chỉnh: account_status, country</li>
+</ul>
+<p><strong>Cognito User Pool Client</strong>:</p>
+<ul>
+<li>Auth flows: USER_PASSWORD_AUTH, USER_SRP_AUTH</li>
+<li>OAuth flows: Authorization code grant (social login trong tương lai)</li>
+<li>Token validity: Access/ID (1h), Refresh (30 ngày)</li>
+<li>Callback URLs: Theo từng environment</li>
+</ul>
+<p><strong>Lambda Triggers</strong> (5 triggers):</p>
+<ol>
+<li><strong>PreSignUp</strong>: Dọn dẹp người dùng chưa xác minh (hết hạn 24h)</li>
+<li><strong>CustomMessage</strong>: Tùy chỉnh email templates</li>
+<li><strong>PostConfirmation</strong>: Tạo hồ sơ người dùng trong DynamoDB</li>
+<li><strong>PreAuthentication</strong>: Kiểm tra nếu người dùng bị cấm/tạm ngưng</li>
+<li><strong>PostAuthentication</strong>: Cập nhật timestamp đăng nhập cuối cùng</li>
+</ol>
+<hr>
+<h2 id="kiến-trúc">Kiến Trúc</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Auth Stack (Phase 3)                          │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Cognito User Pool                                        │  │
+│  │  ├─ Đăng nhập: Username hoặc Email                      │  │
+│  │  ├─ Mật khẩu: Tối thiểu 12 ký tự, chính sách mạnh      │  │
+│  │  ├─ Xác minh Email: Bắt buộc                            │  │
+│  │  ├─ MFA: Tắt (chỉ email + mật khẩu)                     │  │
+│  │  ├─ Device Tracking: Bật (không có MFA)                 │  │
+│  │  └─ Thuộc tính tùy chỉnh: account_status, country       │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Lambda Triggers (Quy trình tùy chỉnh)                    │  │
+│  │                                                           │  │
+│  │  1️⃣ PreSignUp                                            │  │
+│  │     ├─ Kiểm tra username/email tồn tại                  │  │
+│  │     ├─ Xóa người dùng chưa xác minh hết hạn (&gt;24h)     │  │
+│  │     └─ Cho phép đăng ký mới                             │  │
+│  │                                                           │  │
+│  │  2️⃣ CustomMessage                                         │  │
+│  │     ├─ Tùy chỉnh template xác minh email                │  │
+│  │     ├─ Tùy chỉnh template đặt lại mật khẩu              │  │
+│  │     └─ Thêm styling và branding                         │  │
+│  │                                                           │  │
+│  │  3️⃣ PostConfirmation                                      │  │
+│  │     ├─ Tạo DynamoDB entities:                            │  │
+│  │     │  ├─ Core Profile (PK=USER#{userId}, SK=PROFILE)  │  │
+│  │     │  ├─ Privacy Settings (SK=PRIVACY_SETTINGS)       │  │
+│  │     │  └─ AI Preferences (SK=AI_PREFERENCES)           │  │
+│  │     └─ Khởi tạo dữ liệu người dùng                      │  │
+│  │                                                           │  │
+│  │  4️⃣ PreAuthentication                                     │  │
+│  │     ├─ Kiểm tra trạng thái tài khoản                    │  │
+│  │     ├─ Từ chối nếu bị cấm/tạm ngưng                     │  │
+│  │     └─ Cho phép đăng nhập nếu active                    │  │
+│  │                                                           │  │
+│  │  5️⃣ PostAuthentication                                    │  │
+│  │     ├─ Cập nhật timestamp lastLoginAt                   │  │
+│  │     └─ Theo dõi hoạt động người dùng                    │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                          │                                      │
+│                          ▼                                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Cognito User Pool Client                                │  │
+│  │  ├─ Client Type: Web (không có secret)                  │  │
+│  │  ├─ Auth Flows: Password, SRP                          │  │
+│  │  ├─ OAuth: Authorization code grant                     │  │
+│  │  ├─ Tokens: 1h access, 1h ID, 30d refresh             │  │
+│  │  ├─ Callback: https://{env}.everyonecook.cloud        │  │
+│  │  └─ Security: Token revocation, user enum protection   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+                          │
+                          │ Exports
+                          ▼
+                   Backend Stack
+        (API Gateway Cognito Authorizer)
+</code></pre><hr>
+<h2 id="cấu-hình-stack">Cấu Hình Stack</h2>
+<h3 id="cấu-trúc-file">Cấu Trúc File</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── auth-stack.ts                           # Auth Stack (865 dòng)
+
+services/auth-module/triggers/
+├── pre-signup.ts                          # PreSignUp trigger
+├── custom-message.ts                      # CustomMessage trigger
+├── post-confirmation.ts                   # PostConfirmation trigger
+├── pre-authentication.ts                  # PreAuthentication trigger
+└── post-authentication.ts                 # PostAuthentication trigger
+</code></pre><h3 id="điểm-nổi-bật-trong-triển-khai-code">Điểm Nổi Bật Trong Triển Khai Code</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/auth-stack.ts</code></p>
+<h4 id="1-tạo-cognito-user-pool">1. Tạo Cognito User Pool</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Tạo Cognito User Pool với bảo mật cấp production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createUserPool</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPool</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cognitoConfig</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">cognito</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userPool</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPool</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;UserPool&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">userPoolName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cấu hình đăng nhập
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">signInAliases</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cho phép tự đăng ký
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">selfSignUpEnabled</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thuộc tính chuẩn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">standardAttributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// Email không thể thay đổi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">givenName</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// fullName được lưu trong given_name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">birthdate</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">gender</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thuộc tính tùy chỉnh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">customAttributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">account_status</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">StringAttribute</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">minLen</span>: <span style="color:#66d9ef">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">maxLen</span>: <span style="color:#66d9ef">20</span>,
+</span></span><span style="display:flex;"><span>      }),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">country</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">StringAttribute</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutable</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">minLen</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">maxLen</span>: <span style="color:#66d9ef">2</span>,  <span style="color:#75715e">// ISO 3166-1 alpha-2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Chính sách mật khẩu
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">passwordPolicy</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">minLength</span>: <span style="color:#66d9ef">12</span>,  <span style="color:#75715e">// 8 cho dev
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">requireLowercase</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireUppercase</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireDigits</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requireSymbols</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">tempPasswordValidity</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">7</span>),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Khôi phục tài khoản
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">accountRecovery</span>: <span style="color:#66d9ef">cdk.aws_cognito.AccountRecovery.EMAIL_ONLY</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cấu hình email (Cognito mặc định)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">cdk.aws_cognito.UserPoolEmail.withCognito</span>(),
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Tự động xác minh email
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">autoVerify</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// MFA: Tắt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mfa</span>: <span style="color:#66d9ef">cdk.aws_cognito.Mfa.OFF</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Device tracking (không có MFA challenge)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deviceTracking</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">challengeRequiredOnNewDevice</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">deviceOnlyRememberedOnUserPrompt</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Email templates
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">userVerification</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailSubject</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;🍳 Xác minh tài khoản Everyone Cook của bạn&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailBody</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Xin chào {username}, mã xác minh của bạn là: {####}&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">emailStyle</span>: <span style="color:#66d9ef">cdk.aws_cognito.VerificationEmailStyle.CODE</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deletion protection cho production
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deletionProtection</span>: <span style="color:#66d9ef">this.config.environment</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;prod&#39;</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userPool</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="2-lambda-triggers">2. Lambda Triggers</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Tạo PostConfirmation Lambda Trigger
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Tạo 3 DynamoDB entities sau khi xác minh email:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 1. Core Profile (PK=USER#{userId}, SK=PROFILE)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 2. Privacy Settings (SK=PRIVACY_SETTINGS)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 3. AI Preferences (SK=AI_PREFERENCES)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createPostConfirmationTrigger</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dynamoTable</span>: <span style="color:#66d9ef">cdk.aws_dynamodb.ITable</span>
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">trigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;PostConfirmationTrigger&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-PostConfirmation`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>: <span style="color:#66d9ef">cdk.aws_lambda.Runtime.NODEJS_20_X</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;post-confirmation.handler&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">code</span>: <span style="color:#66d9ef">cdk.aws_lambda.Code.fromAsset</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;../../../services/auth-module/triggers/dist&#39;</span>)
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memorySize</span>: <span style="color:#66d9ef">512</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">DYNAMODB_TABLE_NAME</span>: <span style="color:#66d9ef">dynamoTable.tableName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ENVIRONMENT</span>: <span style="color:#66d9ef">this.config.environment</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Cấp quyền ghi DynamoDB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">dynamoTable</span>.<span style="color:#a6e22e">grantReadWriteData</span>(<span style="color:#a6e22e">trigger</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">trigger</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Tạo PreSignUp Lambda Trigger
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Xử lý dọn dẹp người dùng chưa xác minh:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Nếu user tồn tại và UNCONFIRMED &gt;24h → xóa và cho phép đăng ký mới
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Nếu user tồn tại và UNCONFIRMED &lt;24h → từ chối với thông báo &#34;chờ 24h&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * - Nếu user không tồn tại → cho phép đăng ký
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createPreSignUpTrigger</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">trigger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_lambda</span>.Function(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;PreSignUpTrigger&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">functionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-PreSignUp`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>: <span style="color:#66d9ef">cdk.aws_lambda.Runtime.NODEJS_20_X</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pre-signup.handler&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">code</span>: <span style="color:#66d9ef">cdk.aws_lambda.Code.fromAsset</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;../../../services/auth-module/triggers/dist&#39;</span>)
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memorySize</span>: <span style="color:#66d9ef">256</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">cdk.Duration.seconds</span>(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Cấp quyền Cognito
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">trigger</span>.<span style="color:#a6e22e">addToRolePolicy</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_iam</span>.<span style="color:#a6e22e">PolicyStatement</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">effect</span>: <span style="color:#66d9ef">cdk.aws_iam.Effect.ALLOW</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;cognito-idp:ListUsers&#39;</span>, <span style="color:#e6db74">&#39;cognito-idp:AdminDeleteUser&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resources</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`arn:aws:cognito-idp:</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">region</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">account</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:userpool/*`</span>],
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">trigger</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="3-user-pool-client">3. User Pool Client</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Tạo Cognito User Pool Client cho ứng dụng web
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createUserPoolClient</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPoolClient</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">callbackUrls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getCallbackUrls</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logoutUrls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getLogoutUrls</span>();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userPoolClient</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">UserPoolClient</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;UserPoolClient&#39;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">userPoolClientName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-Web-Client-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">userPool</span>: <span style="color:#66d9ef">this.userPool</span>,
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Auth flows
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">authFlows</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">userPassword</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// USER_PASSWORD_AUTH
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">userSrp</span>: <span style="color:#66d9ef">true</span>,       <span style="color:#75715e">// USER_SRP_AUTH (Secure Remote Password)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">custom</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">adminUserPassword</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Cấu hình OAuth (social login trong tương lai)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">oAuth</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">flows</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">authorizationCodeGrant</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">implicitCodeGrant</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">clientCredentials</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">scopes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">EMAIL</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">OPENID</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">OAuthScope</span>.<span style="color:#a6e22e">PROFILE</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">callbackUrls</span>: <span style="color:#66d9ef">callbackUrls</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">logoutUrls</span>: <span style="color:#66d9ef">logoutUrls</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Token validity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">accessTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">idTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.hours</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">refreshTokenValidity</span>: <span style="color:#66d9ef">cdk.Duration.days</span>(<span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Read attributes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">readAttributes</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">aws_cognito</span>.<span style="color:#a6e22e">ClientAttributes</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withStandardAttributes</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">emailVerified</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">givenName</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withCustomAttributes</span>(<span style="color:#e6db74">&#39;account_status&#39;</span>, <span style="color:#e6db74">&#39;country&#39;</span>),
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Thiết lập bảo mật
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">preventUserExistenceErrors</span>: <span style="color:#66d9ef">true</span>,  <span style="color:#75715e">// Ngăn enumeration attacks
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">enableTokenRevocation</span>: <span style="color:#66d9ef">true</span>,       <span style="color:#75715e">// Cho phép thu hồi token
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">generateSecret</span>: <span style="color:#66d9ef">false</span>,             <span style="color:#75715e">// Không có secret cho web apps
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userPoolClient</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="chi-tiết-cấu-hình-chính">Chi Tiết Cấu Hình Chính</h2>
+<h3 id="1-quy-trình-đăng-ký-người-dùng">1. Quy Trình Đăng Ký Người Dùng</h3>
+<p><strong>Quy Trình Đăng Ký</strong>:</p>
+<pre tabindex="0"><code>1. Người dùng đăng ký → PreSignUp trigger
+   ├─ Kiểm tra nếu username/email tồn tại
+   ├─ Nếu UNCONFIRMED &gt;24h: Xóa user cũ
+   ├─ Nếu UNCONFIRMED &lt;24h: Từ chối với &#34;chờ 24h&#34;
+   └─ Cho phép đăng ký
+
+2. Người dùng nhận email xác minh → CustomMessage trigger
+   ├─ Tùy chỉnh email template
+   └─ Gửi mã xác minh
+
+3. Người dùng xác minh email → PostConfirmation trigger
+   ├─ Tạo DynamoDB entities:
+   │  ├─ Core Profile (username, email, fullName, v.v.)
+   │  ├─ Privacy Settings (mặc định: private)
+   │  └─ AI Preferences (thiết lập mặc định)
+   └─ Tài khoản người dùng sẵn sàng
+
+4. Người dùng đăng nhập → PreAuthentication trigger
+   ├─ Kiểm tra account_status
+   ├─ Nếu banned/suspended: Từ chối đăng nhập
+   └─ Cho phép đăng nhập
+
+5. Đăng nhập thành công → PostAuthentication trigger
+   └─ Cập nhật timestamp lastLoginAt
+</code></pre><h3 id="2-chính-sách-mật-khẩu">2. Chính Sách Mật Khẩu</h3>
+<p><strong>Environments</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Environment</th>
+          <th>Độ dài tối thiểu</th>
+          <th>Yêu cầu</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Dev</strong></td>
+          <td>8 ký tự</td>
+          <td>Chữ hoa, chữ thường, chữ số, ký hiệu</td>
+      </tr>
+      <tr>
+          <td><strong>Staging</strong></td>
+          <td>12 ký tự</td>
+          <td>Chữ hoa, chữ thường, chữ số, ký hiệu</td>
+      </tr>
+      <tr>
+          <td><strong>Prod</strong></td>
+          <td>12 ký tự</td>
+          <td>Chữ hoa, chữ thường, chữ số, ký hiệu</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Ví dụ Mật Khẩu Hợp Lệ</strong>:</p>
+<ul>
+<li><code>MyP@ssw0rd123</code> (12 ký tự)</li>
+<li><code>Str0ng!Pass</code> (11 ký tự, không hợp lệ cho prod/staging)</li>
+</ul>
+<h3 id="3-token-validity">3. Token Validity</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Loại Token</th>
+          <th>Validity</th>
+          <th>Mục đích</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Access Token</strong></td>
+          <td>1 giờ</td>
+          <td>API authorization</td>
+      </tr>
+      <tr>
+          <td><strong>ID Token</strong></td>
+          <td>1 giờ</td>
+          <td>User identity claims</td>
+      </tr>
+      <tr>
+          <td><strong>Refresh Token</strong></td>
+          <td>30 ngày</td>
+          <td>Gia hạn access/ID tokens</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Quy Trình Refresh Token</strong>:</p>
+<pre tabindex="0"><code>Access token hết hạn (1h) → Dùng refresh token → Nhận access/ID tokens mới
+Refresh token hết hạn (30d) → Người dùng phải đăng nhập lại
+</code></pre><h3 id="4-chi-tiết-lambda-trigger">4. Chi Tiết Lambda Trigger</h3>
+<h4 id="presignup-trigger">PreSignUp Trigger</h4>
+<p><strong>Mục đích</strong>: Ngăn lỗi &ldquo;username đã được sử dụng&rdquo; cho người dùng chưa xác minh</p>
+<p><strong>Logic</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userExists</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">userStatus</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;UNCONFIRMED&#39;</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hoursSinceCreation</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">now</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">userCreationDate</span>) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1000</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">hoursSinceCreation</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">24</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Xóa user chưa xác minh đã hết hạn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">deleteUser</span>(<span style="color:#a6e22e">username</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">allowSignUp</span>();
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// User vẫn còn thời gian để xác minh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">rejectSignUp</span>(<span style="color:#e6db74">`Vui lòng chờ </span><span style="color:#e6db74">${</span><span style="color:#ae81ff">24</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">hoursSinceCreation</span><span style="color:#e6db74">}</span><span style="color:#e6db74">h để đăng ký lại`</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">allowSignUp</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="postconfirmation-trigger">PostConfirmation Trigger</h4>
+<p><strong>DynamoDB Entities Được Tạo</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Core Profile
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PROFILE&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;john_doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;john@example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fullName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account_status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;active&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">createdAt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2025-01-01T00:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... các field khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Privacy Settings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PRIVACY_SETTINGS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">profileVisibility</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;private&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">showEmail</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">allowMessages</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;friends&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... các settings khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. AI Preferences
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;USER#{userId}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">SK</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AI_PREFERENCES&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">aiEnabled</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">preferredLanguage</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;en&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dietaryRestrictions</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... các preferences khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><hr>
+<h2 id="stack-outputs">Stack Outputs</h2>
+<p>Sau khi triển khai, stack export các giá trị sau:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Output Name</th>
+          <th>Value</th>
+          <th>Được sử dụng bởi</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>UserPoolId</code></td>
+          <td><code>ap-southeast-1_XXXXXXXXX</code></td>
+          <td>Backend Stack (Authorizer)</td>
+      </tr>
+      <tr>
+          <td><code>UserPoolArn</code></td>
+          <td><code>arn:aws:cognito-idp:...</code></td>
+          <td>Lambda IAM policies</td>
+      </tr>
+      <tr>
+          <td><code>UserPoolClientId</code></td>
+          <td><code>1234567890abcdef</code></td>
+          <td>Frontend (Amplify config)</td>
+      </tr>
+      <tr>
+          <td><code>CustomMessageFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PostConfirmationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PreAuthenticationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+      <tr>
+          <td><code>PostAuthenticationFunctionArn</code></td>
+          <td><code>arn:aws:lambda:...</code></td>
+          <td>Monitoring</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="các-bước-triển-khai">Các Bước Triển Khai</h2>
+<h3 id="bước-1-build-lambda-triggers">Bước 1: Build Lambda Triggers</h3>
+<p>Trước khi triển khai, biên dịch Lambda triggers sang JavaScript:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\services\auth-module\triggers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt dependencies</span>
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build TypeScript sang JavaScript</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span></code></pre></div><p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>&gt; auth-module-triggers@1.0.0 build
+&gt; tsc
+
+Compiled successfully to dist/
+</code></pre><h3 id="bước-2-xác-minh-điều-kiện-tiên-quyết">Bước 2: Xác Minh Điều Kiện Tiên Quyết</h3>
+<ul>
+<li>Core Stack đã triển khai thành công</li>
+<li>DynamoDB table tồn tại</li>
+<li>Lambda triggers đã build vào thư mục <code>dist/</code></li>
+</ul>
+<h3 id="bước-3-triển-khai-auth-stack">Bước 3: Triển Khai Auth Stack</h3>
+<p>Di chuyển đến thư mục infrastructure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Triển khai Auth Stack đến <strong>ap-southeast-1</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Triển khai Auth Stack</span>
+</span></span><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Auth --context environment=dev
+</span></span></code></pre></div><p>Kết quả mong đợi:</p>
+<pre tabindex="0"><code>✨  Synthesis time: 7.23s
+
+EveryoneCook-dev-Auth: deploying...
+[████████████████████████████████████████] (9/9)
+
+EveryoneCook-dev-Auth: creating CloudFormation changeset...
+
+   EveryoneCook-dev-Auth
+
+✨  Deployment time: 180.45s
+
+Outputs:
+EveryoneCook-dev-Auth.UserPoolId = ap-southeast-1_a1B2c3D4e
+EveryoneCook-dev-Auth.UserPoolClientId = 1a2b3c4d5e6f7g8h9i0j
+EveryoneCook-dev-Auth.UserPoolArn = arn:aws:cognito-idp:ap-southeast-1:616580903213:userpool/...
+EveryoneCook-dev-Auth.PostConfirmationFunctionArn = arn:aws:lambda:ap-southeast-1:...
+EveryoneCook-dev-Auth.PreAuthenticationFunctionArn = arn:aws:lambda:ap-southeast-1:...
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:616580903213:stack/EveryoneCook-dev-Auth/...
+</code></pre><h3 id="bước-4-xác-minh-trong-aws-console">Bước 4: Xác Minh trong AWS Console</h3>
+<h4 id="điều-hướng-đến-cognito-user-pool">Điều hướng đến Cognito User Pool</h4>
+<ol>
+<li>Mở AWS Console → region <strong>ap-southeast-1</strong></li>
+<li>Đi đến <strong>Amazon Cognito</strong> &gt; <strong>User pools</strong></li>
+<li>Tìm <code>EveryoneCook-dev</code></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-user-pool.png" alt="Cognito User Pool Overview">
+<em>Cognito User Pool hiển thị tùy chọn đăng nhập (username/email), MFA disabled, password policy, và deletion protection</em></p>
+<p><strong>Xác minh</strong>:</p>
+<ul>
+<li>Đăng nhập: Username hoặc Email</li>
+<li>MFA: Disabled</li>
+<li>Password policy: Đã cấu hình</li>
+<li>Email verification: Required</li>
+</ul>
+<h4 id="xác-minh-cấu-hình-user-pool">Xác Minh Cấu Hình User Pool</h4>
+<p>Click vào User Pool để xem chi tiết:</p>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-pool-details.png" alt="Cognito User Pool Details">
+<em>Cấu hình User Pool hiển thị authentication settings, attributes, password policy, và security features</em></p>
+<p><strong>Kiểm tra</strong>:</p>
+<ul>
+<li><strong>Sign-in experience</strong>: Username và Email enabled</li>
+<li><strong>User attributes</strong>: email, given_name (bắt buộc), birthdate, gender (tùy chọn)</li>
+<li><strong>Custom attributes</strong>: account_status, country</li>
+<li><strong>Password policy</strong>: Tối thiểu 12 ký tự, yêu cầu chữ hoa, chữ thường, chữ số, ký hiệu</li>
+<li><strong>MFA</strong>: Off</li>
+<li><strong>Device tracking</strong>: Enabled</li>
+</ul>
+<h4 id="xác-minh-lambda-triggers">Xác Minh Lambda Triggers</h4>
+<p>Đi đến <strong>User pool properties</strong> &gt; <strong>Lambda triggers</strong>:</p>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-triggers.png" alt="Cognito Lambda Triggers">
+<em>Lambda triggers được cấu hình cho Pre sign-up, Custom message, Post confirmation, Pre authentication, và Post authentication</em></p>
+<p><strong>Xác minh 5 triggers</strong>:</p>
+<ul>
+<li>Pre sign-up: <code>EveryoneCook-dev-PreSignUp</code></li>
+<li>Custom message: <code>EveryoneCook-dev-CustomMessage</code></li>
+<li>Post confirmation: <code>EveryoneCook-dev-PostConfirmation</code></li>
+<li>Pre authentication: <code>EveryoneCook-dev-PreAuthentication</code></li>
+<li>Post authentication: <code>EveryoneCook-dev-PostAuthentication</code></li>
+</ul>
+<h4 id="xác-minh-user-pool-client">Xác Minh User Pool Client</h4>
+<p>Đi đến <strong>App integration</strong> &gt; <strong>App clients</strong>:</p>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-client.png" alt="Cognito User Pool Client">
+<em>User Pool Client hiển thị auth flows, OAuth settings, token validity, callback URLs, và security settings</em></p>
+<p><strong>Xác minh</strong>:</p>
+<ul>
+<li>Client type: Public (không có secret)</li>
+<li>Auth flows: USER_PASSWORD_AUTH, USER_SRP_AUTH</li>
+<li>OAuth flows: Authorization code grant</li>
+<li>Callback URLs: Theo environment</li>
+<li>Token validity: 1h access, 1h ID, 30d refresh</li>
+</ul>
+<h4 id="điều-hướng-đến-lambda-functions">Điều hướng đến Lambda Functions</h4>
+<p>Đi đến <strong>Lambda</strong> &gt; <strong>Functions</strong>, tìm Auth triggers:</p>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/cognito-triggers.png" alt="Lambda Triggers List">
+<em>Lambda functions hiển thị tất cả 5 Cognito triggers với runtime Node.js 20.x, memory 256-512 MB, và timeout 10-30s</em></p>
+<p><strong>Xác minh</strong>:</p>
+<ul>
+<li>Tất cả 5 Lambda functions đã tạo</li>
+<li>Runtime: Node.js 20.x</li>
+<li>Environment variables đã cấu hình</li>
+<li>CloudWatch log groups đã tạo</li>
+</ul>
+<h4 id="kiểm-tra-lambda-permissions">Kiểm Tra Lambda Permissions</h4>
+<p>Click vào Lambda function → <strong>Configuration</strong> &gt; <strong>Permissions</strong>:</p>
+<p><img src="../../../../images/5-Workshop/5.4-configure-stacks/lambda-permissions.png" alt="Lambda IAM Permissions">
+<em>Lambda execution role hiển thị permissions cho DynamoDB (PostConfirmation), Cognito (PreSignUp), và CloudWatch Logs</em></p>
+<p><strong>Quyền mong đợi</strong>:</p>
+<ul>
+<li><strong>PostConfirmation</strong>: DynamoDB read/write</li>
+<li><strong>PreAuthentication</strong>: DynamoDB read</li>
+<li><strong>PostAuthentication</strong>: DynamoDB read/write</li>
+<li><strong>PreSignUp</strong>: Cognito ListUsers, AdminDeleteUser</li>
+<li><strong>Tất cả triggers</strong>: CloudWatch Logs write</li>
+</ul>
+<hr>
+<h2 id="chi-tiết-chi-phí">Chi Tiết Chi Phí</h2>
+<h3 id="chi-phí-hàng-tháng-dev-environment">Chi Phí Hàng Tháng (Dev Environment)</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Tài nguyên</th>
+          <th>Cấu hình</th>
+          <th>Chi phí hàng tháng</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Cognito User Pool</strong></td>
+          <td>&lt;50 MAU</td>
+          <td>$0</td>
+          <td>50K MAU đầu miễn phí</td>
+      </tr>
+      <tr>
+          <td><strong>Lambda Triggers</strong></td>
+          <td>5 functions, low invocations</td>
+          <td>$0-1</td>
+          <td>Free tier bao phủ hầu hết</td>
+      </tr>
+      <tr>
+          <td><strong>CloudWatch Logs</strong></td>
+          <td>7-day retention, 5 log groups</td>
+          <td>$0.50</td>
+          <td>~1GB logs</td>
+      </tr>
+      <tr>
+          <td><strong>Tổng (Ước tính)</strong></td>
+          <td></td>
+          <td><strong>~$0.50-1.50/tháng</strong></td>
+          <td>Rất thấp cho dev</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ghi-chú-chi-phí">Ghi Chú Chi Phí</h3>
+<ul>
+<li><strong>Cognito</strong>: 50,000 MAU đầu miễn phí, sau đó $0.0055/MAU</li>
+<li><strong>Lambda</strong>: 1M requests/tháng miễn phí, sau đó $0.20 per 1M</li>
+<li><strong>CloudWatch Logs</strong>: $0.50/GB ingested, $0.03/GB stored</li>
+<li><strong>Không có phí MFA</strong>: MFA tắt tiết kiệm $0.05/MAU</li>
+</ul>
+<p><strong>Ước Tính Production</strong> (1000 MAU):</p>
+<ul>
+<li>Cognito: 1000 MAU × $0.0055 = <strong>$5.50/tháng</strong></li>
+<li>Lambda triggers: ~5000 invocations/tháng = <strong>$0 (free tier)</strong></li>
+<li>CloudWatch Logs: <strong>$1-2/tháng</strong></li>
+<li><strong>Tổng</strong>: <strong>~$7-8/tháng</strong></li>
+</ul>
+<hr>
+<h2 id="cross-stack-dependencies">Cross-Stack Dependencies</h2>
+<h3 id="import-từ-các-stack-trước">Import từ Các Stack Trước</h3>
+<p><strong>Từ Core Stack</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dynamoTable</span>: <span style="color:#66d9ef">cdk.Fn.importValue</span>(<span style="color:#e6db74">&#39;EveryoneCook-dev-DynamoDBTableName&#39;</span>)
+</span></span></code></pre></div><h3 id="export-được-sử-dụng-bởi-các-stack-khác">Export Được Sử Dụng Bởi Các Stack Khác</h3>
+<p><strong>Backend Stack</strong> import:</p>
+<ul>
+<li>User Pool ID (cho Cognito Authorizer)</li>
+<li>User Pool ARN (cho API Gateway)</li>
+<li>User Pool Client ID (cho frontend config)</li>
+</ul>
+<h3 id="luồng-dependency">Luồng Dependency</h3>
+<pre tabindex="0"><code>Core Stack → DynamoDB Table
+    │
+    ▼
+Auth Stack (tạo Cognito + Lambda triggers)
+    │
+    ├─► User Pool ID → Backend Stack (API Gateway Authorizer)
+    ├─► User Pool Client ID → Frontend (Amplify config)
+    └─► Lambda triggers → Quy trình quản lý người dùng
+</code></pre><hr>
+<h2 id="danh-sách-kiểm-tra-xác-thực">Danh Sách Kiểm Tra Xác Thực</h2>
+<p>Trước khi tiến hành triển khai Backend Stack:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Auth Stack đã triển khai thành công đến ap-southeast-1</li>
+<li><input disabled="" type="checkbox"> Cognito User Pool tồn tại với các thiết lập chính xác</li>
+<li><input disabled="" type="checkbox"> 5 Lambda triggers đã cấu hình và gắn kết</li>
+<li><input disabled="" type="checkbox"> User Pool Client đã tạo với OAuth settings</li>
+<li><input disabled="" type="checkbox"> Lambda functions có đúng IAM permissions</li>
+<li><input disabled="" type="checkbox"> CloudWatch log groups đã tạo (7-day retention)</li>
+<li><input disabled="" type="checkbox"> Stack outputs đã export thành công</li>
+<li><input disabled="" type="checkbox"> Lambda trigger code đã build vào thư mục <code>dist/</code></li>
+</ul>
+<hr>
+<h2 id="kiểm-tra">Kiểm Tra</h2>
+<h3 id="kiểm-tra-quy-trình-đăng-ký-người-dùng">Kiểm Tra Quy Trình Đăng Ký Người Dùng</h3>
+<ol>
+<li>
+<p><strong>Kiểm tra sign-up với Cognito console</strong>:</p>
+<p>Đi đến <strong>Cognito</strong> &gt; <strong>User pools</strong> &gt; <strong>EveryoneCook-dev</strong> &gt; <strong>Users</strong> &gt; <strong>Create user</strong></p>
+<p>Tạo test user:</p>
+<pre tabindex="0"><code>Username: testuser01
+Email: your-email@example.com
+Full Name: Test User
+Temporary Password: TempP@ss123
+</code></pre></li>
+<li>
+<p><strong>Xác minh email đã gửi</strong>:</p>
+<p>Kiểm tra email của bạn để nhận mã xác minh.</p>
+</li>
+<li>
+<p><strong>Kiểm tra Lambda logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Xem PostConfirmation logs</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PostConfirmation --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Xác minh DynamoDB entries</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Truy vấn user profile</span>
+</span></span><span style="display:flex;"><span>aws dynamodb query `
+</span></span><span style="display:flex;"><span>  --table-name EveryoneCook-dev-v2 `
+</span></span><span style="display:flex;"><span>  --key-condition-expression <span style="color:#e6db74">&#34;PK = :pk&#34;</span> `
+</span></span><span style="display:flex;"><span>  --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:pk&#34;:{&#34;S&#34;:&#34;USER#testuser01&#34;}}&#39;</span> `
+</span></span><span style="display:flex;"><span>  --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Mong đợi: 3 items (PROFILE, PRIVACY_SETTINGS, AI_PREFERENCES)</p>
+</li>
+</ol>
+<h3 id="kiểm-tra-quy-trình-xác-thực">Kiểm Tra Quy Trình Xác Thực</h3>
+<ol>
+<li>
+<p><strong>Đăng nhập với test user</strong>:</p>
+<p>Sử dụng AWS CLI để xác thực:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws cognito-idp initiate-auth `
+</span></span><span style="display:flex;"><span>  --auth-flow USER_PASSWORD_AUTH `
+</span></span><span style="display:flex;"><span>  --client-id &lt;USER_POOL_CLIENT_ID&gt; `
+</span></span><span style="display:flex;"><span>  --auth-parameters USERNAME=testuser01,PASSWORD=&lt;password&gt; `
+</span></span><span style="display:flex;"><span>  --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Kiểm tra PreAuthentication logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PreAuthentication --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Kiểm tra PostAuthentication logs</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>aws logs tail /aws/lambda/EveryoneCook-dev-PostAuthentication --follow --region ap-southeast-<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="kiểm-tra-presignup-cleanup">Kiểm Tra PreSignUp Cleanup</h3>
+<ol>
+<li>
+<p><strong>Tạo unverified user</strong>:</p>
+<p>Đăng ký user nhưng không xác minh email.</p>
+</li>
+<li>
+<p><strong>Chờ 24 giờ</strong> (hoặc sửa trigger code thành 1 phút để kiểm tra)</p>
+</li>
+<li>
+<p><strong>Thử đăng ký lại với cùng username</strong>:</p>
+<p>PreSignUp trigger nên xóa user cũ và cho phép đăng ký mới.</p>
+</li>
+</ol>
+<hr>
+<h2 id="các-bước-tiếp-theo">Các Bước Tiếp Theo</h2>
+<p>Sau khi triển khai thành công Auth Stack:</p>
+<p>➡️ <strong><a href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">5.4.5 Backend Stack</a></strong> - Tạo API Gateway, Lambda functions, và SQS queues</p>
+<p>Backend Stack sẽ:</p>
+<ul>
+<li>Tạo API Gateway REST API với Cognito Authorizer</li>
+<li>Tạo 5 Lambda functions (auth, social, recipe, AI, admin)</li>
+<li>Tạo 6 SQS queues cho async processing</li>
+<li>Tạo 6 worker Lambda functions</li>
+<li>Import User Pool ID từ Auth Stack</li>
+<li>Cấu hình API Gateway custom domain</li>
+</ul>
+<hr>
+<h2 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h2>
+<ul>
+<li><strong>Mã nguồn</strong>: <code>infrastructure/lib/stacks/auth-stack.ts</code></li>
+<li><strong>Lambda Triggers</strong>: <code>services/auth-module/triggers/</code></li>
+<li><strong>Base Stack</strong>: <code>infrastructure/lib/base-stack.ts</code></li>
+<li><strong>Environment Config</strong>: <code>infrastructure/config/environment.ts</code></li>
+<li><strong>Tài liệu AWS</strong>:
+<ul>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">Cognito User Pools</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html">Cognito Lambda Triggers</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html">Cognito User Pool Client</a></li>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-policies.html">Password Policies</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.3-core-stack/" title="5.4.3 Core Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../../vi/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/" title="5.4.5 Backend Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../../js/learn.js?1765346855"></script>
+    <script src="../../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

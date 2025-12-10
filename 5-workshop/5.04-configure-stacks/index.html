@@ -1,0 +1,2996 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../images/favicon.png" type="image/png">
+
+    <title>Configure Infrastructure Stacks :: Internship Report</title>
+
+    
+    <link href="../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../5-workshop/5.04-configure-stacks/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.1-week1/"
+  title="Week 1 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.1-week1/">
+     <b> 1.1. </b> Week 1 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.3-week3/">
+     <b> 1.3. </b> Week 3 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.4-week4/">
+     <b> 1.4. </b> Week 4 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated Blogs"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/">
+     <b> 3. </b> Translated Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Qwen Models are Now Available in Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Qwen Models are Now Available in Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Centralized AWS Firewall Policy Management with AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Centralized AWS Firewall Policy Management with AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.01-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.02-setup-environment/"
+  title="Setup Environment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Setup Environment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/"
+  title="Configure Infrastructure Stacks"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Configure Infrastructure Stacks 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.05-deploy-infrastructure/"
+  title="Deploy Infrastructure"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Deploy Infrastructure 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.06-configure-api-lambda/"
+  title="Configure API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Configure API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.07-deploy-backend/"
+  title="Deploy Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Deploy Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.08-test-endpoints/"
+  title="Test Endpoints End-to-End"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Test Endpoints End-to-End 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.09-push-gitlab/"
+  title="Push to GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push to GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.10-deploy-amplify/"
+  title="Deploy to Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy to Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.11-cleanup/"
+  title="Cleanup"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Cleanup 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../'>Internship Report</a> > <a href='../../5-workshop/'>Workshop</a> > Configure Infrastructure Stacks
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#everyonecook-project-overview">EveryoneCook Project Overview</a>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#system-architecture">System Architecture</a></li>
+        <li><a href="#technologies-used">Technologies Used</a></li>
+        <li><a href="#project-directory-structure">Project Directory Structure</a></li>
+      </ul>
+    </li>
+    <li><a href="#stack-architecture-overview">Stack Architecture Overview</a>
+      <ul>
+        <li><a href="#1-dns-stack-phase-1">1. DNS Stack (Phase 1)</a></li>
+        <li><a href="#2-certificate-stack-phase-15">2. Certificate Stack (Phase 1.5)</a></li>
+        <li><a href="#3-core-stack-phase-2">3. Core Stack (Phase 2)</a></li>
+        <li><a href="#4-auth-stack-phase-3">4. Auth Stack (Phase 3)</a></li>
+        <li><a href="#5-backend-stack-phase-4">5. Backend Stack (Phase 4)</a></li>
+        <li><a href="#6-observability-stack-phase-7">6. Observability Stack (Phase 7)</a></li>
+        <li><a href="#stack-dependencies-flow">Stack Dependencies Flow</a></li>
+        <li><a href="#total-estimated-cost">Total Estimated Cost</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuration-guide">Configuration Guide</a>
+      <ul>
+        <li><a href="#step-1-prepare-infrastructure-directory">Step 1: Prepare Infrastructure Directory</a></li>
+        <li><a href="#step-2-configure-environment-settings">Step 2: Configure Environment Settings</a></li>
+        <li><a href="#step-3-review-cdk-app-structure">Step 3: Review CDK App Structure</a></li>
+        <li><a href="#step-4-validate-configuration">Step 4: Validate Configuration</a></li>
+        <li><a href="#step-5-review-stack-resources-optional">Step 5: Review Stack Resources (Optional)</a></li>
+        <li><a href="#step-6-detailed-configuration-for-each-stack">Step 6: Detailed Configuration for Each Stack</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuration-checklist">Configuration Checklist</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Configure Infrastructure Stacks
+            </h1>
+          
+
+        
+
+
+
+	<h1 id="configure-infrastructure-stacks">Configure Infrastructure Stacks</h1>
+<h2 id="everyonecook-project-overview">EveryoneCook Project Overview</h2>
+<h3 id="introduction">Introduction</h3>
+<p>EveryoneCook is a social network platform for sharing cooking recipes, built entirely on AWS Cloud. The project uses a serverless architecture, leveraging AWS managed services to ensure scalability, security, and cost optimization.</p>
+<h3 id="system-architecture">System Architecture</h3>
+<p>The project is designed with a <strong>5-Stack Architecture</strong> featuring clear layers:</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
+│                    EveryoneCook Platform                     │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: DNS &amp; Certificate (Foundation)                    │
+│  ├─ DNS Stack: Route 53 Hosted Zone                         │
+│  └─ Certificate Stack: ACM Certificates (us-east-1)         │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: Data &amp; Storage (Core Infrastructure)              │
+│  └─ Core Stack: DynamoDB, S3, CloudFront, KMS               │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Authentication &amp; Security                         │
+│  └─ Auth Stack: Cognito, Lambda Triggers, SES               │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 4: Application &amp; Business Logic                      │
+│  └─ Backend Stack: API Gateway, Lambda, SQS, WAF            │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 5: Monitoring &amp; Observability                        │
+│  └─ Observability Stack: CloudWatch, Alarms, Dashboards     │
+└─────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="technologies-used">Technologies Used</h3>
+<h4 id="infrastructure-as-code">Infrastructure as Code</h4>
+<ul>
+<li><strong>AWS CDK (TypeScript)</strong>: Infrastructure management with code</li>
+<li><strong>CloudFormation</strong>: Underlying template engine for CDK</li>
+<li><strong>Git</strong>: Version control for infrastructure code</li>
+</ul>
+<h4 id="backend-services">Backend Services</h4>
+<ul>
+<li><strong>API Gateway REST API</strong>: RESTful API endpoint with custom domain</li>
+<li><strong>Lambda Functions</strong>: Serverless compute for business logic (6 main functions + 1 worker)</li>
+<li><strong>Lambda Layers</strong>: Shared dependencies layer (reduces deployment size by 90%)</li>
+<li><strong>DynamoDB</strong>: NoSQL database with Single Table Design + 5 GSI indexes</li>
+<li><strong>S3</strong>: Object storage for user content (avatars, posts, recipes, backgrounds)</li>
+<li><strong>SQS</strong>: Message queue for async processing (4 queues + 4 DLQs)</li>
+</ul>
+<h4 id="security--authentication">Security &amp; Authentication</h4>
+<ul>
+<li><strong>Cognito User Pool</strong>: User authentication &amp; management</li>
+<li><strong>Cognito User Pool Client</strong>: Frontend authentication config</li>
+<li><strong>WAF (Web Application Firewall)</strong>: API Gateway protection with rate limiting</li>
+<li><strong>KMS (Key Management Service)</strong>: 2 customer-managed keys (DynamoDB, S3)</li>
+<li><strong>IAM Roles &amp; Policies</strong>: Fine-grained access control for all services</li>
+</ul>
+<h4 id="content-delivery--networking">Content Delivery &amp; Networking</h4>
+<ul>
+<li><strong>CloudFront</strong>: CDN with Origin Access Control (OAC) + Shield Standard</li>
+<li><strong>Route 53</strong>: DNS management with Hosted Zone</li>
+<li><strong>ACM (Certificate Manager)</strong>: SSL/TLS certificates (2 certificates)</li>
+</ul>
+<h4 id="monitoring--operations">Monitoring &amp; Operations</h4>
+<ul>
+<li><strong>CloudWatch Logs</strong>: Centralized logging for Lambda functions</li>
+<li><strong>CloudWatch Metrics</strong>: Performance metrics tracking</li>
+<li><strong>CloudWatch Dashboards</strong>: 4 dashboards (Core, Auth, Backend, Overview)</li>
+<li><strong>CloudWatch Alarms</strong>: Real-time monitoring (10+ alarms) + Composite Alarm</li>
+<li><strong>SNS (Simple Notification Service)</strong>: Email notifications for alarms</li>
+</ul>
+<h3 id="project-directory-structure">Project Directory Structure</h3>
+<pre tabindex="0"><code>everyonecook/
+├── infrastructure/                    # AWS CDK Infrastructure
+│   ├── bin/
+│   │   └── app.ts                    # CDK app entry point - creates all stacks
+│   ├── lib/
+│   │   ├── base-stack.ts             # Base class for all stacks
+│   │   ├── stacks/                   # Stack definitions
+│   │   │   ├── dns-stack.ts          # Route 53 Hosted Zone
+│   │   │   ├── certificate-stack.ts  # ACM Certificates
+│   │   │   ├── core-stack.ts         # DynamoDB, S3, CloudFront
+│   │   │   ├── auth-stack.ts         # Cognito, Lambda triggers
+│   │   │   ├── backend-stack.ts      # API Gateway, Lambda, SQS
+│   │   │   └── observability-stack.ts # CloudWatch, Alarms
+│   │   └── constructs/               # Reusable CDK constructs
+│   │       └── shared-layer.ts       # Lambda Layer with dependencies
+│   ├── config/
+│   │   └── environment.ts            # Environment configuration (dev/staging/prod)
+│   ├── cdk.json                      # CDK configuration
+│   ├── package.json                  # Node.js dependencies
+│   └── tsconfig.json                 # TypeScript configuration
+├── services/                         # Lambda function source code
+│   ├── api-router/                   # API request routing
+│   ├── auth-user/                    # Authentication endpoints
+│   ├── social/                       # Social features (posts, comments)
+│   ├── recipe-ai/                    # Recipe &amp; AI endpoints
+│   ├── admin/                        # Admin management
+│   └── upload/                       # File upload handler
+├── shared/                           # Shared code &amp; utilities
+│   ├── utils/                        # Common utilities
+│   ├── models/                       # Data models
+│   └── middleware/                   # Lambda middleware
+├── frontend/                         # Next.js frontend (deployed separately)
+│   └── ...
+└── layers/                           # Lambda layers
+  └── shared-dependencies/          # Common npm packages
+</code></pre><h2 id="stack-architecture-overview">Stack Architecture Overview</h2>
+<h3 id="1-dns-stack-phase-1">1. DNS Stack (Phase 1)</h3>
+<p><strong>Purpose</strong>: Create the foundation for DNS management</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li>Route 53 Hosted Zone for domain <code>everyonecook.cloud</code></li>
+<li>Export nameservers to configure at the domain registrar</li>
+</ul>
+<p><strong>Deployment order</strong>: This stack must be deployed first</p>
+<p><strong>Estimated cost</strong>: ~$0.50/month</p>
+<blockquote>
+<p><strong>Note</strong>: After deploying this stack, update the nameservers at Hostinger to point to Route 53.</p></blockquote>
+<hr>
+<h3 id="2-certificate-stack-phase-15">2. Certificate Stack (Phase 1.5)</h3>
+<p><strong>Purpose</strong>: Create SSL/TLS certificates for CloudFront and API Gateway</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li>ACM Certificate for CloudFront: <code>cdn.everyonecook.cloud</code></li>
+<li>ACM Wildcard Certificate for API Gateway: <code>*.everyonecook.cloud</code></li>
+<li>DNS validation records in Route 53</li>
+</ul>
+<p><strong>Special region</strong>: <strong>MUST deploy to us-east-1</strong> (CloudFront requirement)</p>
+<p><strong>Dependencies</strong>: DNS Stack (requires Hosted Zone for DNS validation)</p>
+<p><strong>Estimated cost</strong>: Free (ACM certificates are free)</p>
+<blockquote>
+<p><strong>Important note</strong>: CloudFront only accepts certificates from the us-east-1 region.</p></blockquote>
+<hr>
+<h3 id="3-core-stack-phase-2">3. Core Stack (Phase 2)</h3>
+<p><strong>Purpose</strong>: Create the data layer and storage infrastructure</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li><strong>DynamoDB Table</strong>: Single Table Design with 5 GSI indexes
+<ul>
+<li>PK: <code>USER#{username}</code>, SK: <code>PROFILE|RECIPE#{id}|POST#{id}|COMMENT#{id}</code></li>
+<li>Username-based primary key (immutable)</li>
+<li>GSI1-GSI5 for different query patterns:
+<ul>
+<li>GSI1: User recipes by date</li>
+<li>GSI2: User posts by date</li>
+<li>GSI3: Post comments</li>
+<li>GSI4: Recipe search by cuisine/difficulty</li>
+<li>GSI5: Social interactions (likes, follows)</li>
+</ul>
+</li>
+<li>Billing mode: Pay-per-request (on-demand)</li>
+<li>Encryption: Customer-managed KMS key with auto-rotation</li>
+</ul>
+</li>
+<li><strong>S3 Buckets</strong> (2 buckets):
+<ul>
+<li><strong>Content Bucket</strong>: User uploads (avatars, posts, recipes, backgrounds)
+<ul>
+<li>Intelligent-Tiering enabled (automatically optimizes cost)</li>
+<li>Versioning enabled</li>
+<li>Lifecycle rules: Delete incomplete multipart uploads after 7 days</li>
+<li>Encryption: Customer-managed KMS key</li>
+</ul>
+</li>
+<li><strong>CDN Logs Bucket</strong>: CloudFront access logs
+<ul>
+<li>Intelligent-Tiering enabled</li>
+<li>Auto-delete logs after 90 days (cost optimization)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>CloudFront Distribution</strong>:
+<ul>
+<li>Origin: S3 Content Bucket</li>
+<li>Origin Access Control (OAC) to secure S3 access (replaces OAI)</li>
+<li>Custom domain: <code>cdn.everyonecook.cloud</code></li>
+<li>SSL Certificate: ACM certificate from Certificate Stack</li>
+<li>Cache behaviors: Optimized for images &amp; static content</li>
+<li>Compression: Gzip &amp; Brotli enabled</li>
+<li>Shield Standard: DDoS protection (free, auto-enabled)</li>
+<li><strong>NOTE</strong>: CloudFront WAF removed to save $9/month</li>
+</ul>
+</li>
+<li><strong>KMS Keys</strong> (2 customer-managed keys):
+<ul>
+<li><strong>DynamoDB Encryption Key</strong>:
+<ul>
+<li>Auto-rotation enabled (yearly)</li>
+<li>Used by: DynamoDB table, CloudWatch Logs</li>
+</ul>
+</li>
+<li><strong>S3 Encryption Key</strong>:
+<ul>
+<li>Auto-rotation enabled (yearly)</li>
+<li>Used by: S3 buckets, CloudFront signed URLs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>IAM Roles</strong>:
+<ul>
+<li>CloudFront Origin Access Control role</li>
+<li>Lambda execution roles with DynamoDB &amp; S3 access</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dependencies</strong>: Certificate Stack (requires certificate for CloudFront)</p>
+<p><strong>Estimated cost</strong>: ~$8-15/month</p>
+<blockquote>
+<p><strong>Cost optimization</strong>:</p>
+<ul>
+<li>S3 Intelligent-Tiering automatically moves objects to cheaper storage</li>
+<li>CloudFront WAF removed (Shield Standard provides DDoS protection)</li>
+<li>CloudWatch Logs auto-delete after retention period</li>
+</ul></blockquote>
+<hr>
+<h3 id="4-auth-stack-phase-3">4. Auth Stack (Phase 3)</h3>
+<p><strong>Purpose</strong>: Authentication and user management</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li><strong>Cognito User Pool</strong>:
+<ul>
+<li>Sign-in methods: Username OR Email + Password</li>
+<li>NO MFA requirement (only email + password)</li>
+<li>Password policy:
+<ul>
+<li>Min 12 chars for prod (8 chars for dev)</li>
+<li>Require uppercase, lowercase, digits, symbols</li>
+</ul>
+</li>
+<li>Standard attributes: email, given_name (fullName), birthdate, gender</li>
+<li>Custom attributes: account_status (for admin ban), country (ISO 3166-1)</li>
+<li>Device tracking: Enabled (NO challenge required)</li>
+<li>Email verification: Required before use</li>
+<li>Account recovery: Email-based</li>
+<li><strong>NOTE</strong>: Advanced Security Mode OFF to save ~$5/month</li>
+</ul>
+</li>
+<li><strong>Lambda Triggers</strong> (5 functions with CloudWatch Logs):
+<ul>
+<li><strong>Pre-signup</strong>:
+<ul>
+<li>Validate username uniqueness</li>
+<li>Check profanity/banned words</li>
+<li>Runtime: Node.js 20.x</li>
+</ul>
+</li>
+<li><strong>Post-confirmation</strong>:
+<ul>
+<li>Create user profile in DynamoDB</li>
+<li>Initialize user stats</li>
+</ul>
+</li>
+<li><strong>Pre-authentication</strong>:
+<ul>
+<li>Check account status (active/banned)</li>
+<li>Log login attempts</li>
+</ul>
+</li>
+<li><strong>Post-authentication</strong>:
+<ul>
+<li>Update last login timestamp</li>
+<li>Track user activity</li>
+</ul>
+</li>
+<li><strong>Custom message</strong>:
+<ul>
+<li>Customize verification emails</li>
+<li>Branded email templates</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Cognito User Pool Client</strong>:
+<ul>
+<li>OAuth flows: Authorization code grant</li>
+<li>Token validity:
+<ul>
+<li>Access token: 1 hour</li>
+<li>Refresh token: 30 days</li>
+</ul>
+</li>
+<li>Read/Write attributes configured</li>
+</ul>
+</li>
+<li><strong>CloudWatch Log Groups</strong>:
+<ul>
+<li>Each Lambda trigger has a dedicated log group</li>
+<li>Retention: 7 days</li>
+<li>Encryption: KMS DynamoDB key</li>
+</ul>
+</li>
+<li><strong>IAM Roles</strong>:
+<ul>
+<li>Lambda execution roles</li>
+<li>Permissions: DynamoDB read/write, Cognito admin, Logs write</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dependencies</strong>: Core Stack (Lambda triggers need access to DynamoDB)</p>
+<p><strong>Estimated cost</strong>: ~$0-2/month (Cognito free tier: 50,000 MAU)</p>
+<blockquote>
+<p><strong>Security</strong>:</p>
+<ul>
+<li>Advanced Security Mode not enabled to optimize cost (would cost an extra ~$5/month)</li>
+<li>Device tracking enabled but NO MFA to improve user experience</li>
+<li>All Lambda triggers have CloudWatch logging</li>
+</ul></blockquote>
+<hr>
+<h3 id="5-backend-stack-phase-4">5. Backend Stack (Phase 4)</h3>
+<p><strong>Purpose</strong>: Application layer and business logic</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li><strong>API Gateway REST API</strong>:
+<ul>
+<li>Custom domain: <code>api.everyonecook.cloud</code></li>
+<li>SSL Certificate: Wildcard ACM certificate (<code>*.everyonecook.cloud</code>)</li>
+<li>Cognito Authorizer: Validate JWT tokens</li>
+<li>Request validators:
+<ul>
+<li>Body validator: Validate request body</li>
+<li>Params validator: Validate query params &amp; path params</li>
+<li>Full validator: Validate both body &amp; params</li>
+</ul>
+</li>
+<li>Deployment stage: dev/staging/prod</li>
+<li>CloudWatch Logs: Access logs + execution logs</li>
+<li>WAF Web ACL attached (API protection)</li>
+</ul>
+</li>
+<li><strong>Lambda Functions</strong> (6 main modules + CloudWatch Logs):
+<ul>
+<li><strong>API Router</strong>:
+<ul>
+<li>Route requests to appropriate handlers</li>
+<li>Memory: 256 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Auth User</strong>:
+<ul>
+<li>Login, register, forgot-password, verify-email</li>
+<li>Cognito integration</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Social</strong>:
+<ul>
+<li>Create/edit/delete posts, comments, likes</li>
+<li>Follow/unfollow users</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Recipe AI</strong>:
+<ul>
+<li>CRUD operations for recipes</li>
+<li>AI recipe generation (Bedrock integration)</li>
+<li>Recipe search &amp; recommendations</li>
+<li>Memory: 1024 MB, Timeout: 60s</li>
+</ul>
+</li>
+<li><strong>Admin</strong>:
+<ul>
+<li>User management, ban/unban</li>
+<li>Content moderation</li>
+<li>Analytics dashboard</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li><strong>Upload</strong>:
+<ul>
+<li>File upload to S3</li>
+<li>Generate pre-signed URLs</li>
+<li>Image validation</li>
+<li>Memory: 512 MB, Timeout: 30s</li>
+</ul>
+</li>
+<li>Runtime: Node.js 20.x</li>
+<li>Environment variables: DynamoDB table, S3 bucket, SQS queues</li>
+</ul>
+</li>
+<li><strong>Lambda Layer - Shared Dependencies</strong>:
+<ul>
+<li>AWS SDK v3 clients: DynamoDB, S3, SQS, Cognito, Bedrock, Lambda</li>
+<li>Utilities: uuid, jsonwebtoken, jwks-rsa</li>
+<li><strong>Benefit</strong>: Reduces deployment size from 8MB → 200KB per function (90% reduction)</li>
+<li>Compatible runtimes: Node.js 18.x, 20.x</li>
+</ul>
+</li>
+<li><strong>SQS Queues</strong> (4 main queues + 4 DLQs):
+<ul>
+<li><strong>AI Queue</strong>:
+<ul>
+<li>AI recipe generation requests</li>
+<li>Visibility timeout: 120s (2 minutes)</li>
+<li>Message retention: 4 days</li>
+<li>Max receive count: 3 (then move to DLQ)</li>
+</ul>
+</li>
+<li><strong>Image Processing Queue</strong>:
+<ul>
+<li>Image optimization, thumbnails</li>
+<li>Visibility timeout: 60s</li>
+<li>Message retention: 4 days</li>
+</ul>
+</li>
+<li><strong>Analytics Queue</strong>:
+<ul>
+<li>User activity tracking</li>
+<li>Visibility timeout: 30s</li>
+<li>Message retention: 4 days</li>
+</ul>
+</li>
+<li><strong>Notification Queue</strong>:
+<ul>
+<li>Push notifications, emails</li>
+<li>Visibility timeout: 30s</li>
+<li>Message retention: 4 days</li>
+</ul>
+</li>
+<li>Encryption: AWS managed KMS keys</li>
+</ul>
+</li>
+<li><strong>Worker Lambda</strong> (1 active):
+<ul>
+<li><strong>AI Worker</strong>:
+<ul>
+<li>Process AI Queue messages</li>
+<li>Call Amazon Bedrock for recipe generation</li>
+<li>Store results in DynamoDB</li>
+<li>Memory: 1024 MB, Timeout: 120s</li>
+<li>Event source: AI Queue (batch size: 10)</li>
+</ul>
+</li>
+<li><em>Note: Other workers not yet implemented</em></li>
+</ul>
+</li>
+<li><strong>WAF Web ACL</strong> (API Gateway only):
+<ul>
+<li><strong>Rate limiting</strong>: 2000 requests / 5 minutes per IP</li>
+<li><strong>AWS Managed Rules</strong>:
+<ul>
+<li>AWSManagedRulesCommonRuleSet (OWASP Top 10)</li>
+<li>AWSManagedRulesKnownBadInputsRuleSet</li>
+</ul>
+</li>
+<li><strong>Custom rules</strong>: Block specific patterns</li>
+<li><strong>NOTE</strong>: CloudFront WAF removed to save $9/month</li>
+<li>Shield Standard: Auto-enabled (DDoS protection - free)</li>
+</ul>
+</li>
+<li><strong>CloudWatch Log Groups</strong>:
+<ul>
+<li>API Gateway access logs + execution logs</li>
+<li>Lambda function logs (per function)</li>
+<li>Retention: 7 days (cost optimization)</li>
+<li>Encryption: KMS DynamoDB key</li>
+</ul>
+</li>
+<li><strong>IAM Roles &amp; Policies</strong>:
+<ul>
+<li>API Gateway execution role</li>
+<li>Lambda execution roles (per function)</li>
+<li>Permissions: DynamoDB, S3, SQS, Cognito, Bedrock, Logs, KMS</li>
+</ul>
+</li>
+</ul>
+<p><strong>Shared Lambda Layer</strong>:</p>
+<ul>
+<li>AWS SDK v3 clients (DynamoDB, S3, SQS, Cognito, Bedrock)</li>
+<li>Common utilities (uuid, jsonwebtoken, jwks-rsa)</li>
+<li>Reduces deployment size: 8MB → 200KB per function</li>
+</ul>
+<p><strong>Dependencies</strong>: Auth Stack (requires Cognito User Pool)</p>
+<p><strong>Estimated cost</strong>: ~$10-25/month</p>
+<blockquote>
+<p><strong>Cost optimization</strong>:</p>
+<ul>
+<li>CloudFront WAF removed (Shield Standard provides DDoS protection)</li>
+<li>WAF only enabled for API Gateway (main attack surface)</li>
+<li>Lambda Layer reduces deployment size by 90%</li>
+<li>CloudWatch Logs auto-delete after 7 days</li>
+</ul></blockquote>
+<hr>
+<h3 id="6-observability-stack-phase-7">6. Observability Stack (Phase 7)</h3>
+<p><strong>Purpose</strong>: Monitoring, logging, and alerting</p>
+<p><strong>Main resources</strong>:</p>
+<ul>
+<li><strong>CloudWatch Dashboards</strong> (4 dashboards):
+<ul>
+<li><strong>Core Dashboard</strong>:
+<ul>
+<li>DynamoDB metrics: Read/write capacity, throttling, latency</li>
+<li>S3 metrics: Request count, 4xx/5xx errors, bytes downloaded</li>
+<li>CloudFront metrics: Request count, cache hit rate, error rate</li>
+<li>KMS metrics: Key usage, encryption/decryption operations</li>
+</ul>
+</li>
+<li><strong>Auth Dashboard</strong>:
+<ul>
+<li>Cognito metrics: Sign-ups, sign-ins, failed authentications</li>
+<li>Lambda trigger metrics: Invocations, errors, duration</li>
+<li>User pool analytics</li>
+</ul>
+</li>
+<li><strong>Backend Dashboard</strong>:
+<ul>
+<li>API Gateway metrics: Request count, 4xx/5xx errors, latency</li>
+<li>Lambda metrics: Invocations, errors, duration, throttles, concurrent executions</li>
+<li>SQS metrics: Messages sent, received, deleted, DLQ depth</li>
+<li>WAF metrics: Blocked requests, allowed requests, rule matches</li>
+</ul>
+</li>
+<li><strong>Overview Dashboard</strong>:
+<ul>
+<li>System health summary</li>
+<li>Cost tracking</li>
+<li>Composite alarm status</li>
+<li>Key metrics from all stacks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>CloudWatch Alarms</strong> (15+ alarms):
+<ul>
+<li><strong>Critical Alarms</strong> (notify immediately):
+<ul>
+<li>API Gateway 5xx errors &gt; 5% (system errors)</li>
+<li>Lambda error rate &gt; 10%</li>
+<li>DynamoDB read/write throttling</li>
+<li>SQS DLQ has messages (failed processing)</li>
+<li>S3 5xx errors</li>
+<li>Cost &gt; $50/month (budget exceeded)</li>
+</ul>
+</li>
+<li><strong>Warning Alarms</strong> (notify but not urgent):
+<ul>
+<li>API Gateway 4xx errors &gt; 10% (client errors)</li>
+<li>Lambda duration &gt; 25s (approaching timeout)</li>
+<li>Lambda throttling (concurrent limit reached)</li>
+<li>DynamoDB latency high (&gt; 100ms)</li>
+<li>S3 4xx errors</li>
+<li>SQS queue age &gt; 15 minutes (processing lag)</li>
+<li>Cost &gt; $35/month (budget warning)</li>
+</ul>
+</li>
+<li>All alarms:
+<ul>
+<li>Evaluation periods: 1-2 periods</li>
+<li>Datapoints to alarm: Configurable</li>
+<li>Treatment of missing data: NOT_BREACHING</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Composite Alarm</strong>:
+<ul>
+<li>Name: &ldquo;SystemHealth&rdquo;</li>
+<li>Combines all critical alarms</li>
+<li>Alarm rule: OR logic (any critical alarm triggers)</li>
+<li>Actions: Send SNS notification</li>
+<li>Purpose: Single alarm for overall system health</li>
+</ul>
+</li>
+<li><strong>SNS Topic</strong>:
+<ul>
+<li>Topic name: <code>EveryoneCook-{env}-Alarms</code></li>
+<li>Email subscription: Admin email from config</li>
+<li>Delivery status logging enabled</li>
+<li>Encryption: AWS managed key</li>
+</ul>
+</li>
+<li><strong>CloudWatch Logs</strong>:
+<ul>
+<li>Retention: 7 days (cost optimization)</li>
+<li>Encryption: KMS DynamoDB key</li>
+<li>Log groups: API Gateway, Lambda functions (all have logs)</li>
+</ul>
+</li>
+<li><strong>Cost Tracking</strong>:
+<ul>
+<li>CloudWatch metric: EstimatedCharges</li>
+<li>Alarms: Warning ($35) + Critical ($50)</li>
+<li>Daily cost monitoring</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dependencies</strong>: All other stacks (monitors the entire infrastructure)</p>
+<p><strong>Estimated cost</strong>: ~$3-8/month</p>
+<blockquote>
+<p><strong>Best practice</strong>:</p>
+<ul>
+<li>Deploy this stack last for complete visibility</li>
+<li>Composite alarm helps reduce alarm fatigue</li>
+<li>7-day log retention balances debugging needs and cost</li>
+<li>Cost alarms prevent unexpected bills</li>
+</ul></blockquote>
+<hr>
+<h3 id="stack-dependencies-flow">Stack Dependencies Flow</h3>
+<pre tabindex="0"><code>DNS Stack (Route 53)
+  ↓
+Certificate Stack (ACM in us-east-1)
+  ↓
+Core Stack (DynamoDB, S3, CloudFront, KMS)
+  ↓
+Auth Stack (Cognito, Lambda Triggers)
+  ↓
+Backend Stack (API Gateway, Lambda, SQS, WAF)
+  ↓
+Observability Stack (CloudWatch, Alarms)
+</code></pre><p><strong>Dependency explanation</strong>:</p>
+<ol>
+<li><strong>Certificate Stack</strong> needs DNS Stack to validate certificates via Route 53 DNS</li>
+<li><strong>Core Stack</strong> needs Certificate Stack to attach certificate to CloudFront</li>
+<li><strong>Auth Stack</strong> needs Core Stack so Lambda triggers can access DynamoDB</li>
+<li><strong>Backend Stack</strong> needs Auth Stack to integrate Cognito Authorizer into API Gateway</li>
+<li><strong>Observability Stack</strong> needs all stacks to monitor all resources</li>
+</ol>
+<h3 id="total-estimated-cost">Total Estimated Cost</h3>
+<p><strong>Development Environment</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Service</th>
+          <th>Cost/month</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Route 53 Hosted Zone</td>
+          <td>$0.50</td>
+          <td>1 hosted zone + DNS queries</td>
+      </tr>
+      <tr>
+          <td>ACM Certificates</td>
+          <td>$0</td>
+          <td>Free for public certificates</td>
+      </tr>
+      <tr>
+          <td>DynamoDB (Pay-per-request)</td>
+          <td>$3-5</td>
+          <td>Depends on usage, free tier available</td>
+      </tr>
+      <tr>
+          <td>S3 (Intelligent-Tiering)</td>
+          <td>$1-3</td>
+          <td>2 buckets, auto-tiering saves cost</td>
+      </tr>
+      <tr>
+          <td>CloudFront</td>
+          <td>$2-5</td>
+          <td>CDN distribution + data transfer</td>
+      </tr>
+      <tr>
+          <td>Lambda</td>
+          <td>$0-3</td>
+          <td>7 functions + 1 worker, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>Lambda Layer</td>
+          <td>$0</td>
+          <td>No additional charge</td>
+      </tr>
+      <tr>
+          <td>API Gateway</td>
+          <td>$0-3</td>
+          <td>REST API, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>Cognito (Free tier)</td>
+          <td>$0</td>
+          <td>Up to 50,000 MAU</td>
+      </tr>
+      <tr>
+          <td>SQS</td>
+          <td>$0-1</td>
+          <td>4 queues + 4 DLQs, free tier 1M requests</td>
+      </tr>
+      <tr>
+          <td>WAF (API Gateway only)</td>
+          <td>$5-8</td>
+          <td>Web ACL + rules + requests processed</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Logs</td>
+          <td>$1-2</td>
+          <td>7-day retention, all services</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Dashboards</td>
+          <td>$0-1</td>
+          <td>4 dashboards, first 3 free</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>$0.50-1</td>
+          <td>15+ alarms, $0.10/alarm</td>
+      </tr>
+      <tr>
+          <td>SNS</td>
+          <td>$0</td>
+          <td>Email notifications, low volume</td>
+      </tr>
+      <tr>
+          <td>KMS</td>
+          <td>$2</td>
+          <td>2 customer-managed keys @ $1 each</td>
+      </tr>
+      <tr>
+          <td>IAM</td>
+          <td>$0</td>
+          <td>Roles &amp; policies are free</td>
+      </tr>
+      <tr>
+          <td><strong>TOTAL</strong></td>
+          <td><strong>$15-35/month</strong></td>
+          <td>Development with low traffic</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>This is an estimate for the development environment with low traffic</li>
+<li>Production environment with high traffic will have significantly higher costs</li>
+<li>Free tier: Cognito (50K MAU), Lambda (1M requests), API Gateway (1M requests), SQS (1M requests)</li>
+<li>Cost optimizations applied:
+<ul>
+<li>CloudFront WAF removed (-$9/month)</li>
+<li>S3 Intelligent-Tiering (auto cost reduction)</li>
+<li>CloudWatch Logs 7-day retention</li>
+<li>Lambda Layer reduces deployment costs</li>
+</ul>
+</li>
+</ul></blockquote>
+<hr>
+<p>authStack.addDependency(coreStack);
+backendStack.addDependency(authStack);
+observabilityStack.addDependency(backendStack);</p>
+<h2 id="configuration-guide">Configuration Guide</h2>
+<h3 id="step-1-prepare-infrastructure-directory">Step 1: Prepare Infrastructure Directory</h3>
+<p><strong>1. Navigate to infrastructure directory</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p><strong>2. Install dependencies</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>npm install
+</span></span></code></pre></div><blockquote>
+<p><strong>TODO</strong>: Take a screenshot of the terminal with the output of <code>npm install</code></p></blockquote>
+<h3 id="step-2-configure-environment-settings">Step 2: Configure Environment Settings</h3>
+<p><strong>1. Review environment configuration</strong></p>
+<p>Open the file <code>config/environment.ts</code> to review the configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>code config\environment.ts
+</span></span></code></pre></div><p>This file contains configuration for environments (dev, staging, prod):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Example Dev environment configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;123456789012&#39;</span>,        <span style="color:#75715e">// Update with your AWS Account ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ap-southeast-1&#39;</span>,        <span style="color:#75715e">// Singapore region
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">domains</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">frontend</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">api</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;api-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cdn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cdn-dev.everyonecook.cloud&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cognito</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">passwordPolicy</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">minLength</span>: <span style="color:#66d9ef">8</span>,  <span style="color:#75715e">// Dev: 8 chars, Prod: 12 chars
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>2. Verify AWS Account ID</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Check current AWS Account ID</span>
+</span></span><span style="display:flex;"><span>aws sts get-caller-identity
+</span></span></code></pre></div><p>Output will show:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;UserId&#34;</span>: <span style="color:#e6db74">&#34;AIDAXXXXXXXXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Account&#34;</span>: <span style="color:#e6db74">&#34;123456789012&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Arn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::123456789012:user/your-username&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>3. Update account ID in config (if needed)</strong></p>
+<p>If the account ID does not match, update it in <code>config/environment.ts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">dev</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;YOUR_ACTUAL_ACCOUNT_ID&#39;</span>,  <span style="color:#75715e">// Update here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ... other configs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="step-3-review-cdk-app-structure">Step 3: Review CDK App Structure</h3>
+<p><strong>1. Review main CDK app file</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>code bin\app.ts
+</span></span></code></pre></div><p>The file <code>bin/app.ts</code> is the entry point of the CDK application. Main content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#f92672">!</span><span style="color:#960050;background-color:#1e0010">/usr/bin/env node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getConfig</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../config/environment&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">App</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Get environment from context (default: &#39;dev&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">environment</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">tryGetContext</span>(<span style="color:#e6db74">&#39;environment&#39;</span>) <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;dev&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getConfig</span>(<span style="color:#a6e22e">environment</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`🚀 Deploying Everyone Cook infrastructure for environment: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create stacks in dependency order
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dnsStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DnsStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-DNS`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certificateStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CertificateStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Certificate`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">coreStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CoreStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Core`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Auth`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">backendStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BackendStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Backend`</span>, {...});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">observabilityStack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ObservabilityStack</span>(<span style="color:#a6e22e">app</span>, <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Observability`</span>, {...});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Add dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">certificateStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">dnsStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">coreStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">certificateStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">coreStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">backendStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">authStack</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">observabilityStack</span>.<span style="color:#a6e22e">addDependency</span>(<span style="color:#a6e22e">backendStack</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Add tags to all stacks
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, <span style="color:#e6db74">&#39;EveryoneCook&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;Environment&#39;</span>, <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Tags</span>.<span style="color:#66d9ef">of</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;ManagedBy&#39;</span>, <span style="color:#e6db74">&#39;CDK&#39;</span>);
+</span></span></code></pre></div><p><strong>2. Understand stack dependencies</strong></p>
+<p>Stacks are created in order and have explicit dependencies:</p>
+<ul>
+<li><strong>Certificate Stack</strong> depends on <strong>DNS Stack</strong></li>
+<li><strong>Core Stack</strong> depends on <strong>Certificate Stack</strong></li>
+<li><strong>Auth Stack</strong> depends on <strong>Core Stack</strong></li>
+<li><strong>Backend Stack</strong> depends on <strong>Auth Stack</strong></li>
+<li><strong>Observability Stack</strong> depends on all other stacks</li>
+</ul>
+<h3 id="step-4-validate-configuration">Step 4: Validate Configuration</h3>
+<p><strong>1. Compile TypeScript</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Navigate to infrastructure directory</span>
+</span></span><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compile TypeScript</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span></code></pre></div><p>Successful output:</p>
+<pre tabindex="0"><code>&gt; everyonecook-infrastructure@1.0.0 build
+&gt; tsc
+
+# No errors - compilation successful
+</code></pre><p><strong>2. List all CDK stacks</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># List all stacks for dev environment</span>
+</span></span><span style="display:flex;"><span>npx cdk list --context environment=dev
+</span></span></code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>EveryoneCook-dev-DNS
+EveryoneCook-dev-Certificate
+EveryoneCook-dev-Core
+EveryoneCook-dev-Auth
+EveryoneCook-dev-Backend
+EveryoneCook-dev-Observability
+</code></pre><p><strong>3. Synthesize CloudFormation templates</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Generate CloudFormation templates</span>
+</span></span><span style="display:flex;"><span>npx cdk synth --context environment=dev
+</span></span></code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>Successfully synthesized to D:\Project_AWS\everyonecook\infrastructure\cdk.out
+Supply a stack id (EveryoneCook-dev-DNS, EveryoneCook-dev-Certificate, ...) to display its template.
+</code></pre><p>The <code>cdk.out/</code> folder is created with CloudFormation templates:</p>
+<pre tabindex="0"><code>cdk.out/
+├── EveryoneCook-dev-DNS.template.json
+├── EveryoneCook-dev-Certificate.template.json
+├── EveryoneCook-dev-Core.template.json
+├── EveryoneCook-dev-Auth.template.json
+├── EveryoneCook-dev-Backend.template.json
+└── EveryoneCook-dev-Observability.template.json
+</code></pre><h3 id="step-5-review-stack-resources-optional">Step 5: Review Stack Resources (Optional)</h3>
+<p>If you want to see details of resources in each stack:</p>
+<p><strong>1. DNS Stack Resources</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># View DNS stack template</span>
+</span></span><span style="display:flex;"><span>Get-Content cdk.out\EveryoneCook-dev-DNS.template.json | ConvertFrom-Json | Select-Object -ExpandProperty Resources
+</span></span></code></pre></div><p>Resources:</p>
+<ul>
+<li><strong>HostedZone</strong>: Route 53 Hosted Zone</li>
+<li><strong>Outputs</strong>: Nameservers, Hosted Zone ID</li>
+</ul>
+<p><strong>2. Certificate Stack Resources</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># View Certificate stack template</span>
+</span></span><span style="display:flex;"><span>Get-Content cdk.out\EveryoneCook-dev-Certificate.template.json | ConvertFrom-Json | Select-Object -ExpandProperty Resources
+</span></span></code></pre></div><p>Resources:</p>
+<ul>
+<li><strong>CloudFrontCertificate</strong>: ACM Certificate for CloudFront (<code>cdn.everyonecook.cloud</code>)</li>
+<li><strong>ApiGatewayCertificate</strong>: Wildcard ACM Certificate (<code>*.everyonecook.cloud</code>)</li>
+<li><strong>ValidationRecords</strong>: Route 53 DNS validation records</li>
+</ul>
+<p><strong>3. Core Stack Resources</strong></p>
+<p>Resources (30+ resources):</p>
+<ul>
+<li><strong>DynamoDB Table</strong> with 5 GSI indexes</li>
+<li><strong>S3 Buckets</strong> (2 buckets: content, cdn-logs)</li>
+<li><strong>CloudFront Distribution</strong> with OAC</li>
+<li><strong>KMS Keys</strong> (2 keys: DynamoDB, S3)</li>
+<li><strong>IAM Roles</strong> and Policies</li>
+</ul>
+<p><strong>4. Auth Stack Resources</strong></p>
+<p>Resources (20+ resources):</p>
+<ul>
+<li><strong>Cognito User Pool</strong> with password policy</li>
+<li><strong>Cognito User Pool Client</strong></li>
+<li><strong>Lambda Functions</strong> (5 triggers)</li>
+<li><strong>IAM Roles</strong> for Lambda functions</li>
+</ul>
+<p><strong>5. Backend Stack Resources</strong></p>
+<p>Resources (50+ resources):</p>
+<ul>
+<li><strong>API Gateway REST API</strong> with custom domain</li>
+<li><strong>Lambda Functions</strong> (6 modules + 1 worker)</li>
+<li><strong>SQS Queues</strong> (4 queues + 4 DLQs)</li>
+<li><strong>WAF Web ACL</strong> for API Gateway</li>
+<li><strong>Lambda Layer</strong> (shared dependencies)</li>
+<li><strong>IAM Roles</strong> and Policies</li>
+</ul>
+<p><strong>6. Observability Stack Resources</strong></p>
+<p>Resources (15+ resources):</p>
+<ul>
+<li><strong>CloudWatch Dashboards</strong> (4 dashboards)</li>
+<li><strong>CloudWatch Alarms</strong> (10+ alarms)</li>
+<li><strong>Composite Alarm</strong> for overall health</li>
+<li><strong>SNS Topic</strong> for notifications</li>
+</ul>
+<h3 id="step-6-detailed-configuration-for-each-stack">Step 6: Detailed Configuration for Each Stack</h3>
+<p>To learn more about the configuration and resources of each stack, see the following sections:</p>
+<ul>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">5.4.1 DNS Stack</a></strong>: Route 53 Hosted Zone configuration</li>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">5.4.2 Certificate Stack</a></strong>: ACM Certificates configuration</li>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">5.4.3 Core Stack</a></strong>: DynamoDB, S3, CloudFront configuration</li>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">5.4.4 Auth Stack</a></strong>: Cognito, Lambda Triggers configuration</li>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">5.4.5 Backend Stack</a></strong>: API Gateway, Lambda, SQS configuration</li>
+<li><strong><a href="../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">5.4.7 Observability Stack</a></strong>: CloudWatch, Alarms configuration</li>
+</ul>
+<hr>
+<h2 id="configuration-checklist">Configuration Checklist</h2>
+<p>Before deploying, check the following items:</p>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Environment Configuration</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> AWS Account ID has been verified and updated in <code>config/environment.ts</code></li>
+<li><input disabled="" type="checkbox"> Region is set correctly (ap-southeast-1 for dev)</li>
+<li><input disabled="" type="checkbox"> Domain names configured correctly</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Dependencies</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Node.js and npm have been installed</li>
+<li><input disabled="" type="checkbox"> AWS CLI has been configured with credentials</li>
+<li><input disabled="" type="checkbox"> AWS CDK CLI has been installed globally</li>
+<li><input disabled="" type="checkbox"> npm dependencies have been installed (<code>npm install</code>)</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Validation</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> TypeScript compilation successful (<code>npm run build</code>)</li>
+<li><input disabled="" type="checkbox"> CDK list shows all 6 stacks</li>
+<li><input disabled="" type="checkbox"> CDK synth generates CloudFormation templates successfully</li>
+<li><input disabled="" type="checkbox"> No syntax errors in stack code</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Preparation for Deployment</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> CDK bootstrap has been run (see <a href="../../5-workshop/5.03-cdk-bootstrap/">5.03 CDK Bootstrap</a>)</li>
+<li><input disabled="" type="checkbox"> AWS account has sufficient permissions to create resources</li>
+<li><input disabled="" type="checkbox"> Domain has been registered (or ready to register)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<p>After completing configuration and validation, continue to:</p>
+<p><strong><a href="../../5-workshop/5.05-deploy-infrastructure/">5.05 Deploy Infrastructure</a></strong> - Deploy all stacks to AWS</p>
+<p>In the next step, you will:</p>
+<ol>
+<li>Deploy DNS Stack and configure nameservers</li>
+<li>Deploy Certificate Stack and validate certificates</li>
+<li>Deploy Core Stack (DynamoDB, S3, CloudFront)</li>
+<li>Deploy Auth Stack (Cognito, Lambda Triggers)</li>
+<li>Deploy Backend Stack (API Gateway, Lambda Functions)</li>
+<li>Deploy Observability Stack (CloudWatch Dashboards)</li>
+</ol>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../5-workshop/5.03-cdk-bootstrap/" title="CDK Bootstrap"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/" title="5.4.1 DNS Stack" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../js/learn.js?1765346855"></script>
+    <script src="../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

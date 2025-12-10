@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.151.0">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="truongnvse182034@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>5.4.7 Observability Stack :: Internship Report</title>
+
+    
+    <link href="../../../css/nucleus.css?1765346855" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765346855" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765346855" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765346855" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765346855" rel="stylesheet">
+    <link href="../../../css/theme.css?1765346855" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765346855" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765346855" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765346855"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765346855"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765346855"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nvtruongops.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765346855"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.1-week1/"
+  title="Week 1 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.1-week1/">
+     <b> 1.1. </b> Week 1 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.3-week3/">
+     <b> 1.3. </b> Week 3 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.4-week4/">
+     <b> 1.4. </b> Week 4 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog "
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated Blogs"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/">
+     <b> 3. </b> Translated Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1: AWS Named as a Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services for 15 Years in a Row 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Blog 2: Qwen Models are Now Available in Amazon Bedrock"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2: Qwen Models are Now Available in Amazon Bedrock 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Blog 3: Centralized AWS Firewall Policy Management with AlgoSec"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3: Centralized AWS Firewall Policy Management with AlgoSec 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4: Essential Guide to Cloud Governance at AWS re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Blog 5: Solution-Centric Procurement Strategy on AWS Marketplace 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6: Top 10 AWS Cloud Operations Announcements at re:Invent 2025 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.3-event3/"
+  title="Event 3"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../4-eventparticipated/4.3-event3/">
+     <b> 4.3. </b> Event 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.01-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.01-workshop-overview/">
+     <b> 5.01. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.02-setup-environment/"
+  title="Setup Environment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.02-setup-environment/">
+     <b> 5.02. </b> Setup Environment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.03-cdk-bootstrap/"
+  title="CDK Bootstrap"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.03-cdk-bootstrap/">
+     <b> 5.03. </b> CDK Bootstrap 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/"
+  title="Configure Infrastructure Stacks"
+  class="dd-item 
+     parent
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/">
+     <b> 5.04. </b> Configure Infrastructure Stacks 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.1-dns-stack/"
+  title="5.4.1 DNS Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.1-dns-stack/">
+    5.4.1 DNS Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/"
+  title="5.4.2 Certificate Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.2-certificate-stack/">
+    5.4.2 Certificate Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.3-core-stack/"
+  title="5.4.3 Core Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.3-core-stack/">
+    5.4.3 Core Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.4-auth-stack/"
+  title="5.4.4 Auth Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.4-auth-stack/">
+    5.4.4 Auth Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.5-backend-stack/"
+  title="5.4.5 Backend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.5-backend-stack/">
+    5.4.5 Backend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/"
+  title="5.4.6 Frontend Stack"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/">
+    5.4.6 Frontend Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+  title="5.4.7 Observability Stack"
+  class="dd-item 
+     
+     active
+     
+        "
+>
+  <a href="../../../5-workshop/5.04-configure-stacks/5.4.7-observability-stack/">
+    5.4.7 Observability Stack 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.05-deploy-infrastructure/"
+  title="Deploy Infrastructure"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.05-deploy-infrastructure/">
+     <b> 5.05. </b> Deploy Infrastructure 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.06-configure-api-lambda/"
+  title="Configure API &amp; Lambda"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.06-configure-api-lambda/">
+     <b> 5.06. </b> Configure API &amp; Lambda 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.07-deploy-backend/"
+  title="Deploy Backend Services"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.07-deploy-backend/">
+     <b> 5.07. </b> Deploy Backend Services 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.08-test-endpoints/"
+  title="Test Endpoints End-to-End"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.08-test-endpoints/">
+     <b> 5.08. </b> Test Endpoints End-to-End 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.09-push-gitlab/"
+  title="Push to GitLab"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.09-push-gitlab/">
+     <b> 5.09. </b> Push to GitLab 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.10-deploy-amplify/"
+  title="Deploy to Amplify"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.10-deploy-amplify/">
+     <b> 5.10. </b> Deploy to Amplify 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.11-cleanup/"
+  title="Cleanup"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../5-workshop/5.11-cleanup/">
+     <b> 5.11. </b> Cleanup 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+     
+     
+     
+        "
+>
+  <a href="../../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://nvtruongops.github.io/fcj-workshop-template/vi/5-workshop/5.04-configure-stacks/5.4.7-observability-stack/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../'>Internship Report</a> > <a href='../../../5-workshop/'>Workshop</a> > <a href='../../../5-workshop/5.04-configure-stacks/'>Configure Infrastructure Stacks</a> > 5.4.7 Observability Stack
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#key-responsibilities">Key Responsibilities</a></li>
+        <li><a href="#what-this-stack-includes">What This Stack Includes</a></li>
+      </ul>
+    </li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#stack-configuration">Stack Configuration</a>
+      <ul>
+        <li><a href="#file-structure">File Structure</a></li>
+        <li><a href="#code-implementation-highlights">Code Implementation Highlights</a></li>
+      </ul>
+    </li>
+    <li><a href="#deployment-guide">Deployment Guide</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#step-1-review-configuration">Step 1: Review Configuration</a></li>
+        <li><a href="#step-2-synthesize-cloudformation-template">Step 2: Synthesize CloudFormation Template</a></li>
+        <li><a href="#step-3-review-generated-template">Step 3: Review Generated Template</a></li>
+        <li><a href="#step-4-deploy-observability-stack">Step 4: Deploy Observability Stack</a></li>
+      </ul>
+    </li>
+    <li><a href="#verification">Verification</a>
+      <ul>
+        <li><a href="#step-1-verify-cloudformation-stack">Step 1: Verify CloudFormation Stack</a></li>
+        <li><a href="#step-2-verify-cloudwatch-alarms">Step 2: Verify CloudWatch Alarms</a></li>
+        <li><a href="#step-3-verify-cloudwatch-dashboards">Step 3: Verify CloudWatch Dashboards</a></li>
+      </ul>
+    </li>
+    <li><a href="#cost-breakdown">Cost Breakdown</a>
+      <ul>
+        <li><a href="#monthly-costs-development">Monthly Costs (Development)</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5.4.7 Observability Stack
+            </h1>
+          
+
+        
+
+
+
+	<hr>
+<h1 id="observability-stack---monitoring--alerting">Observability Stack - Monitoring &amp; Alerting</h1>
+<h2 id="overview">Overview</h2>
+<p>The Observability Stack is the <strong>Phase 7 monitoring layer</strong> of the EveryoneCook infrastructure. It provides comprehensive monitoring, alerting, and visualization for all deployed stacks through CloudWatch dashboards, alarms, and SNS notifications.</p>
+<p><strong>Deployment Order</strong>: This stack <strong>MUST</strong> be deployed <strong>LAST</strong>, after all other stacks (DNS, Certificate, Core, Auth, Backend, Frontend) are deployed.</p>
+<p>⚠️ <strong>Environment Note</strong>: This guide focuses on <strong>Development (dev)</strong> environment deployment. For staging/production deployments, alarm thresholds and monitoring intervals may be different.</p>
+<h3 id="key-responsibilities">Key Responsibilities</h3>
+<ul>
+<li>Create CloudWatch Dashboards for all stack layers</li>
+<li>Configure CloudWatch Alarms for critical metrics</li>
+<li>Setup SNS Topic for alarm notifications</li>
+<li>Create Composite Alarm for overall system health</li>
+<li>Monitor API Gateway, Lambda, DynamoDB, S3, CloudFront, and Cognito</li>
+<li>Track cost and billing metrics</li>
+</ul>
+<h3 id="what-this-stack-includes">What This Stack Includes</h3>
+<p><strong>CloudWatch Dashboards</strong> (4 dashboards):</p>
+<ol>
+<li><strong>Core Dashboard</strong>: DynamoDB, S3, CloudFront metrics</li>
+<li><strong>Auth Dashboard</strong>: Cognito authentication metrics</li>
+<li><strong>Backend Dashboard</strong>: API Gateway, Lambda, SQS metrics</li>
+<li><strong>Overview Dashboard</strong>: Aggregated system health view</li>
+</ol>
+<p><strong>CloudWatch Alarms</strong> (15+ alarms):</p>
+<ul>
+<li>API Gateway: 5XX errors, 4XX errors, latency</li>
+<li>Lambda: Error rate, throttles, duration</li>
+<li>DynamoDB: Read/write throttles, latency</li>
+<li>S3: 4XX/5XX errors</li>
+<li>SQS: DLQ messages, queue age</li>
+<li>Cost: Daily spending warnings</li>
+</ul>
+<p><strong>Notification System</strong>:</p>
+<ul>
+<li>SNS Topic for alarm notifications</li>
+<li>Email subscriptions for alerts</li>
+<li>Composite alarm for system health</li>
+</ul>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────────────────────────┐
+│            Observability Stack (Phase 7 - Dev Environment)            │
+│                                                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  SNS Topic (Alarm Notifications)                                │ │
+│  │  ├─ Topic Name: EveryoneCook-dev-Alarms                        │ │
+│  │  ├─ Email Subscription: team@everyonecook.cloud                │ │
+│  │  └─ Protocol: Email (requires confirmation)                    │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                          │                                            │
+│                          ▼ (Alarm Actions)                            │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  CloudWatch Alarms (15+ alarms)                                 │ │
+│  │                                                                  │ │
+│  │  API Gateway Alarms:                                            │ │
+│  │  ├─ 5XX Error Rate &gt; 5% (Critical)                             │ │
+│  │  ├─ 4XX Error Rate &gt; 20% (Warning)                             │ │
+│  │  └─ P99 Latency &gt; 3s (Warning)                                 │ │
+│  │                                                                  │ │
+│  │  Lambda Alarms:                                                 │ │
+│  │  ├─ Error Rate &gt; 5% (Critical)                                 │ │
+│  │  ├─ Throttles &gt; 10 (Critical)                                  │ │
+│  │  └─ P99 Duration &gt; 10s (Warning)                               │ │
+│  │                                                                  │ │
+│  │  DynamoDB Alarms:                                               │ │
+│  │  ├─ Read Throttles &gt; 10 (Critical)                             │ │
+│  │  ├─ Write Throttles &gt; 10 (Critical)                            │ │
+│  │  └─ P99 Latency &gt; 100ms (Warning)                              │ │
+│  │                                                                  │ │
+│  │  S3 Alarms:                                                     │ │
+│  │  ├─ 4XX Error Rate &gt; 5% (Warning)                              │ │
+│  │  └─ 5XX Errors &gt; 0 (Critical)                                  │ │
+│  │                                                                  │ │
+│  │  SQS Alarms:                                                    │ │
+│  │  ├─ DLQ Messages &gt; 0 (Critical)                                │ │
+│  │  └─ Message Age &gt; 5 minutes (Warning)                          │ │
+│  │                                                                  │ │
+│  │  Cost Alarms:                                                   │ │
+│  │  ├─ Daily Cost &gt; $50 (Warning)                                 │ │
+│  │  └─ Daily Cost &gt; $100 (Critical)                               │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                          │                                            │
+│                          ▼                                            │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  Composite Alarm (System Health)                                │ │
+│  │  ├─ Name: EveryoneCook-dev-SystemHealth                        │ │
+│  │  ├─ Triggers: ANY critical alarm fires                         │ │
+│  │  └─ Action: Send SNS notification                              │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │  CloudWatch Dashboards (4 dashboards)                           │ │
+│  │                                                                  │ │
+│  │  1. Core Dashboard (EveryoneCook-dev-Core):                    │ │
+│  │     ├─ DynamoDB: Read/Write capacity, throttles, latency       │ │
+│  │     ├─ S3: Requests, errors, bytes transferred                 │ │
+│  │     └─ CloudFront: Requests, error rates, bytes downloaded     │ │
+│  │                                                                  │ │
+│  │  2. Auth Dashboard (EveryoneCook-dev-Auth):                    │ │
+│  │     ├─ Cognito: Sign-ups, sign-ins                             │ │
+│  │     └─ Cognito: Failed authentications                         │ │
+│  │                                                                  │ │
+│  │  3. Backend Dashboard (EveryoneCook-dev-Backend):              │ │
+│  │     ├─ API Gateway: Requests, latency (P50/P95/P99)            │ │
+│  │     ├─ API Gateway: 4XX/5XX errors                             │ │
+│  │     ├─ Lambda: Invocations, duration, errors, throttles        │ │
+│  │     └─ SQS: Messages sent, visible, oldest age                 │ │
+│  │                                                                  │ │
+│  │  4. Overview Dashboard (EveryoneCook-dev-Overview):            │ │
+│  │     ├─ System Health: Environment info, region                 │ │
+│  │     ├─ Key Metrics: API requests, latency, Lambda stats        │ │
+│  │     ├─ Error Trends: API 5XX, Lambda errors (last hour)        │ │
+│  │     ├─ Cost Tracking: Estimated daily cost, 7-day trend        │ │
+│  │     └─ Alarm Status: Composite alarm widget                    │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
+                          │
+                          │ Monitors
+                          ▼
+        ┌──────────────────┴───────────────────┐
+        ▼                  ▼                    ▼
+   Core Stack        Auth Stack           Backend Stack
+   (DynamoDB,        (Cognito)            (API Gateway,
+    S3, CDN)                               Lambda, SQS)
+</code></pre><hr>
+<h2 id="stack-configuration">Stack Configuration</h2>
+<h3 id="file-structure">File Structure</h3>
+<pre tabindex="0"><code>infrastructure/lib/stacks/
+└── observability-stack.ts   # Observability Stack implementation (1175 lines)
+</code></pre><h3 id="code-implementation-highlights">Code Implementation Highlights</h3>
+<p><strong>File</strong>: <code>infrastructure/lib/stacks/observability-stack.ts</code></p>
+<h4 id="1-sns-topic-for-alarms">1. SNS Topic for Alarms</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create SNS Topic for CloudWatch Alarms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Task 7.4.2 - Step 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createAlarmTopic</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">sns</span>.<span style="color:#a6e22e">Topic</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">topic</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">sns</span>.<span style="color:#a6e22e">Topic</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;AlarmTopic&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">topicName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Alarms`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">displayName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Everyone Cook CloudWatch Alarms&#39;</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Add email subscription for alarm notifications
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">topic</span>.<span style="color:#a6e22e">addSubscription</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">sns_subscriptions</span>.<span style="color:#a6e22e">EmailSubscription</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">contact</span>.<span style="color:#a6e22e">email</span>)
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">topic</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Configuration</strong>: Email subscription requires confirmation via AWS SNS.</p>
+<h4 id="2-api-gateway-alarms">2. API Gateway Alarms</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// API Gateway: High 5XX Error Rate (Critical)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">api5xxAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;API-5XX-Critical&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-API-5XX-Critical`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;API Gateway 5XX error rate &gt; 5% in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/ApiGateway&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;5XXError&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">ApiName</span>: <span style="color:#66d9ef">apiName</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">comparisonOperator</span>: <span style="color:#66d9ef">cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">treatMissingData</span>: <span style="color:#66d9ef">cloudwatch.TreatMissingData.NOT_BREACHING</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">api5xxAlarm</span>.<span style="color:#a6e22e">addAlarmAction</span>(<span style="color:#a6e22e">alarmAction</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// API Gateway: High Latency (Warning)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">apiLatencyAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;API-Latency-High&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-API-Latency-High`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;API Gateway P99 latency &gt; 3s in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/ApiGateway&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Latency&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">ApiName</span>: <span style="color:#66d9ef">apiName</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;p99&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">3000</span>, <span style="color:#75715e">// 3 seconds in milliseconds
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">comparisonOperator</span>: <span style="color:#66d9ef">cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h4 id="3-lambda-alarms">3. Lambda Alarms</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Lambda: High Error Rate (Critical)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lambdaErrorAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Lambda-Error-Rate&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Lambda-Error-Rate`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Lambda error rate &gt; 5% in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/Lambda&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Errors&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">comparisonOperator</span>: <span style="color:#66d9ef">cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lambda: Throttles (Critical)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lambdaThrottleAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Lambda-Throttle&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Lambda-Throttle`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Lambda throttles &gt; 10 in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/Lambda&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Throttles&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">10</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">1</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h4 id="4-dynamodb-alarms">4. DynamoDB Alarms</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// DynamoDB: Read Throttles (Critical)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dynamoReadThrottleAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;DynamoDB-Read-Throttle&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-DynamoDB-Read-Throttle`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DynamoDB read throttles &gt; 10 in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ReadThrottleEvents&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">10</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// DynamoDB: High Latency (Warning)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dynamoLatencyAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Alarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;DynamoDB-Latency-High&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-DynamoDB-Latency-High`</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DynamoDB P99 latency &gt; 100ms in 5 minutes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metric</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;SuccessfulRequestLatency&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Operation</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Query&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;p99&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threshold</span>: <span style="color:#66d9ef">100</span>, <span style="color:#75715e">// 100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">evaluationPeriods</span>: <span style="color:#66d9ef">3</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h4 id="5-composite-alarm">5. Composite Alarm</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create Composite Alarm for overall system health
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Task 7.4.2 - Step 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createCompositeAlarm</span>(<span style="color:#a6e22e">alarms</span>: <span style="color:#66d9ef">cloudwatch.IAlarm</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">CompositeAlarm</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Filter critical alarms only
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">criticalAlarms</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">alarms</span>.<span style="color:#a6e22e">filter</span>(
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">alarm</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">alarm</span>.<span style="color:#a6e22e">alarmName</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;Critical&#39;</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">alarm</span>.<span style="color:#a6e22e">alarmName</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;Throttle&#39;</span>)
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">compositeAlarm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">CompositeAlarm</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;SystemHealth&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">compositeAlarmName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-SystemHealth`</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alarmDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Overall system health - triggers if any critical alarm fires&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alarmRule</span>: <span style="color:#66d9ef">cloudwatch.AlarmRule.anyOf</span>(
+</span></span><span style="display:flex;"><span>      ...<span style="color:#a6e22e">criticalAlarms</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">alarm</span>) <span style="color:#f92672">=&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">AlarmRule</span>.<span style="color:#a6e22e">fromAlarm</span>(<span style="color:#a6e22e">alarm</span>, <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">AlarmState</span>.<span style="color:#a6e22e">ALARM</span>)
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">compositeAlarm</span>.<span style="color:#a6e22e">addAlarmAction</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch_actions</span>.<span style="color:#a6e22e">SnsAction</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">alarmTopic</span>));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">compositeAlarm</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="6-core-dashboard">6. Core Dashboard</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create Core Dashboard (DynamoDB, S3, CloudFront)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createCoreDashboard</span>(<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">ObservabilityStackProps</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Dashboard</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dashboard</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Dashboard</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CoreDashboard&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dashboardName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Core`</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// DynamoDB Metrics
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">dashboard</span>.<span style="color:#a6e22e">addWidgets</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">GraphWidget</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DynamoDB - Read/Write Capacity&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">left</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ConsumedReadCapacityUnits&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ConsumedWriteCapacityUnits&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">width</span>: <span style="color:#66d9ef">12</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">GraphWidget</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;DynamoDB - Throttles&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">left</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ReadThrottleEvents&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Metric</span>({
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">namespace</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AWS/DynamoDB&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">metricName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;WriteThrottleEvents&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dimensionsMap</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">TableName</span>: <span style="color:#66d9ef">dynamoTableName</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">statistic</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">period</span>: <span style="color:#66d9ef">cdk.Duration.minutes</span>(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">width</span>: <span style="color:#66d9ef">12</span>,
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// S3 and CloudFront metrics...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">dashboard</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="7-overview-dashboard">7. Overview Dashboard</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Create Overview Dashboard (Aggregated view)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#a6e22e">createOverviewDashboard</span>(<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">ObservabilityStackProps</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Dashboard</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dashboard</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">Dashboard</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;OverviewDashboard&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dashboardName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`EveryoneCook-</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-Overview`</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// System Health Header
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">dashboard</span>.<span style="color:#a6e22e">addWidgets</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cloudwatch</span>.<span style="color:#a6e22e">TextWidget</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">markdown</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`# Everyone Cook - System Overview</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n**Environment:** </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">environment</span><span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n**Region:** </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">region</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">width</span>: <span style="color:#66d9ef">24</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">height</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Key Metrics: API, Lambda, DynamoDB, S3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Cost Tracking
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Alarm Status Widget
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">dashboard</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="deployment-guide">Deployment Guide</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before deploying the Observability Stack, ensure:</p>
+<ol>
+<li>
+<p><strong>All other stacks deployed</strong>:</p>
+<ul>
+<li>DNS Stack (Phase 1)</li>
+<li>Certificate Stack (Phase 1.5)</li>
+<li>Core Stack (Phase 2)</li>
+<li>Auth Stack (Phase 3)</li>
+<li>Backend Stack (Phase 4)</li>
+<li>Frontend Stack (Phase 6 - Amplify)</li>
+</ul>
+</li>
+<li>
+<p><strong>Stack exports available</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws cloudformation list-exports --region ap-southeast-1
+</span></span></code></pre></div><p>Expected exports:</p>
+<ul>
+<li><code>EveryoneCook-dev-Core-TableName</code></li>
+<li><code>EveryoneCook-dev-Core-ContentBucketName</code></li>
+<li><code>EveryoneCook-dev-Core-DistributionId</code></li>
+<li><code>EveryoneCook-dev-Auth-UserPoolId</code></li>
+<li><code>EveryoneCook-dev-Backend-ApiName</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Email configured</strong>:</p>
+<ul>
+<li>Valid email in <code>infrastructure/config/dev.ts</code></li>
+<li>Email will receive SNS subscription confirmation</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-1-review-configuration">Step 1: Review Configuration</h3>
+<p><strong>File</strong>: <code>infrastructure/config/dev.ts</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">devConfig</span>: <span style="color:#66d9ef">EnvironmentConfig</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dev&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ap-southeast-1&#39;</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Email for alarm notifications
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">contact</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;your-email@example.com&#39;</span>,  <span style="color:#75715e">// ⚠️ Update this
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">phone</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;+1234567890&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Monitoring settings (already configured)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">monitoring</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">enableDetailedMonitoring</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">retainLogs</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logRetentionDays</span>: <span style="color:#66d9ef">7</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">enableXRay</span>: <span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// Disabled for dev to save costs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>⚠️ <strong>Important</strong>: Update the email address to receive alarm notifications.</p>
+<h3 id="step-2-synthesize-cloudformation-template">Step 2: Synthesize CloudFormation Template</h3>
+<p>Navigate to infrastructure directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd D:\Project_AWS\everyonecook\infrastructure
+</span></span></code></pre></div><p>Synthesize the Observability Stack:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>npm run synth
+</span></span></code></pre></div><p><strong>Expected Output</strong> (1175 lines):</p>
+<pre tabindex="0"><code>✨ Synthesis time: 3.5s
+
+Resources:
+[+] AWS::SNS::Topic                         AlarmTopic
+[+] AWS::SNS::Subscription                  AlarmTopic/EmailSubscription
+[+] AWS::CloudWatch::Alarm                  API-5XX-Critical
+[+] AWS::CloudWatch::Alarm                  API-4XX-Warning
+[+] AWS::CloudWatch::Alarm                  API-Latency-High
+[+] AWS::CloudWatch::Alarm                  Lambda-Error-Rate
+[+] AWS::CloudWatch::Alarm                  Lambda-Throttle
+[+] AWS::CloudWatch::Alarm                  Lambda-Duration-High
+[+] AWS::CloudWatch::Alarm                  DynamoDB-Read-Throttle
+[+] AWS::CloudWatch::Alarm                  DynamoDB-Write-Throttle
+[+] AWS::CloudWatch::Alarm                  DynamoDB-Latency-High
+[+] AWS::CloudWatch::Alarm                  S3-4XX-Warning
+[+] AWS::CloudWatch::Alarm                  S3-5XX-Critical
+[+] AWS::CloudWatch::Alarm                  SQS-DLQ-Messages
+[+] AWS::CloudWatch::Alarm                  SQS-Queue-Age
+[+] AWS::CloudWatch::Alarm                  Cost-Warning
+[+] AWS::CloudWatch::Alarm                  Cost-Critical
+[+] AWS::CloudWatch::CompositeAlarm         SystemHealth
+[+] AWS::CloudWatch::Dashboard              CoreDashboard
+[+] AWS::CloudWatch::Dashboard              AuthDashboard
+[+] AWS::CloudWatch::Dashboard              BackendDashboard
+[+] AWS::CloudWatch::Dashboard              OverviewDashboard
+
+Outputs:
+- AlarmTopicArn
+- CompositeAlarmName
+- CoreDashboardName
+- AuthDashboardName
+- BackendDashboardName
+- OverviewDashboardName
+</code></pre><p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/synth-output.png" alt="CDK Synth Output">
+<em>Screenshot: CDK synth output showing all Observability Stack resources</em></p>
+<h3 id="step-3-review-generated-template">Step 3: Review Generated Template</h3>
+<p>Open the generated CloudFormation template:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>code infrastructure/cdk.out/EveryoneCook-dev-Observability.template.json
+</span></span></code></pre></div><p><img src="../../../images/5-Workshop/5.4-configure-stacks/cloudformation-template.png" alt="CloudFormation Template">
+<em>Screenshot: Generated CloudFormation template showing SNS Topic, 15+ Alarms, Composite Alarm, and 4 Dashboards</em></p>
+<h3 id="step-4-deploy-observability-stack">Step 4: Deploy Observability Stack</h3>
+<p>Deploy using CDK:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>npx cdk deploy EveryoneCook-dev-Observability --require-approval never
+</span></span></code></pre></div><p><strong>Expected Deployment Time</strong>: 2-3 minutes</p>
+<p><strong>Deployment Output</strong>:</p>
+<pre tabindex="0"><code>EveryoneCook-dev-Observability: deploying...
+
+EveryoneCook-dev-Observability: creating CloudFormation changeset...
+
+EveryoneCook-dev-Observability
+
+Outputs:
+EveryoneCook-dev-Observability.AlarmTopicArn = arn:aws:sns:ap-southeast-1:123456789012:EveryoneCook-dev-Alarms
+EveryoneCook-dev-Observability.CompositeAlarmName = EveryoneCook-dev-SystemHealth
+EveryoneCook-dev-Observability.CoreDashboardName = EveryoneCook-dev-Core
+EveryoneCook-dev-Observability.AuthDashboardName = EveryoneCook-dev-Auth
+EveryoneCook-dev-Observability.BackendDashboardName = EveryoneCook-dev-Backend
+EveryoneCook-dev-Observability.OverviewDashboardName = EveryoneCook-dev-Overview
+
+Stack ARN:
+arn:aws:cloudformation:ap-southeast-1:123456789012:stack/EveryoneCook-dev-Observability/...
+
+✨ Deployment time: 2m 15s
+</code></pre><h2 id="verification">Verification</h2>
+<h3 id="step-1-verify-cloudformation-stack">Step 1: Verify CloudFormation Stack</h3>
+<p>Navigate to <strong>CloudFormation Console</strong>:</p>
+<pre tabindex="0"><code>AWS Console → CloudFormation → Stacks
+</code></pre><p><strong>Verify Stack</strong>:</p>
+<ul>
+<li>Stack Name: <code>EveryoneCook-dev-Observability</code></li>
+<li>Status: <strong>CREATE_COMPLETE</strong> ✅</li>
+<li>Resources: <strong>24 resources</strong> created</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/cloudformation-stack.png" alt="CloudFormation Stack">
+<em>Screenshot: CloudFormation stack with CREATE_COMPLETE status and 24 resources</em></p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/cloudformation-outputs.png" alt="CloudFormation Outputs">
+<em>Screenshot: CloudFormation Outputs tab showing all 6 outputs</em></p>
+<h3 id="step-2-verify-cloudwatch-alarms">Step 2: Verify CloudWatch Alarms</h3>
+<p>Navigate to <strong>CloudWatch Console</strong> → <strong>Alarms</strong>:</p>
+<pre tabindex="0"><code>AWS Console → CloudWatch → All alarms
+</code></pre><p><strong>Verify Alarms Created</strong> (15+ alarms):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Alarm Name</th>
+          <th>Type</th>
+          <th>Metric</th>
+          <th>Threshold</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>EveryoneCook-dev-API-5XX-Critical</code></td>
+          <td>Critical</td>
+          <td>API 5XX Errors</td>
+          <td>&gt; 5</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-API-4XX-Warning</code></td>
+          <td>Warning</td>
+          <td>API 4XX Errors</td>
+          <td>&gt; 20</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-API-Latency-High</code></td>
+          <td>Warning</td>
+          <td>API P99 Latency</td>
+          <td>&gt; 3000ms</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-Lambda-Error-Rate</code></td>
+          <td>Critical</td>
+          <td>Lambda Errors</td>
+          <td>&gt; 5</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-Lambda-Throttle</code></td>
+          <td>Critical</td>
+          <td>Lambda Throttles</td>
+          <td>&gt; 10</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-Lambda-Duration-High</code></td>
+          <td>Warning</td>
+          <td>Lambda P99 Duration</td>
+          <td>&gt; 10000ms</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-DynamoDB-Read-Throttle</code></td>
+          <td>Critical</td>
+          <td>DynamoDB Read Throttles</td>
+          <td>&gt; 10</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-DynamoDB-Write-Throttle</code></td>
+          <td>Critical</td>
+          <td>DynamoDB Write Throttles</td>
+          <td>&gt; 10</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-DynamoDB-Latency-High</code></td>
+          <td>Warning</td>
+          <td>DynamoDB P99 Latency</td>
+          <td>&gt; 100ms</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-S3-4XX-Warning</code></td>
+          <td>Warning</td>
+          <td>S3 4XX Errors</td>
+          <td>&gt; 5%</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-S3-5XX-Critical</code></td>
+          <td>Critical</td>
+          <td>S3 5XX Errors</td>
+          <td>&gt; 0</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-SQS-DLQ-Messages</code></td>
+          <td>Critical</td>
+          <td>SQS DLQ Messages</td>
+          <td>&gt; 0</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-SQS-Queue-Age</code></td>
+          <td>Warning</td>
+          <td>SQS Message Age</td>
+          <td>&gt; 300s</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-Cost-Warning</code></td>
+          <td>Warning</td>
+          <td>Daily Cost</td>
+          <td>&gt; $50</td>
+          <td>OK</td>
+      </tr>
+      <tr>
+          <td><code>EveryoneCook-dev-Cost-Critical</code></td>
+          <td>Critical</td>
+          <td>Daily Cost</td>
+          <td>&gt; $100</td>
+          <td>OK</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Verify Composite Alarm</strong>:</p>
+<ul>
+<li>Name: <code>EveryoneCook-dev-SystemHealth</code></li>
+<li>Type: Composite</li>
+<li>Rule: ANY critical alarm → ALARM</li>
+<li>Status: <strong>OK</strong> ✅</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/cloudwatch-alarms.png" alt="CloudWatch Alarms List">
+<em>Screenshot: CloudWatch Alarms console showing all 15+ alarms with OK status</em></p>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/13-cloudwatch-alarms.png" alt="Composite Alarm">
+<em>Screenshot: Composite alarm details for system health monitoring</em></p>
+<h3 id="step-3-verify-cloudwatch-dashboards">Step 3: Verify CloudWatch Dashboards</h3>
+<p>Navigate to <strong>CloudWatch Console</strong> → <strong>Dashboards</strong>:</p>
+<pre tabindex="0"><code>AWS Console → CloudWatch → Dashboards
+</code></pre><p><strong>Verify Dashboards Created</strong> (5 dashboards):</p>
+<h4 id="1-core-dashboard-everyonecook-dev-core">1. Core Dashboard (<code>EveryoneCook-dev-Core</code>)</h4>
+<p>Open the dashboard and verify widgets:</p>
+<p><strong>DynamoDB Widgets</strong>:</p>
+<ul>
+<li>Read/Write Capacity graph</li>
+<li>Throttles graph</li>
+<li>Latency (P99) graph</li>
+<li>Table Size metric</li>
+</ul>
+<p><strong>S3 Widgets</strong>:</p>
+<ul>
+<li>Requests graph</li>
+<li>Errors (4XX/5XX) graph</li>
+</ul>
+<p><strong>CloudFront Widgets</strong>:</p>
+<ul>
+<li>Requests graph</li>
+<li>Error Rate (4XX/5XX) graph</li>
+<li>Bytes Downloaded graph</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/core-dashboard.png" alt="Core Dashboard">
+<em>Screenshot: Core Dashboard showing DynamoDB, S3, and CloudFront metrics</em></p>
+<h4 id="2-auth-dashboard-everyonecook-dev-auth">2. Auth Dashboard (<code>EveryoneCook-dev-Auth</code>)</h4>
+<p><strong>Cognito Widgets</strong>:</p>
+<ul>
+<li>Sign-ups graph</li>
+<li>Sign-ins graph</li>
+<li>Failed Authentications graph</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/auth-dashboard.png" alt="Auth Dashboard">
+<em>Screenshot: Auth Dashboard showing Cognito authentication metrics</em></p>
+<h4 id="3-backend-dashboard-everyonecook-dev-backend">3. Backend Dashboard (<code>EveryoneCook-dev-Backend</code>)</h4>
+<p><strong>API Gateway Widgets</strong>:</p>
+<ul>
+<li>Requests graph</li>
+<li>Latency (P50/P95/P99) graph</li>
+<li>4XX Errors graph</li>
+<li>5XX Errors graph</li>
+</ul>
+<p><strong>Lambda Widgets</strong>:</p>
+<ul>
+<li>Invocations graph</li>
+<li>Duration (P99) graph</li>
+<li>Errors graph</li>
+<li>Throttles graph</li>
+</ul>
+<p><strong>SQS Widgets</strong>:</p>
+<ul>
+<li>Messages Sent graph</li>
+<li>Messages Visible graph</li>
+<li>Oldest Message Age graph</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/backend-dashboard.png" alt="Backend Dashboard">
+<em>Screenshot: Backend Dashboard showing API Gateway, Lambda, and SQS metrics</em></p>
+<h4 id="4-overview-dashboard-everyonecook-dev-overview">4. Overview Dashboard (<code>EveryoneCook-dev-Overview</code>)</h4>
+<p><strong>System Health Section</strong>:</p>
+<ul>
+<li>Header with environment info</li>
+<li>Region information</li>
+</ul>
+<p><strong>Key Metrics</strong>:</p>
+<ul>
+<li>API Requests (5m) - Single value widget</li>
+<li>API P99 Latency - Single value widget</li>
+<li>Lambda Invocations (5m) - Single value widget</li>
+<li>Lambda Errors (5m) - Single value widget</li>
+<li>DynamoDB Read/Write Throttles - Single value widgets</li>
+<li>S3 Requests and Errors - Single value widgets</li>
+</ul>
+<p><strong>Trends</strong>:</p>
+<ul>
+<li>Error Rates graph (API 5XX, Lambda Errors)</li>
+</ul>
+<p><strong>Cost Tracking</strong>:</p>
+<ul>
+<li>Estimated Daily Cost - Single value widget</li>
+<li>Cost Trend (7 days) - Graph widget</li>
+</ul>
+<p><strong>Alarm Status</strong>:</p>
+<ul>
+<li>Composite Alarm widget showing system health</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.4-configure-stacks/5.4.7/overview-dashboard.png" alt="Overview Dashboard">
+<em>Screenshot: Overview Dashboard with system health, key metrics, error trends, and cost tracking</em></p>
+<h2 id="cost-breakdown">Cost Breakdown</h2>
+<h3 id="monthly-costs-development">Monthly Costs (Development)</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Service</th>
+          <th>Resource</th>
+          <th>Quantity</th>
+          <th>Unit Cost</th>
+          <th>Total</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>Standard alarms</td>
+          <td>15</td>
+          <td>$0.10/alarm</td>
+          <td>$1.50</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Alarms</td>
+          <td>Composite alarm</td>
+          <td>1</td>
+          <td>$0.50/alarm</td>
+          <td>$0.50</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Dashboards</td>
+          <td>Dashboards (&gt;3)</td>
+          <td>1</td>
+          <td>$3.00/dashboard</td>
+          <td>$3.00</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Metrics</td>
+          <td>Standard resolution</td>
+          <td>Included</td>
+          <td>Free</td>
+          <td>$0.00</td>
+      </tr>
+      <tr>
+          <td>SNS</td>
+          <td>Email notifications</td>
+          <td>&lt;1000</td>
+          <td>Free tier</td>
+          <td>$0.00</td>
+      </tr>
+      <tr>
+          <td>CloudWatch Logs</td>
+          <td>7-day retention</td>
+          <td>~5 GB</td>
+          <td>$0.50/GB</td>
+          <td>$2.50</td>
+      </tr>
+      <tr>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>$7.50/month</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Free Tier Benefits</strong>:</p>
+<ul>
+<li>First 3 dashboards: Free</li>
+<li>First 10 alarms: Free (covered)</li>
+<li>First 1M API requests to CloudWatch: Free</li>
+<li>SNS email (first 1000): Free</li>
+</ul>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<p>After deploying the Observability Stack:</p>
+<ol>
+<li>
+<p><strong>Confirm Email Subscription</strong>: Check inbox and confirm SNS subscription</p>
+</li>
+<li>
+<p><strong>Review Dashboards</strong>: Familiarize yourself with all 4 dashboards</p>
+</li>
+<li>
+<p><strong>Test Alarms</strong>: Trigger a test alarm to verify notifications</p>
+</li>
+<li>
+<p><strong>Monitor Costs</strong>: Check daily cost tracking in Overview Dashboard</p>
+</li>
+<li>
+<p>⏭️ <strong>Deploy Frontend</strong>: Continue to <a href="../../../5-workshop/5.10-deploy-amplify/">5.10 Deploy to Amplify</a></p>
+</li>
+<li>
+<p>⏭️ <strong>Test End-to-End</strong>: Test complete application flow and monitor metrics</p>
+</li>
+<li>
+<p>📊 <strong>Review Metrics</strong>: After 24 hours, review all dashboards for baseline metrics</p>
+</li>
+</ol>
+<hr>
+<h2 id="summary">Summary</h2>
+<p>You have successfully deployed the <strong>Observability Stack</strong> with:</p>
+<p><strong>1 SNS Topic</strong> for alarm notifications<br>
+<strong>15+ CloudWatch Alarms</strong> for critical metrics<br>
+<strong>1 Composite Alarm</strong> for overall system health<br>
+<strong>4 CloudWatch Dashboards</strong> for monitoring<br>
+<strong>Email Notifications</strong> configured and confirmed</p>
+<p><strong>Key Achievements</strong>:</p>
+<ul>
+<li>Complete visibility into system health</li>
+<li>Proactive alerting for critical issues</li>
+<li>Cost tracking and optimization</li>
+<li>Centralized monitoring dashboards</li>
+</ul>
+<p><strong>Total Resources</strong>: 24 CloudFormation resources<br>
+<strong>Deployment Time</strong>: ~2-3 minutes<br>
+<strong>Monthly Cost</strong>: ~$7.50 (dev environment)</p>
+<hr>
+<p><strong>🎉 Congratulations!</strong> You have completed all infrastructure stack deployments. Your EveryoneCook platform now has comprehensive monitoring and observability.</p>
+<p><strong>Next</strong>: <a href="../../../5-workshop/5.10-deploy-amplify/">5.10 Deploy to Amplify</a> to deploy the Next.js frontend application.</p>
+<hr>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../5-workshop/5.04-configure-stacks/5.4.6-frontend-stack/" title="5.4.6 Frontend Stack"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../5-workshop/5.05-deploy-infrastructure/" title="Deploy Infrastructure" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765346855"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765346855"></script>
+    <script src="../../../js/jquery.sticky.js?1765346855"></script>
+    <script src="../../../js/featherlight.min.js?1765346855"></script>
+    <script src="../../../js/highlight.pack.js?1765346855"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765346855"></script>
+    <script src="../../../js/learn.js?1765346855"></script>
+    <script src="../../../js/hugo-learn.js?1765346855"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765346855" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765346855"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>
